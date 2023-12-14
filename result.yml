@@ -218,3 +218,31 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/login:
+    post:
+      tags:
+        - public
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: superadmin@gmail.com
+                password:
+                  type: string
+                  example: password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
