@@ -1,0 +1,220 @@
+openapi: 3.0.0
+info:
+  title: Hospitality Management
+  description: Hospitality Management API documentation
+  version: '1.0'
+  x-logo:
+    url: https://github.com/joolfe/logoBanner.png
+    backgroundColor: '#FFFFFF'
+    altText: logo
+  termsOfService: '#'
+  contact:
+    name: Scodus
+    url: https://scodus.com
+    email: scodusnp@gmail.com
+  license:
+    name: MIT
+    url: https://es.wikipedia.org/wiki/Licencia_MIT
+servers:
+  - url: http://hospitality-api.nrnaglobal.com/
+    description: server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: admin
+  - name: admin > company
+  - name: admin > business service
+  - name: public
+paths:
+  /admin/company:
+    post:
+      tags:
+        - admin > company
+      summary: create company
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                business_name:
+                  type: string
+                  example: Business
+                display_name:
+                  type: string
+                  example: B
+                address:
+                  type: string
+                  example: KTM
+                primary_email:
+                  type: string
+                  example: admin@gmail.com
+                primary_phone:
+                  type: integer
+                  example: '984334645'
+                vat_number:
+                  type: integer
+                  example: '454545'
+                registration_number:
+                  type: integer
+                  example: '54545'
+                start_date:
+                  type: integer
+                  example: '454545'
+                company_image:
+                  type: string
+                  format: binary
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > company
+      summary: get all company list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/company/{company_id}:
+    get:
+      tags:
+        - admin > company
+      summary: get single company detail
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - admin > company
+      summary: delete company
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - admin > company
+      summary: update company details
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                business_name:
+                  type: string
+                  example: Business
+                display_name:
+                  type: string
+                  example: By
+                address:
+                  type: string
+                  example: KTM
+                primary_email:
+                  type: string
+                  example: admin@gmail.com
+                primary_phone:
+                  type: integer
+                  example: '984334645'
+                vat_number:
+                  type: integer
+                  example: '454545'
+                registration_number:
+                  type: integer
+                  example: '54545'
+                start_date:
+                  type: integer
+                  example: '454545'
+                company_image:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: put
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/business-service:
+    post:
+      tags:
+        - admin > business service
+      summary: create business service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                business_services:
+                  - service_name: hotel
+                    company_id: 1
+                  - service_name: restaurant
+                    company_id: 1
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > business service
+      summary: get all company business service list
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

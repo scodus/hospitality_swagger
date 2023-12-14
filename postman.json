@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb",
+		"name": "Hospitality Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30047466",
+		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30047466"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "company",
+					"item": [
+						{
+							"name": "create company",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "business_name",
+											"value": "Business",
+											"type": "text"
+										},
+										{
+											"key": "display_name",
+											"value": "B",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "KTM",
+											"type": "text"
+										},
+										{
+											"key": "primary_email",
+											"value": "admin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "primary_phone",
+											"value": "984334645",
+											"type": "text"
+										},
+										{
+											"key": "vat_number",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "registration_number",
+											"value": "54545",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "company_image",
+											"type": "file",
+											"src": "/Users/hanciephago/Downloads/BDD0688FF02068E5C427B0954F8A2297.webp"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/company",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"company"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all company list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/company?pagination_limit=5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"company"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single company detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/company/:company_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"company",
+										":company_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete company",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/company/:company_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"company",
+										":company_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update company details",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "business_name",
+											"value": "Business",
+											"type": "text"
+										},
+										{
+											"key": "display_name",
+											"value": "By",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "KTM",
+											"type": "text"
+										},
+										{
+											"key": "primary_email",
+											"value": "admin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "primary_phone",
+											"value": "984334645",
+											"type": "text"
+										},
+										{
+											"key": "vat_number",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "registration_number",
+											"value": "54545",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "company_image",
+											"type": "file",
+											"src": "/Users/hanciephago/Downloads/BDD0688FF02068E5C427B0954F8A2297.webp"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/company/:company_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"company",
+										":company_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "business service",
+					"item": [
+						{
+							"name": "create business service",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \n    \"business_services\":[\n        {\n            \"service_name\":\"hotel\",\n             \"company_id\": 1\n        },\n        {\n            \"service_name\":\"restaurant\",\n              \"company_id\": 1\n           \n        }\n\n    ]\n\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/business-service",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"business-service"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all company business service list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/business-service",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"business-service"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "public",
+			"item": []
+		}
+	]
+}
