@@ -275,6 +275,16 @@
 						{
 							"name": "create business service",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
@@ -284,13 +294,29 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\n   \n    \"business_services\":[\n        {\n            \"service_name\":\"hotel\",\n             \"company_id\": 1\n        },\n        {\n            \"service_name\":\"restaurant\",\n              \"company_id\": 1\n           \n        }\n\n    ]\n\n    \n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "company_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "hotel",
+											"value": "hotel",
+											"type": "text"
+										},
+										{
+											"key": "restaurant",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "event",
+											"value": "true",
+											"type": "text"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{url}}/admin/business-service",
@@ -308,8 +334,24 @@
 						{
 							"name": "get all company business service list",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{url}}/admin/business-service",
 									"host": [
@@ -318,6 +360,47 @@
 									"path": [
 										"admin",
 										"business-service"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single business service data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/business-service/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"business-service",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
 									]
 								}
 							},
@@ -390,43 +473,66 @@
 			"name": "public",
 			"item": [
 				{
-					"name": "login",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "superadmin@gmail.com",
-									"type": "text"
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "superadmin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "text"
+								"url": {
+									"raw": "{{url}}/api/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/api/login",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"login"
-							]
+						{
+							"name": "complete registration",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/account-verification",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"account-verification"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		}

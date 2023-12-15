@@ -29,6 +29,7 @@ tags:
   - name: admin > business service
   - name: admin > business admin
   - name: public
+  - name: public > auth
 paths:
   /admin/company:
     post:
@@ -192,15 +193,24 @@ paths:
       summary: create business service
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
-              example:
-                business_services:
-                  - service_name: hotel
-                    company_id: 1
-                  - service_name: restaurant
-                    company_id: 1
+              properties:
+                company_id:
+                  type: integer
+                  example: '1'
+                hotel:
+                  type: string
+                  example: hotel
+                restaurant:
+                  type: boolean
+                  example: 'true'
+                event:
+                  type: boolean
+                  example: 'true'
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
@@ -216,6 +226,37 @@ paths:
       tags:
         - admin > business service
       summary: get all company business service list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/business-service/{id}:
+    get:
+      tags:
+        - admin > business service
+      summary: get single business service data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -257,7 +298,7 @@ paths:
   /api/login:
     post:
       tags:
-        - public
+        - public > auth
       summary: login
       requestBody:
         content:
@@ -277,6 +318,16 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/account-verification:
+    get:
+      tags:
+        - public > auth
+      summary: complete registration
       responses:
         '200':
           description: Successful response
