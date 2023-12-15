@@ -28,6 +28,7 @@ tags:
   - name: admin > company
   - name: admin > business service
   - name: admin > business admin
+  - name: admin > customer
   - name: public
   - name: public > auth
 paths:
@@ -290,6 +291,67 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers:
+    post:
+      tags:
+        - admin > customer
+      summary: create customer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hancie@gmail.com
+                phone:
+                  type: integer
+                  example: '4545454555'
+                address:
+                  type: string
+                  example: KTM
+                company_id:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > customer
+      summary: get all customers
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '4'
       responses:
         '200':
           description: Successful response

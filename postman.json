@@ -466,6 +466,115 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "customer",
+					"item": [
+						{
+							"name": "create customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hancie Phago",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hancie@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "4545454555",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "KTM",
+											"type": "text"
+										},
+										{
+											"key": "company_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/customers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all customers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/customers?pagination_limit=4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
