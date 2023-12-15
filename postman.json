@@ -16,6 +16,16 @@
 						{
 							"name": "create company",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
@@ -44,12 +54,12 @@
 										},
 										{
 											"key": "primary_email",
-											"value": "admin@gmail.com",
+											"value": "admin1@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "984334645",
+											"value": "9843346455",
 											"type": "text"
 										},
 										{
@@ -308,6 +318,65 @@
 									"path": [
 										"admin",
 										"business-service"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "business admin",
+					"item": [
+						{
+							"name": "create business admin account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hancie",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hanciewanemphago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "business_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/business-admin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"business-admin"
 									]
 								}
 							},

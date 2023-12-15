@@ -27,6 +27,7 @@ tags:
   - name: admin
   - name: admin > company
   - name: admin > business service
+  - name: admin > business admin
   - name: public
 paths:
   /admin/company:
@@ -51,10 +52,10 @@ paths:
                   example: KTM
                 primary_email:
                   type: string
-                  example: admin@gmail.com
+                  example: admin1@gmail.com
                 primary_phone:
                   type: integer
-                  example: '984334645'
+                  example: '9843346455'
                 vat_number:
                   type: integer
                   example: '454545'
@@ -67,6 +68,8 @@ paths:
                 company_image:
                   type: string
                   format: binary
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
@@ -213,6 +216,39 @@ paths:
       tags:
         - admin > business service
       summary: get all company business service list
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/business-admin:
+    post:
+      tags:
+        - admin > business admin
+      summary: create business admin account
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie
+                email:
+                  type: string
+                  example: hanciewanemphago@gmail.com
+                business_id:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
