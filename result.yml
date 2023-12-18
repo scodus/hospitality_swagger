@@ -30,6 +30,7 @@ tags:
   - name: Admin > business admin
   - name: Admin > customer
   - name: Admin > user
+  - name: Admin > table
   - name: Public
   - name: Public > auth
 paths:
@@ -547,6 +548,61 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/tables:
+    post:
+      tags:
+        - Admin > table
+      summary: create table
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                table_number:
+                  type: string
+                  example: T2
+                description:
+                  type: string
+                  example: Table t2
+                table_capacity:
+                  type: integer
+                  example: '3'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > table
+      summary: get all company details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -560,7 +616,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: hanciewanemphago@gmail.com
+                  example: nitesh0hamal@gmail.com
                 password:
                   type: integer
                   example: '12345'

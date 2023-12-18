@@ -897,6 +897,105 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "table",
+					"item": [
+						{
+							"name": "create table",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "table_number",
+											"value": "T2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Table t2",
+											"type": "text"
+										},
+										{
+											"key": "table_capacity",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/tables",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tables"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all company details",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/tables?pagination_limit=5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tables"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -922,7 +1021,7 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "hanciewanemphago@gmail.com",
+											"value": "nitesh0hamal@gmail.com",
 											"type": "text"
 										},
 										{
