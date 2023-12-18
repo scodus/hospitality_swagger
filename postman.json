@@ -994,6 +994,113 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update table data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "table_number",
+											"value": "T2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Table T2",
+											"type": "text"
+										},
+										{
+											"key": "table_capacity",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/tables/:table_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tables",
+										":table_id"
+									],
+									"variable": [
+										{
+											"key": "table_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete table",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/tables/:table_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tables",
+										":table_id"
+									],
+									"variable": [
+										{
+											"key": "table_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
