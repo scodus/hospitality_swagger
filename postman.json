@@ -556,7 +556,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/customers?pagination_limit=4",
+									"raw": "{{url}}/admin/customers?pagination_limit=4&company_id=1",
 									"host": [
 										"{{url}}"
 									],
@@ -568,6 +568,10 @@
 										{
 											"key": "pagination_limit",
 											"value": "4"
+										},
+										{
+											"key": "company_id",
+											"value": "1"
 										}
 									]
 								}
@@ -672,14 +676,20 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/admin/customers/1",
+									"raw": "{{url}}/admin/customers/:customer_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"admin",
 										"customers",
-										"1"
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": ""
+										}
 									]
 								}
 							},
@@ -783,6 +793,108 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update user data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Nitesh Hamal",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "nitesh0hamal@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/users/:user_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										":user_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/users/:user_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										":user_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -810,12 +922,12 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "superadmin@gmail.com",
+											"value": "hanciewanemphago@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "password",
+											"value": "12345",
 											"type": "text"
 										}
 									]
@@ -862,6 +974,30 @@
 									"path": [
 										"api",
 										"account-verification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "super admin login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/superadmin-login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin-login"
 									]
 								}
 							},

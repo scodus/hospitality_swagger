@@ -353,6 +353,11 @@ paths:
           schema:
             type: integer
           example: '4'
+        - name: company_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -381,7 +386,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/customers/1:
     post:
       tags:
         - Admin > customer
@@ -418,6 +422,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -478,6 +487,66 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/users/{user_id}:
+    post:
+      tags:
+        - Admin > user
+      summary: update user data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Nitesh Hamal
+                email:
+                  type: string
+                  example: nitesh0hamal@gmail.com
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > user
+      summary: delete user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -491,10 +560,10 @@ paths:
               properties:
                 email:
                   type: string
-                  example: superadmin@gmail.com
+                  example: hanciewanemphago@gmail.com
                 password:
-                  type: string
-                  example: password
+                  type: integer
+                  example: '12345'
       parameters:
         - name: Accept
           in: header
@@ -520,6 +589,24 @@ paths:
                 token:
                   type: string
                   example: rTfyAhNiQHbTL2PddibDH0j9bM8PYSsMcY7SvRuwKqfZgYsHB0m31Bk6g71e
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin-login:
+    post:
+      tags:
+        - Public > auth
+      summary: super admin login
+      requestBody:
+        content: {}
       parameters:
         - name: Accept
           in: header
