@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "admin",
+			"name": "Admin",
 			"item": [
 				{
 					"name": "company",
@@ -686,11 +686,110 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "create user account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hancie Phago",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hanciephago@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "company_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/users?pagination_limit=5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "public",
+			"name": "Public",
 			"item": [
 				{
 					"name": "auth",

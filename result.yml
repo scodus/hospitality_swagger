@@ -24,18 +24,19 @@ components:
       type: http
       scheme: bearer
 tags:
-  - name: admin
-  - name: admin > company
-  - name: admin > business service
-  - name: admin > business admin
-  - name: admin > customer
-  - name: public
-  - name: public > auth
+  - name: Admin
+  - name: Admin > company
+  - name: Admin > business service
+  - name: Admin > business admin
+  - name: Admin > customer
+  - name: Admin > user
+  - name: Public
+  - name: Public > auth
 paths:
   /admin/company:
     post:
       tags:
-        - admin > company
+        - Admin > company
       summary: create company
       requestBody:
         content:
@@ -85,7 +86,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - admin > company
+        - Admin > company
       summary: get all company list
       security:
         - bearerAuth: []
@@ -108,7 +109,7 @@ paths:
   /admin/company/{company_id}:
     get:
       tags:
-        - admin > company
+        - Admin > company
       summary: get single company detail
       parameters:
         - name: company_id
@@ -123,7 +124,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - admin > company
+        - Admin > company
       summary: delete company
       parameters:
         - name: company_id
@@ -138,7 +139,7 @@ paths:
             application/json: {}
     post:
       tags:
-        - admin > company
+        - Admin > company
       summary: update company details
       requestBody:
         content:
@@ -190,7 +191,7 @@ paths:
   /admin/business-service:
     post:
       tags:
-        - admin > business service
+        - Admin > business service
       summary: create business service
       requestBody:
         content:
@@ -225,7 +226,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - admin > business service
+        - Admin > business service
       summary: get all company business service list
       security:
         - bearerAuth: []
@@ -243,7 +244,7 @@ paths:
   /admin/business-service/{id}:
     get:
       tags:
-        - admin > business service
+        - Admin > business service
       summary: get single business service data
       security:
         - bearerAuth: []
@@ -266,7 +267,7 @@ paths:
   /admin/business-admin:
     post:
       tags:
-        - admin > business admin
+        - Admin > business admin
       summary: create business admin account
       requestBody:
         content:
@@ -299,7 +300,7 @@ paths:
   /admin/customers:
     post:
       tags:
-        - admin > customer
+        - Admin > customer
       summary: create customer
       requestBody:
         content:
@@ -337,7 +338,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - admin > customer
+        - Admin > customer
       summary: get all customers
       security:
         - bearerAuth: []
@@ -360,7 +361,7 @@ paths:
   /admin/customers/{customer_id}:
     delete:
       tags:
-        - admin > customer
+        - Admin > customer
       summary: delete customer
       security:
         - bearerAuth: []
@@ -383,7 +384,7 @@ paths:
   /admin/customers/1:
     post:
       tags:
-        - admin > customer
+        - Admin > customer
       summary: update customer
       requestBody:
         content:
@@ -422,10 +423,65 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/users:
+    post:
+      tags:
+        - Admin > user
+      summary: create user account
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                company_id:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > user
+      summary: get all users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
-        - public > auth
+        - Public > auth
       summary: login
       requestBody:
         content:
@@ -453,7 +509,7 @@ paths:
   /api/account-verification:
     post:
       tags:
-        - public > auth
+        - Public > auth
       summary: complete registration
       requestBody:
         content:
