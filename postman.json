@@ -501,7 +501,7 @@
 										},
 										{
 											"key": "email",
-											"value": "hancie@gmail.com",
+											"value": "hancie2@gmail.com",
 											"type": "text"
 										},
 										{
@@ -573,6 +573,117 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "delete customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/customers/:customer_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"customers",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Hancie Phago",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hancie2@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "4545454555",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Jhapa",
+											"type": "text"
+										},
+										{
+											"key": "company_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/customers/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"customers",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -626,8 +737,24 @@
 						{
 							"name": "complete registration",
 							"request": {
-								"method": "GET",
-								"header": [],
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "rTfyAhNiQHbTL2PddibDH0j9bM8PYSsMcY7SvRuwKqfZgYsHB0m31Bk6g71e",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{url}}/api/account-verification",
 									"host": [

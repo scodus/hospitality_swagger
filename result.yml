@@ -312,7 +312,7 @@ paths:
                   example: Hancie Phago
                 email:
                   type: string
-                  example: hancie@gmail.com
+                  example: hancie2@gmail.com
                 phone:
                   type: integer
                   example: '4545454555'
@@ -357,6 +357,71 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/customers/{customer_id}:
+    delete:
+      tags:
+        - admin > customer
+      summary: delete customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customers/1:
+    post:
+      tags:
+        - admin > customer
+      summary: update customer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hancie2@gmail.com
+                phone:
+                  type: integer
+                  example: '4545454555'
+                address:
+                  type: string
+                  example: Jhapa
+                company_id:
+                  type: integer
+                  example: '1'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -386,10 +451,25 @@ paths:
           content:
             application/json: {}
   /api/account-verification:
-    get:
+    post:
       tags:
         - public > auth
       summary: complete registration
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: rTfyAhNiQHbTL2PddibDH0j9bM8PYSsMcY7SvRuwKqfZgYsHB0m31Bk6g71e
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
