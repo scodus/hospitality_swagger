@@ -31,6 +31,7 @@ tags:
   - name: Admin > customer
   - name: Admin > user
   - name: Admin > table
+  - name: Admin > floor
   - name: Public
   - name: Public > auth
 paths:
@@ -661,6 +662,39 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/floors:
+    post:
+      tags:
+        - Admin > floor
+      summary: create floor
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                floor_name:
+                  type: string
+                  example: F58
+                description:
+                  type: string
+                  example: f1
+                table_numbers[]:
+                  type: string
+                  example: T2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response

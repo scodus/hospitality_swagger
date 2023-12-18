@@ -1103,6 +1103,70 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "floor",
+					"item": [
+						{
+							"name": "create floor",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "floor_name",
+											"value": "F58",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "f1",
+											"type": "text"
+										},
+										{
+											"key": "table_numbers[]",
+											"value": "T1",
+											"type": "text"
+										},
+										{
+											"key": "table_numbers[]",
+											"value": "T2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/floors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"floors"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
