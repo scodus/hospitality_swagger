@@ -33,6 +33,7 @@ tags:
   - name: Admin > table
   - name: Admin > floor
   - name: Admin > product category
+  - name: Admin > products
   - name: Public
   - name: Public > auth
 paths:
@@ -417,6 +418,28 @@ paths:
                 _method:
                   type: string
                   example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > customer
+      summary: show single customer
       security:
         - bearerAuth: []
       parameters:
@@ -926,6 +949,189 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/products:
+    post:
+      tags:
+        - Admin > products
+      summary: create product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_name: Momo
+                product_category_id: 1
+                ingredient: gffg
+                description: fgfgfg
+                has_variation: 1
+                variations:
+                  - variation_name: Steam Momo
+                    price: 100
+                  - variation_name: Fry Momo
+                    price: 200
+                base_price: 550
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 19 Dec 2023 07:18:08 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 1
+                  product_name: Momo
+                  slug: momo
+                  product_category_id: 1
+                  base_price: 550
+                  ingredient: gffg
+                  description: fgfgfg
+                  product_image: ''
+                  has_variation: 1
+                  product_variation:
+                    - id: 1
+                      variation_name: Steam Momo
+                      price: 100
+                      created_at: '2023-12-19T07:18:08.000000Z'
+                      updated_at: '2023-12-19T07:18:08.000000Z'
+                    - id: 2
+                      variation_name: Fry Momo
+                      price: 200
+                      created_at: '2023-12-19T07:18:08.000000Z'
+                      updated_at: '2023-12-19T07:18:08.000000Z'
+                message: Product Has Been Created Successfully!
+    get:
+      tags:
+        - Admin > products
+      summary: get all products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/{slug}:
+    post:
+      tags:
+        - Admin > products
+      summary: update product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_name: Chicken
+                product_category_id: 1
+                ingredient: gffg
+                description: fgfgfg
+                has_variation: 1
+                variations:
+                  - id: 34
+                    variation_name: Steam
+                    price: 200
+                  - variation_name: '2'
+                    price: 200
+                base_price: 550
+                _method: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > products
+      summary: delete product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -985,7 +1191,17 @@ paths:
         - Public > auth
       summary: super admin login
       requestBody:
-        content: {}
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: superadmin@gmail.com
+                password:
+                  type: string
+                  example: password
       parameters:
         - name: Accept
           in: header
