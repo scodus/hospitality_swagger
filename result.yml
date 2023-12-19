@@ -32,6 +32,7 @@ tags:
   - name: Admin > user
   - name: Admin > table
   - name: Admin > floor
+  - name: Admin > product category
   - name: Public
   - name: Public > auth
 paths:
@@ -764,6 +765,158 @@ paths:
       summary: delete floor
       parameters:
         - name: floor_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/product-category:
+    post:
+      tags:
+        - Admin > product category
+      summary: create product category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  example: Momo
+                parent_category_id:
+                  type: integer
+                  example: '1'
+                description:
+                  type: string
+                  example: My momo
+                bar:
+                  type: integer
+                  example: '1'
+                category_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > product category
+      summary: get all product category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/product-category/{slug}:
+    post:
+      tags:
+        - Admin > product category
+      summary: update product category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  example: Momo
+                parent_category_id:
+                  type: integer
+                  example: '20'
+                description:
+                  type: string
+                  example: My momo
+                category_image:
+                  type: string
+                  format: binary
+                bar:
+                  type: integer
+                  example: '1'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > product category
+      summary: delete product category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > product category
+      summary: show single product category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
           in: path
           schema:
             type: string

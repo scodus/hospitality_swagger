@@ -1302,6 +1302,273 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "product category",
+					"item": [
+						{
+							"name": "create product category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_name",
+											"value": "Momo",
+											"type": "text"
+										},
+										{
+											"key": "parent_category_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "My momo",
+											"type": "text"
+										},
+										{
+											"key": "bar",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "category_image",
+											"type": "file",
+											"src": "/Users/hanciephago/Downloads/IMG_0643_11zon.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/product-category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"product-category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all product category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/product-category?pagination_limit=5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"product-category"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update product category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_name",
+											"value": "Momo",
+											"type": "text"
+										},
+										{
+											"key": "parent_category_id",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "My momo",
+											"type": "text"
+										},
+										{
+											"key": "category_image",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "bar",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/product-category/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"product-category",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete product category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/product-category/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"product-category",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single product category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/product-category/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"product-category",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
