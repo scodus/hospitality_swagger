@@ -34,6 +34,7 @@ tags:
   - name: Admin > floor
   - name: Admin > product category
   - name: Admin > products
+  - name: Admin > product variation
   - name: Public
   - name: Public > auth
 paths:
@@ -1123,6 +1124,98 @@ paths:
             type: string
           example: application/json
         - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/product-variations:
+    get:
+      tags:
+        - Admin > product variation
+      summary: get all product variations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 19 Dec 2023 10:54:36 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 5
+                    variation_name: Steam Momo
+                    price: 100
+                    created_at: '2023-12-19T07:59:56.000000Z'
+                    updated_at: '2023-12-19T07:59:56.000000Z'
+                  - id: 6
+                    variation_name: Fry Momo
+                    price: 200
+                    created_at: '2023-12-19T07:59:56.000000Z'
+                    updated_at: '2023-12-19T07:59:56.000000Z'
+  /admin/product-variations/{id}:
+    delete:
+      tags:
+        - Admin > product variation
+      summary: delete product variation
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
           in: path
           schema:
             type: string
