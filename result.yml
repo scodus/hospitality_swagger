@@ -32,6 +32,7 @@ tags:
   - name: Admin > user
   - name: Admin > table
   - name: Admin > floor
+  - name: Admin > Order
   - name: Admin > product category
   - name: Admin > products
   - name: Admin > product variation
@@ -790,6 +791,237 @@ paths:
       summary: delete floor
       parameters:
         - name: floor_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders:
+    post:
+      tags:
+        - Admin > Order
+      summary: create order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                table_id: 1
+                customer_id: 1
+                pickup_user_id: 1
+                description: ab cd ef gh
+                productDetails:
+                  - product_variation_id: 45
+                    price: 100
+                    quantity: 5
+                  - product_variation_id: 46
+                    price: 150
+                    quantity: 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Order
+      summary: get all order list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/{id}:
+    post:
+      tags:
+        - Admin > Order
+      summary: edit order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                table_id: 1
+                customer_id: 2
+                pickup_user_id: 2
+                description: Momo
+                _method: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Order
+      summary: delete order
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/status/{id}:
+    post:
+      tags:
+        - Admin > Order
+      summary: change status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: cancelled
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/{table_id}:
+    get:
+      tags:
+        - Admin > Order
+      summary: get single order by table no
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: table_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/pickup-user/{pickup_user_id}:
+    get:
+      tags:
+        - Admin > Order
+      summary: get single order by pickup user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pickup_user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/all:
+    get:
+      tags:
+        - Admin > Order
+      summary: get all order for order table
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: search
+          in: query
+          schema:
+            type: string
+          example: payment_order_no
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/all/{payment_order_no}:
+    get:
+      tags:
+        - Admin > Order
+      summary: get single data for order table
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: payment_order_no
           in: path
           schema:
             type: string
