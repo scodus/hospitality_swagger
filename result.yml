@@ -36,6 +36,8 @@ tags:
   - name: Admin > product category
   - name: Admin > products
   - name: Admin > product variation
+  - name: Admin > Order Details
+  - name: Admin > Order Payment
   - name: Admin > payment options
   - name: Public
   - name: Public > auth
@@ -1448,6 +1450,230 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details/{id}:
+    delete:
+      tags:
+        - Admin > Order Details
+      summary: delete order details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Order Details
+      summary: update order details
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_variation_id:
+                  type: integer
+                  example: '2'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details/status/{id}:
+    post:
+      tags:
+        - Admin > Order Details
+      summary: change status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: ordered
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details:
+    get:
+      tags:
+        - Admin > Order Details
+      summary: get all order detail
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details/quantity/{id}:
+    post:
+      tags:
+        - Admin > Order Details
+      summary: update order detail quantity
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  example: '10'
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-payments:
+    post:
+      tags:
+        - Admin > Order Payment
+      summary: store order payments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                payment_order_no: 20
+                payment_method: 1
+                table_id: 2
+                customer_id: 1
+                orders:
+                  - order_id: 1
+                  - order_id: 2
+                subtotal: 344
+                tax: 3
+                discount: 3434
+                discount_type: rupees
+                net_total: 100
+                paid: 10
+                return: 344
+                net_amount: 34434
+                name: Pravesh Rai
+                email: pravesh@gmail.com
+                phone: 983443354
+                address: lalitpur
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Order Payment
+      summary: get all order payment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-payments/{id}:
+    delete:
+      tags:
+        - Admin > Order Payment
+      summary: delete order payment
+      parameters:
         - name: id
           in: path
           schema:
