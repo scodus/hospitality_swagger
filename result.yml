@@ -35,6 +35,7 @@ tags:
   - name: Admin > product category
   - name: Admin > products
   - name: Admin > product variation
+  - name: Admin > payment options
   - name: Public
   - name: Public > auth
 paths:
@@ -1216,6 +1217,290 @@ paths:
             type: string
           example: application/json
         - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/payment-options:
+    post:
+      tags:
+        - Admin > payment options
+      summary: create payment option
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                payment_name:
+                  type: string
+                  example: Khalti
+                payment_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Wed, 20 Dec 2023 06:51:39 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 2
+                  payment_name: Khalti
+                  slug: khalti
+                  payment_image: http://localhost:8000/storage/3/download.png
+                  created_at: '2023-12-20T06:51:38.000000Z'
+                  updated_at: null
+                message: Payment Option Has Been Created Successfully!
+    get:
+      tags:
+        - Admin > payment options
+      summary: get all product options list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Wed, 20 Dec 2023 07:00:13 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 2
+                    payment_name: Khalti
+                    slug: khalti
+                    payment_image: http://localhost:8000/storage/3/download.png
+                    created_at: '2023-12-20T06:51:38.000000Z'
+                    updated_at: null
+                  - id: 1
+                    payment_name: eSewa
+                    slug: esewa
+                    payment_image: ''
+                    created_at: '2023-12-20T06:50:50.000000Z'
+                    updated_at: null
+                links:
+                  first: http://127.0.0.1:8000/admin/payment-options?page=1
+                  last: http://127.0.0.1:8000/admin/payment-options?page=1
+                  prev: null
+                  next: null
+                meta:
+                  current_page: 1
+                  from: 1
+                  last_page: 1
+                  links:
+                    - url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    - url: http://127.0.0.1:8000/admin/payment-options?page=1
+                      label: '1'
+                      active: true
+                    - url: null
+                      label: Next &raquo;
+                      active: false
+                  path: http://127.0.0.1:8000/admin/payment-options
+                  per_page: 5
+                  to: 2
+                  total: 2
+  /admin/payment-options/{slug}:
+    post:
+      tags:
+        - Admin > payment options
+      summary: update payment options
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                payment_name:
+                  type: string
+                  example: khalti
+                payment_image:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Wed, 20 Dec 2023 07:01:54 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 2
+                  payment_name: khalti
+                  slug: khalti
+                  payment_image: http://localhost:8000/storage/4/download.png
+                  created_at: '2023-12-20T06:51:38.000000Z'
+                  updated_at: null
+                message: Payment Option Data Has Been Updated Successfully!
+    delete:
+      tags:
+        - Admin > payment options
+      summary: delete payment options
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
           in: path
           schema:
             type: string
