@@ -2930,6 +2930,210 @@
 					]
 				},
 				{
+					"name": "PickUp Users",
+					"item": [
+						{
+							"name": "create pickup users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "full_name",
+											"value": "Nitesh Hamal",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "9813371345",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "Shankamul",
+											"type": "text"
+										},
+										{
+											"key": "time",
+											"value": "2023-10-16 09:12:00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/pickup-users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"pickup-users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all pick up user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/pickup-users?pagination_limit=2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"pickup-users"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete pickup user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/pickup-users/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"pickup-users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update pickup user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "full_name",
+											"value": "Pravesh Rai",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "9813371345",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "Shankamul",
+											"type": "text"
+										},
+										{
+											"key": "time",
+											"value": "2023-10-16 09:12:00",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/pickup-users/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"pickup-users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "payment options",
 					"item": [
 						{

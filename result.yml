@@ -39,6 +39,7 @@ tags:
   - name: Admin > Order Details
   - name: Admin > Order Payment
   - name: Admin > Customer Partial Payments
+  - name: Admin > PickUp Users
   - name: Admin > payment options
   - name: Public
   - name: Public > auth
@@ -1744,6 +1745,120 @@ paths:
       tags:
         - Admin > Customer Partial Payments
       summary: get order items data by customer partial id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pickup-users:
+    post:
+      tags:
+        - Admin > PickUp Users
+      summary: create pickup users
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Nitesh Hamal
+                mobile_no:
+                  type: integer
+                  example: '9813371345'
+                location:
+                  type: string
+                  example: Shankamul
+                time:
+                  type: string
+                  example: '2023-10-16 09:12:00'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > PickUp Users
+      summary: get all pick up user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pickup-users/{id}:
+    delete:
+      tags:
+        - Admin > PickUp Users
+      summary: delete pickup user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > PickUp Users
+      summary: update pickup user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Pravesh Rai
+                mobile_no:
+                  type: integer
+                  example: '9813371345'
+                location:
+                  type: string
+                  example: Shankamul
+                time:
+                  type: string
+                  example: '2023-10-16 09:12:00'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
