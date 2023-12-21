@@ -735,6 +735,48 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "show single customer data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/customers/show-orders/:customer_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"customers",
+										"show-orders",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
