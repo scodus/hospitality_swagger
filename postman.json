@@ -936,6 +936,47 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "show single user data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/users/:user_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										":user_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
