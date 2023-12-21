@@ -38,6 +38,7 @@ tags:
   - name: Admin > product variation
   - name: Admin > Order Details
   - name: Admin > Order Payment
+  - name: Admin > Customer Partial Payments
   - name: Admin > payment options
   - name: Public
   - name: Public > auth
@@ -1696,6 +1697,59 @@ paths:
         - Admin > Order Payment
       summary: delete order payment
       parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer-partial-payment/{customer_id}:
+    post:
+      tags:
+        - Admin > Customer Partial Payments
+      summary: update customer partial payment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                paid_amount:
+                  type: integer
+                  example: '20'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer-partial-payment/order-items/{id}:
+    get:
+      tags:
+        - Admin > Customer Partial Payments
+      summary: get order items data by customer partial id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
         - name: id
           in: path
           schema:
