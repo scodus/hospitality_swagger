@@ -40,6 +40,8 @@ tags:
   - name: Admin > Order Payment
   - name: Admin > Customer Partial Payments
   - name: Admin > PickUp Users
+  - name: Admin > Cashier Session
+  - name: Admin > Cashier
   - name: Admin > payment options
   - name: Public
   - name: Public > auth
@@ -620,6 +622,39 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/users/change-password:
+    post:
+      tags:
+        - Admin > user
+      summary: change user password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: integer
+                  example: '12656566'
+                password:
+                  type: string
+                  example: password
+                password_confirmation:
+                  type: string
+                  example: password
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -1893,6 +1928,266 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier-session:
+    post:
+      tags:
+        - Admin > Cashier Session
+      summary: Cashier Session In
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                drawer_amount:
+                  type: integer
+                  example: '500'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Fri, 22 Dec 2023 07:34:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 1
+                  session_in: '2023-12-22 07:34:14'
+                  session_out: null
+                  user_id: 10
+                  status: active
+                  created_at: 1 second ago
+                  drawer_amount:
+                    - id: 1
+                      company_id: 1
+                      session_id: 1
+                      opening_drawer_amount: 500
+                      cash_payment_amount: null
+                      other_payment_amount: null
+                      created_at: '2023-12-22T07:34:14.000000Z'
+                      updated_at: '2023-12-22T07:34:14.000000Z'
+                message: Session Started successfully!
+    get:
+      tags:
+        - Admin > Cashier Session
+      summary: get all cashier session details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier-session/status/check-session:
+    get:
+      tags:
+        - Admin > Cashier Session
+      summary: Cashier Session Check
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier-session/{session_id}:
+    post:
+      tags:
+        - Admin > Cashier Session
+      summary: session checkout
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: session_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/drawer_amounts:
+    get:
+      tags:
+        - Admin > Cashier Session
+      summary: get drawer amounts
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Fri, 22 Dec 2023 07:37:15 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  drawer_amount:
+                    total_drawer_amounts: 500
+                  paymentAmount:
+                    cash_payment: null
+                    other_payment: null
+                    total_sales: null
+                  total_cash_in_hand: '500.00'
+  /admin/cashier/today-sales:
+    get:
+      tags:
+        - Admin > Cashier
+      summary: get today sales
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier/sales-history:
+    get:
+      tags:
+        - Admin > Cashier
+      summary: sales history
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '3'
       responses:
         '200':
           description: Successful response
