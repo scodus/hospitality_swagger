@@ -25,292 +25,30 @@ components:
       scheme: bearer
 tags:
   - name: Admin
-  - name: Admin > company
-  - name: Admin > business service
-  - name: Admin > business admin
   - name: Admin > customer
   - name: Admin > user
-  - name: Admin > table
-  - name: Admin > floor
-  - name: Admin > Order
-  - name: Admin > product category
-  - name: Admin > products
-  - name: Admin > product variation
-  - name: Admin > Order Details
-  - name: Admin > Order Payment
-  - name: Admin > Customer Partial Payments
-  - name: Admin > PickUp Users
-  - name: Admin > Cashier Session
-  - name: Admin > Cashier
-  - name: Admin > Reports
-  - name: Admin > payment options
+  - name: Admin > Restaurant
+  - name: Admin > Restaurant > Restaurant payment options
+  - name: Admin > Restaurant > Restaurant Reports
+  - name: Admin > Restaurant > Restaurant Cashier
+  - name: Admin > Restaurant > Restaurant Cashier Session
+  - name: Admin > Restaurant > Restaurant PickUp Users
+  - name: Admin > Restaurant > Restaurant Customer Partial Payments
+  - name: Admin > Restaurant > Restaurant Order Payment
+  - name: Admin > Restaurant > Restaurant Order Details
+  - name: Admin > Restaurant > Restaurant product variation
+  - name: Admin > Restaurant > Restaurant products
+  - name: Admin > Restaurant > Restaurant product category
+  - name: Admin > Restaurant > Restaurant Order
+  - name: Admin > Restaurant > Restaurant floor
+  - name: Admin > Restaurant > Restaurant table
   - name: Public
   - name: Public > auth
+  - name: Super Admin
+  - name: Super Admin > company
+  - name: Super Admin > business service
+  - name: Super Admin > business admin
 paths:
-  /admin/company:
-    post:
-      tags:
-        - Admin > company
-      summary: create company
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                business_name:
-                  type: string
-                  example: Business
-                display_name:
-                  type: string
-                  example: B
-                address:
-                  type: string
-                  example: KTM
-                primary_email:
-                  type: string
-                  example: admin1@gmail.com
-                primary_phone:
-                  type: integer
-                  example: '9843346455'
-                vat_number:
-                  type: integer
-                  example: '454545'
-                registration_number:
-                  type: integer
-                  example: '54545'
-                start_date:
-                  type: integer
-                  example: '454545'
-                company_image:
-                  type: string
-                  format: binary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > company
-      summary: get all company list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '5'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/company/{company_id}:
-    get:
-      tags:
-        - Admin > company
-      summary: get single company detail
-      parameters:
-        - name: company_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > company
-      summary: delete company
-      parameters:
-        - name: company_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    post:
-      tags:
-        - Admin > company
-      summary: update company details
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                business_name:
-                  type: string
-                  example: Business
-                display_name:
-                  type: string
-                  example: By
-                address:
-                  type: string
-                  example: KTM
-                primary_email:
-                  type: string
-                  example: admin@gmail.com
-                primary_phone:
-                  type: integer
-                  example: '984334645'
-                vat_number:
-                  type: integer
-                  example: '454545'
-                registration_number:
-                  type: integer
-                  example: '54545'
-                start_date:
-                  type: integer
-                  example: '454545'
-                company_image:
-                  type: string
-                  format: binary
-                _method:
-                  type: string
-                  example: put
-      parameters:
-        - name: company_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/business-service:
-    post:
-      tags:
-        - Admin > business service
-      summary: create business service
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                company_id:
-                  type: integer
-                  example: '1'
-                hotel:
-                  type: string
-                  example: hotel
-                restaurant:
-                  type: boolean
-                  example: 'true'
-                event:
-                  type: boolean
-                  example: 'true'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > business service
-      summary: get all company business service list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/business-service/{id}:
-    get:
-      tags:
-        - Admin > business service
-      summary: get single business service data
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/business-admin:
-    post:
-      tags:
-        - Admin > business admin
-      summary: create business admin account
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Hancie
-                email:
-                  type: string
-                  example: hanciewanemphago@gmail.com
-                business_id:
-                  type: integer
-                  example: '1'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /admin/customers:
     post:
       tags:
@@ -661,1653 +399,10 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/tables:
-    post:
-      tags:
-        - Admin > table
-      summary: create table
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                table_number:
-                  type: string
-                  example: T2
-                description:
-                  type: string
-                  example: Table t2
-                table_capacity:
-                  type: integer
-                  example: '3'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > table
-      summary: get all company details
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '5'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/tables/{table_id}:
-    post:
-      tags:
-        - Admin > table
-      summary: update table data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                table_number:
-                  type: string
-                  example: T2
-                description:
-                  type: string
-                  example: Table T2
-                table_capacity:
-                  type: integer
-                  example: '3'
-                _method:
-                  type: string
-                  example: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: table_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > table
-      summary: delete table
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: table_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/floors:
-    post:
-      tags:
-        - Admin > floor
-      summary: create floor
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                floor_name:
-                  type: string
-                  example: F58
-                description:
-                  type: string
-                  example: f1
-                table_numbers[]:
-                  type: string
-                  example: T2
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > floor
-      summary: get all floor
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/floors/{floor_id}:
-    post:
-      tags:
-        - Admin > floor
-      summary: update floor
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                floor_name:
-                  type: string
-                  example: Floor 4
-                description:
-                  type: string
-                  example: f1
-                table_numbers[]:
-                  type: string
-                  example: T5
-                _method:
-                  type: string
-                  example: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: floor_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > floor
-      summary: delete floor
-      parameters:
-        - name: floor_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders:
-    post:
-      tags:
-        - Admin > Order
-      summary: create order
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                table_id: 1
-                customer_id: 1
-                pickup_user_id: 1
-                description: ab cd ef gh
-                productDetails:
-                  - product_variation_id: 45
-                    price: 100
-                    quantity: 5
-                  - product_variation_id: 46
-                    price: 150
-                    quantity: 2
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Order
-      summary: get all order list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '20'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders/{id}:
-    post:
-      tags:
-        - Admin > Order
-      summary: edit order
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                table_id: 1
-                customer_id: 2
-                pickup_user_id: 2
-                description: Momo
-                _method: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > Order
-      summary: delete order
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders/status/{id}:
-    post:
-      tags:
-        - Admin > Order
-      summary: change status
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  example: cancelled
-                _method:
-                  type: string
-                  example: patch
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders/{table_id}:
-    get:
-      tags:
-        - Admin > Order
-      summary: get single order by table no
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: table_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders/pickup-user/{pickup_user_id}:
-    get:
-      tags:
-        - Admin > Order
-      summary: get single order by pickup user
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: pickup_user_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders/all:
-    get:
-      tags:
-        - Admin > Order
-      summary: get all order for order table
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: search
-          in: query
-          schema:
-            type: string
-          example: payment_order_no
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders/all/{payment_order_no}:
-    get:
-      tags:
-        - Admin > Order
-      summary: get single data for order table
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: payment_order_no
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/product-category:
-    post:
-      tags:
-        - Admin > product category
-      summary: create product category
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                category_name:
-                  type: string
-                  example: Momo
-                parent_category_id:
-                  type: integer
-                  example: '1'
-                description:
-                  type: string
-                  example: My momo
-                bar:
-                  type: integer
-                  example: '1'
-                category_image:
-                  type: string
-                  format: binary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > product category
-      summary: get all product category
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '5'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/product-category/{slug}:
-    post:
-      tags:
-        - Admin > product category
-      summary: update product category
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                category_name:
-                  type: string
-                  example: Momo
-                parent_category_id:
-                  type: integer
-                  example: '20'
-                description:
-                  type: string
-                  example: My momo
-                category_image:
-                  type: string
-                  format: binary
-                bar:
-                  type: integer
-                  example: '1'
-                _method:
-                  type: string
-                  example: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > product category
-      summary: delete product category
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > product category
-      summary: show single product category
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/products:
-    post:
-      tags:
-        - Admin > products
-      summary: create product
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                product_name: Momo
-                product_category_id: 1
-                ingredient: gffg
-                description: fgfgfg
-                has_variation: 1
-                variations:
-                  - variation_name: Steam Momo
-                    price: 100
-                  - variation_name: Fry Momo
-                    price: 200
-                base_price: 550
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: OK
-          headers:
-            Host:
-              schema:
-                type: string
-                example: 127.0.0.1:8000
-            Date:
-              schema:
-                type: string
-                example: Tue, 19 Dec 2023 07:18:08 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/8.2.11
-            Cache-Control:
-              schema:
-                type: string
-                example: no-cache, private
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-            X-RateLimit-Limit:
-              schema:
-                type: integer
-                example: '60'
-            X-RateLimit-Remaining:
-              schema:
-                type: integer
-                example: '59'
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-                example: '*'
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                data:
-                  id: 1
-                  product_name: Momo
-                  slug: momo
-                  product_category_id: 1
-                  base_price: 550
-                  ingredient: gffg
-                  description: fgfgfg
-                  product_image: ''
-                  has_variation: 1
-                  product_variation:
-                    - id: 1
-                      variation_name: Steam Momo
-                      price: 100
-                      created_at: '2023-12-19T07:18:08.000000Z'
-                      updated_at: '2023-12-19T07:18:08.000000Z'
-                    - id: 2
-                      variation_name: Fry Momo
-                      price: 200
-                      created_at: '2023-12-19T07:18:08.000000Z'
-                      updated_at: '2023-12-19T07:18:08.000000Z'
-                message: Product Has Been Created Successfully!
-    get:
-      tags:
-        - Admin > products
-      summary: get all products
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '5'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/products/{slug}:
-    post:
-      tags:
-        - Admin > products
-      summary: update product
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                product_name: Chicken
-                product_category_id: 1
-                ingredient: gffg
-                description: fgfgfg
-                has_variation: 1
-                variations:
-                  - id: 34
-                    variation_name: Steam
-                    price: 200
-                  - variation_name: '2'
-                    price: 200
-                base_price: 550
-                _method: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Admin > products
-      summary: delete product
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/product-variations:
-    get:
-      tags:
-        - Admin > product variation
-      summary: get all product variations
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: OK
-          headers:
-            Host:
-              schema:
-                type: string
-                example: 127.0.0.1:8000
-            Date:
-              schema:
-                type: string
-                example: Tue, 19 Dec 2023 10:54:36 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/8.2.11
-            Cache-Control:
-              schema:
-                type: string
-                example: no-cache, private
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-            X-RateLimit-Limit:
-              schema:
-                type: integer
-                example: '60'
-            X-RateLimit-Remaining:
-              schema:
-                type: integer
-                example: '57'
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-                example: '*'
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                data:
-                  - id: 5
-                    variation_name: Steam Momo
-                    price: 100
-                    created_at: '2023-12-19T07:59:56.000000Z'
-                    updated_at: '2023-12-19T07:59:56.000000Z'
-                  - id: 6
-                    variation_name: Fry Momo
-                    price: 200
-                    created_at: '2023-12-19T07:59:56.000000Z'
-                    updated_at: '2023-12-19T07:59:56.000000Z'
-  /admin/product-variations/{id}:
-    delete:
-      tags:
-        - Admin > product variation
-      summary: delete product variation
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/order-details/{id}:
-    delete:
-      tags:
-        - Admin > Order Details
-      summary: delete order details
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    post:
-      tags:
-        - Admin > Order Details
-      summary: update order details
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                product_variation_id:
-                  type: integer
-                  example: '2'
-                _method:
-                  type: string
-                  example: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/order-details/status/{id}:
-    post:
-      tags:
-        - Admin > Order Details
-      summary: change status
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  example: ordered
-                _method:
-                  type: string
-                  example: patch
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/order-details:
-    get:
-      tags:
-        - Admin > Order Details
-      summary: get all order detail
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '10'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/order-details/quantity/{id}:
-    post:
-      tags:
-        - Admin > Order Details
-      summary: update order detail quantity
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                quantity:
-                  type: integer
-                  example: '10'
-                _method:
-                  type: string
-                  example: patch
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/order-payments:
-    post:
-      tags:
-        - Admin > Order Payment
-      summary: store order payments
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                payment_order_no: 20
-                payment_method: 1
-                table_id: 2
-                customer_id: 1
-                orders:
-                  - order_id: 1
-                  - order_id: 2
-                subtotal: 344
-                tax: 3
-                discount: 3434
-                discount_type: rupees
-                net_total: 100
-                paid: 10
-                return: 344
-                net_amount: 34434
-                name: Pravesh Rai
-                email: pravesh@gmail.com
-                phone: 983443354
-                address: lalitpur
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Order Payment
-      summary: get all order payment
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '10'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/order-payments/{id}:
-    delete:
-      tags:
-        - Admin > Order Payment
-      summary: delete order payment
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/customer-partial-payment/{customer_id}:
-    post:
-      tags:
-        - Admin > Customer Partial Payments
-      summary: update customer partial payment
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                paid_amount:
-                  type: integer
-                  example: '20'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: customer_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/customer-partial-payment/order-items/{id}:
-    get:
-      tags:
-        - Admin > Customer Partial Payments
-      summary: get order items data by customer partial id
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/pickup-users:
-    post:
-      tags:
-        - Admin > PickUp Users
-      summary: create pickup users
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                full_name:
-                  type: string
-                  example: Nitesh Hamal
-                mobile_no:
-                  type: integer
-                  example: '9813371345'
-                location:
-                  type: string
-                  example: Shankamul
-                time:
-                  type: string
-                  example: '2023-10-16 09:12:00'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > PickUp Users
-      summary: get all pick up user
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '2'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/pickup-users/{id}:
-    delete:
-      tags:
-        - Admin > PickUp Users
-      summary: delete pickup user
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    post:
-      tags:
-        - Admin > PickUp Users
-      summary: update pickup user
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                full_name:
-                  type: string
-                  example: Pravesh Rai
-                mobile_no:
-                  type: integer
-                  example: '9813371345'
-                location:
-                  type: string
-                  example: Shankamul
-                time:
-                  type: string
-                  example: '2023-10-16 09:12:00'
-                _method:
-                  type: string
-                  example: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/cashier-session:
-    post:
-      tags:
-        - Admin > Cashier Session
-      summary: Cashier Session In
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                drawer_amount:
-                  type: integer
-                  example: '500'
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: OK
-          headers:
-            Host:
-              schema:
-                type: string
-                example: 127.0.0.1:8000
-            Date:
-              schema:
-                type: string
-                example: Fri, 22 Dec 2023 07:34:14 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/8.2.11
-            Cache-Control:
-              schema:
-                type: string
-                example: no-cache, private
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-            X-RateLimit-Limit:
-              schema:
-                type: integer
-                example: '60'
-            X-RateLimit-Remaining:
-              schema:
-                type: integer
-                example: '58'
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-                example: '*'
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                data:
-                  id: 1
-                  session_in: '2023-12-22 07:34:14'
-                  session_out: null
-                  user_id: 10
-                  status: active
-                  created_at: 1 second ago
-                  drawer_amount:
-                    - id: 1
-                      company_id: 1
-                      session_id: 1
-                      opening_drawer_amount: 500
-                      cash_payment_amount: null
-                      other_payment_amount: null
-                      created_at: '2023-12-22T07:34:14.000000Z'
-                      updated_at: '2023-12-22T07:34:14.000000Z'
-                message: Session Started successfully!
-    get:
-      tags:
-        - Admin > Cashier Session
-      summary: get all cashier session details
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '4'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/cashier-session/status/check-session:
-    get:
-      tags:
-        - Admin > Cashier Session
-      summary: Cashier Session Check
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/cashier-session/{session_id}:
-    post:
-      tags:
-        - Admin > Cashier Session
-      summary: session checkout
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                _method:
-                  type: string
-                  example: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: session_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/drawer_amounts:
-    get:
-      tags:
-        - Admin > Cashier Session
-      summary: get drawer amounts
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: OK
-          headers:
-            Host:
-              schema:
-                type: string
-                example: 127.0.0.1:8000
-            Date:
-              schema:
-                type: string
-                example: Fri, 22 Dec 2023 07:37:15 GMT
-            Connection:
-              schema:
-                type: string
-                example: close
-            X-Powered-By:
-              schema:
-                type: string
-                example: PHP/8.2.11
-            Cache-Control:
-              schema:
-                type: string
-                example: no-cache, private
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
-            X-RateLimit-Limit:
-              schema:
-                type: integer
-                example: '60'
-            X-RateLimit-Remaining:
-              schema:
-                type: integer
-                example: '59'
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-                example: '*'
-          content:
-            application/json:
-              schema:
-                type: object
-              example:
-                data:
-                  drawer_amount:
-                    total_drawer_amounts: 500
-                  paymentAmount:
-                    cash_payment: null
-                    other_payment: null
-                    total_sales: null
-                  total_cash_in_hand: '500.00'
-  /admin/cashier/today-sales:
-    get:
-      tags:
-        - Admin > Cashier
-      summary: get today sales
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '2'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/cashier/sales-history:
-    get:
-      tags:
-        - Admin > Cashier
-      summary: sales history
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '3'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/daily-income:
-    get:
-      tags:
-        - Admin > Reports
-      summary: daily income
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '3'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/sales-by-user:
-    get:
-      tags:
-        - Admin > Reports
-      summary: sales by user
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/sales-by-category:
-    get:
-      tags:
-        - Admin > Reports
-      summary: sales by category
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '2'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/cancelled-orders:
-    get:
-      tags:
-        - Admin > Reports
-      summary: cancelled orders report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/income-by-time:
-    get:
-      tags:
-        - Admin > Reports
-      summary: income by time
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '5'
-        - name: date
-          in: query
-          schema:
-            type: string
-          example: 12-04-2023
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /admin/payment-options:
     post:
       tags:
-        - Admin > payment options
+        - Admin > Restaurant > Restaurant payment options
       summary: create payment option
       requestBody:
         content:
@@ -2384,7 +479,7 @@ paths:
                 message: Payment Option Has Been Created Successfully!
     get:
       tags:
-        - Admin > payment options
+        - Admin > Restaurant > Restaurant payment options
       summary: get all product options list
       security:
         - bearerAuth: []
@@ -2483,7 +578,7 @@ paths:
   /admin/payment-options/{slug}:
     post:
       tags:
-        - Admin > payment options
+        - Admin > Restaurant > Restaurant payment options
       summary: update payment options
       requestBody:
         content:
@@ -2568,7 +663,7 @@ paths:
                 message: Payment Option Data Has Been Updated Successfully!
     delete:
       tags:
-        - Admin > payment options
+        - Admin > Restaurant > Restaurant payment options
       summary: delete payment options
       security:
         - bearerAuth: []
@@ -2579,6 +674,1649 @@ paths:
             type: string
           example: application/json
         - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/daily-income:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: daily income
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/sales-by-user:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales by user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/sales-by-category:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales by category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/cancelled-orders:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: cancelled orders report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/income-by-time:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: income by time
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 12-04-2023
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier/today-sales:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Cashier
+      summary: get today sales
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier/sales-history:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Cashier
+      summary: sales history
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier-session:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Cashier Session
+      summary: Cashier Session In
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                drawer_amount:
+                  type: integer
+                  example: '500'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Fri, 22 Dec 2023 07:34:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 1
+                  session_in: '2023-12-22 07:34:14'
+                  session_out: null
+                  user_id: 10
+                  status: active
+                  created_at: 1 second ago
+                  drawer_amount:
+                    - id: 1
+                      company_id: 1
+                      session_id: 1
+                      opening_drawer_amount: 500
+                      cash_payment_amount: null
+                      other_payment_amount: null
+                      created_at: '2023-12-22T07:34:14.000000Z'
+                      updated_at: '2023-12-22T07:34:14.000000Z'
+                message: Session Started successfully!
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Cashier Session
+      summary: get all cashier session details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier-session/status/check-session:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Cashier Session
+      summary: Cashier Session Check
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cashier-session/{session_id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Cashier Session
+      summary: session checkout
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: session_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/drawer_amounts:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Cashier Session
+      summary: get drawer amounts
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Fri, 22 Dec 2023 07:37:15 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  drawer_amount:
+                    total_drawer_amounts: 500
+                  paymentAmount:
+                    cash_payment: null
+                    other_payment: null
+                    total_sales: null
+                  total_cash_in_hand: '500.00'
+  /admin/pickup-users:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant PickUp Users
+      summary: create pickup users
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Nitesh Hamal
+                mobile_no:
+                  type: integer
+                  example: '9813371345'
+                location:
+                  type: string
+                  example: Shankamul
+                time:
+                  type: string
+                  example: '2023-10-16 09:12:00'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant PickUp Users
+      summary: get all pick up user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pickup-users/{id}:
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant PickUp Users
+      summary: delete pickup user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant PickUp Users
+      summary: update pickup user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Pravesh Rai
+                mobile_no:
+                  type: integer
+                  example: '9813371345'
+                location:
+                  type: string
+                  example: Shankamul
+                time:
+                  type: string
+                  example: '2023-10-16 09:12:00'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer-partial-payment/{customer_id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Customer Partial Payments
+      summary: update customer partial payment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                paid_amount:
+                  type: integer
+                  example: '20'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/customer-partial-payment/order-items/{id}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Customer Partial Payments
+      summary: get order items data by customer partial id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-payments:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order Payment
+      summary: store order payments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                payment_order_no: 20
+                payment_method: 1
+                table_id: 2
+                customer_id: 1
+                orders:
+                  - order_id: 1
+                  - order_id: 2
+                subtotal: 344
+                tax: 3
+                discount: 3434
+                discount_type: rupees
+                net_total: 100
+                paid: 10
+                return: 344
+                net_amount: 34434
+                name: Pravesh Rai
+                email: pravesh@gmail.com
+                phone: 983443354
+                address: lalitpur
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order Payment
+      summary: get all order payment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-payments/{id}:
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant Order Payment
+      summary: delete order payment
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details/{id}:
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant Order Details
+      summary: delete order details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order Details
+      summary: update order details
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_variation_id:
+                  type: integer
+                  example: '2'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details/status/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order Details
+      summary: change status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: ordered
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order Details
+      summary: get all order detail
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details/quantity/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order Details
+      summary: update order detail quantity
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  example: '10'
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/product-variations:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant product variation
+      summary: get all product variations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 19 Dec 2023 10:54:36 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 5
+                    variation_name: Steam Momo
+                    price: 100
+                    created_at: '2023-12-19T07:59:56.000000Z'
+                    updated_at: '2023-12-19T07:59:56.000000Z'
+                  - id: 6
+                    variation_name: Fry Momo
+                    price: 200
+                    created_at: '2023-12-19T07:59:56.000000Z'
+                    updated_at: '2023-12-19T07:59:56.000000Z'
+  /admin/product-variations/{id}:
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant product variation
+      summary: delete product variation
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant products
+      summary: create product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_name: Momo
+                product_category_id: 1
+                ingredient: gffg
+                description: fgfgfg
+                has_variation: 1
+                variations:
+                  - variation_name: Steam Momo
+                    price: 100
+                  - variation_name: Fry Momo
+                    price: 200
+                base_price: 550
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 19 Dec 2023 07:18:08 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 1
+                  product_name: Momo
+                  slug: momo
+                  product_category_id: 1
+                  base_price: 550
+                  ingredient: gffg
+                  description: fgfgfg
+                  product_image: ''
+                  has_variation: 1
+                  product_variation:
+                    - id: 1
+                      variation_name: Steam Momo
+                      price: 100
+                      created_at: '2023-12-19T07:18:08.000000Z'
+                      updated_at: '2023-12-19T07:18:08.000000Z'
+                    - id: 2
+                      variation_name: Fry Momo
+                      price: 200
+                      created_at: '2023-12-19T07:18:08.000000Z'
+                      updated_at: '2023-12-19T07:18:08.000000Z'
+                message: Product Has Been Created Successfully!
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant products
+      summary: get all products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/products/{slug}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant products
+      summary: update product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_name: Chicken
+                product_category_id: 1
+                ingredient: gffg
+                description: fgfgfg
+                has_variation: 1
+                variations:
+                  - id: 34
+                    variation_name: Steam
+                    price: 200
+                  - variation_name: '2'
+                    price: 200
+                base_price: 550
+                _method: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant products
+      summary: delete product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/product-category:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: create product category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  example: Momo
+                parent_category_id:
+                  type: integer
+                  example: '1'
+                description:
+                  type: string
+                  example: My momo
+                bar:
+                  type: integer
+                  example: '1'
+                category_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: get all product category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/product-category/{slug}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: update product category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  example: Momo
+                parent_category_id:
+                  type: integer
+                  example: '20'
+                description:
+                  type: string
+                  example: My momo
+                category_image:
+                  type: string
+                  format: binary
+                bar:
+                  type: integer
+                  example: '1'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: delete product category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: show single product category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: create order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                table_id: 1
+                customer_id: 1
+                pickup_user_id: 1
+                description: ab cd ef gh
+                productDetails:
+                  - product_variation_id: 45
+                    price: 100
+                    quantity: 5
+                  - product_variation_id: 46
+                    price: 150
+                    quantity: 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: get all order list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: edit order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                table_id: 1
+                customer_id: 2
+                pickup_user_id: 2
+                description: Momo
+                _method: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: delete order
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/status/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: change status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: cancelled
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/{table_id}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: get single order by table no
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: table_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/pickup-user/{pickup_user_id}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: get single order by pickup user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pickup_user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/all:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: get all order for order table
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: search
+          in: query
+          schema:
+            type: string
+          example: payment_order_no
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/all/{payment_order_no}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: get single data for order table
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: payment_order_no
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/floors:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant floor
+      summary: create floor
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                floor_name:
+                  type: string
+                  example: F58
+                description:
+                  type: string
+                  example: f1
+                table_numbers[]:
+                  type: string
+                  example: T2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant floor
+      summary: get all floor
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/floors/{floor_id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant floor
+      summary: update floor
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                floor_name:
+                  type: string
+                  example: Floor 4
+                description:
+                  type: string
+                  example: f1
+                table_numbers[]:
+                  type: string
+                  example: T5
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: floor_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant floor
+      summary: delete floor
+      parameters:
+        - name: floor_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/tables:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant table
+      summary: create table
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                table_number:
+                  type: string
+                  example: T2
+                description:
+                  type: string
+                  example: Table t2
+                table_capacity:
+                  type: integer
+                  example: '3'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant table
+      summary: get all company details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/tables/{table_id}:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant table
+      summary: update table data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                table_number:
+                  type: string
+                  example: T2
+                description:
+                  type: string
+                  example: Table T2
+                table_capacity:
+                  type: integer
+                  example: '3'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: table_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Restaurant table
+      summary: delete table
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: table_id
           in: path
           schema:
             type: string
@@ -2658,6 +2396,270 @@ paths:
                 password:
                   type: string
                   example: password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/company:
+    post:
+      tags:
+        - Super Admin > company
+      summary: create company
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                business_name:
+                  type: string
+                  example: Business
+                display_name:
+                  type: string
+                  example: B
+                address:
+                  type: string
+                  example: KTM
+                primary_email:
+                  type: string
+                  example: admin1@gmail.com
+                primary_phone:
+                  type: integer
+                  example: '9843346455'
+                vat_number:
+                  type: integer
+                  example: '454545'
+                registration_number:
+                  type: integer
+                  example: '54545'
+                start_date:
+                  type: integer
+                  example: '454545'
+                company_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > company
+      summary: get all company list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/company/{company_id}:
+    get:
+      tags:
+        - Super Admin > company
+      summary: get single company detail
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Super Admin > company
+      summary: delete company
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Super Admin > company
+      summary: update company details
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                business_name:
+                  type: string
+                  example: Business
+                display_name:
+                  type: string
+                  example: By
+                address:
+                  type: string
+                  example: KTM
+                primary_email:
+                  type: string
+                  example: admin@gmail.com
+                primary_phone:
+                  type: integer
+                  example: '984334645'
+                vat_number:
+                  type: integer
+                  example: '454545'
+                registration_number:
+                  type: integer
+                  example: '54545'
+                start_date:
+                  type: integer
+                  example: '454545'
+                company_image:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: put
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/business-service:
+    post:
+      tags:
+        - Super Admin > business service
+      summary: create business service
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                company_id:
+                  type: integer
+                  example: '1'
+                hotel:
+                  type: string
+                  example: hotel
+                restaurant:
+                  type: boolean
+                  example: 'true'
+                event:
+                  type: boolean
+                  example: 'true'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > business service
+      summary: get all company business service list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/business-service/{id}:
+    get:
+      tags:
+        - Super Admin > business service
+      summary: get single business service data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/business-admin:
+    post:
+      tags:
+        - Super Admin > business admin
+      summary: create business admin account
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie
+                email:
+                  type: string
+                  example: hanciewanemphago@gmail.com
+                business_id:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
