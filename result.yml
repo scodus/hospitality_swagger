@@ -42,6 +42,7 @@ tags:
   - name: Admin > Restaurant > Restaurant Order
   - name: Admin > Restaurant > Restaurant floor
   - name: Admin > Restaurant > Restaurant table
+  - name: Admin > roles
   - name: Public
   - name: Public > auth
   - name: Super Admin
@@ -2321,6 +2322,50 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/roles:
+    post:
+      tags:
+        - Admin > roles
+      summary: create roles
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                role_name:
+                  type: string
+                  example: cashier
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > roles
+      summary: get all roles
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
