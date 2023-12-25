@@ -3938,6 +3938,375 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "remove role",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/roles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Human Resource",
+					"item": [
+						{
+							"name": "department",
+							"item": [
+								{
+									"name": "create department",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "Cash",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "ghghg",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/departments",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"departments"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "create department",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "title",
+															"value": "Cash",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/departments",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"departments"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 25 Dec 2023 10:00:55 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 25 Dec 2023 10:00:55 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"company_id\": 1,\n        \"title\": \"Cash\",\n        \"description\": null,\n        \"slug\": \"cash\",\n        \"updated_at\": \"2023-12-25T10:00:55.000000Z\",\n        \"created_at\": \"2023-12-25T10:00:55.000000Z\",\n        \"id\": 2\n    },\n    \"message\": \"Department created successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "get all department list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/departments",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"departments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete department",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/departments/:department id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"departments",
+												":department id"
+											],
+											"variable": [
+												{
+													"key": "department id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update department",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "My Title",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "My Description",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/departments/:department_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"departments",
+												":department_id"
+											],
+											"variable": [
+												{
+													"key": "department_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "positions",
+							"item": [
+								{
+									"name": "create positions",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "Position",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "Description",
+													"type": "text"
+												},
+												{
+													"key": "is_housekeeping",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/positions",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"positions"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}

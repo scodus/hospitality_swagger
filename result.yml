@@ -43,6 +43,9 @@ tags:
   - name: Admin > Restaurant > Restaurant floor
   - name: Admin > Restaurant > Restaurant table
   - name: Admin > roles
+  - name: Admin > Human Resource
+  - name: Admin > Human Resource > department
+  - name: Admin > Human Resource > positions
   - name: Public
   - name: Public > auth
   - name: Super Admin
@@ -2358,6 +2361,208 @@ paths:
       tags:
         - Admin > roles
       summary: get all roles
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > roles
+      summary: remove role
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/departments:
+    post:
+      tags:
+        - Admin > Human Resource > department
+      summary: create department
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Cash
+                description:
+                  type: string
+                  example: ghghg
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 25 Dec 2023 10:00:55 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  company_id: 1
+                  title: Cash
+                  description: null
+                  slug: cash
+                  updated_at: '2023-12-25T10:00:55.000000Z'
+                  created_at: '2023-12-25T10:00:55.000000Z'
+                  id: 2
+                message: Department created successfully!
+    get:
+      tags:
+        - Admin > Human Resource > department
+      summary: get all department list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/departments/{department id}:
+    delete:
+      tags:
+        - Admin > Human Resource > department
+      summary: delete department
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/departments/{department_id}:
+    post:
+      tags:
+        - Admin > Human Resource > department
+      summary: update department
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: My Title
+                description:
+                  type: string
+                  example: My Description
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: department_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/positions:
+    post:
+      tags:
+        - Admin > Human Resource > positions
+      summary: create positions
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Position
+                description:
+                  type: string
+                  example: Description
+                is_housekeeping:
+                  type: integer
+                  example: '1'
       security:
         - bearerAuth: []
       parameters:
