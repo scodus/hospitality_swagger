@@ -49,6 +49,7 @@ tags:
   - name: Admin > Human Resource > employees
   - name: Admin > Duty Roster
   - name: Admin > Duty Roster > roster time
+  - name: Admin > Duty Roster > roster task
   - name: Public
   - name: Public > auth
   - name: Super Admin
@@ -3100,7 +3101,10 @@ paths:
               properties:
                 title:
                   type: string
-                  example: 05:00 AM
+                  example: 12:00 AM
+                type:
+                  type: string
+                  example: hotel
       security:
         - bearerAuth: []
       parameters:
@@ -3120,7 +3124,7 @@ paths:
             Date:
               schema:
                 type: string
-                example: Tue, 26 Dec 2023 08:30:33 GMT
+                example: Tue, 26 Dec 2023 09:30:31 GMT
             Connection:
               schema:
                 type: string
@@ -3144,7 +3148,7 @@ paths:
             X-RateLimit-Remaining:
               schema:
                 type: integer
-                example: '57'
+                example: '58'
             Access-Control-Allow-Origin:
               schema:
                 type: string
@@ -3157,9 +3161,10 @@ paths:
                 data:
                   company_id: 1
                   title: 05:00 AM
-                  updated_at: '2023-12-26T08:30:32.000000Z'
-                  created_at: '2023-12-26T08:30:32.000000Z'
-                  id: 2
+                  type: hotel
+                  updated_at: '2023-12-26T09:30:31.000000Z'
+                  created_at: '2023-12-26T09:30:31.000000Z'
+                  id: 1
                 message: Roster time created successfully!
     get:
       tags:
@@ -3178,6 +3183,11 @@ paths:
           schema:
             type: integer
           example: '5'
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: hotel
       responses:
         '200':
           description: OK
@@ -3271,6 +3281,9 @@ paths:
                 title:
                   type: string
                   example: 08:00 PM
+                type:
+                  type: string
+                  example: restaurant
                 _method:
                   type: string
                   example: put
@@ -3351,6 +3364,63 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/roster-task:
+    post:
+      tags:
+        - Admin > Duty Roster > roster task
+      summary: create roaster task
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: washing
+                type:
+                  type: string
+                  example: restaurant
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Duty Roster > roster task
+      summary: show all roster task
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: hotel
       responses:
         '200':
           description: Successful response

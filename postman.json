@@ -5160,7 +5160,12 @@
 											"formdata": [
 												{
 													"key": "title",
-													"value": "05:00 AM",
+													"value": "12:00 AM",
+													"type": "text"
+												},
+												{
+													"key": "type",
+													"value": "hotel",
 													"type": "text"
 												}
 											]
@@ -5195,17 +5200,22 @@
 															"key": "title",
 															"value": "05:00 AM",
 															"type": "text"
+														},
+														{
+															"key": "type",
+															"value": "hotel",
+															"type": "text"
 														}
 													]
 												},
 												"url": {
-													"raw": "{{url}}/admin/roster-time",
+													"raw": "{{url}}/admin/roster_time",
 													"host": [
 														"{{url}}"
 													],
 													"path": [
 														"admin",
-														"roster-time"
+														"roster_time"
 													]
 												}
 											},
@@ -5219,11 +5229,11 @@
 												},
 												{
 													"key": "Date",
-													"value": "Tue, 26 Dec 2023 08:30:33 GMT"
+													"value": "Tue, 26 Dec 2023 09:30:31 GMT"
 												},
 												{
 													"key": "Date",
-													"value": "Tue, 26 Dec 2023 08:30:33 GMT"
+													"value": "Tue, 26 Dec 2023 09:30:31 GMT"
 												},
 												{
 													"key": "Connection",
@@ -5247,7 +5257,7 @@
 												},
 												{
 													"key": "X-RateLimit-Remaining",
-													"value": "57"
+													"value": "58"
 												},
 												{
 													"key": "Access-Control-Allow-Origin",
@@ -5255,7 +5265,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n    \"data\": {\n        \"company_id\": 1,\n        \"title\": \"05:00 AM\",\n        \"updated_at\": \"2023-12-26T08:30:32.000000Z\",\n        \"created_at\": \"2023-12-26T08:30:32.000000Z\",\n        \"id\": 2\n    },\n    \"message\": \"Roster time created successfully!\"\n}"
+											"body": "{\n    \"data\": {\n        \"company_id\": 1,\n        \"title\": \"05:00 AM\",\n        \"type\": \"hotel\",\n        \"updated_at\": \"2023-12-26T09:30:31.000000Z\",\n        \"created_at\": \"2023-12-26T09:30:31.000000Z\",\n        \"id\": 1\n    },\n    \"message\": \"Roster time created successfully!\"\n}"
 										}
 									]
 								},
@@ -5286,6 +5296,11 @@
 												{
 													"key": "title",
 													"value": "08:00 PM",
+													"type": "text"
+												},
+												{
+													"key": "type",
+													"value": "restaurant",
 													"type": "text"
 												},
 												{
@@ -5471,7 +5486,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/roster_time?pagination_limit=5",
+											"raw": "{{url}}/admin/roster_time?pagination_limit=5&type=hotel",
 											"host": [
 												"{{url}}"
 											],
@@ -5483,6 +5498,10 @@
 												{
 													"key": "pagination_limit",
 													"value": "5"
+												},
+												{
+													"key": "type",
+													"value": "hotel"
 												}
 											]
 										}
@@ -5565,6 +5584,104 @@
 											"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"company_id\": 1,\n            \"title\": \"08:00 PM\",\n            \"status\": \"active\",\n            \"created_at\": \"2023-12-26T02:45:32.000000Z\"\n        },\n        {\n            \"id\": 1,\n            \"company_id\": 1,\n            \"title\": \"05:00 PM\",\n            \"status\": \"active\",\n            \"created_at\": \"2023-12-26T02:44:55.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/admin/roster_time?page=1\",\n        \"last\": \"http://127.0.0.1:8000/admin/roster_time?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/admin/roster_time?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/admin/roster_time\",\n        \"per_page\": 5,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
 										}
 									]
+								}
+							]
+						},
+						{
+							"name": "roster task",
+							"item": [
+								{
+									"name": "create roaster task",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "washing",
+													"type": "text"
+												},
+												{
+													"key": "type",
+													"value": "restaurant",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/roster-task",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"roster-task"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all roster task",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/roster-task?pagination_limit=5&type=hotel",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"roster-task"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "5"
+												},
+												{
+													"key": "type",
+													"value": "hotel"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
