@@ -46,6 +46,7 @@ tags:
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
   - name: Admin > Human Resource > positions
+  - name: Admin > Human Resource > employees
   - name: Public
   - name: Public > auth
   - name: Super Admin
@@ -2779,6 +2780,250 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/employees:
+    post:
+      tags:
+        - Admin > Human Resource > employees
+      summary: create employees
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                position_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: employee name
+                short_name:
+                  type: string
+                  example: em
+                description:
+                  type: string
+                  example: employee description
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 26 Dec 2023 07:17:25 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  company_id: 1
+                  position_id: '1'
+                  name: employee name
+                  short_name: em
+                  description: employee description
+                  slug: employee-name
+                  updated_at: '2023-12-26T07:17:25.000000Z'
+                  created_at: '2023-12-26T07:17:25.000000Z'
+                  id: 1
+                message: Employee created successfully!
+    get:
+      tags:
+        - Admin > Human Resource > employees
+      summary: get all employees list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 26 Dec 2023 07:18:27 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 1
+                    company_id: 1
+                    position_id: 1
+                    name: employee name
+                    short_name: em
+                    slug: employee-name
+                    description: employee description
+                    status: active
+                    created_at: '2023-12-26T07:17:25.000000Z'
+                links:
+                  first: http://127.0.0.1:8000/admin/employees?page=1
+                  last: http://127.0.0.1:8000/admin/employees?page=1
+                  prev: null
+                  next: null
+                meta:
+                  current_page: 1
+                  from: 1
+                  last_page: 1
+                  links:
+                    - url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    - url: http://127.0.0.1:8000/admin/employees?page=1
+                      label: '1'
+                      active: true
+                    - url: null
+                      label: Next &raquo;
+                      active: false
+                  path: http://127.0.0.1:8000/admin/employees
+                  per_page: 5
+                  to: 1
+                  total: 1
+  /admin/employees/{id}:
+    delete:
+      tags:
+        - Admin > Human Resource > employees
+      summary: delete employee
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/employees/1:
+    post:
+      tags:
+        - Admin > Human Resource > employees
+      summary: update employee
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                position_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: employee name
+                short_name:
+                  type: string
+                  example: emp
+                description:
+                  type: string
+                  example: employee description
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
