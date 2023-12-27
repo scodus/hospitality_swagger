@@ -50,6 +50,7 @@ tags:
   - name: Admin > Duty Roster
   - name: Admin > Duty Roster > roster time
   - name: Admin > Duty Roster > roster task
+  - name: Admin > Duty Roster > restaurant roster
   - name: Public
   - name: Public > auth
   - name: Super Admin
@@ -3088,7 +3089,7 @@ paths:
                   created_at: '2023-12-26T07:17:25.000000Z'
                   updated_at: '2023-12-26T07:31:41.000000Z'
                 message: Employee record updated successfully!
-  /admin/roster_time:
+  /admin/roster-time:
     post:
       tags:
         - Admin > Duty Roster > roster time
@@ -3267,7 +3268,7 @@ paths:
                   per_page: 5
                   to: 2
                   total: 2
-  /admin/roster_time/{id}:
+  /admin/roster-time/{id}:
     post:
       tags:
         - Admin > Duty Roster > roster time
@@ -3421,6 +3422,213 @@ paths:
           schema:
             type: string
           example: hotel
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/roster-task/{id}:
+    post:
+      tags:
+        - Admin > Duty Roster > roster task
+      summary: update roster task
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: washing1
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Wed, 27 Dec 2023 06:26:51 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '56'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 2
+                  company_id: 1
+                  title: washing1
+                  slug: washing1
+                  type: restaurant
+                  status: active
+                  created_at: '2023-12-26T11:37:16.000000Z'
+                  updated_at: '2023-12-27T06:26:50.000000Z'
+                message: Roster Task Updated Successfully!
+  /admin/roster-task/2:
+    delete:
+      tags:
+        - Admin > Duty Roster > roster task
+      summary: delete roster task
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Wed, 27 Dec 2023 06:29:50 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 2
+                  company_id: 1
+                  title: washing1
+                  slug: washing1
+                  type: restaurant
+                  status: active
+                  created_at: '2023-12-26T11:37:16.000000Z'
+                  updated_at: '2023-12-27T06:26:50.000000Z'
+                message: Roster Task Deleted Successfully!
+  /admin/restaurant-roster:
+    post:
+      tags:
+        - Admin > Duty Roster > restaurant roster
+      summary: create restaurant roster
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                floor_id: '1'
+                floor_type: hotel
+                date: '2023-01-23'
+                roster_tasks:
+                  - roster_task_id: '1'
+                    roster_time_id: '2'
+                    employee_id: 1
+                  - roster_task_id: '1'
+                    roster_time_id: '2'
+                    employee_id: 1
+                  - roster_task_id: '1'
+                    roster_time_id: '5'
+                    employee_id: 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Duty Roster > restaurant roster
+      summary: get all roster list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
