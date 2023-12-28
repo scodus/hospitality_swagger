@@ -6009,7 +6009,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/restaurant-roster?pagination_limit=10&date=2023-01-23",
+											"raw": "{{url}}/admin/restaurant-roster?limit=10&date=2023-01-23&paginate=1",
 											"host": [
 												"{{url}}"
 											],
@@ -6019,13 +6019,61 @@
 											],
 											"query": [
 												{
-													"key": "pagination_limit",
+													"key": "limit",
 													"value": "10"
 												},
 												{
 													"key": "date",
 													"value": "2023-01-23"
+												},
+												{
+													"key": "paginate",
+													"value": "1"
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update restaurant roster",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"_method\": \"PATCH\",\n  \"floor_id\": 1,\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 122\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 200\n        }\n      ]\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/restaurant-roster/",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"restaurant-roster",
+												""
 											]
 										}
 									},
