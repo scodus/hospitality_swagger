@@ -5967,7 +5967,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"floor_id\":\"1\",\n    \"floor_type\":\"hotel\",\n    \"date\":\"2023-01-23\",\n    \"roster_tasks\":[\n        {\n            \"roster_task_id\":\"1\",\n            \"roster_time_id\":\"2\",\n            \"employee_id\":1\n\n        },\n         {\n            \"roster_task_id\":\"1\",\n            \"roster_time_id\":\"2\",\n            \"employee_id\":1\n\n        },\n         {\n            \"roster_task_id\":\"1\",\n            \"roster_time_id\":\"5\",\n            \"employee_id\":2\n\n        }\n\n\n    ]\n}",
+											"raw": "{\n  \"floor_plan_id\": 1,\n  \"floor_type\":\"hotel\",\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 2\n        }\n      ]\n    }\n  ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -6009,13 +6009,23 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/restaurant-roster",
+											"raw": "{{url}}/admin/restaurant-roster?pagination_limit=10&date=2023-01-23",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"restaurant-roster"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "10"
+												},
+												{
+													"key": "date",
+													"value": "2023-01-23"
+												}
 											]
 										}
 									},

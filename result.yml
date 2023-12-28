@@ -3591,19 +3591,22 @@ paths:
             schema:
               type: object
               example:
-                floor_id: '1'
+                floor_plan_id: 1
                 floor_type: hotel
-                date: '2023-01-23'
-                roster_tasks:
-                  - roster_task_id: '1'
-                    roster_time_id: '2'
-                    employee_id: 1
-                  - roster_task_id: '1'
-                    roster_time_id: '2'
-                    employee_id: 1
-                  - roster_task_id: '1'
-                    roster_time_id: '5'
-                    employee_id: 2
+                date: '2023-08-23'
+                roster_task_time_employee:
+                  - roster_task_id: 1
+                    roster_time_employee:
+                      - roster_time_id: 1
+                        employee_id: 1
+                      - roster_time_id: 2
+                        employee_id: 1
+                  - roster_task_id: 2
+                    roster_time_employee:
+                      - roster_time_id: 1
+                        employee_id: 1
+                      - roster_time_id: 2
+                        employee_id: 2
       security:
         - bearerAuth: []
       parameters:
@@ -3629,6 +3632,16 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: '2023-01-23'
       responses:
         '200':
           description: Successful response
