@@ -6082,6 +6082,546 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Hotel",
+					"item": [
+						{
+							"name": "hotel floor",
+							"item": [
+								{
+									"name": "create hotel floor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/hotel-floors",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"hotel-floors"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "create hotel floor",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "title",
+															"value": "hy",
+															"type": "text"
+														},
+														{
+															"key": "description",
+															"value": "hy",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/hotel-floors",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"hotel-floors"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:42:55 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:42:55 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"title\": \"hy\",\n        \"company_id\": 1,\n        \"description\": \"hy\",\n        \"slug\": \"hy\",\n        \"updated_at\": \"2023-12-28T11:42:55.000000Z\",\n        \"created_at\": \"2023-12-28T11:42:55.000000Z\",\n        \"id\": 1\n    },\n    \"message\": \"Floor created successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "get all hotel floor list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/hotel-floors?pagination_limit=5",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"hotel-floors"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "5"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "get all hotel floor list",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/hotel-floors?pagination_limit=5",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"hotel-floors"
+													],
+													"query": [
+														{
+															"key": "pagination_limit",
+															"value": "5"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:47:45 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:47:45 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"company_id\": 1,\n            \"title\": \"hy\",\n            \"slug\": \"hy\",\n            \"description\": \"hy\",\n            \"status\": \"active\",\n            \"created_at\": \"2023-12-28T11:42:55.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/admin/hotel-floors?page=1\",\n        \"last\": \"http://127.0.0.1:8000/admin/hotel-floors?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/admin/hotel-floors?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/admin/hotel-floors\",\n        \"per_page\": 5,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "update hotel floor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "hy",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "fgfg",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/hotel-floors/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"hotel-floors",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "update hotel floor",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "title",
+															"value": "hy",
+															"type": "text"
+														},
+														{
+															"key": "description",
+															"value": "fgfg",
+															"type": "text"
+														},
+														{
+															"key": "_method",
+															"value": "put",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/hotel-floors/:id",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"hotel-floors",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:54:03 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:54:03 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "57"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"company_id\": 1,\n        \"title\": \"hy\",\n        \"slug\": \"hy\",\n        \"description\": \"fgfg\",\n        \"status\": \"active\",\n        \"created_at\": \"2023-12-28T11:53:49.000000Z\",\n        \"updated_at\": \"2023-12-28T11:54:03.000000Z\"\n    },\n    \"message\": \"Floor updated successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "delete hotel floor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/hotel-floors/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"hotel-floors",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "delete hotel floor",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/hotel-floors/:id",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"hotel-floors",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:56:02 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 28 Dec 2023 11:56:02 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"company_id\": 1,\n        \"title\": \"hy\",\n        \"slug\": \"hy\",\n        \"description\": \"fgfg\",\n        \"status\": \"active\",\n        \"created_at\": \"2023-12-28T11:53:49.000000Z\",\n        \"updated_at\": \"2023-12-28T11:54:03.000000Z\"\n    },\n    \"message\": \"Floor deleted successfully!\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
 				}
 			]
 		},
