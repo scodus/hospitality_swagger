@@ -6786,6 +6786,116 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "company",
+					"item": [
+						{
+							"name": "get company detials",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/company-details",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"company-details"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get company detials",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/company-details",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"company-details"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 03 Jan 2024 10:30:27 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 03 Jan 2024 10:30:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.11"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"business_name\": \"Akriti Hotel\",\n        \"slug\": \"business\",\n        \"display_name\": \"B\",\n        \"address\": \"KTM\",\n        \"primary_email\": \"admin@gmail.com\",\n        \"primary_phone\": \"984334645\",\n        \"vat_number\": \"454545\",\n        \"registration_number\": \"54545\",\n        \"start_date\": \"454545\",\n        \"company_image\": \"http://localhost:8000/storage/1/BDD0688FF02068E5C427B0954F8A2297.webp\",\n        \"user_id\": 1\n    }\n}"
+								}
+							]
+						}
+					]
 				}
 			]
 		},
