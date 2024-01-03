@@ -22,7 +22,7 @@
     },
     "servers": [
         {
-            "url": "http://hospitality-api.nrnaglobal.com/",
+            "url": "https://hospitality-api.nrnaglobal.com/",
             "description": "server"
         }
     ]

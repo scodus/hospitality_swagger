@@ -3103,7 +3103,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":1,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"productDetails\":[\n        {\n            \"product_variation_id\":45,\n            \"price\":100,\n            \"quantity\":5\n\n        },\n         {\n            \"product_variation_id\":46,\n            \"price\":150,\n            \"quantity\":2\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\":1,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"productDetails\":[\n        {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":2\n\n        }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -5967,7 +5967,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"floor_plan_id\": 1,\n  \"floor_type\":\"hotel\",\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 2\n        }\n      ]\n    }\n  ]\n}",
+											"raw": "{\n  \"floor_plan_id\": 2,\n  \"floor_type\":\"hotel\",\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 2\n        }\n      ]\n    }\n  ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -6009,31 +6009,120 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/restaurant-roster?limit=10&date=2023-01-23&paginate=1",
+											"raw": "{{url}}/admin/restaurant-floor-plan?date=2023-08-23",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
-												"restaurant-roster"
+												"restaurant-floor-plan"
 											],
 											"query": [
 												{
 													"key": "limit",
-													"value": "10"
+													"value": "10",
+													"disabled": true
 												},
 												{
 													"key": "date",
-													"value": "2023-01-23"
+													"value": "2023-08-23"
 												},
 												{
 													"key": "paginate",
-													"value": "1"
+													"value": "1",
+													"disabled": true
 												}
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"name": "get all roster list",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/restaurant-floor-plan?date=2023-08-23",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"restaurant-floor-plan"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "10",
+															"disabled": true
+														},
+														{
+															"key": "date",
+															"value": "2023-08-23"
+														},
+														{
+															"key": "paginate",
+															"value": "1",
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 01 Jan 2024 08:02:51 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 01 Jan 2024 08:02:51 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"floor_plan\": {\n                \"id\": 4,\n                \"company_id\": 1,\n                \"floor_name\": \"Floor 4\",\n                \"description\": \"f1\",\n                \"created_at\": \"2023-12-18T05:55:11.000000Z\",\n                \"updated_at\": \"2023-12-18T06:05:20.000000Z\"\n            },\n            \"date\": \"2023-08-23\",\n            \"roster_task_time_employee\": [\n                {\n                    \"roster_task_id\": \"1\",\n                    \"roster_time_employee\": [\n                        {\n                            \"roster_time_id\": \"2\",\n                            \"employee\": null\n                        },\n                        {\n                            \"roster_time_id\": \"2\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        }\n                    ]\n                },\n                {\n                    \"roster_task_id\": \"2\",\n                    \"roster_time_employee\": [\n                        {\n                            \"roster_time_id\": \"1\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        },\n                        {\n                            \"roster_time_id\": \"2\",\n                            \"employee\": null\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"floor_plan\": null,\n            \"date\": \"2023-08-23\",\n            \"roster_task_time_employee\": [\n                {\n                    \"roster_task_id\": \"1\",\n                    \"roster_time_employee\": [\n                        {\n                            \"roster_time_id\": \"1\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        },\n                        {\n                            \"roster_time_id\": \"2\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        }\n                    ]\n                },\n                {\n                    \"roster_task_id\": \"2\",\n                    \"roster_time_employee\": [\n                        {\n                            \"roster_time_id\": \"1\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        },\n                        {\n                            \"roster_time_id\": \"2\",\n                            \"employee\": {\n                                \"id\": 2,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Shyam\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"floor_plan\": null,\n            \"date\": \"2023-08-23\",\n            \"roster_task_time_employee\": [\n                {\n                    \"roster_task_id\": \"1\",\n                    \"roster_time_employee\": [\n                        {\n                            \"roster_time_id\": \"1\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        },\n                        {\n                            \"roster_time_id\": \"2\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        }\n                    ]\n                },\n                {\n                    \"roster_task_id\": \"2\",\n                    \"roster_time_employee\": [\n                        {\n                            \"roster_time_id\": \"1\",\n                            \"employee\": {\n                                \"id\": 1,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Hari\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        },\n                        {\n                            \"roster_time_id\": \"2\",\n                            \"employee\": {\n                                \"id\": 2,\n                                \"company_id\": 1,\n                                \"position_id\": 1,\n                                \"name\": \"Shyam\",\n                                \"short_name\": \"emp\",\n                                \"slug\": \"employee-name\",\n                                \"description\": \"employee description\",\n                                \"status\": \"active\",\n                                \"created_at\": \"2023-12-26T01:32:25.000000Z\",\n                                \"position\": {\n                                    \"id\": 1,\n                                    \"company_id\": 1,\n                                    \"title\": \"Position\",\n                                    \"slug\": \"position\",\n                                    \"description\": \"Description\",\n                                    \"status\": \"active\",\n                                    \"is_housekeeping\": 1,\n                                    \"created_at\": \"2023-12-25T05:39:16.000000Z\",\n                                    \"updated_at\": \"2023-12-25T05:39:16.000000Z\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+										}
+									]
 								},
 								{
 									"name": "update restaurant roster",
@@ -6058,7 +6147,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"_method\": \"PATCH\",\n  \"floor_id\": 1,\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 122\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 200\n        }\n      ]\n    }\n  ]\n}",
+											"raw": "{\n  \"_method\": \"PATCH\",\n  \"floor_id\": 9,\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 122\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 200\n        }\n      ]\n    }\n  ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -6066,14 +6155,14 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/restaurant-roster/",
+											"raw": "{{url}}/admin/restaurant-roster/update",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"restaurant-roster",
-												""
+												"update"
 											]
 										}
 									},
