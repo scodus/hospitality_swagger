@@ -2105,6 +2105,47 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "Show payment order details by table number",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/payment-order-details\\:table_no",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"payment-order-details",
+												":table_no"
+											],
+											"variable": [
+												{
+													"key": "table_no",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -3074,6 +3115,72 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "get single data for order table",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/orders/all/:payment_order_no",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"all",
+												":payment_order_no"
+											],
+											"variable": [
+												{
+													"key": "payment_order_no",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all nested product category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/nested-product-category",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"nested-product-category"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -3327,18 +3434,18 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/orders/:table_id",
+											"raw": "{{url}}/admin/orders/:table_no",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"orders",
-												":table_id"
+												":table_no"
 											],
 											"variable": [
 												{
-													"key": "table_id",
+													"key": "table_no",
 													"value": ""
 												}
 											]
@@ -3411,38 +3518,6 @@
 												{
 													"key": "search",
 													"value": "payment_order_no"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "get single data for order table",
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/orders/all/:payment_order_no",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"orders",
-												"all",
-												":payment_order_no"
-											],
-											"variable": [
-												{
-													"key": "payment_order_no",
-													"value": ""
 												}
 											]
 										}
@@ -6736,6 +6811,18 @@
 									"formdata": [
 										{
 											"key": "email",
+											"value": "hanciewanemphago@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
 											"value": "nitesh0hamal@gmail.com",
 											"type": "text"
 										},
@@ -6831,6 +6918,89 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "show all nested product category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/nested-product-category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"nested-product-category"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/admin/nested-product-category",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"nested-product-category"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 01 Jan 2024 08:52:43 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 01 Jan 2024 08:52:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.11"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"category_name\": \"Drink\",\n            \"slug\": \"\",\n            \"parent_category_id\": null,\n            \"bar\": 0,\n            \"description\": \"My momo\",\n            \"category_image\": \"\",\n            \"status\": 0,\n            \"created_at\": \"2023-11-28T09:35:58.000000Z\",\n            \"updated_at\": \"2023-11-28T09:35:58.000000Z\",\n            \"parent_category\": null,\n            \"child_categories\": [\n                {\n                    \"id\": 1,\n                    \"category_name\": \"Juice\",\n                    \"slug\": \"momo\",\n                    \"parent_category_id\": 3,\n                    \"bar\": null,\n                    \"description\": \"My momo\",\n                    \"category_image\": \"\",\n                    \"status\": 0,\n                    \"created_at\": \"2023-11-28T09:35:58.000000Z\",\n                    \"updated_at\": \"2023-11-28T09:35:58.000000Z\",\n                    \"products\": [\n                        {\n                            \"id\": 1,\n                            \"product_name\": \"Momo\",\n                            \"slug\": \"momo\",\n                            \"product_category_id\": 1,\n                            \"base_price\": 550,\n                            \"ingredient\": \"gffg\",\n                            \"description\": \"fgfgfg\",\n                            \"product_image\": \"\",\n                            \"has_variation\": 1,\n                            \"product_variation\": [\n                                {\n                                    \"id\": 2,\n                                    \"variation_name\": \"Tea\",\n                                    \"price\": 200,\n                                    \"created_at\": \"2023-11-28T09:35:43.000000Z\",\n                                    \"updated_at\": \"2023-11-28T09:35:43.000000Z\"\n                                },\n                                {\n                                    \"id\": 45,\n                                    \"variation_name\": \"Steam Momo\",\n                                    \"price\": 100,\n                                    \"created_at\": \"2023-11-28T09:35:43.000000Z\",\n                                    \"updated_at\": \"2023-11-28T09:35:43.000000Z\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            ],\n            \"products\": []\n        },\n        {\n            \"id\": 4,\n            \"category_name\": \"Food\",\n            \"slug\": \"\",\n            \"parent_category_id\": null,\n            \"bar\": 0,\n            \"description\": \"My momo\",\n            \"category_image\": \"\",\n            \"status\": 0,\n            \"created_at\": \"2023-11-28T09:35:58.000000Z\",\n            \"updated_at\": \"2023-11-28T09:35:58.000000Z\",\n            \"parent_category\": null,\n            \"child_categories\": [\n                {\n                    \"id\": 2,\n                    \"category_name\": \"Momo\",\n                    \"slug\": \"momo\",\n                    \"parent_category_id\": 4,\n                    \"bar\": 0,\n                    \"description\": \"My momo\",\n                    \"category_image\": \"\",\n                    \"status\": 0,\n                    \"created_at\": \"2023-11-28T09:35:58.000000Z\",\n                    \"updated_at\": \"2023-11-28T09:35:58.000000Z\",\n                    \"products\": []\n                }\n            ],\n            \"products\": []\n        }\n    ]\n}"
+								}
+							]
 						}
 					]
 				}

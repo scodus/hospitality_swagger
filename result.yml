@@ -1,9 +1,23 @@
 openapi: 3.0.0
 info:
   title: Hospitality Management
-  version: 1.0.0
+  description: Hospitality Management API documentation
+  version: '1.0'
+  x-logo:
+    url: https://github.com/joolfe/logoBanner.png
+    backgroundColor: '#FFFFFF'
+    altText: logo
+  termsOfService: '#'
+  contact:
+    name: Scodus
+    url: https://scodus.com
+    email: scodusnp@gmail.com
+  license:
+    name: MIT
+    url: https://es.wikipedia.org/wiki/Licencia_MIT
 servers:
-  - url: http://{{url}}
+  - url: https://hospitality-api.nrnaglobal.com/
+    description: server
 components:
   securitySchemes:
     bearerAuth:
@@ -1298,6 +1312,29 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/payment-order-details/{table_no}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order Payment
+      summary: Show payment order details by table number
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: table_no
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/order-details/{id}:
     delete:
       tags:
@@ -1868,6 +1905,146 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/orders/all/{payment_order_no}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: get single data for order table
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: payment_order_no
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/nested-product-category:
+    get:
+      tags:
+        - Public > auth
+      summary: show all nested product category
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 01 Jan 2024 08:52:43 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 3
+                    category_name: Drink
+                    slug: ''
+                    parent_category_id: null
+                    bar: 0
+                    description: My momo
+                    category_image: ''
+                    status: 0
+                    created_at: '2023-11-28T09:35:58.000000Z'
+                    updated_at: '2023-11-28T09:35:58.000000Z'
+                    parent_category: null
+                    child_categories:
+                      - id: 1
+                        category_name: Juice
+                        slug: momo
+                        parent_category_id: 3
+                        bar: null
+                        description: My momo
+                        category_image: ''
+                        status: 0
+                        created_at: '2023-11-28T09:35:58.000000Z'
+                        updated_at: '2023-11-28T09:35:58.000000Z'
+                        products:
+                          - id: 1
+                            product_name: Momo
+                            slug: momo
+                            product_category_id: 1
+                            base_price: 550
+                            ingredient: gffg
+                            description: fgfgfg
+                            product_image: ''
+                            has_variation: 1
+                            product_variation:
+                              - id: 2
+                                variation_name: Tea
+                                price: 200
+                                created_at: '2023-11-28T09:35:43.000000Z'
+                                updated_at: '2023-11-28T09:35:43.000000Z'
+                              - id: 45
+                                variation_name: Steam Momo
+                                price: 100
+                                created_at: '2023-11-28T09:35:43.000000Z'
+                                updated_at: '2023-11-28T09:35:43.000000Z'
+                    products: []
+                  - id: 4
+                    category_name: Food
+                    slug: ''
+                    parent_category_id: null
+                    bar: 0
+                    description: My momo
+                    category_image: ''
+                    status: 0
+                    created_at: '2023-11-28T09:35:58.000000Z'
+                    updated_at: '2023-11-28T09:35:58.000000Z'
+                    parent_category: null
+                    child_categories:
+                      - id: 2
+                        category_name: Momo
+                        slug: momo
+                        parent_category_id: 4
+                        bar: 0
+                        description: My momo
+                        category_image: ''
+                        status: 0
+                        created_at: '2023-11-28T09:35:58.000000Z'
+                        updated_at: '2023-11-28T09:35:58.000000Z'
+                        products: []
+                    products: []
   /admin/orders:
     post:
       tags:
@@ -2011,7 +2188,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/orders/{table_id}:
+  /admin/orders/{table_no}:
     get:
       tags:
         - Admin > Restaurant > Restaurant Order
@@ -2024,7 +2201,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: table_id
+        - name: table_no
           in: path
           schema:
             type: string
@@ -2073,27 +2250,6 @@ paths:
           schema:
             type: string
           example: payment_order_no
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/orders/all/{payment_order_no}:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Order
-      summary: get single data for order table
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: payment_order_no
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
