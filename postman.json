@@ -1099,7 +1099,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/reports/daily-income?pagination_limit=3",
+											"raw": "{{url}}/admin/reports/daily-income?pagination_limit=3&from-date=01-04-2024&to-date=01-06-2024",
 											"host": [
 												"{{url}}"
 											],
@@ -1112,6 +1112,14 @@
 												{
 													"key": "pagination_limit",
 													"value": "3"
+												},
+												{
+													"key": "from-date",
+													"value": "01-04-2024"
+												},
+												{
+													"key": "to-date",
+													"value": "01-06-2024"
 												}
 											]
 										}
@@ -3954,6 +3962,116 @@
 										}
 									},
 									"response": []
+								}
+							]
+						},
+						{
+							"name": "Kitchen Order Ticket",
+							"item": [
+								{
+									"name": "get all kot list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/kot",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"kot"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "get all kot list",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/kot",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"kot"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 04 Jan 2024 08:52:27 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 04 Jan 2024 08:52:27 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"company_id\": 1,\n            \"order_id\": 55,\n            \"kot_no\": \"HIYO5YA\",\n            \"preparation_status\": \"pending\",\n            \"created_at\": \"2024-01-02T11:49:55.000000Z\",\n            \"updated_at\": \"2024-01-02T11:49:55.000000Z\"\n        }\n    ]\n}"
+										}
+									]
 								}
 							]
 						}

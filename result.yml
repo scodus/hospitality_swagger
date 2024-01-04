@@ -42,6 +42,7 @@ tags:
   - name: Admin > Restaurant > Restaurant Order
   - name: Admin > Restaurant > Restaurant floor
   - name: Admin > Restaurant > Restaurant table
+  - name: Admin > Restaurant > Kitchen Order Ticket
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -713,6 +714,16 @@ paths:
           schema:
             type: integer
           example: '3'
+        - name: from-date
+          in: query
+          schema:
+            type: string
+          example: 01-04-2024
+        - name: to-date
+          in: query
+          schema:
+            type: string
+          example: 01-06-2024
       responses:
         '200':
           description: Successful response
@@ -2502,6 +2513,72 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/kot:
+    get:
+      tags:
+        - Admin > Restaurant > Kitchen Order Ticket
+      summary: get all kot list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Thu, 04 Jan 2024 08:52:27 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 3
+                    company_id: 1
+                    order_id: 55
+                    kot_no: HIYO5YA
+                    preparation_status: pending
+                    created_at: '2024-01-02T11:49:55.000000Z'
+                    updated_at: '2024-01-02T11:49:55.000000Z'
   /admin/roles:
     post:
       tags:
