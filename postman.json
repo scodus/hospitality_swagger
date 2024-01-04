@@ -1578,7 +1578,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/cashier-session?pagination_limit=4",
+											"raw": "{{url}}/admin/cashier-session?pagination_limit=40&running-session=true&date=12-26-2023",
 											"host": [
 												"{{url}}"
 											],
@@ -1589,7 +1589,15 @@
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "4"
+													"value": "40"
+												},
+												{
+													"key": "running-session",
+													"value": "true"
+												},
+												{
+													"key": "date",
+													"value": "12-26-2023"
 												}
 											]
 										}
@@ -3492,6 +3500,16 @@
 								{
 									"name": "get all order for order table",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
 										"header": [
 											{
@@ -3501,7 +3519,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/orders/all?pagination_limit=1&search=payment_order_no",
+											"raw": "{{url}}/admin/orders/all?pagination_limit=15&search=payment_order_no&status=pending&date=01-02-2024",
 											"host": [
 												"{{url}}"
 											],
@@ -3513,11 +3531,19 @@
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "1"
+													"value": "15"
 												},
 												{
 													"key": "search",
 													"value": "payment_order_no"
+												},
+												{
+													"key": "status",
+													"value": "pending"
+												},
+												{
+													"key": "date",
+													"value": "01-02-2024"
 												}
 											]
 										}

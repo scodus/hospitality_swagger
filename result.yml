@@ -943,7 +943,17 @@ paths:
           in: query
           schema:
             type: integer
-          example: '4'
+          example: '40'
+        - name: running-session
+          in: query
+          schema:
+            type: boolean
+          example: 'true'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 12-26-2023
       responses:
         '200':
           description: Successful response
@@ -2235,6 +2245,8 @@ paths:
       tags:
         - Admin > Restaurant > Restaurant Order
       summary: get all order for order table
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
@@ -2245,12 +2257,22 @@ paths:
           in: query
           schema:
             type: integer
-          example: '1'
+          example: '15'
         - name: search
           in: query
           schema:
             type: string
           example: payment_order_no
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: pending
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 01-02-2024
       responses:
         '200':
           description: Successful response
