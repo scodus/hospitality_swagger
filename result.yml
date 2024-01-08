@@ -123,6 +123,11 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: Hancie Phago
       responses:
         '200':
           description: Successful response
@@ -714,16 +719,16 @@ paths:
           schema:
             type: integer
           example: '3'
-        - name: from-date
+        - name: start_date
           in: query
           schema:
             type: string
-          example: 01-04-2024
-        - name: to-date
+          example: '2024-01-04'
+        - name: end_date
           in: query
           schema:
             type: string
-          example: 01-06-2024
+          example: '2024-01-06'
       responses:
         '200':
           description: Successful response
@@ -1465,23 +1470,22 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/order-details/quantity/{id}:
+  /admin/order-details/quantity/update:
     post:
       tags:
         - Admin > Restaurant > Restaurant Order Details
       summary: update order detail quantity
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
-              properties:
-                quantity:
-                  type: integer
-                  example: '10'
-                _method:
-                  type: string
-                  example: patch
+              example:
+                orderDetails:
+                  - order_detail_id: 137
+                    quantity: 10
+                  - order_detail_id: 138
+                    quantity: 10
       security:
         - bearerAuth: []
       parameters:
@@ -1490,6 +1494,17 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/order-details/quantity/{id}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order Details
+      summary: update order details qunatity (mobile)
+      parameters:
         - name: id
           in: path
           schema:
@@ -2083,6 +2098,9 @@ paths:
                 pickup_user_id: 1
                 description: ab cd ef gh
                 productDetails:
+                  - product_variation_id: 8
+                    price: 100
+                    quantity: 5
                   - product_variation_id: 6
                     price: 100
                     quantity: 5

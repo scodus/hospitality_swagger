@@ -99,7 +99,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/customers?pagination_limit=4&company_id=1",
+									"raw": "{{url}}/admin/customers?pagination_limit=4&company_id=1&search_keyword=Hancie Phago",
 									"host": [
 										"{{url}}"
 									],
@@ -115,6 +115,10 @@
 										{
 											"key": "company_id",
 											"value": "1"
+										},
+										{
+											"key": "search_keyword",
+											"value": "Hancie Phago"
 										}
 									]
 								}
@@ -1099,7 +1103,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/reports/daily-income?pagination_limit=3&from-date=01-04-2024&to-date=01-06-2024",
+											"raw": "{{url}}/admin/reports/daily-income?pagination_limit=3&start_date=2024-01-04&end_date=2024-01-06",
 											"host": [
 												"{{url}}"
 											],
@@ -1114,12 +1118,12 @@
 													"value": "3"
 												},
 												{
-													"key": "from-date",
-													"value": "01-04-2024"
+													"key": "start_date",
+													"value": "2024-01-04"
 												},
 												{
-													"key": "to-date",
-													"value": "01-06-2024"
+													"key": "end_date",
+													"value": "2024-01-06"
 												}
 											]
 										}
@@ -2368,20 +2372,34 @@
 											}
 										],
 										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "quantity",
-													"value": "10",
-													"type": "text"
-												},
-												{
-													"key": "_method",
-													"value": "patch",
-													"type": "text"
+											"mode": "raw",
+											"raw": "{\n    \"orderDetails\":[\n        {\n              \"order_detail_id\":137,\n              \"quantity\":10\n        },\n        {\n              \"order_detail_id\":138,\n              \"quantity\":10\n        }\n      \n\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											]
+											}
 										},
+										"url": {
+											"raw": "{{url}}/admin/order-details/quantity/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"order-details",
+												"quantity",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update order details qunatity (mobile)",
+									"request": {
+										"method": "GET",
+										"header": [],
 										"url": {
 											"raw": "{{url}}/admin/order-details/quantity/:id",
 											"host": [
@@ -3226,7 +3244,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":1,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"productDetails\":[\n        {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":2\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\":1,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":2\n\n        }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
