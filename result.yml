@@ -43,6 +43,8 @@ tags:
   - name: Admin > Restaurant > Restaurant floor
   - name: Admin > Restaurant > Restaurant table
   - name: Admin > Restaurant > Kitchen Order Ticket
+  - name: Admin > Restaurant > Bar Order Ticket
+  - name: Admin > Restaurant > Bill
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -1356,10 +1358,75 @@ paths:
           required: true
       responses:
         '200':
-          description: Successful response
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Fri, 12 Jan 2024 11:42:56 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
           content:
-            application/json: {}
-  /admin/orders/all/{order_payment_id}:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - variation_name: Chaumin
+                    total_quantity: '18'
+                    price: 150
+                    total_amount: 2700
+                  - variation_name: Fry Momo
+                    total_quantity: '45'
+                    price: 100
+                    total_amount: 4500
+                  - variation_name: Chaumin
+                    total_quantity: '45'
+                    price: 100
+                    total_amount: 4500
+                  - variation_name: Chaumin
+                    total_quantity: '2'
+                    price: 150
+                    total_amount: 300
+                  - variation_name: Fry Momo
+                    total_quantity: '5'
+                    price: 100
+                    total_amount: 500
+                  - variation_name: Chaumin
+                    total_quantity: '5'
+                    price: 100
+                    total_amount: 500
+  /admin/orders/all/{order_number}:
     get:
       tags:
         - Admin > Restaurant > Restaurant Order Payment
@@ -1372,7 +1439,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: order_payment_id
+        - name: order_number
           in: path
           schema:
             type: string
@@ -1502,12 +1569,14 @@ paths:
               type: object
               example:
                 orderDetails:
-                  - order_detail_id: 157
-                    quantity: 16
-                  - order_detail_id: 158
-                    quantity: 20
-                  - order_detail_id: 159
-                    quantity: 25
+                  - order_detail_id: 237
+                    quantity: 0
+                    note: my note
+                  - order_detail_id: 247
+                    quantity: 30
+                  - order_detail_id: 245
+                    quantity: 15
+                    note: BOT Note
       security:
         - bearerAuth: []
       parameters:
@@ -1516,22 +1585,6 @@ paths:
           schema:
             type: string
           example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/order-details/quantity/{id}:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Order Details
-      summary: update order details qunatity (mobile)
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
@@ -2115,7 +2168,7 @@ paths:
             schema:
               type: object
               example:
-                table_id: 1
+                table_id: 3
                 customer_id: 1
                 pickup_user_id: 1
                 description: ab cd ef gh
@@ -2126,9 +2179,11 @@ paths:
                   - product_variation_id: 6
                     price: 100
                     quantity: 5
+                    note: My Note
                   - product_variation_id: 7
                     price: 150
-                    quantity: 2
+                    quantity: 1
+                    note: My Note
       security:
         - bearerAuth: []
       parameters:
@@ -2260,7 +2315,7 @@ paths:
     get:
       tags:
         - Admin > Restaurant > Restaurant Order
-      summary: get single order by table no
+      summary: get single order data by table no
       security:
         - bearerAuth: []
       parameters:
@@ -2310,26 +2365,11 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '15'
-        - name: search
-          in: query
-          schema:
-            type: string
-          example: payment_order_no
         - name: status
           in: query
           schema:
             type: string
           example: pending
-        - name: date
-          in: query
-          schema:
-            type: string
-          example: 01-02-2024
       responses:
         '200':
           description: Successful response
@@ -2639,6 +2679,47 @@ paths:
             type: string
           example: application/json
         - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/bot:
+    get:
+      tags:
+        - Admin > Restaurant > Bar Order Ticket
+      summary: get all bot list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/ask-bill/{table_id}:
+    get:
+      tags:
+        - Admin > Restaurant > Bill
+      summary: get ask bill data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: table_id
           in: path
           schema:
             type: string
@@ -4776,19 +4857,19 @@ paths:
               properties:
                 business_name:
                   type: string
-                  example: Business
+                  example: Kitchen King
                 display_name:
                   type: string
-                  example: B
+                  example: K. King
                 address:
                   type: string
-                  example: KTM
+                  example: Purano Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: admin1@gmail.com
+                  example: grgbishal360@gmail.com
                 primary_phone:
                   type: integer
-                  example: '9843346455'
+                  example: '9806782031'
                 vat_number:
                   type: integer
                   example: '454545'

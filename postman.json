@@ -2160,7 +2160,85 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"name": "Show payment order details by table number",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/payment-order-details\\:table_id",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"payment-order-details",
+														":table_id"
+													],
+													"variable": [
+														{
+															"key": "table_id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 12 Jan 2024 11:42:56 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 12 Jan 2024 11:42:56 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"variation_name\": \"Chaumin\",\n            \"total_quantity\": \"18\",\n            \"price\": 150,\n            \"total_amount\": 2700\n        },\n        {\n            \"variation_name\": \"Fry Momo\",\n            \"total_quantity\": \"45\",\n            \"price\": 100,\n            \"total_amount\": 4500\n        },\n        {\n            \"variation_name\": \"Chaumin\",\n            \"total_quantity\": \"45\",\n            \"price\": 100,\n            \"total_amount\": 4500\n        },\n        {\n            \"variation_name\": \"Chaumin\",\n            \"total_quantity\": \"2\",\n            \"price\": 150,\n            \"total_amount\": 300\n        },\n        {\n            \"variation_name\": \"Fry Momo\",\n            \"total_quantity\": \"5\",\n            \"price\": 100,\n            \"total_amount\": 500\n        },\n        {\n            \"variation_name\": \"Chaumin\",\n            \"total_quantity\": \"5\",\n            \"price\": 100,\n            \"total_amount\": 500\n        }\n    ]\n}"
+										}
+									]
 								},
 								{
 									"name": "get single order payment details",
@@ -2184,7 +2262,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/orders/all/:order_payment_id",
+											"raw": "{{url}}/admin/orders/all/:order_number",
 											"host": [
 												"{{url}}"
 											],
@@ -2192,11 +2270,11 @@
 												"admin",
 												"orders",
 												"all",
-												":order_payment_id"
+												":order_number"
 											],
 											"variable": [
 												{
-													"key": "order_payment_id",
+													"key": "order_number",
 													"value": ""
 												}
 											]
@@ -2410,7 +2488,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"orderDetails\":[\n        {\n              \"order_detail_id\":157,\n              \"quantity\":16\n        },\n        {\n              \"order_detail_id\":158,\n              \"quantity\":20\n        },\n         {\n              \"order_detail_id\":159,\n              \"quantity\":25\n        }\n      \n\n    ]\n}",
+											"raw": "{\n    \"orderDetails\":[\n        {\n              \"order_detail_id\":237,\n              \"quantity\":0,\n              \"note\":\"my note\"\n        },\n        {\n              \"order_detail_id\":247,\n              \"quantity\":30\n        },\n         {\n              \"order_detail_id\":245,\n              \"quantity\":15,\n              \"note\":\"BOT Note\"\n        }\n      \n\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2427,32 +2505,6 @@
 												"order-details",
 												"quantity",
 												"update"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "update order details qunatity (mobile)",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{url}}/admin/order-details/quantity/:id",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"order-details",
-												"quantity",
-												":id"
-											],
-											"variable": [
-												{
-													"key": "id",
-													"value": ""
-												}
 											]
 										}
 									},
@@ -3281,7 +3333,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":1,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":2\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\":3,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3484,7 +3536,7 @@
 									"response": []
 								},
 								{
-									"name": "get single order by table no",
+									"name": "get single order data by table no",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -3582,7 +3634,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/orders/all?pagination_limit=15&search=payment_order_no&status=pending&date=01-02-2024",
+											"raw": "{{url}}/admin/orders/all?status=pending",
 											"host": [
 												"{{url}}"
 											],
@@ -3594,19 +3646,17 @@
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "15"
+													"value": "15",
+													"disabled": true
 												},
 												{
 													"key": "search",
-													"value": "payment_order_no"
+													"value": "202401123MJJY",
+													"disabled": true
 												},
 												{
 													"key": "status",
 													"value": "pending"
-												},
-												{
-													"key": "date",
-													"value": "01-02-2024"
 												}
 											]
 										}
@@ -4162,6 +4212,91 @@
 											"variable": [
 												{
 													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Bar Order Ticket",
+							"item": [
+								{
+									"name": "get all bot list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/bot",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"bot"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Bill",
+							"item": [
+								{
+									"name": "get ask bill data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/ask-bill/:table_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"ask-bill",
+												":table_id"
+											],
+											"variable": [
+												{
+													"key": "table_id",
 													"value": ""
 												}
 											]
@@ -7174,24 +7309,24 @@
 										{
 											"key": "email",
 											"value": "hanciewanemphago@gmail.com",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										},
 										{
 											"key": "password",
 											"value": "password",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										},
 										{
 											"key": "email",
 											"value": "nitesh0hamal@gmail.com",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password",
 											"value": "12345",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -7244,6 +7379,18 @@
 						},
 						{
 							"name": "super admin login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const resp = pm.response.json();",
+											"pm.environment.set(\"token\", resp.data.token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [
@@ -7400,27 +7547,27 @@
 									"formdata": [
 										{
 											"key": "business_name",
-											"value": "Business",
+											"value": "Kitchen King",
 											"type": "text"
 										},
 										{
 											"key": "display_name",
-											"value": "B",
+											"value": "K. King",
 											"type": "text"
 										},
 										{
 											"key": "address",
-											"value": "KTM",
+											"value": "Purano Baneshwor, Kathmandu",
 											"type": "text"
 										},
 										{
 											"key": "primary_email",
-											"value": "admin1@gmail.com",
+											"value": "grgbishal360@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "9843346455",
+											"value": "9806782031",
 											"type": "text"
 										},
 										{
@@ -7441,7 +7588,7 @@
 										{
 											"key": "company_image",
 											"type": "file",
-											"src": "/Users/hanciephago/Downloads/BDD0688FF02068E5C427B0954F8A2297.webp"
+											"src": "/home/bishal/Downloads/design images/kitchen-king.jpg"
 										}
 									]
 								},
