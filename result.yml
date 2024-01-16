@@ -259,10 +259,10 @@ paths:
               properties:
                 name:
                   type: string
-                  example: Hancie Phago
+                  example: Bishal Gurung
                 email:
                   type: string
-                  example: hanciephago@gmail.com
+                  example: grgbishal360@gmail.com
                 company_id:
                   type: integer
                   example: '1'
@@ -1569,13 +1569,13 @@ paths:
               type: object
               example:
                 orderDetails:
-                  - order_detail_id: 237
+                  - id: 237
                     quantity: 0
                     note: my note
-                  - order_detail_id: 247
+                  - id: 247
                     quantity: 30
-                  - order_detail_id: 245
-                    quantity: 15
+                  - id: 48
+                    quantity: 35
                     note: BOT Note
       security:
         - bearerAuth: []
@@ -2612,6 +2612,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: pending
       responses:
         '200':
           description: OK
@@ -2623,7 +2628,222 @@ paths:
             Date:
               schema:
                 type: string
-                example: Thu, 04 Jan 2024 08:52:27 GMT
+                example: Tue, 16 Jan 2024 06:33:36 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 70
+                    company_id: 1
+                    table_number: T5
+                    order_id: 96
+                    kot_no: 202414YLUXB
+                    preparation_status: pending
+                    time: 05:09 pm
+                    date: Jan 14, 2024
+                    kot_items: []
+                  - id: 69
+                    company_id: 1
+                    table_number: T3
+                    order_id: 98
+                    kot_no: 202414GW6QW
+                    preparation_status: pending
+                    time: 05:09 pm
+                    date: Jan 14, 2024
+                    kot_items:
+                      - id: 139
+                        company_id: 1
+                        kitchen_order_ticket_id: 69
+                        order_detail_id: 243
+                        product_name: Chaumin
+                        price: 100
+                        current_quantity: 5
+                        preparation_status: pending
+                        note: ''
+                        total: 500
+                      - id: 140
+                        company_id: 1
+                        kitchen_order_ticket_id: 69
+                        order_detail_id: 245
+                        product_name: Chaumin
+                        price: 150
+                        current_quantity: 5
+                        preparation_status: pending
+                        note: My Note
+                        total: 750
+                      - id: 143
+                        company_id: 1
+                        kitchen_order_ticket_id: 69
+                        order_detail_id: 245
+                        product_name: Chaumin
+                        price: 150
+                        current_quantity: 15
+                        preparation_status: pending
+                        note: BOT Note
+                        total: 2250
+  /admin/kot/{id}:
+    get:
+      tags:
+        - Admin > Restaurant > Kitchen Order Ticket
+      summary: get single kot order items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 16 Jan 2024 06:34:55 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 69
+                  company_id: 1
+                  table_number: T3
+                  order_id: 98
+                  kot_no: 202414GW6QW
+                  preparation_status: pending
+                  time: 05:09 pm
+                  date: Jan 14, 2024
+                  kot_items:
+                    - id: 139
+                      company_id: 1
+                      kitchen_order_ticket_id: 69
+                      order_detail_id: 243
+                      product_name: Chaumin
+                      price: 100
+                      current_quantity: 5
+                      preparation_status: pending
+                      note: ''
+                      total: 500
+                    - id: 140
+                      company_id: 1
+                      kitchen_order_ticket_id: 69
+                      order_detail_id: 245
+                      product_name: Chaumin
+                      price: 150
+                      current_quantity: 5
+                      preparation_status: pending
+                      note: My Note
+                      total: 750
+                    - id: 143
+                      company_id: 1
+                      kitchen_order_ticket_id: 69
+                      order_detail_id: 245
+                      product_name: Chaumin
+                      price: 150
+                      current_quantity: 15
+                      preparation_status: pending
+                      note: BOT Note
+                      total: 2250
+  /admin/bot:
+    get:
+      tags:
+        - Admin > Restaurant > Bar Order Ticket
+      summary: get all bot list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: pending
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 16 Jan 2024 06:41:40 GMT
             Connection:
               schema:
                 type: string
@@ -2658,18 +2878,58 @@ paths:
                 type: object
               example:
                 data:
-                  - id: 3
+                  - id: 66
                     company_id: 1
-                    order_id: 55
-                    kot_no: HIYO5YA
+                    table_number: T3
+                    order_id: 98
+                    bot_no: 202414XK1MQ
                     preparation_status: pending
-                    created_at: '2024-01-02T11:49:55.000000Z'
-                    updated_at: '2024-01-02T11:49:55.000000Z'
-  /admin/kot/{id}:
+                    time: 05:09 pm
+                    date: Jan 14, 2024
+                    bot_items:
+                      - id: 48
+                        company_id: 1
+                        bar_order_ticket_id: 66
+                        order_detail_id: 247
+                        product_name: Fry Momo
+                        price: 100
+                        current_quantity: 35
+                        preparation_status: pending
+                        note: BOT Note
+                        total: 3500
+                        quantity_change:
+                          - id: 10
+                            company_id: 1
+                            item_id: 48
+                            old_quantity: '48'
+                            new_quantity: '30'
+                            created_at: '2024-01-14T13:58:08.000000Z'
+                            updated_at: '2024-01-14T13:58:08.000000Z'
+                  - id: 65
+                    company_id: 1
+                    table_number: T3
+                    order_id: 98
+                    bot_no: 202414WRQKC
+                    preparation_status: pending
+                    time: 05:09 pm
+                    date: Jan 14, 2024
+                    bot_items:
+                      - id: 47
+                        company_id: 1
+                        bar_order_ticket_id: 65
+                        order_detail_id: 244
+                        product_name: Fry Momo
+                        price: 100
+                        current_quantity: 5
+                        preparation_status: pending
+                        note: My Note
+                        total: 500
+                        quantity_change: []
+  /admin/bot/{id}:
     get:
       tags:
-        - Admin > Restaurant > Kitchen Order Ticket
-      summary: get single kot order items
+        - Admin > Restaurant > Bar Order Ticket
+      summary: get single bar order ticket details
       security:
         - bearerAuth: []
       parameters:
@@ -2685,27 +2945,77 @@ paths:
           required: true
       responses:
         '200':
-          description: Successful response
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 16 Jan 2024 06:42:26 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
           content:
-            application/json: {}
-  /admin/bot:
-    get:
-      tags:
-        - Admin > Restaurant > Bar Order Ticket
-      summary: get all bot list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 66
+                  company_id: 1
+                  table_number: T3
+                  order_id: 98
+                  bot_no: 202414XK1MQ
+                  preparation_status: pending
+                  time: 05:09 pm
+                  date: Jan 14, 2024
+                  bot_items:
+                    - id: 48
+                      company_id: 1
+                      bar_order_ticket_id: 66
+                      order_detail_id: 247
+                      product_name: Fry Momo
+                      price: 100
+                      current_quantity: 35
+                      preparation_status: pending
+                      note: BOT Note
+                      total: 3500
+                      quantity_change:
+                        - id: 10
+                          company_id: 1
+                          item_id: 48
+                          old_quantity: '48'
+                          new_quantity: '30'
+                          created_at: '2024-01-14T13:58:08.000000Z'
+                          updated_at: '2024-01-14T13:58:08.000000Z'
   /admin/ask-bill/{table_id}:
     get:
       tags:
@@ -4804,7 +5114,7 @@ paths:
               properties:
                 token:
                   type: string
-                  example: rTfyAhNiQHbTL2PddibDH0j9bM8PYSsMcY7SvRuwKqfZgYsHB0m31Bk6g71e
+                  example: WzNnomyLsm0rQ09Y8X77hNBBvAQqYBfcPhx6Gi7d1vYbIup9TNtYwO80b2Ha
       parameters:
         - name: Accept
           in: header

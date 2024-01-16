@@ -351,12 +351,12 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "Hancie Phago",
+											"value": "Bishal Gurung",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "hanciephago@gmail.com",
+											"value": "grgbishal360@gmail.com",
 											"type": "text"
 										},
 										{
@@ -2488,7 +2488,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"orderDetails\":[\n        {\n              \"order_detail_id\":237,\n              \"quantity\":0,\n              \"note\":\"my note\"\n        },\n        {\n              \"order_detail_id\":247,\n              \"quantity\":30\n        },\n         {\n              \"order_detail_id\":245,\n              \"quantity\":15,\n              \"note\":\"BOT Note\"\n        }\n      \n\n    ]\n}",
+											"raw": "{\n    \"orderDetails\":[\n        {\n              \"id\":237,\n              \"quantity\":0,\n              \"note\":\"my note\"\n        },\n        {\n              \"id\":247,\n              \"quantity\":30\n        },\n         {\n              \"id\":48,\n              \"quantity\":35,\n              \"note\":\"BOT Note\"\n        }\n      \n\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4095,13 +4095,19 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/kot",
+											"raw": "{{url}}/admin/kot?status=pending",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"kot"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "pending"
+												}
 											]
 										}
 									},
@@ -4118,13 +4124,19 @@
 													}
 												],
 												"url": {
-													"raw": "{{url}}/admin/kot",
+													"raw": "{{url}}/admin/kot?status=pending",
 													"host": [
 														"{{url}}"
 													],
 													"path": [
 														"admin",
 														"kot"
+													],
+													"query": [
+														{
+															"key": "status",
+															"value": "pending"
+														}
 													]
 												}
 											},
@@ -4138,11 +4150,11 @@
 												},
 												{
 													"key": "Date",
-													"value": "Thu, 04 Jan 2024 08:52:27 GMT"
+													"value": "Tue, 16 Jan 2024 06:33:36 GMT"
 												},
 												{
 													"key": "Date",
-													"value": "Thu, 04 Jan 2024 08:52:27 GMT"
+													"value": "Tue, 16 Jan 2024 06:33:36 GMT"
 												},
 												{
 													"key": "Connection",
@@ -4166,7 +4178,7 @@
 												},
 												{
 													"key": "X-RateLimit-Remaining",
-													"value": "59"
+													"value": "57"
 												},
 												{
 													"key": "Access-Control-Allow-Origin",
@@ -4174,7 +4186,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"company_id\": 1,\n            \"order_id\": 55,\n            \"kot_no\": \"HIYO5YA\",\n            \"preparation_status\": \"pending\",\n            \"created_at\": \"2024-01-02T11:49:55.000000Z\",\n            \"updated_at\": \"2024-01-02T11:49:55.000000Z\"\n        }\n    ]\n}"
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 70,\n            \"company_id\": 1,\n            \"table_number\": \"T5\",\n            \"order_id\": 96,\n            \"kot_no\": \"202414YLUXB\",\n            \"preparation_status\": \"pending\",\n            \"time\": \"05:09 pm\",\n            \"date\": \"Jan 14, 2024\",\n            \"kot_items\": []\n        },\n        {\n            \"id\": 69,\n            \"company_id\": 1,\n            \"table_number\": \"T3\",\n            \"order_id\": 98,\n            \"kot_no\": \"202414GW6QW\",\n            \"preparation_status\": \"pending\",\n            \"time\": \"05:09 pm\",\n            \"date\": \"Jan 14, 2024\",\n            \"kot_items\": [\n                {\n                    \"id\": 139,\n                    \"company_id\": 1,\n                    \"kitchen_order_ticket_id\": 69,\n                    \"order_detail_id\": 243,\n                    \"product_name\": \"Chaumin\",\n                    \"price\": 100,\n                    \"current_quantity\": 5,\n                    \"preparation_status\": \"pending\",\n                    \"note\": \"\",\n                    \"total\": 500\n                },\n                {\n                    \"id\": 140,\n                    \"company_id\": 1,\n                    \"kitchen_order_ticket_id\": 69,\n                    \"order_detail_id\": 245,\n                    \"product_name\": \"Chaumin\",\n                    \"price\": 150,\n                    \"current_quantity\": 5,\n                    \"preparation_status\": \"pending\",\n                    \"note\": \"My Note\",\n                    \"total\": 750\n                },\n                {\n                    \"id\": 143,\n                    \"company_id\": 1,\n                    \"kitchen_order_ticket_id\": 69,\n                    \"order_detail_id\": 245,\n                    \"product_name\": \"Chaumin\",\n                    \"price\": 150,\n                    \"current_quantity\": 15,\n                    \"preparation_status\": \"pending\",\n                    \"note\": \"BOT Note\",\n                    \"total\": 2250\n                }\n            ]\n        }\n    ]\n}"
 										}
 									]
 								},
@@ -4217,7 +4229,79 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"name": "get single kot order items",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/kot/69",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"kot",
+														"69"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Jan 2024 06:34:55 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Jan 2024 06:34:55 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"id\": 69,\n        \"company_id\": 1,\n        \"table_number\": \"T3\",\n        \"order_id\": 98,\n        \"kot_no\": \"202414GW6QW\",\n        \"preparation_status\": \"pending\",\n        \"time\": \"05:09 pm\",\n        \"date\": \"Jan 14, 2024\",\n        \"kot_items\": [\n            {\n                \"id\": 139,\n                \"company_id\": 1,\n                \"kitchen_order_ticket_id\": 69,\n                \"order_detail_id\": 243,\n                \"product_name\": \"Chaumin\",\n                \"price\": 100,\n                \"current_quantity\": 5,\n                \"preparation_status\": \"pending\",\n                \"note\": \"\",\n                \"total\": 500\n            },\n            {\n                \"id\": 140,\n                \"company_id\": 1,\n                \"kitchen_order_ticket_id\": 69,\n                \"order_detail_id\": 245,\n                \"product_name\": \"Chaumin\",\n                \"price\": 150,\n                \"current_quantity\": 5,\n                \"preparation_status\": \"pending\",\n                \"note\": \"My Note\",\n                \"total\": 750\n            },\n            {\n                \"id\": 143,\n                \"company_id\": 1,\n                \"kitchen_order_ticket_id\": 69,\n                \"order_detail_id\": 245,\n                \"product_name\": \"Chaumin\",\n                \"price\": 150,\n                \"current_quantity\": 15,\n                \"preparation_status\": \"pending\",\n                \"note\": \"BOT Note\",\n                \"total\": 2250\n            }\n        ]\n    }\n}"
+										}
+									]
 								}
 							]
 						},
@@ -4246,17 +4330,213 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/bot",
+											"raw": "{{url}}/admin/bot?status=pending",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"bot"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "pending"
+												}
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"name": "get all bot list",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/bot?status=pending",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"bot"
+													],
+													"query": [
+														{
+															"key": "status",
+															"value": "pending"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Jan 2024 06:41:40 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Jan 2024 06:41:40 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 66,\n            \"company_id\": 1,\n            \"table_number\": \"T3\",\n            \"order_id\": 98,\n            \"bot_no\": \"202414XK1MQ\",\n            \"preparation_status\": \"pending\",\n            \"time\": \"05:09 pm\",\n            \"date\": \"Jan 14, 2024\",\n            \"bot_items\": [\n                {\n                    \"id\": 48,\n                    \"company_id\": 1,\n                    \"bar_order_ticket_id\": 66,\n                    \"order_detail_id\": 247,\n                    \"product_name\": \"Fry Momo\",\n                    \"price\": 100,\n                    \"current_quantity\": 35,\n                    \"preparation_status\": \"pending\",\n                    \"note\": \"BOT Note\",\n                    \"total\": 3500,\n                    \"quantity_change\": [\n                        {\n                            \"id\": 10,\n                            \"company_id\": 1,\n                            \"item_id\": 48,\n                            \"old_quantity\": \"48\",\n                            \"new_quantity\": \"30\",\n                            \"created_at\": \"2024-01-14T13:58:08.000000Z\",\n                            \"updated_at\": \"2024-01-14T13:58:08.000000Z\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 65,\n            \"company_id\": 1,\n            \"table_number\": \"T3\",\n            \"order_id\": 98,\n            \"bot_no\": \"202414WRQKC\",\n            \"preparation_status\": \"pending\",\n            \"time\": \"05:09 pm\",\n            \"date\": \"Jan 14, 2024\",\n            \"bot_items\": [\n                {\n                    \"id\": 47,\n                    \"company_id\": 1,\n                    \"bar_order_ticket_id\": 65,\n                    \"order_detail_id\": 244,\n                    \"product_name\": \"Fry Momo\",\n                    \"price\": 100,\n                    \"current_quantity\": 5,\n                    \"preparation_status\": \"pending\",\n                    \"note\": \"My Note\",\n                    \"total\": 500,\n                    \"quantity_change\": []\n                }\n            ]\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "get single bar order ticket details",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/bot/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"bot",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "get single bar order ticket details",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/bot/66",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"bot",
+														"66"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Jan 2024 06:42:26 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Jan 2024 06:42:26 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"id\": 66,\n        \"company_id\": 1,\n        \"table_number\": \"T3\",\n        \"order_id\": 98,\n        \"bot_no\": \"202414XK1MQ\",\n        \"preparation_status\": \"pending\",\n        \"time\": \"05:09 pm\",\n        \"date\": \"Jan 14, 2024\",\n        \"bot_items\": [\n            {\n                \"id\": 48,\n                \"company_id\": 1,\n                \"bar_order_ticket_id\": 66,\n                \"order_detail_id\": 247,\n                \"product_name\": \"Fry Momo\",\n                \"price\": 100,\n                \"current_quantity\": 35,\n                \"preparation_status\": \"pending\",\n                \"note\": \"BOT Note\",\n                \"total\": 3500,\n                \"quantity_change\": [\n                    {\n                        \"id\": 10,\n                        \"company_id\": 1,\n                        \"item_id\": 48,\n                        \"old_quantity\": \"48\",\n                        \"new_quantity\": \"30\",\n                        \"created_at\": \"2024-01-14T13:58:08.000000Z\",\n                        \"updated_at\": \"2024-01-14T13:58:08.000000Z\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+										}
+									]
 								}
 							]
 						},
@@ -7359,7 +7639,7 @@
 									"formdata": [
 										{
 											"key": "token",
-											"value": "rTfyAhNiQHbTL2PddibDH0j9bM8PYSsMcY7SvRuwKqfZgYsHB0m31Bk6g71e",
+											"value": "WzNnomyLsm0rQ09Y8X77hNBBvAQqYBfcPhx6Gi7d1vYbIup9TNtYwO80b2Ha",
 											"type": "text"
 										}
 									]
