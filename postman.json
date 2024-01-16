@@ -4302,6 +4302,50 @@
 											"body": "{\n    \"data\": {\n        \"id\": 69,\n        \"company_id\": 1,\n        \"table_number\": \"T3\",\n        \"order_id\": 98,\n        \"kot_no\": \"202414GW6QW\",\n        \"preparation_status\": \"pending\",\n        \"time\": \"05:09 pm\",\n        \"date\": \"Jan 14, 2024\",\n        \"kot_items\": [\n            {\n                \"id\": 139,\n                \"company_id\": 1,\n                \"kitchen_order_ticket_id\": 69,\n                \"order_detail_id\": 243,\n                \"product_name\": \"Chaumin\",\n                \"price\": 100,\n                \"current_quantity\": 5,\n                \"preparation_status\": \"pending\",\n                \"note\": \"\",\n                \"total\": 500\n            },\n            {\n                \"id\": 140,\n                \"company_id\": 1,\n                \"kitchen_order_ticket_id\": 69,\n                \"order_detail_id\": 245,\n                \"product_name\": \"Chaumin\",\n                \"price\": 150,\n                \"current_quantity\": 5,\n                \"preparation_status\": \"pending\",\n                \"note\": \"My Note\",\n                \"total\": 750\n            },\n            {\n                \"id\": 143,\n                \"company_id\": 1,\n                \"kitchen_order_ticket_id\": 69,\n                \"order_detail_id\": 245,\n                \"product_name\": \"Chaumin\",\n                \"price\": 150,\n                \"current_quantity\": 15,\n                \"preparation_status\": \"pending\",\n                \"note\": \"BOT Note\",\n                \"total\": 2250\n            }\n        ]\n    }\n}"
 										}
 									]
+								},
+								{
+									"name": "update kot items status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"kot_id\":70,\n    \"kot_items\":[\n        {\n            \"item_id\":140\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/kot-status/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"kot-status",
+												"update"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -4537,6 +4581,50 @@
 											"body": "{\n    \"data\": {\n        \"id\": 66,\n        \"company_id\": 1,\n        \"table_number\": \"T3\",\n        \"order_id\": 98,\n        \"bot_no\": \"202414XK1MQ\",\n        \"preparation_status\": \"pending\",\n        \"time\": \"05:09 pm\",\n        \"date\": \"Jan 14, 2024\",\n        \"bot_items\": [\n            {\n                \"id\": 48,\n                \"company_id\": 1,\n                \"bar_order_ticket_id\": 66,\n                \"order_detail_id\": 247,\n                \"product_name\": \"Fry Momo\",\n                \"price\": 100,\n                \"current_quantity\": 35,\n                \"preparation_status\": \"pending\",\n                \"note\": \"BOT Note\",\n                \"total\": 3500,\n                \"quantity_change\": [\n                    {\n                        \"id\": 10,\n                        \"company_id\": 1,\n                        \"item_id\": 48,\n                        \"old_quantity\": \"48\",\n                        \"new_quantity\": \"30\",\n                        \"created_at\": \"2024-01-14T13:58:08.000000Z\",\n                        \"updated_at\": \"2024-01-14T13:58:08.000000Z\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
 										}
 									]
+								},
+								{
+									"name": "update bar items status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"bot_id\":65,\n    \"bot_items\":[\n        {\n            \"item_id\":48\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/bot-status/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"bot-status",
+												"update"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},

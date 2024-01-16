@@ -2814,6 +2814,33 @@ paths:
                       preparation_status: pending
                       note: BOT Note
                       total: 2250
+  /admin/kot-status/update:
+    post:
+      tags:
+        - Admin > Restaurant > Kitchen Order Ticket
+      summary: update kot items status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                kot_id: 70
+                kot_items:
+                  - item_id: 140
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/bot:
     get:
       tags:
@@ -3016,6 +3043,33 @@ paths:
                           new_quantity: '30'
                           created_at: '2024-01-14T13:58:08.000000Z'
                           updated_at: '2024-01-14T13:58:08.000000Z'
+  /admin/bot-status/update:
+    post:
+      tags:
+        - Admin > Restaurant > Bar Order Ticket
+      summary: update bar items status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                bot_id: 65
+                bot_items:
+                  - item_id: 48
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/ask-bill/{table_id}:
     get:
       tags:
