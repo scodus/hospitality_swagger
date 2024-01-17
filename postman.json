@@ -2036,7 +2036,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"payment_order_no\":20,\n\"payment_method\":1,\n\"table_id\":2,\n\"customer_id\":1,\n\"orders\":[\n    {\n       \n        \"order_id\":1\n    },\n    {\n        \n        \"order_id\":2\n    }\n\n],\n\"subtotal\":344,\n\"tax\":3,\n\"discount\":3434,\n\"discount_type\":\"rupees\",\n\"net_total\":100,\n\"paid\":10,\n\"return\":344,\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n\"payment_order_no\":20,\n\"payment_method\":1,\n\"table_id\":2,\n\"customer_id\":1,\n\"order_id\":118,\n\"subtotal\":344,\n\"tax\":3,\n\"discount\":3434,\n\"discount_type\":\"rupees\",\n\"net_total\":100,\n\"paid\":10,\n\"return\":344,\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2460,51 +2460,6 @@
 													"key": "pagination_limit",
 													"value": "10"
 												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "update order detail quantity",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"orderDetails\":[\n        {\n              \"id\":237,\n              \"quantity\":0,\n              \"note\":\"my note\"\n        },\n        {\n              \"id\":247,\n              \"quantity\":30\n        },\n         {\n              \"id\":48,\n              \"quantity\":35,\n              \"note\":\"BOT Note\"\n        }\n      \n\n    ]\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{url}}/admin/order-details/quantity/update",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"order-details",
-												"quantity",
-												"update"
 											]
 										}
 									},
@@ -4095,7 +4050,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/kot?status=pending",
+											"raw": "{{url}}/admin/kot",
 											"host": [
 												"{{url}}"
 											],
@@ -4106,7 +4061,8 @@
 											"query": [
 												{
 													"key": "status",
-													"value": "pending"
+													"value": "pending",
+													"disabled": true
 												}
 											]
 										}
@@ -4326,7 +4282,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"kot_id\":70,\n    \"kot_items\":[\n        {\n            \"item_id\":140\n        }\n    ]\n}",
+											"raw": "{\n    \"kot_id\":70,\n    \"kot_items\":[\n        {\n            \"item_id\":199\n        },\n        {\n            \"item_id\":198\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4605,7 +4561,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"bot_id\":65,\n    \"bot_items\":[\n        {\n            \"item_id\":48\n        }\n    ]\n}",
+											"raw": "{\n    \"bot_id\":65,\n    \"bot_items\":[\n        {\n            \"item_id\":61\n        },\n         {\n            \"item_id\":62\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4667,6 +4623,104 @@
 													"key": "table_id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "KOT Items",
+							"item": [
+								{
+									"name": "update kot items quantity",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"orderDetails\":[\n        {\n              \"id\":199,\n              \"quantity\":0,\n              \"note\":\"my note\"\n        },\n        {\n              \"id\":62,\n              \"quantity\":80\n        },\n         {\n              \"id\":61,\n              \"quantity\":35,\n              \"note\":\"BOT Note\"\n        }\n      \n\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/kot-items/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"kot-items",
+												"update"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "BOT Items",
+							"item": [
+								{
+									"name": "update bot items quantity",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"orderDetails\":[\n        \n        {\n              \"id\":62,\n              \"quantity\":80\n        },\n         {\n              \"id\":61,\n              \"quantity\":40,\n              \"note\":\"BOT Note\"\n        }\n      \n\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/bot-items/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"bot-items",
+												"update"
 											]
 										}
 									},
