@@ -48,6 +48,7 @@ tags:
   - name: Admin > Restaurant > KOT Items
   - name: Admin > Restaurant > BOT Items
   - name: Admin > Restaurant > Delivery partner
+  - name: Admin > Restaurant > Self Delivery User
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -3325,6 +3326,173 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/self-delivery-user:
+    post:
+      tags:
+        - Admin > Restaurant > Self Delivery User
+      summary: create self delivery user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Ayush
+                mobile_no:
+                  type: integer
+                  example: '9843455665'
+                location:
+                  type: string
+                  example: KTM
+                time:
+                  type: string
+                  example: 01:00 PM
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 22 Jan 2024 11:28:01 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 2
+                  company_id: 1
+                  full_name: Ayush
+                  mobile_no: '9843455665'
+                  location: KTM
+                  time: 01:00 PM
+                message: Delivery User Created Successfully!
+    get:
+      tags:
+        - Admin > Restaurant > Self Delivery User
+      summary: show all self delivery user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/self-delivery-user/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Self Delivery User
+      summary: update self delivery user details
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: Drishya Poudel
+                mobile_no:
+                  type: integer
+                  example: '9843455665'
+                location:
+                  type: string
+                  example: KTM
+                time:
+                  type: string
+                  example: 01:00 PM
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Self Delivery User
+      summary: delete self delivery user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response

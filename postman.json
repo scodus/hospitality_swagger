@@ -5060,6 +5060,312 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Self Delivery User",
+							"item": [
+								{
+									"name": "create self delivery user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "full_name",
+													"value": "Ayush",
+													"type": "text"
+												},
+												{
+													"key": "mobile_no",
+													"value": "9843455665",
+													"type": "text"
+												},
+												{
+													"key": "location",
+													"value": "KTM",
+													"type": "text"
+												},
+												{
+													"key": "time",
+													"value": "01:00 PM",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/self-delivery-user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"self-delivery-user"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "create self delivery user",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "full_name",
+															"value": "Ayush",
+															"type": "text"
+														},
+														{
+															"key": "mobile_no",
+															"value": "9843455665",
+															"type": "text"
+														},
+														{
+															"key": "location",
+															"value": "KTM",
+															"type": "text"
+														},
+														{
+															"key": "time",
+															"value": "01:00 PM",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/self-delivery-user",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"self-delivery-user"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 22 Jan 2024 11:28:01 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 22 Jan 2024 11:28:01 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"company_id\": 1,\n        \"full_name\": \"Ayush\",\n        \"mobile_no\": \"9843455665\",\n        \"location\": \"KTM\",\n        \"time\": \"01:00 PM\"\n    },\n    \"message\": \"Delivery User Created Successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "show all self delivery user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/self-delivery-user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"self-delivery-user"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update self delivery user details",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "full_name",
+													"value": "Drishya Poudel",
+													"type": "text"
+												},
+												{
+													"key": "mobile_no",
+													"value": "9843455665",
+													"type": "text"
+												},
+												{
+													"key": "location",
+													"value": "KTM",
+													"type": "text"
+												},
+												{
+													"key": "time",
+													"value": "01:00 PM",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/self-delivery-user/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"self-delivery-user",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete self delivery user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/self-delivery-user/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"self-delivery-user",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				},
