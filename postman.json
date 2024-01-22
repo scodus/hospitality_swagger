@@ -2036,7 +2036,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"payment_order_no\":20,\n\"payment_method\":1,  \n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":120,\n\"subtotal\":344,\n\"tax\":3,\n\"discount\":3434,\n\"discount_type\":\"rupees\",\n\"net_total\":100,\n\"paid\":150,\n\"return\":344,\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n// \"payment_order_no\":20,\n\"payment_method\":1,  \n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":120,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":150, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3288,7 +3288,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":3,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\":5,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4877,11 +4877,11 @@
 												},
 												{
 													"key": "Date",
-													"value": "Mon, 22 Jan 2024 07:05:32 GMT"
+													"value": "Mon, 22 Jan 2024 07:57:50 GMT"
 												},
 												{
 													"key": "Date",
-													"value": "Mon, 22 Jan 2024 07:05:32 GMT"
+													"value": "Mon, 22 Jan 2024 07:57:50 GMT"
 												},
 												{
 													"key": "Connection",
@@ -4905,7 +4905,7 @@
 												},
 												{
 													"key": "X-RateLimit-Remaining",
-													"value": "59"
+													"value": "58"
 												},
 												{
 													"key": "Access-Control-Allow-Origin",
@@ -4913,7 +4913,7 @@
 												}
 											],
 											"cookie": [],
-											"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"delivery_partner\": \"Pathao\",\n            \"created_at\": \"2024-01-22T06:52:21.000000Z\"\n        },\n        {\n            \"id\": 1,\n            \"delivery_partner\": null,\n            \"created_at\": \"2024-01-22T06:51:06.000000Z\"\n        }\n    ]\n}"
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"delivery_partner\": \"Pathao\",\n            \"created_at\": \"2024-01-22T06:52:21.000000Z\",\n            \"orders\": [\n                {\n                    \"id\": 123,\n                    \"order_number\": \"202422EEQXJ\",\n                    \"company_id\": 1,\n                    \"user_id\": 10,\n                    \"table_id\": 5,\n                    \"customer_id\": 1,\n                    \"pickup_user_id\": 1,\n                    \"description\": \"ab cd ef gh\",\n                    \"status\": \"pending\",\n                    \"created_at\": \"2024-01-22T07:39:06.000000Z\",\n                    \"table_number\": \"T5\"\n                }\n            ]\n        }\n    ]\n}"
 										}
 									]
 								},
@@ -5009,6 +5009,51 @@
 													"key": "id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update order of delivery partner",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/delivery-partner/order/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"delivery-partner",
+												"order",
+												"update"
 											]
 										}
 									},

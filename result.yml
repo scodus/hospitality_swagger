@@ -1271,7 +1271,6 @@ paths:
             schema:
               type: object
               example:
-                payment_order_no: 20
                 payment_method: 1
                 table_id: 5
                 customer_id: 1
@@ -2136,10 +2135,11 @@ paths:
             schema:
               type: object
               example:
-                table_id: 3
+                table_id: 5
                 customer_id: 1
                 pickup_user_id: 1
                 description: ab cd ef gh
+                delivery_partner_id: 2
                 productDetails:
                   - product_variation_id: 8
                     price: 100
@@ -3184,7 +3184,7 @@ paths:
             Date:
               schema:
                 type: string
-                example: Mon, 22 Jan 2024 07:05:32 GMT
+                example: Mon, 22 Jan 2024 07:57:50 GMT
             Connection:
               schema:
                 type: string
@@ -3208,7 +3208,7 @@ paths:
             X-RateLimit-Remaining:
               schema:
                 type: integer
-                example: '59'
+                example: '58'
             Access-Control-Allow-Origin:
               schema:
                 type: string
@@ -3222,9 +3222,18 @@ paths:
                   - id: 2
                     delivery_partner: Pathao
                     created_at: '2024-01-22T06:52:21.000000Z'
-                  - id: 1
-                    delivery_partner: null
-                    created_at: '2024-01-22T06:51:06.000000Z'
+                    orders:
+                      - id: 123
+                        order_number: 202422EEQXJ
+                        company_id: 1
+                        user_id: 10
+                        table_id: 5
+                        customer_id: 1
+                        pickup_user_id: 1
+                        description: ab cd ef gh
+                        status: pending
+                        created_at: '2024-01-22T07:39:06.000000Z'
+                        table_number: T5
   /admin/delivery-partner/{id}:
     post:
       tags:
@@ -3277,6 +3286,45 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/delivery-partner/order/update:
+    post:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: update order of delivery partner
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                order_id: 123
+                description: ab cd ef gh
+                delivery_partner_id: 2
+                productDetails:
+                  - product_variation_id: 8
+                    price: 100
+                    quantity: 5
+                  - product_variation_id: 6
+                    price: 100
+                    quantity: 5
+                    note: My Note
+                  - product_variation_id: 7
+                    price: 150
+                    quantity: 1
+                    note: My Note
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
