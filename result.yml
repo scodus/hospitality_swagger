@@ -47,6 +47,7 @@ tags:
   - name: Admin > Restaurant > Bill
   - name: Admin > Restaurant > KOT Items
   - name: Admin > Restaurant > BOT Items
+  - name: Admin > Restaurant > Delivery partner
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -1272,15 +1273,15 @@ paths:
               example:
                 payment_order_no: 20
                 payment_method: 1
-                table_id: 2
+                table_id: 5
                 customer_id: 1
-                order_id: 118
+                order_id: 120
                 subtotal: 344
                 tax: 3
                 discount: 3434
                 discount_type: rupees
                 net_total: 100
-                paid: 10
+                paid: 150
                 return: 344
                 net_amount: 34434
                 name: Pravesh Rai
@@ -2278,7 +2279,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/orders/{table_id}:
+  /admin/orders/3:
     get:
       tags:
         - Admin > Restaurant > Restaurant Order
@@ -2291,11 +2292,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: table_id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
@@ -2337,6 +2333,29 @@ paths:
           schema:
             type: string
           example: pending
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/data/{order_number}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: get order data by order number
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: order_number
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -2817,11 +2836,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: status
-          in: query
-          schema:
-            type: string
-          example: pending
       responses:
         '200':
           description: OK
@@ -3102,8 +3116,8 @@ paths:
               type: object
               example:
                 orderDetails:
-                  - id: 62
-                    quantity: 80
+                  - id: 1
+                    quantity: 10
                   - id: 61
                     quantity: 40
                     note: BOT Note
@@ -3115,6 +3129,154 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/delivery-partner:
+    post:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: create delivery partner
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                delivery_partner:
+                  type: string
+                  example: Pathao
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: show all delivery partner
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Mon, 22 Jan 2024 07:05:32 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '59'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 2
+                    delivery_partner: Pathao
+                    created_at: '2024-01-22T06:52:21.000000Z'
+                  - id: 1
+                    delivery_partner: null
+                    created_at: '2024-01-22T06:51:06.000000Z'
+  /admin/delivery-partner/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: update delivery partner
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                delivery_partner:
+                  type: string
+                  example: bhojdeal
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: delete delivery partner
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
