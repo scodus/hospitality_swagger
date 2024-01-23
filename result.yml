@@ -1144,9 +1144,91 @@ paths:
           example: '2'
       responses:
         '200':
-          description: Successful response
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 23 Jan 2024 07:08:24 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
           content:
-            application/json: {}
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 1
+                    company_id: 1
+                    full_name: Nitesh Hamal
+                    mobile_no: '9813371345'
+                    created_at: '2023-12-21T05:49:10.000000Z'
+                    pending_order:
+                      - id: 123
+                        order_number: 202422EEQXJ
+                        company_id: 1
+                        user_id: 10
+                        table_id: 5
+                        customer_id: 1
+                        pickup_user_id: 1
+                        delivery_partner_id: 2
+                        description: ab cd ef gh
+                        status: pending
+                        created_at: '2024-01-22T07:39:06.000000Z'
+                        updated_at: '2024-01-22T07:39:06.000000Z'
+                links:
+                  first: http://127.0.0.1:8000/admin/pickup-users?page=1
+                  last: http://127.0.0.1:8000/admin/pickup-users?page=1
+                  prev: null
+                  next: null
+                meta:
+                  current_page: 1
+                  from: 1
+                  last_page: 1
+                  links:
+                    - url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    - url: http://127.0.0.1:8000/admin/pickup-users?page=1
+                      label: '1'
+                      active: true
+                    - url: null
+                      label: Next &raquo;
+                      active: false
+                  path: http://127.0.0.1:8000/admin/pickup-users
+                  per_page: 2
+                  to: 1
+                  total: 1
   /admin/pickup-users/{id}:
     delete:
       tags:
@@ -1155,6 +1237,28 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant PickUp Users
+      summary: get single order data by take away user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
         - name: id
           in: path
           schema:
@@ -1203,6 +1307,45 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/pickup-users/order/update:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant PickUp Users
+      summary: update order of take away user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                order_id: 123
+                description: ab cd ef gh
+                pickup_user_id: 1
+                productDetails:
+                  - product_variation_id: 8
+                    price: 100
+                    quantity: 5
+                  - product_variation_id: 6
+                    price: 100
+                    quantity: 5
+                    note: My Note
+                  - product_variation_id: 7
+                    price: 150
+                    quantity: 1
+                    note: My Note
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -2329,11 +2472,26 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '15'
+        - name: search
+          in: query
+          schema:
+            type: string
+          example: 202401123MJJY
         - name: status
           in: query
           schema:
             type: string
           example: pending
+        - name: takeaway_user
+          in: query
+          schema:
+            type: string
+          example: active
       responses:
         '200':
           description: Successful response
