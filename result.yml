@@ -2757,6 +2757,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: pending
       responses:
         '200':
           description: OK
@@ -3453,8 +3458,8 @@ paths:
   /admin/delivery-partner/order/update:
     post:
       tags:
-        - Admin > Restaurant > Delivery partner
-      summary: update order of delivery partner
+        - Admin > Restaurant > Self Delivery User
+      summary: update order of self delivery user
       requestBody:
         content:
           application/json:
@@ -3463,7 +3468,7 @@ paths:
               example:
                 order_id: 123
                 description: ab cd ef gh
-                delivery_partner_id: 2
+                self_delivery_user_id: 2
                 productDetails:
                   - product_variation_id: 8
                     price: 100
@@ -3638,6 +3643,28 @@ paths:
       tags:
         - Admin > Restaurant > Self Delivery User
       summary: delete self delivery user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Self Delivery User
+      summary: show self delivery user order detail by id
       security:
         - bearerAuth: []
       parameters:

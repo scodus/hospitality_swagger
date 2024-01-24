@@ -1962,51 +1962,6 @@
 									"response": []
 								},
 								{
-									"name": "update order of take away user",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"pickup_user_id\":1,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{url}}/admin/pickup-users/order/update",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"pickup-users",
-												"order",
-												"update"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "update pickup user",
 									"request": {
 										"auth": {
@@ -2072,6 +2027,51 @@
 													"key": "id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update order of take away user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"pickup_user_id\":1,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/pickup-users/order/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"pickup-users",
+												"order",
+												"update"
 											]
 										}
 									},
@@ -3402,6 +3402,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "search",
+												"value": "Chaumin",
+												"type": "text"
 											}
 										],
 										"url": {
@@ -4245,7 +4250,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/kot",
+											"raw": "{{url}}/admin/kot?status=pending",
 											"host": [
 												"{{url}}"
 											],
@@ -4256,8 +4261,7 @@
 											"query": [
 												{
 													"key": "status",
-													"value": "pending",
-													"disabled": true
+													"value": "pending"
 												}
 											]
 										}
@@ -5497,6 +5501,92 @@
 											]
 										},
 										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/self-delivery-user/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"self-delivery-user",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update order of self delivery user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"self_delivery_user_id\":2,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/delivery-partner/order/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"delivery-partner",
+												"order",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show self delivery user order detail by id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
 										"header": [
 											{
 												"key": "Accept",
