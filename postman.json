@@ -2055,7 +2055,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"pickup_user_id\":1,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"pickup_user_id\":1,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        }\n        //  {\n        //     \"product_variation_id\":6,\n        //     \"price\":100,\n        //     \"quantity\":5,\n        //      \"note\":\"My Note\"\n\n        // },\n        //  {\n        //     \"product_variation_id\":7,\n        //     \"price\":150,\n        //     \"quantity\":1,\n        //      \"note\":\"My Note\"\n\n        // }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3674,14 +3674,20 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/orders/3",
+											"raw": "{{url}}/admin/orders/:table_no",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"orders",
-												"3"
+												":table_no"
+											],
+											"variable": [
+												{
+													"key": "table_no",
+													"value": ""
+												}
 											]
 										}
 									},
@@ -5221,6 +5227,101 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "show single delivery part data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/delivery-partner/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"delivery-partner",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update delivery user order status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "patch",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/delivery-partner/order/status/update/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"delivery-partner",
+												"order",
+												"status",
+												"update",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -5559,13 +5660,13 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/delivery-partner/order/update",
+											"raw": "{{url}}/admin/self-delivery/order/update",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
-												"delivery-partner",
+												"self-delivery",
 												"order",
 												"update"
 											]
