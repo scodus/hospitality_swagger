@@ -5301,7 +5301,7 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/delivery-partner/order/status/update/:id",
+											"raw": "{{url}}/admin/delivery-partner/order/status/update/:order_id",
 											"host": [
 												"{{url}}"
 											],
@@ -5311,11 +5311,11 @@
 												"order",
 												"status",
 												"update",
-												":id"
+												":order_id"
 											],
 											"variable": [
 												{
-													"key": "id",
+													"key": "order_id",
 													"value": ""
 												}
 											]

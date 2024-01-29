@@ -3513,7 +3513,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/delivery-partner/order/status/update/{id}:
+  /admin/delivery-partner/order/status/update/{order_id}:
     post:
       tags:
         - Admin > Restaurant > Delivery partner
@@ -3535,7 +3535,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: order_id
           in: path
           schema:
             type: string
