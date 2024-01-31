@@ -49,6 +49,7 @@ tags:
   - name: Admin > Restaurant > BOT Items
   - name: Admin > Restaurant > Delivery partner
   - name: Admin > Restaurant > Self Delivery User
+  - name: Admin > Restaurant > Split Bill
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -2415,7 +2416,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/orders/{table_no}:
+  /admin/orders/{table_id}:
     get:
       tags:
         - Admin > Restaurant > Restaurant Order
@@ -2428,7 +2429,7 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: table_no
+        - name: table_id
           in: path
           schema:
             type: string
@@ -3545,6 +3546,29 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/delivery-partner/order/{order_id}:
+    get:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: show self delivery part order data by ordeer id
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: order_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/self-delivery-user:
     post:
       tags:
@@ -3760,6 +3784,230 @@ paths:
                     price: 150
                     quantity: 1
                     note: My Note
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/split-bill:
+    post:
+      tags:
+        - Admin > Restaurant > Split Bill
+      summary: create split bill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                order_id: 2
+                split_name: Split 1
+                splitdetails:
+                  - item_id: 67
+                    product_name: Momo
+                    price: 100
+                    quantity: 5
+                  - item_id: 8
+                    product_name: Momo
+                    price: 100
+                    quantity: 5
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Split Bill
+      summary: show all split bill
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: order_id
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 30 Jan 2024 09:01:06 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 4
+                    company_id: 1
+                    order_id: 2
+                    split_name: Split 1
+                    split_status: primary
+                    payment_status: null
+                    created_at: '2024-01-30T08:44:34.000000Z'
+                    split_bill_details:
+                      - id: 18
+                        company_id: 1
+                        split_bill_id: 4
+                        item_id: '67'
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                        created_at: '2024-01-30T08:44:34.000000Z'
+                        updated_at: '2024-01-30T08:44:34.000000Z'
+                      - id: 19
+                        company_id: 1
+                        split_bill_id: 4
+                        item_id: '8'
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                        created_at: '2024-01-30T08:44:34.000000Z'
+                        updated_at: '2024-01-30T08:44:34.000000Z'
+                  - id: 3
+                    company_id: 1
+                    order_id: 1
+                    split_name: ''
+                    split_status: primary
+                    payment_status: null
+                    created_at: '2024-01-30T08:27:28.000000Z'
+                    split_bill_details:
+                      - id: 3
+                        company_id: 1
+                        split_bill_id: 3
+                        item_id: '8'
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                        created_at: '2024-01-30T08:27:28.000000Z'
+                        updated_at: '2024-01-30T08:27:28.000000Z'
+                      - id: 4
+                        company_id: 1
+                        split_bill_id: 3
+                        item_id: '8'
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                        created_at: '2024-01-30T08:27:28.000000Z'
+                        updated_at: '2024-01-30T08:27:28.000000Z'
+                      - id: 15
+                        company_id: 1
+                        split_bill_id: 3
+                        item_id: '8'
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                        created_at: '2024-01-30T08:30:30.000000Z'
+                        updated_at: '2024-01-30T08:30:30.000000Z'
+                      - id: 16
+                        company_id: 1
+                        split_bill_id: 3
+                        item_id: '8'
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                        created_at: '2024-01-30T08:30:30.000000Z'
+                        updated_at: '2024-01-30T08:30:30.000000Z'
+                      - id: 17
+                        company_id: 1
+                        split_bill_id: 3
+                        item_id: '67'
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                        created_at: '2024-01-30T08:37:48.000000Z'
+                        updated_at: '2024-01-30T08:37:48.000000Z'
+  /admin/split-bill/update/data:
+    post:
+      tags:
+        - Admin > Restaurant > Split Bill
+      summary: update split bill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                splits:
+                  - order_id: 2
+                    split_name: Split 1
+                    splitdetails:
+                      - item_id: 69
+                        product_name: Momo
+                        price: 100
+                        quantity: 2
+                      - item_id: 8
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                  - order_id: 3
+                    split_name: Split 4
+                    splitdetails:
+                      - item_id: 67
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
+                      - item_id: 8
+                        product_name: Momo
+                        price: 100
+                        quantity: 5
       security:
         - bearerAuth: []
       parameters:

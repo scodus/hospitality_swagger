@@ -3674,18 +3674,18 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/orders/:table_no",
+											"raw": "{{url}}/admin/orders/:table_id",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"orders",
-												":table_no"
+												":table_id"
 											],
 											"variable": [
 												{
-													"key": "table_no",
+													"key": "table_id",
 													"value": ""
 												}
 											]
@@ -5322,6 +5322,48 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "show self delivery part order data by ordeer id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/delivery-partner/order/:order_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"delivery-partner",
+												"order",
+												":order_id"
+											],
+											"variable": [
+												{
+													"key": "order_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -5710,6 +5752,210 @@
 													"key": "id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Split Bill",
+							"item": [
+								{
+									"name": "create split bill",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"order_id\":2,\n\"split_name\":\"Split 1\",\n\n\"splitdetails\":[\n        {\n            \"item_id\":67,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n        },\n         {\n             \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n\n        }\n        \n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/split-bill",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"split-bill"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all split bill",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/split-bill?order_id=2",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"split-bill"
+											],
+											"query": [
+												{
+													"key": "order_id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "show all split bill",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/split-bill",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"split-bill"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 30 Jan 2024 09:01:06 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 30 Jan 2024 09:01:06 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 4,\n            \"company_id\": 1,\n            \"order_id\": 2,\n            \"split_name\": \"Split 1\",\n            \"split_status\": \"primary\",\n            \"payment_status\": null,\n            \"created_at\": \"2024-01-30T08:44:34.000000Z\",\n            \"split_bill_details\": [\n                {\n                    \"id\": 18,\n                    \"company_id\": 1,\n                    \"split_bill_id\": 4,\n                    \"item_id\": \"67\",\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5,\n                    \"created_at\": \"2024-01-30T08:44:34.000000Z\",\n                    \"updated_at\": \"2024-01-30T08:44:34.000000Z\"\n                },\n                {\n                    \"id\": 19,\n                    \"company_id\": 1,\n                    \"split_bill_id\": 4,\n                    \"item_id\": \"8\",\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5,\n                    \"created_at\": \"2024-01-30T08:44:34.000000Z\",\n                    \"updated_at\": \"2024-01-30T08:44:34.000000Z\"\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"company_id\": 1,\n            \"order_id\": 1,\n            \"split_name\": \"\",\n            \"split_status\": \"primary\",\n            \"payment_status\": null,\n            \"created_at\": \"2024-01-30T08:27:28.000000Z\",\n            \"split_bill_details\": [\n                {\n                    \"id\": 3,\n                    \"company_id\": 1,\n                    \"split_bill_id\": 3,\n                    \"item_id\": \"8\",\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5,\n                    \"created_at\": \"2024-01-30T08:27:28.000000Z\",\n                    \"updated_at\": \"2024-01-30T08:27:28.000000Z\"\n                },\n                {\n                    \"id\": 4,\n                    \"company_id\": 1,\n                    \"split_bill_id\": 3,\n                    \"item_id\": \"8\",\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5,\n                    \"created_at\": \"2024-01-30T08:27:28.000000Z\",\n                    \"updated_at\": \"2024-01-30T08:27:28.000000Z\"\n                },\n                {\n                    \"id\": 15,\n                    \"company_id\": 1,\n                    \"split_bill_id\": 3,\n                    \"item_id\": \"8\",\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5,\n                    \"created_at\": \"2024-01-30T08:30:30.000000Z\",\n                    \"updated_at\": \"2024-01-30T08:30:30.000000Z\"\n                },\n                {\n                    \"id\": 16,\n                    \"company_id\": 1,\n                    \"split_bill_id\": 3,\n                    \"item_id\": \"8\",\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5,\n                    \"created_at\": \"2024-01-30T08:30:30.000000Z\",\n                    \"updated_at\": \"2024-01-30T08:30:30.000000Z\"\n                },\n                {\n                    \"id\": 17,\n                    \"company_id\": 1,\n                    \"split_bill_id\": 3,\n                    \"item_id\": \"67\",\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5,\n                    \"created_at\": \"2024-01-30T08:37:48.000000Z\",\n                    \"updated_at\": \"2024-01-30T08:37:48.000000Z\"\n                }\n            ]\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "update split bill",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\n\"splits\":[\n        {\n            \"order_id\":2,\n            \"split_name\":\"Split 1\",\n            \"splitdetails\":[\n        {\n            \"item_id\":69,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":2\n        },\n         {\n             \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n\n        }]}\n        ,\n        {\n            \"order_id\":3,\n            \"split_name\":\"Split 4\",\n            \"splitdetails\":[\n        {\n            \"item_id\":67,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n        },\n         {\n             \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n\n        }\n        \n    ]\n        }\n        \n\n]\n       \n        }\n\n\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/split-bill/update/data",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"split-bill",
+												"update",
+												"data"
 											]
 										}
 									},
