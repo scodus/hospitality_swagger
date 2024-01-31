@@ -5960,6 +5960,48 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "show split total bill amount",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/split-bill/total-bill/show?order_id=2",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"split-bill",
+												"total-bill",
+												"show"
+											],
+											"query": [
+												{
+													"key": "order_id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
