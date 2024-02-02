@@ -39,6 +39,7 @@ tags:
   - name: Admin > Restaurant > Restaurant product variation
   - name: Admin > Restaurant > Restaurant products
   - name: Admin > Restaurant > Restaurant product category
+  - name: Admin > Restaurant > Favourite Menu Items
   - name: Admin > Restaurant > Restaurant Order
   - name: Admin > Restaurant > Restaurant floor
   - name: Admin > Restaurant > Restaurant table
@@ -1411,7 +1412,7 @@ paths:
                 payment_method: 1
                 table_id: 5
                 customer_id: 1
-                order_id: 120
+                order_id: 2
                 subtotal: 344
                 tax: 3
                 discount: 3434
@@ -2261,6 +2262,121 @@ paths:
                         updated_at: '2023-11-28T09:35:58.000000Z'
                         products: []
                     products: []
+  /admin/favourite-menu-items:
+    post:
+      tags:
+        - Admin > Restaurant > Favourite Menu Items
+      summary: create favourite menu items
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_variation_id:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Favourite Menu Items
+      summary: get all favourite items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/favourite-menu-items/{id}:
+    delete:
+      tags:
+        - Admin > Restaurant > Favourite Menu Items
+      summary: delete favourite items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Thu, 01 Feb 2024 07:56:20 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 1
+                  company_id: 1
+                  user_id: 10
+                  product_variation_id: 6
+                  created_at: '2024-02-01T06:56:36.000000Z'
+                  updated_at: '2024-02-01T06:56:36.000000Z'
+                message: Item removed successfully!
   /admin/orders:
     post:
       tags:
@@ -4039,6 +4155,42 @@ paths:
           schema:
             type: integer
           example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/split-bill-payment:
+    post:
+      tags:
+        - Admin > Restaurant > Split Bill
+      summary: store split bill payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                order_id: 2
+                split_id: 1
+                payment_method_id: 1
+                customer_id: 1
+                subtotal: 344
+                tax: 3
+                discount: 3434
+                discount_type: rupees
+                net_total: 100
+                paid: 50
+                return: 344
+                net_amount: 34434
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
