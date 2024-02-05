@@ -6255,6 +6255,47 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "delete split bill",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/split-bill/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"split-bill",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
