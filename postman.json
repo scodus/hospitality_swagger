@@ -2193,7 +2193,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"payment_method\":1,  \n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":2,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":150, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n\"payment_method\":1, \n\"dual_payments\":[\n    {\n        \"payment_method_id\":1,\n        \"paid_amount\":200\n\n    }\n\n] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":23,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":300, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2701,13 +2701,19 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/product-variations",
+											"raw": "{{url}}/admin/product-variations?search_keyword=Momo",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
 												"product-variations"
+											],
+											"query": [
+												{
+													"key": "search_keyword",
+													"value": "Momo"
+												}
 											]
 										}
 									},
@@ -2819,6 +2825,48 @@
 												{
 													"key": "id",
 													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "search product variation in menu",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/product-variations/search/product_variation?search_keyword=Pizza",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"product-variations",
+												"search",
+												"product_variation"
+											],
+											"query": [
+												{
+													"key": "search_keyword",
+													"value": "Pizza"
 												}
 											]
 										}
@@ -2975,7 +3023,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/products?pagination_limit=5",
+											"raw": "{{url}}/admin/products?pagination_limit=5&search_keyword=7676878",
 											"host": [
 												"{{url}}"
 											],
@@ -2987,6 +3035,10 @@
 												{
 													"key": "pagination_limit",
 													"value": "5"
+												},
+												{
+													"key": "search_keyword",
+													"value": "7676878"
 												}
 											]
 										}
@@ -3453,7 +3505,12 @@
 											"formdata": [
 												{
 													"key": "product_variation_id",
-													"value": "1",
+													"value": "8",
+													"type": "text"
+												},
+												{
+													"key": "status",
+													"value": "active",
 													"type": "text"
 												}
 											]
@@ -5995,7 +6052,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"order_id\":2,\n\"split_name\":\"Split 1\",\n\n\"splitdetails\":[\n        {\n            \"item_id\":67,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n        },\n         {\n             \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n\n        }\n        \n    ]\n}",
+											"raw": "{\n\"order_id\":20,\n\"split_name\":\"Split 1\",\n\n\"splitdetails\":[\n        {\n            \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n        },\n         {\n             \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":4\n\n        }\n        \n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -6149,7 +6206,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\n\"splits\":[\n        {\n            \"order_id\":2,\n            \"split_name\":\"Split 1\",\n            \"splitdetails\":[\n        {\n            \"item_id\":69,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":2\n        },\n         {\n             \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n\n        }]}\n        ,\n        {\n            \"order_id\":3,\n            \"split_name\":\"Split 4\",\n            \"splitdetails\":[\n        {\n            \"item_id\":67,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n        },\n         {\n             \"item_id\":8,\n            \"product_name\":\"Momo\",\n            \"price\":100,\n            \"quantity\":5\n\n        }\n        \n    ]\n        }\n        \n\n]\n       \n        }\n\n\n\n",
+											"raw": "{\n    \"splits\": [\n        {\n            \"order_id\": 2,\n            \"split_name\": \"Split 1\",\n            \"splitdetails\": [\n                {\n                    \"item_id\": 69,\n                     \"order_id\": 2,\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 2\n                },\n                {\n                    \"item_id\": 8,\n                     \"order_id\": 2,\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5\n                }\n            ]\n        },\n        {\n            \"order_id\": 2,\n            \"split_name\": \"Split 38\",\n            \"splitdetails\": [\n                {\n                    \"item_id\": 689,\n                    \"order_id\": 2,\n                    \"product_name\": \"Momo\",\n                    \"price\": 100,\n                    \"quantity\": 5\n                }\n            ]\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"

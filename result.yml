@@ -1410,15 +1410,18 @@ paths:
               type: object
               example:
                 payment_method: 1
+                dual_payments:
+                  - payment_method_id: 1
+                    paid_amount: 200
                 table_id: 5
                 customer_id: 1
-                order_id: 2
+                order_id: 23
                 subtotal: 344
                 tax: 3
                 discount: 3434
                 discount_type: rupees
                 net_total: 100
-                paid: 150
+                paid: 300
                 return: 344
                 net_amount: 34434
                 name: Pravesh Rai
@@ -1708,6 +1711,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: Momo
       responses:
         '200':
           description: OK
@@ -1782,6 +1790,29 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/product-variations/search/product_variation:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant product variation
+      summary: search product variation in menu
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: Pizza
       responses:
         '200':
           description: Successful response
@@ -1901,6 +1932,11 @@ paths:
           schema:
             type: integer
           example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: integer
+          example: '7676878'
       responses:
         '200':
           description: Successful response
@@ -2275,7 +2311,10 @@ paths:
               properties:
                 product_variation_id:
                   type: integer
-                  example: '1'
+                  example: '8'
+                status:
+                  type: string
+                  example: active
       security:
         - bearerAuth: []
       parameters:
@@ -3924,17 +3963,17 @@ paths:
             schema:
               type: object
               example:
-                order_id: 2
+                order_id: 20
                 split_name: Split 1
                 splitdetails:
-                  - item_id: 67
+                  - item_id: 8
                     product_name: Momo
                     price: 100
                     quantity: 5
                   - item_id: 8
                     product_name: Momo
                     price: 100
-                    quantity: 5
+                    quantity: 4
       security:
         - bearerAuth: []
       parameters:
@@ -4106,21 +4145,20 @@ paths:
                     split_name: Split 1
                     splitdetails:
                       - item_id: 69
+                        order_id: 2
                         product_name: Momo
                         price: 100
                         quantity: 2
                       - item_id: 8
+                        order_id: 2
                         product_name: Momo
                         price: 100
                         quantity: 5
-                  - order_id: 3
-                    split_name: Split 4
+                  - order_id: 2
+                    split_name: Split 38
                     splitdetails:
-                      - item_id: 67
-                        product_name: Momo
-                        price: 100
-                        quantity: 5
-                      - item_id: 8
+                      - item_id: 689
+                        order_id: 2
                         product_name: Momo
                         price: 100
                         quantity: 5
