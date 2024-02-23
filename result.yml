@@ -51,6 +51,8 @@ tags:
   - name: Admin > Restaurant > Delivery partner
   - name: Admin > Restaurant > Self Delivery User
   - name: Admin > Restaurant > Split Bill
+  - name: Admin > Restaurant > Cash In/Out
+  - name: Admin > Restaurant > Topping Items
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -854,17 +856,14 @@ paths:
       tags:
         - Admin > Restaurant > Restaurant Cashier
       summary: sales history
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
           schema:
             type: string
           example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '3'
       responses:
         '200':
           description: Successful response
@@ -1410,9 +1409,6 @@ paths:
               type: object
               example:
                 payment_method: 1
-                dual_payments:
-                  - payment_method_id: 1
-                    paid_amount: 200
                 table_id: 5
                 customer_id: 1
                 order_id: 23
@@ -1421,7 +1417,7 @@ paths:
                 discount: 3434
                 discount_type: rupees
                 net_total: 100
-                paid: 300
+                paid: 0
                 return: 344
                 net_amount: 34434
                 name: Pravesh Rai
@@ -2640,11 +2636,11 @@ paths:
           schema:
             type: string
           example: pending
-        - name: takeaway_user
+        - name: user_status
           in: query
           schema:
             type: string
-          example: active
+          example: delivery_partner
       responses:
         '200':
           description: Successful response
@@ -2668,6 +2664,24 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders/all/view:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: show all order by category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -3379,6 +3393,29 @@ paths:
             type: string
           example: application/json
         - name: table_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/ask-bills/order-number/{order_number}:
+    get:
+      tags:
+        - Admin > Restaurant > Bill
+      summary: get ask bill by order number
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: order_number
           in: path
           schema:
             type: string
@@ -4239,6 +4276,292 @@ paths:
       tags:
         - Admin > Restaurant > Split Bill
       summary: delete split bill
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cash-in-out:
+    post:
+      tags:
+        - Admin > Restaurant > Cash In/Out
+      summary: store chas in/out
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                particular:
+                  type: string
+                  example: hh
+                received:
+                  type: integer
+                  example: '454'
+                paid:
+                  type: integer
+                  example: '454'
+                remarks:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Thu, 22 Feb 2024 08:25:18 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  company_id: 1
+                  particular: hh
+                  amount: '454'
+                  receive_paid: Received
+                  remarks: hy
+                  updated_at: '2024-02-22T08:25:18.000000Z'
+                  created_at: '2024-02-22T08:25:18.000000Z'
+                  id: 1
+                message: Cash In/Out saved successfully!
+    get:
+      tags:
+        - Admin > Restaurant > Cash In/Out
+      summary: get all cash in/out
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/cash-in-out/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Cash In/Out
+      summary: update cash in/out
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                particular:
+                  type: string
+                  example: fg
+                received:
+                  type: integer
+                  example: '55'
+                paid:
+                  type: integer
+                  example: '55'
+                remarks:
+                  type: string
+                  example: fgfg
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Cash In/Out
+      summary: delete cash in/out
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/topping-items:
+    post:
+      tags:
+        - Admin > Restaurant > Topping Items
+      summary: store topping items
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                variation_name:
+                  type: string
+                  example: Cheese
+                price:
+                  type: integer
+                  example: '60'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Topping Items
+      summary: get all toping items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/topping-items/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Topping Items
+      summary: update topping items
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                variation_name:
+                  type: string
+                  example: Chesse2
+                price:
+                  type: integer
+                  example: '45'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Restaurant > Topping Items
+      summary: delete topping item
       security:
         - bearerAuth: []
       parameters:
@@ -6440,6 +6763,11 @@ paths:
           schema:
             type: integer
           example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: business
       responses:
         '200':
           description: Successful response

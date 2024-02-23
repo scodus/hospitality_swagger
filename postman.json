@@ -1330,6 +1330,16 @@
 								{
 									"name": "sales history",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
 										"header": [
 											{
@@ -1339,7 +1349,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/cashier/sales-history?pagination_limit=3",
+											"raw": "{{url}}/admin/cashier/sales-history",
 											"host": [
 												"{{url}}"
 											],
@@ -1351,7 +1361,8 @@
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "3"
+													"value": "3",
+													"disabled": true
 												}
 											]
 										}
@@ -2193,7 +2204,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"payment_method\":1, \n\"dual_payments\":[\n    {\n        \"payment_method_id\":1,\n        \"paid_amount\":200\n\n    }\n\n] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":23,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":300, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n\"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":23,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":0, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3717,7 +3728,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":5,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\":5,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n\n   \n\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4018,7 +4029,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/orders/all?pagination_limit=15&search=202401123MJJY&status=pending&takeaway_user=active",
+											"raw": "{{url}}/admin/orders/all?pagination_limit=15&search=202401123MJJY&status=pending&user_status=delivery_partner",
 											"host": [
 												"{{url}}"
 											],
@@ -4041,8 +4052,8 @@
 													"value": "pending"
 												},
 												{
-													"key": "takeaway_user",
-													"value": "active"
+													"key": "user_status",
+													"value": "delivery_partner"
 												}
 											]
 										}
@@ -4086,6 +4097,42 @@
 													"key": "order_number",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all order by category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/orders/all/view",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"orders",
+												"all",
+												"view"
 											]
 										}
 									},
@@ -5094,6 +5141,48 @@
 											"variable": [
 												{
 													"key": "table_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get ask bill by order number",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/ask-bills/order-number/:order_number",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"ask-bills",
+												"order-number",
+												":order_number"
+											],
+											"variable": [
+												{
+													"key": "order_number",
 													"value": ""
 												}
 											]
@@ -6342,6 +6431,514 @@
 											"path": [
 												"admin",
 												"split-bill",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Cash In/Out",
+							"item": [
+								{
+									"name": "store chas in/out",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "particular",
+													"value": "hh",
+													"type": "text"
+												},
+												{
+													"key": "received",
+													"value": "454",
+													"type": "text"
+												},
+												{
+													"key": "paid",
+													"value": "454",
+													"type": "text"
+												},
+												{
+													"key": "remarks",
+													"value": "hy",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/cash-in-out",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"cash-in-out"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "store chas in/out",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "particular",
+															"value": "hh",
+															"type": "text"
+														},
+														{
+															"key": "amount",
+															"value": "454",
+															"type": "text"
+														},
+														{
+															"key": "receive_paid",
+															"value": "Received",
+															"type": "text"
+														},
+														{
+															"key": "remarks",
+															"value": "hy",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/cash-in-out",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"cash-in-out"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 22 Feb 2024 08:25:18 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 22 Feb 2024 08:25:18 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "57"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"company_id\": 1,\n        \"particular\": \"hh\",\n        \"amount\": \"454\",\n        \"receive_paid\": \"Received\",\n        \"remarks\": \"hy\",\n        \"updated_at\": \"2024-02-22T08:25:18.000000Z\",\n        \"created_at\": \"2024-02-22T08:25:18.000000Z\",\n        \"id\": 1\n    },\n    \"message\": \"Cash In/Out saved successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "get all cash in/out",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/cash-in-out?pagination_limit=2",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"cash-in-out"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update cash in/out",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "particular",
+													"value": "fg",
+													"type": "text"
+												},
+												{
+													"key": "received",
+													"value": "55",
+													"type": "text"
+												},
+												{
+													"key": "paid",
+													"value": "55",
+													"type": "text"
+												},
+												{
+													"key": "remarks",
+													"value": "fgfg",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/cash-in-out/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"cash-in-out",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete cash in/out",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/cash-in-out/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"cash-in-out",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Topping Items",
+							"item": [
+								{
+									"name": "store topping items",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "variation_name",
+													"value": "Cheese",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": "60",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/topping-items",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"topping-items"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all toping items",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/topping-items?pagination_limit=3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"topping-items"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update topping items",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "variation_name",
+													"value": "Chesse2",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": "45",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/topping-items/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"topping-items",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete topping item",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/topping-items/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"topping-items",
 												":id"
 											],
 											"variable": [
@@ -9677,7 +10274,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/company?pagination_limit=5",
+									"raw": "{{url}}/admin/company?pagination_limit=5&search_keyword=business",
 									"host": [
 										"{{url}}"
 									],
@@ -9689,6 +10286,10 @@
 										{
 											"key": "pagination_limit",
 											"value": "5"
+										},
+										{
+											"key": "search_keyword",
+											"value": "business"
 										}
 									]
 								}
