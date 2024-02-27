@@ -6952,6 +6952,141 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Printers",
+							"item": [
+								{
+									"name": "store printer data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "company_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "pServerName",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "pPrinterName",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "pShareName",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "pPortName",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "pDriverName",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "pComment",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "pLocation",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "pDevMode",
+													"value": "aa",
+													"type": "text"
+												},
+												{
+													"key": "type",
+													"value": "aa",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/printers",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"printers"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show single company printer data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/printers/:company_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"printers",
+												":company_id"
+											],
+											"variable": [
+												{
+													"key": "company_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				},
@@ -9914,6 +10049,781 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"business_name\": \"Akriti Hotel\",\n        \"slug\": \"business\",\n        \"display_name\": \"B\",\n        \"address\": \"KTM\",\n        \"primary_email\": \"admin@gmail.com\",\n        \"primary_phone\": \"984334645\",\n        \"vat_number\": \"454545\",\n        \"registration_number\": \"54545\",\n        \"start_date\": \"454545\",\n        \"company_image\": \"http://localhost:8000/storage/1/BDD0688FF02068E5C427B0954F8A2297.webp\",\n        \"user_id\": 1\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Inventory",
+					"item": [
+						{
+							"name": "Unit of Measurement",
+							"item": [
+								{
+									"name": "store unit of measurement",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "unit_name",
+													"value": "ml",
+													"type": "text"
+												},
+												{
+													"key": "code",
+													"value": "3433",
+													"type": "text"
+												},
+												{
+													"key": "factor",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/unit-measurements",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"unit-measurements"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "store unit of measurement",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "unit_name",
+															"value": "ml",
+															"type": "text"
+														},
+														{
+															"key": "code",
+															"value": "3433",
+															"type": "text"
+														},
+														{
+															"key": "factor",
+															"value": "2",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/unit-measurements",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"unit-measurements"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:07:15 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:07:15 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "57"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"company_id\": 1,\n        \"unit_name\": \"ml\",\n        \"code\": \"3433\",\n        \"factor\": \"2\",\n        \"updated_at\": \"2024-02-27T07:07:15.000000Z\",\n        \"created_at\": \"2024-02-27T07:07:15.000000Z\",\n        \"id\": 1\n    },\n    \"message\": \"Unit Measurement Created Successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "get all unit of measurements",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/unit-measurements?pagination_limit=5&search_keyword=ml",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"unit-measurements"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "5"
+												},
+												{
+													"key": "search_keyword",
+													"value": "ml"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "get all unit of measurements",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/unit-measurements",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"unit-measurements"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:07:27 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:07:27 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "56"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"unit_name\": \"ml\",\n            \"code\": \"3433\",\n            \"factor\": \"2\"\n        }\n    ]\n}"
+										}
+									]
+								},
+								{
+									"name": "update unit of measurement",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "unit_name",
+													"value": "unit",
+													"type": "text"
+												},
+												{
+													"key": "code",
+													"value": "eer",
+													"type": "text"
+												},
+												{
+													"key": "factor",
+													"value": "454353",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/unit-measurements/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"unit-measurements",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "update unit of measurement",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "unit_name",
+															"value": "unit",
+															"type": "text"
+														},
+														{
+															"key": "code",
+															"value": "eer",
+															"type": "text"
+														},
+														{
+															"key": "factor",
+															"value": "454353",
+															"type": "text"
+														},
+														{
+															"key": "_method",
+															"value": "put",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/unit-measurements/1",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"unit-measurements",
+														"1"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:15:34 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:15:34 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"company_id\": 1,\n        \"unit_name\": \"unit\",\n        \"code\": \"eer\",\n        \"factor\": \"454353\",\n        \"created_at\": \"2024-02-27T07:07:15.000000Z\",\n        \"updated_at\": \"2024-02-27T07:15:34.000000Z\"\n    },\n    \"message\": \"Unit Updated Successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "delete unit of measurement",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/unit-measurements/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"unit-measurements",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Inventory Products",
+							"item": [
+								{
+									"name": "store inventory products",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "product_name",
+													"value": "Momo",
+													"type": "text"
+												},
+												{
+													"key": "sku",
+													"value": "453534",
+													"type": "text"
+												},
+												{
+													"key": "unit",
+													"value": "44",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/inventory-products",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"inventory-products"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "store inventory products",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "product_name",
+															"value": "Momo",
+															"type": "text"
+														},
+														{
+															"key": "sku",
+															"value": "453534",
+															"type": "text"
+														},
+														{
+															"key": "unit",
+															"value": "44",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/admin/inventory-products",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"inventory-products"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:53:51 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 27 Feb 2024 07:53:51 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "57"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": {\n        \"company_id\": 1,\n        \"product_name\": \"Momo\",\n        \"sku\": \"453534\",\n        \"unit\": \"44\",\n        \"updated_at\": \"2024-02-27T07:53:51.000000Z\",\n        \"created_at\": \"2024-02-27T07:53:51.000000Z\",\n        \"id\": 2\n    },\n    \"message\": \"Unit Measurement Created Successfully!\"\n}"
+										}
+									]
+								},
+								{
+									"name": "get all inventory product list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/inventory-products?pagination_limit=5&search_keyword=momo",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"inventory-products"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "5"
+												},
+												{
+													"key": "search_keyword",
+													"value": "momo"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update inventory product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "product_name",
+													"value": "hgj",
+													"type": "text"
+												},
+												{
+													"key": "sku",
+													"value": "43545",
+													"type": "text"
+												},
+												{
+													"key": "unit",
+													"value": "4545",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/inventory-products/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"inventory-products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete inventory product",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/inventory-products/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"inventory-products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}

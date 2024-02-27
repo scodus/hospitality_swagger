@@ -53,6 +53,7 @@ tags:
   - name: Admin > Restaurant > Split Bill
   - name: Admin > Restaurant > Cash In/Out
   - name: Admin > Restaurant > Topping Items
+  - name: Admin > Restaurant > Printers
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -65,6 +66,9 @@ tags:
   - name: Admin > Hotel
   - name: Admin > Hotel > hotel floor
   - name: Admin > company
+  - name: Admin > Inventory
+  - name: Admin > Inventory > Unit of Measurement
+  - name: Admin > Inventory > Inventory Products
   - name: Public
   - name: Public > auth
   - name: Super Admin
@@ -4580,6 +4584,83 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/printers:
+    post:
+      tags:
+        - Admin > Restaurant > Printers
+      summary: store printer data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                company_id:
+                  type: integer
+                  example: '1'
+                pServerName:
+                  type: string
+                  example: aa
+                pPrinterName:
+                  type: string
+                  example: aa
+                pShareName:
+                  type: string
+                  example: aa
+                pPortName:
+                  type: string
+                  example: aa
+                pDriverName:
+                  type: string
+                  example: aa
+                pComment:
+                  type: string
+                  example: aa
+                pLocation:
+                  type: string
+                  example: aa
+                pDevMode:
+                  type: string
+                  example: aa
+                type:
+                  type: string
+                  example: aa
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/printers/{company_id}:
+    get:
+      tags:
+        - Admin > Restaurant > Printers
+      summary: show single company printer data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/roles:
     post:
       tags:
@@ -6614,6 +6695,444 @@ paths:
                   company_image: >-
                     http://localhost:8000/storage/1/BDD0688FF02068E5C427B0954F8A2297.webp
                   user_id: 1
+  /admin/unit-measurements:
+    post:
+      tags:
+        - Admin > Inventory > Unit of Measurement
+      summary: store unit of measurement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                unit_name:
+                  type: string
+                  example: ml
+                code:
+                  type: integer
+                  example: '3433'
+                factor:
+                  type: integer
+                  example: '2'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 27 Feb 2024 07:07:15 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  company_id: 1
+                  unit_name: ml
+                  code: '3433'
+                  factor: '2'
+                  updated_at: '2024-02-27T07:07:15.000000Z'
+                  created_at: '2024-02-27T07:07:15.000000Z'
+                  id: 1
+                message: Unit Measurement Created Successfully!
+    get:
+      tags:
+        - Admin > Inventory > Unit of Measurement
+      summary: get all unit of measurements
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: ml
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 27 Feb 2024 07:07:27 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '56'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 1
+                    unit_name: ml
+                    code: '3433'
+                    factor: '2'
+  /admin/unit-measurements/{id}:
+    post:
+      tags:
+        - Admin > Inventory > Unit of Measurement
+      summary: update unit of measurement
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                unit_name:
+                  type: string
+                  example: unit
+                code:
+                  type: string
+                  example: eer
+                factor:
+                  type: integer
+                  example: '454353'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 27 Feb 2024 07:15:34 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 1
+                  company_id: 1
+                  unit_name: unit
+                  code: eer
+                  factor: '454353'
+                  created_at: '2024-02-27T07:07:15.000000Z'
+                  updated_at: '2024-02-27T07:15:34.000000Z'
+                message: Unit Updated Successfully!
+    delete:
+      tags:
+        - Admin > Inventory > Unit of Measurement
+      summary: delete unit of measurement
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/inventory-products:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: store inventory products
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                  example: Momo
+                sku:
+                  type: integer
+                  example: '453534'
+                unit:
+                  type: integer
+                  example: '44'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Tue, 27 Feb 2024 07:53:51 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '57'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  company_id: 1
+                  product_name: Momo
+                  sku: '453534'
+                  unit: '44'
+                  updated_at: '2024-02-27T07:53:51.000000Z'
+                  created_at: '2024-02-27T07:53:51.000000Z'
+                  id: 2
+                message: Unit Measurement Created Successfully!
+    get:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: get all inventory product list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: momo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/inventory-products/{id}:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: update inventory product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                  example: hgj
+                sku:
+                  type: integer
+                  example: '43545'
+                unit:
+                  type: integer
+                  example: '4545'
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Inventory > Inventory Products
+      summary: delete inventory product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
