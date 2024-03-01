@@ -69,6 +69,7 @@ tags:
   - name: Admin > Inventory
   - name: Admin > Inventory > Unit of Measurement
   - name: Admin > Inventory > Inventory Products
+  - name: Admin > Inventory > Inventory Adjustment
   - name: Public
   - name: Public > auth
   - name: Super Admin
@@ -1833,13 +1834,12 @@ paths:
                 product_category_id: 1
                 ingredient: gffg
                 description: fgfgfg
-                has_variation: 1
-                variations:
-                  - variation_name: Steam Momo
-                    price: 100
-                  - variation_name: Fry Momo
-                    price: 200
-                base_price: 550
+                price: 550
+                has_inventory_tracking:
+                  - inventory_product_id: 1
+                    size: XL
+                  - inventory_product_id: 1
+                    size: XL
       security:
         - bearerAuth: []
       parameters:
@@ -2019,10 +2019,10 @@ paths:
               properties:
                 category_name:
                   type: string
-                  example: Momo
+                  example: Fry Momo
                 parent_category_id:
                   type: integer
-                  example: '1'
+                  example: '2'
                 description:
                   type: string
                   example: My momo
@@ -2433,16 +2433,12 @@ paths:
                 description: ab cd ef gh
                 delivery_partner_id: 2
                 productDetails:
-                  - product_variation_id: 8
+                  - product_variation_id: 6
                     price: 100
                     quantity: 5
                   - product_variation_id: 6
                     price: 100
                     quantity: 5
-                    note: My Note
-                  - product_variation_id: 7
-                    price: 150
-                    quantity: 1
                     note: My Note
       security:
         - bearerAuth: []
@@ -6708,7 +6704,7 @@ paths:
               properties:
                 unit_name:
                   type: string
-                  example: ml
+                  example: kg
                 code:
                   type: integer
                   example: '3433'
@@ -6862,7 +6858,7 @@ paths:
               properties:
                 unit_name:
                   type: string
-                  example: unit
+                  example: ml
                 code:
                   type: string
                   example: eer
@@ -6978,7 +6974,7 @@ paths:
                 sku:
                   type: integer
                   example: '453534'
-                unit:
+                measurement_unit_id:
                   type: integer
                   example: '44'
       security:
@@ -7087,7 +7083,7 @@ paths:
                 sku:
                   type: integer
                   example: '43545'
-                unit:
+                measurement_unit_id:
                   type: integer
                   example: '4545'
                 _method:
@@ -7133,6 +7129,228 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/inventory-adjustments:
+    post:
+      tags:
+        - Admin > Inventory > Inventory Adjustment
+      summary: store inventory adjustment data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                date: '2023-05-23'
+                reason: Breakage
+                description: aa aa
+                products:
+                  - product_id: 1
+                    quantity_on_hand: 23
+                    adjusted_quantity: 2
+                    adjust_quantity: 4
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Inventory > Inventory Adjustment
+      summary: get all inventory adjustment data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            Date:
+              schema:
+                type: string
+                example: Wed, 28 Feb 2024 10:54:21 GMT
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.11
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 12
+                    date: '2023-05-23'
+                    reason: Breakage
+                    description: aa aa
+                    inventory_adjustment_details:
+                      - id: 12
+                        company_id: 1
+                        user_id: 10
+                        inventory_adjustment_id: 12
+                        product_id: 1
+                        quantity_on_hand: 23
+                        adjusted_quantity: 2
+                        adjust_quantity: 4
+                        created_at: '2024-02-28T10:44:49.000000Z'
+                        updated_at: '2024-02-28T10:44:49.000000Z'
+                  - id: 11
+                    date: '2023-05-23'
+                    reason: Breakage
+                    description: aa aa
+                    inventory_adjustment_details:
+                      - id: 11
+                        company_id: 1
+                        user_id: 10
+                        inventory_adjustment_id: 11
+                        product_id: 1
+                        quantity_on_hand: 23
+                        adjusted_quantity: 2
+                        adjust_quantity: -3
+                        created_at: '2024-02-28T10:44:38.000000Z'
+                        updated_at: '2024-02-28T10:44:38.000000Z'
+                  - id: 10
+                    date: '2023-05-23'
+                    reason: Breakage
+                    description: aa aa
+                    inventory_adjustment_details:
+                      - id: 10
+                        company_id: 1
+                        user_id: 10
+                        inventory_adjustment_id: 10
+                        product_id: 1
+                        quantity_on_hand: 23
+                        adjusted_quantity: 2
+                        adjust_quantity: -3
+                        created_at: '2024-02-28T10:43:54.000000Z'
+                        updated_at: '2024-02-28T10:43:54.000000Z'
+                  - id: 9
+                    date: '2023-05-23'
+                    reason: Breakage
+                    description: aa aa
+                    inventory_adjustment_details:
+                      - id: 9
+                        company_id: 1
+                        user_id: 10
+                        inventory_adjustment_id: 9
+                        product_id: 1
+                        quantity_on_hand: 23
+                        adjusted_quantity: 2
+                        adjust_quantity: 3
+                        created_at: '2024-02-28T10:43:01.000000Z'
+                        updated_at: '2024-02-28T10:43:01.000000Z'
+                  - id: 8
+                    date: '2023-05-23'
+                    reason: Breakage
+                    description: aa aa
+                    inventory_adjustment_details:
+                      - id: 8
+                        company_id: 1
+                        user_id: 10
+                        inventory_adjustment_id: 8
+                        product_id: 1
+                        quantity_on_hand: 23
+                        adjusted_quantity: 2
+                        adjust_quantity: 3
+                        created_at: '2024-02-28T10:30:00.000000Z'
+                        updated_at: '2024-02-28T10:30:00.000000Z'
+                links:
+                  first: http://127.0.0.1:8000/admin/inventory-adjustments?page=1
+                  last: http://127.0.0.1:8000/admin/inventory-adjustments?page=3
+                  prev: null
+                  next: http://127.0.0.1:8000/admin/inventory-adjustments?page=2
+                meta:
+                  current_page: 1
+                  from: 1
+                  last_page: 3
+                  links:
+                    - url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    - url: http://127.0.0.1:8000/admin/inventory-adjustments?page=1
+                      label: '1'
+                      active: true
+                    - url: http://127.0.0.1:8000/admin/inventory-adjustments?page=2
+                      label: '2'
+                      active: false
+                    - url: http://127.0.0.1:8000/admin/inventory-adjustments?page=3
+                      label: '3'
+                      active: false
+                    - url: http://127.0.0.1:8000/admin/inventory-adjustments?page=2
+                      label: Next &raquo;
+                      active: false
+                  path: http://127.0.0.1:8000/admin/inventory-adjustments
+                  per_page: 5
+                  to: 5
+                  total: 11
+  /admin/inventory-adjustments/{id}:
+    get:
+      tags:
+        - Admin > Inventory > Inventory Adjustment
+      summary: show single inventory data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -7146,7 +7364,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: nitesh0hamal@gmail.com
+                  example: hanciewanemphago@gmail.com
                 password:
                   type: integer
                   example: '12345'
@@ -7236,7 +7454,7 @@ paths:
                   example: Purano Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: grgbishal360@gmail.com
+                  example: akriti0@gmail.com
                 primary_phone:
                   type: integer
                   example: '9806782031'
@@ -7392,11 +7610,11 @@ paths:
                   type: string
                   example: hotel
                 restaurant:
-                  type: boolean
-                  example: 'true'
+                  type: string
+                  example: restaurant
                 event:
-                  type: boolean
-                  example: 'true'
+                  type: string
+                  example: event
       security:
         - bearerAuth: []
       parameters:

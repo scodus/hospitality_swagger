@@ -2912,7 +2912,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\n\"product_name\":\"Momo\",\n\"product_category_id\":1,\n\"ingredient\":\"gffg\",\n\"description\":\"fgfgfg\",\n\"has_variation\":1,\n\"variations\":[\n    {\n        \"variation_name\": \"Steam Momo\",\n        \"price\": 100\n    },\n    {\n        \"variation_name\": \"Fry Momo\",\n        \"price\": 200\n    }\n\n],\n\"base_price\":550\n}",
+											"raw": "{\n    \"product_name\": \"Momo\",\n    \"product_category_id\": 1,\n    \"ingredient\": \"gffg\",\n    \"description\": \"fgfgfg\",\n    \"price\": 550,\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"size\": \"XL\"\n            \n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3178,12 +3178,12 @@
 											"formdata": [
 												{
 													"key": "category_name",
-													"value": "Momo",
+													"value": "Fry Momo",
 													"type": "text"
 												},
 												{
 													"key": "parent_category_id",
-													"value": "1",
+													"value": "2",
 													"type": "text"
 												},
 												{
@@ -3728,7 +3728,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":5,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n\n   \n\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\":5,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n\n   \n\n    \"productDetails\":[\n        {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        }\n       \n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -10086,7 +10086,7 @@
 											"formdata": [
 												{
 													"key": "unit_name",
-													"value": "ml",
+													"value": "kg",
 													"type": "text"
 												},
 												{
@@ -10346,7 +10346,7 @@
 											"formdata": [
 												{
 													"key": "unit_name",
-													"value": "unit",
+													"value": "ml",
 													"type": "text"
 												},
 												{
@@ -10564,7 +10564,7 @@
 													"type": "text"
 												},
 												{
-													"key": "unit",
+													"key": "measurement_unit_id",
 													"value": "44",
 													"type": "text"
 												}
@@ -10753,7 +10753,7 @@
 													"type": "text"
 												},
 												{
-													"key": "unit",
+													"key": "measurement_unit_id",
 													"value": "4545",
 													"type": "text"
 												},
@@ -10826,6 +10826,212 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Inventory Adjustment",
+							"item": [
+								{
+									"name": "store inventory adjustment data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"date\":\"2023-05-23\",\n    \"reason\":\"Breakage\",\n    \"description\":\"aa aa\",\n    \"products\":[\n        {\n            \"product_id\":1,\n            \"quantity_on_hand\":23,\n            \"adjusted_quantity\":2,\n            \"adjust_quantity\":4\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/admin/inventory-adjustments",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"inventory-adjustments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all inventory adjustment data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/inventory-adjustments?pagination_limit=5",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"inventory-adjustments"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "5"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "get all inventory adjustment data",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/admin/inventory-adjustments?pagination_limit=5",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"admin",
+														"inventory-adjustments"
+													],
+													"query": [
+														{
+															"key": "pagination_limit",
+															"value": "5"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 28 Feb 2024 10:54:21 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 28 Feb 2024 10:54:21 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.11"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"data\": [\n        {\n            \"id\": 12,\n            \"date\": \"2023-05-23\",\n            \"reason\": \"Breakage\",\n            \"description\": \"aa aa\",\n            \"inventory_adjustment_details\": [\n                {\n                    \"id\": 12,\n                    \"company_id\": 1,\n                    \"user_id\": 10,\n                    \"inventory_adjustment_id\": 12,\n                    \"product_id\": 1,\n                    \"quantity_on_hand\": 23,\n                    \"adjusted_quantity\": 2,\n                    \"adjust_quantity\": 4,\n                    \"created_at\": \"2024-02-28T10:44:49.000000Z\",\n                    \"updated_at\": \"2024-02-28T10:44:49.000000Z\"\n                }\n            ]\n        },\n        {\n            \"id\": 11,\n            \"date\": \"2023-05-23\",\n            \"reason\": \"Breakage\",\n            \"description\": \"aa aa\",\n            \"inventory_adjustment_details\": [\n                {\n                    \"id\": 11,\n                    \"company_id\": 1,\n                    \"user_id\": 10,\n                    \"inventory_adjustment_id\": 11,\n                    \"product_id\": 1,\n                    \"quantity_on_hand\": 23,\n                    \"adjusted_quantity\": 2,\n                    \"adjust_quantity\": -3,\n                    \"created_at\": \"2024-02-28T10:44:38.000000Z\",\n                    \"updated_at\": \"2024-02-28T10:44:38.000000Z\"\n                }\n            ]\n        },\n        {\n            \"id\": 10,\n            \"date\": \"2023-05-23\",\n            \"reason\": \"Breakage\",\n            \"description\": \"aa aa\",\n            \"inventory_adjustment_details\": [\n                {\n                    \"id\": 10,\n                    \"company_id\": 1,\n                    \"user_id\": 10,\n                    \"inventory_adjustment_id\": 10,\n                    \"product_id\": 1,\n                    \"quantity_on_hand\": 23,\n                    \"adjusted_quantity\": 2,\n                    \"adjust_quantity\": -3,\n                    \"created_at\": \"2024-02-28T10:43:54.000000Z\",\n                    \"updated_at\": \"2024-02-28T10:43:54.000000Z\"\n                }\n            ]\n        },\n        {\n            \"id\": 9,\n            \"date\": \"2023-05-23\",\n            \"reason\": \"Breakage\",\n            \"description\": \"aa aa\",\n            \"inventory_adjustment_details\": [\n                {\n                    \"id\": 9,\n                    \"company_id\": 1,\n                    \"user_id\": 10,\n                    \"inventory_adjustment_id\": 9,\n                    \"product_id\": 1,\n                    \"quantity_on_hand\": 23,\n                    \"adjusted_quantity\": 2,\n                    \"adjust_quantity\": 3,\n                    \"created_at\": \"2024-02-28T10:43:01.000000Z\",\n                    \"updated_at\": \"2024-02-28T10:43:01.000000Z\"\n                }\n            ]\n        },\n        {\n            \"id\": 8,\n            \"date\": \"2023-05-23\",\n            \"reason\": \"Breakage\",\n            \"description\": \"aa aa\",\n            \"inventory_adjustment_details\": [\n                {\n                    \"id\": 8,\n                    \"company_id\": 1,\n                    \"user_id\": 10,\n                    \"inventory_adjustment_id\": 8,\n                    \"product_id\": 1,\n                    \"quantity_on_hand\": 23,\n                    \"adjusted_quantity\": 2,\n                    \"adjust_quantity\": 3,\n                    \"created_at\": \"2024-02-28T10:30:00.000000Z\",\n                    \"updated_at\": \"2024-02-28T10:30:00.000000Z\"\n                }\n            ]\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://127.0.0.1:8000/admin/inventory-adjustments?page=1\",\n        \"last\": \"http://127.0.0.1:8000/admin/inventory-adjustments?page=3\",\n        \"prev\": null,\n        \"next\": \"http://127.0.0.1:8000/admin/inventory-adjustments?page=2\"\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 3,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/admin/inventory-adjustments?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/admin/inventory-adjustments?page=2\",\n                \"label\": \"2\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/admin/inventory-adjustments?page=3\",\n                \"label\": \"3\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/admin/inventory-adjustments?page=2\",\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://127.0.0.1:8000/admin/inventory-adjustments\",\n        \"per_page\": 5,\n        \"to\": 5,\n        \"total\": 11\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "show single inventory data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/inventory-adjustments/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"inventory-adjustments",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}
@@ -10877,7 +11083,7 @@
 										},
 										{
 											"key": "email",
-											"value": "nitesh0hamal@gmail.com",
+											"value": "hanciewanemphago@gmail.com",
 											"type": "text"
 										},
 										{
@@ -11119,7 +11325,7 @@
 										},
 										{
 											"key": "primary_email",
-											"value": "grgbishal360@gmail.com",
+											"value": "akriti0@gmail.com",
 											"type": "text"
 										},
 										{
@@ -11377,12 +11583,12 @@
 										},
 										{
 											"key": "restaurant",
-											"value": "true",
+											"value": "restaurant",
 											"type": "text"
 										},
 										{
 											"key": "event",
-											"value": "true",
+											"value": "event",
 											"type": "text"
 										}
 									]
