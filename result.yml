@@ -45,7 +45,7 @@ tags:
   - name: Admin > Restaurant > Restaurant table
   - name: Admin > Restaurant > Kitchen Order Ticket
   - name: Admin > Restaurant > Bar Order Ticket
-  - name: Admin > Restaurant > Bill
+  - name: Admin > Restaurant > Ask Bill
   - name: Admin > Restaurant > KOT Items
   - name: Admin > Restaurant > BOT Items
   - name: Admin > Restaurant > Delivery partner
@@ -2427,16 +2427,16 @@ paths:
             schema:
               type: object
               example:
-                table_id: 5
+                table_id: 4
                 customer_id: 1
                 pickup_user_id: 1
                 description: ab cd ef gh
                 delivery_partner_id: 2
                 productDetails:
-                  - product_variation_id: 6
+                  - product_id: 3
                     price: 100
                     quantity: 5
-                  - product_variation_id: 6
+                  - product_id: 2
                     price: 100
                     quantity: 5
                     note: My Note
@@ -3382,7 +3382,7 @@ paths:
   /admin/ask-bill/{table_id}:
     get:
       tags:
-        - Admin > Restaurant > Bill
+        - Admin > Restaurant > Ask Bill
       summary: get ask bill data
       security:
         - bearerAuth: []
@@ -3405,7 +3405,7 @@ paths:
   /admin/ask-bills/order-number/{order_number}:
     get:
       tags:
-        - Admin > Restaurant > Bill
+        - Admin > Restaurant > Ask Bill
       summary: get ask bill by order number
       security:
         - bearerAuth: []
@@ -3420,6 +3420,33 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/tables/ask-bill/print:
+    post:
+      tags:
+        - Admin > Restaurant > Ask Bill
+      summary: print ask bill
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  example: '3'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response

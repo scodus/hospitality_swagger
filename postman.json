@@ -3728,7 +3728,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":5,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n\n   \n\n    \"productDetails\":[\n        {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        }\n       \n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\":4,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n\n   \n\n    \"productDetails\":[\n        {\n            \"product_id\":3,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_id\":2,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        }\n       \n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -5105,7 +5105,7 @@
 							]
 						},
 						{
-							"name": "Bill",
+							"name": "Ask Bill",
 							"item": [
 								{
 									"name": "get ask bill data",
@@ -5185,6 +5185,52 @@
 													"key": "order_number",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "print ask bill",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "order_id",
+													"value": "3",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/tables/ask-bill/print",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"tables",
+												"ask-bill",
+												"print"
 											]
 										}
 									},
