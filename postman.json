@@ -2204,7 +2204,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":23,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":0, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n\"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":2,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":400, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2912,7 +2912,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"product_name\": \"Momo\",\n    \"product_category_id\": 1,\n    \"ingredient\": \"gffg\",\n    \"description\": \"fgfgfg\",\n    \"price\": 550,\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"size\": \"XL\"\n            \n        }\n    ]\n}",
+											"raw": "{\n    \"product_name\": \"Momo\",\n    \"product_category_id\": 2,\n    \"ingredient\": \"gffg\",\n    \"description\": \"fgfgfg\",\n    \"price\": 550,\n    \"quantity_reference\":\"Bottle\",\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3034,7 +3034,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/products?pagination_limit=5&search_keyword=7676878",
+											"raw": "{{url}}/admin/products?pagination_limit=5&search_keyword=Momo",
 											"host": [
 												"{{url}}"
 											],
@@ -3049,7 +3049,7 @@
 												},
 												{
 													"key": "search_keyword",
-													"value": "7676878"
+													"value": "Momo"
 												}
 											]
 										}
@@ -3484,6 +3484,47 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "show all prodcut category group",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/categories/groups?pagination_limit=10",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"categories",
+												"groups"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -3728,7 +3769,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\":4,\n    \"customer_id\":1,\n    \"pickup_user_id\":1,\n    \"description\":\"ab cd ef gh\",\n    \"delivery_partner_id\":2,\n\n   \n\n    \"productDetails\":[\n        {\n            \"product_id\":3,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_id\":2,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        }\n       \n    ]\n\n\n\n}",
+											"raw": "{\n    \"table_id\": 4,\n    \"customer_id\": 1,\n    \"pickup_user_id\": 1,\n    \"description\": \"ab cd ef gh\",\n    \"delivery_partner_id\": 2,\n    \"productDetails\": [\n        {\n            \"product_id\": 1,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"topping_details\": [\n                {\n                    \"topping_product_id\": 5,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                },\n                 {\n                    \"topping_product_id\": 7,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n            ]\n        },\n         {\n            \"product_id\": 7,\n            \"price\": 100,\n            \"quantity\": 5\n           \n        },\n\n        {\n            \"product_id\": 2,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"note\": \"My Note\",\n             \"topping_details\": [\n                {\n                    \"topping_product_id\": 5,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n                \n            ]\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -5216,7 +5257,7 @@
 											"formdata": [
 												{
 													"key": "order_id",
-													"value": "3",
+													"value": "2",
 													"type": "text"
 												}
 											]
@@ -6096,7 +6137,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"self_delivery_user_id\":2,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        },\n         {\n            \"product_variation_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_variation_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"order_id\":46,\n    \"description\":\"ab cd ef gh\",\n    \"self_delivery_user_id\":1,\n    \"productDetails\":[\n        {\n            \"product_id\":1,\n            \"price\":100,\n            \"quantity\":5,\n            \"topping_details\": [\n                {\n                    \"topping_product_id\": 5,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                },\n                 {\n                    \"topping_product_id\": 7,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n            ]\n  \n           \n\n        },\n         {\n            \"product_id\":6,\n            \"price\":100,\n            \"quantity\":5,\n             \"note\":\"My Note\"\n\n        },\n         {\n            \"product_id\":7,\n            \"price\":150,\n            \"quantity\":1,\n             \"note\":\"My Note\"\n\n        }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -7205,13 +7246,19 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/roles",
+									"raw": "{{url}}/admin/roles?pagination_limit=5",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"admin",
 										"roles"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "5"
+										}
 									]
 								}
 							},
@@ -11371,12 +11418,12 @@
 										},
 										{
 											"key": "primary_email",
-											"value": "akriti0@gmail.com",
+											"value": "akriti01@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "9806782031",
+											"value": "980678203",
 											"type": "text"
 										},
 										{
@@ -11720,6 +11767,72 @@
 									"variable": [
 										{
 											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update business service",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "hotel",
+											"value": "hotel",
+											"type": "text"
+										},
+										{
+											"key": "restaurant",
+											"value": "restaurant",
+											"type": "text"
+										},
+										{
+											"key": "event",
+											"value": "event",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/business-service/:company_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"business-service",
+										":company_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
 											"value": ""
 										}
 									]

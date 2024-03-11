@@ -1416,13 +1416,13 @@ paths:
                 payment_method: 1
                 table_id: 5
                 customer_id: 1
-                order_id: 23
+                order_id: 2
                 subtotal: 344
                 tax: 3
                 discount: 3434
                 discount_type: rupees
                 net_total: 100
-                paid: 0
+                paid: 400
                 return: 344
                 net_amount: 34434
                 name: Pravesh Rai
@@ -1831,14 +1831,17 @@ paths:
               type: object
               example:
                 product_name: Momo
-                product_category_id: 1
+                product_category_id: 2
                 ingredient: gffg
                 description: fgfgfg
                 price: 550
+                quantity_reference: Bottle
                 has_inventory_tracking:
                   - inventory_product_id: 1
+                    unit_name: Bottle
                     size: XL
                   - inventory_product_id: 1
+                    unit_name: Bottle
                     size: XL
       security:
         - bearerAuth: []
@@ -1935,8 +1938,8 @@ paths:
         - name: search_keyword
           in: query
           schema:
-            type: integer
-          example: '7676878'
+            type: string
+          example: Momo
       responses:
         '200':
           description: Successful response
@@ -2298,6 +2301,29 @@ paths:
                         updated_at: '2023-11-28T09:35:58.000000Z'
                         products: []
                     products: []
+  /admin/categories/groups:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: show all prodcut category group
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/favourite-menu-items:
     post:
       tags:
@@ -2433,13 +2459,27 @@ paths:
                 description: ab cd ef gh
                 delivery_partner_id: 2
                 productDetails:
-                  - product_id: 3
+                  - product_id: 1
+                    price: 100
+                    quantity: 5
+                    topping_details:
+                      - topping_product_id: 5
+                        topping_quantity: 50
+                        topping_price: 110
+                      - topping_product_id: 7
+                        topping_quantity: 50
+                        topping_price: 110
+                  - product_id: 7
                     price: 100
                     quantity: 5
                   - product_id: 2
                     price: 100
                     quantity: 5
                     note: My Note
+                    topping_details:
+                      - topping_product_id: 5
+                        topping_quantity: 50
+                        topping_price: 110
       security:
         - bearerAuth: []
       parameters:
@@ -3438,7 +3478,7 @@ paths:
               properties:
                 order_id:
                   type: integer
-                  example: '3'
+                  example: '2'
       security:
         - bearerAuth: []
       parameters:
@@ -3988,18 +4028,25 @@ paths:
             schema:
               type: object
               example:
-                order_id: 123
+                order_id: 46
                 description: ab cd ef gh
-                self_delivery_user_id: 2
+                self_delivery_user_id: 1
                 productDetails:
-                  - product_variation_id: 8
+                  - product_id: 1
                     price: 100
                     quantity: 5
-                  - product_variation_id: 6
+                    topping_details:
+                      - topping_product_id: 5
+                        topping_quantity: 50
+                        topping_price: 110
+                      - topping_product_id: 7
+                        topping_quantity: 50
+                        topping_price: 110
+                  - product_id: 6
                     price: 100
                     quantity: 5
                     note: My Note
-                  - product_variation_id: 7
+                  - product_id: 7
                     price: 150
                     quantity: 1
                     note: My Note
@@ -4723,6 +4770,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -7481,10 +7533,10 @@ paths:
                   example: Purano Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: akriti0@gmail.com
+                  example: akriti01@gmail.com
                 primary_phone:
                   type: integer
-                  example: '9806782031'
+                  example: '980678203'
                 vat_number:
                   type: integer
                   example: '454545'
@@ -7686,6 +7738,47 @@ paths:
             type: string
           example: application/json
         - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/business-service/{company_id}:
+    post:
+      tags:
+        - Super Admin > business service
+      summary: update business service
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+                  example: hotel
+                restaurant:
+                  type: string
+                  example: restaurant
+                event:
+                  type: string
+                  example: event
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
           in: path
           schema:
             type: string
