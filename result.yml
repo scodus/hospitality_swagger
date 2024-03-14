@@ -53,7 +53,6 @@ tags:
   - name: Admin > Restaurant > Split Bill
   - name: Admin > Restaurant > Cash In/Out
   - name: Admin > Restaurant > Topping Items
-  - name: Admin > Restaurant > Printers
   - name: Admin > roles
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -72,6 +71,7 @@ tags:
   - name: Admin > Inventory > Inventory Adjustment
   - name: Public
   - name: Public > auth
+  - name: Public > Printers
   - name: Super Admin
   - name: Super Admin > company
   - name: Super Admin > business service
@@ -1329,13 +1329,20 @@ paths:
             schema:
               type: object
               example:
-                order_id: 123
+                order_id: 51
                 description: ab cd ef gh
                 pickup_user_id: 1
                 productDetails:
-                  - product_variation_id: 8
+                  - product_id: 1
                     price: 100
                     quantity: 5
+                    topping_details:
+                      - topping_product_id: 5
+                        topping_quantity: 50
+                        topping_price: 110
+                      - topping_product_id: 7
+                        topping_quantity: 50
+                        topping_price: 110
       security:
         - bearerAuth: []
       parameters:
@@ -4654,83 +4661,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/printers:
-    post:
-      tags:
-        - Admin > Restaurant > Printers
-      summary: store printer data
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                company_id:
-                  type: integer
-                  example: '1'
-                pServerName:
-                  type: string
-                  example: aa
-                pPrinterName:
-                  type: string
-                  example: aa
-                pShareName:
-                  type: string
-                  example: aa
-                pPortName:
-                  type: string
-                  example: aa
-                pDriverName:
-                  type: string
-                  example: aa
-                pComment:
-                  type: string
-                  example: aa
-                pLocation:
-                  type: string
-                  example: aa
-                pDevMode:
-                  type: string
-                  example: aa
-                type:
-                  type: string
-                  example: aa
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/printers/{company_id}:
-    get:
-      tags:
-        - Admin > Restaurant > Printers
-      summary: show single company printer data
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: company_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /admin/roles:
     post:
       tags:
@@ -7511,6 +7441,55 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/printers:
+    post:
+      tags:
+        - Public > Printers
+      summary: store printer data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_id: 1
+                printer_name: aa
+                paper_width: aa
+                ip_address: aa
+                printer_types:
+                  - printer_type: BOT
+                  - printer_type: KOT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/printers/1:
+    get:
+      tags:
+        - Public > Printers
+      summary: show single company printer data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/company:
     post:
       tags:
@@ -7657,6 +7636,15 @@ paths:
                 company_image:
                   type: string
                   format: binary
+                bill_heading:
+                  type: string
+                  example: sfg
+                bill_remarks:
+                  type: string
+                  example: fgdhg
+                is_tax:
+                  type: string
+                  example: active
                 _method:
                   type: string
                   example: put

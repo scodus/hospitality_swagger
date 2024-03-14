@@ -2066,7 +2066,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"order_id\":123,\n    \"description\":\"ab cd ef gh\",\n    \"pickup_user_id\":1,\n    \"productDetails\":[\n        {\n            \"product_variation_id\":8,\n            \"price\":100,\n            \"quantity\":5\n  \n           \n\n        }\n        //  {\n        //     \"product_variation_id\":6,\n        //     \"price\":100,\n        //     \"quantity\":5,\n        //      \"note\":\"My Note\"\n\n        // },\n        //  {\n        //     \"product_variation_id\":7,\n        //     \"price\":150,\n        //     \"quantity\":1,\n        //      \"note\":\"My Note\"\n\n        // }\n    ]\n\n\n\n}",
+											"raw": "{\n    \"order_id\":51,\n    \"description\":\"ab cd ef gh\",\n    \"pickup_user_id\":1,\n    \"productDetails\":[\n        {\n            \"product_id\":1,\n            \"price\":100,\n            \"quantity\":5,\n            \"topping_details\": [\n                {\n                    \"topping_product_id\": 5,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                },\n                 {\n                    \"topping_product_id\": 7,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n            ]\n  \n           \n\n        }\n        //  {\n        //     \"product_variation_id\":6,\n        //     \"price\":100,\n        //     \"quantity\":5,\n        //      \"note\":\"My Note\"\n\n        // },\n        //  {\n        //     \"product_variation_id\":7,\n        //     \"price\":150,\n        //     \"quantity\":1,\n        //      \"note\":\"My Note\"\n\n        // }\n    ]\n\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -7039,141 +7039,6 @@
 									"response": []
 								}
 							]
-						},
-						{
-							"name": "Printers",
-							"item": [
-								{
-									"name": "store printer data",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "company_id",
-													"value": "1",
-													"type": "text"
-												},
-												{
-													"key": "pServerName",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "pPrinterName",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "pShareName",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "pPortName",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "pDriverName",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "pComment",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "pLocation",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "pDevMode",
-													"value": "aa",
-													"type": "text"
-												},
-												{
-													"key": "type",
-													"value": "aa",
-													"type": "text"
-												}
-											]
-										},
-										"url": {
-											"raw": "{{url}}/admin/printers",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"printers"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "show single company printer data",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/printers/:company_id",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"printers",
-												":company_id"
-											],
-											"variable": [
-												{
-													"key": "company_id",
-													"value": ""
-												}
-											]
-										}
-									},
-									"response": []
-								}
-							]
 						}
 					]
 				},
@@ -11368,6 +11233,89 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Printers",
+					"item": [
+						{
+							"name": "store printer data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"company_id\": 1,\n    \"printer_name\": \"aa\",\n    \"paper_width\": \"aa\",\n    \"ip_address\": \"aa\",\n    \"printer_types\":[\n\n        {\"printer_type\":\"BOT\"},\n        {\"printer_type\":\"KOT\"}\n\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/printers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"printers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single company printer data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/printers/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"printers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -11607,6 +11555,21 @@
 											"key": "company_image",
 											"type": "file",
 											"src": "/Users/hanciephago/Downloads/BDD0688FF02068E5C427B0954F8A2297.webp"
+										},
+										{
+											"key": "bill_heading",
+											"value": "sfg",
+											"type": "text"
+										},
+										{
+											"key": "bill_remarks",
+											"value": "fgdhg",
+											"type": "text"
+										},
+										{
+											"key": "is_tax",
+											"value": "active",
+											"type": "text"
 										},
 										{
 											"key": "_method",
