@@ -16,7 +16,7 @@ info:
     name: MIT
     url: https://es.wikipedia.org/wiki/Licencia_MIT
 servers:
-  - url: https://hospitality-api.nrnaglobal.com/
+  - url: https://hospitality-api.scoduscorp.com
     description: server
 components:
   securitySchemes:
@@ -8944,7 +8944,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '4'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -9083,18 +9083,15 @@ paths:
             schema:
               type: object
               properties:
-                type:
-                  type: string
-                  example: Kitchen King
                 address:
                   type: string
-                  example: Purano Baneshwor, Kathmandu
+                  example: Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: akriti01@gmail.com
+                  example: akriti02@gmail.com
                 primary_phone:
                   type: integer
-                  example: '980678203'
+                  example: '980678204'
                 vat_number:
                   type: integer
                   example: '454545'
@@ -9104,17 +9101,16 @@ paths:
                 start_date:
                   type: string
                   example: '2020-10-10'
-                is_tax:
-                  type: string
-                screenshot:
-                  type: string
-                  format: binary
                 bill_heading:
                   type: string
                 bill_remarks:
                   type: string
-                company_id:
+                is_tax:
                   type: string
+                  example: inactive
+                company_id:
+                  type: integer
+                  example: '5'
       security:
         - bearerAuth: []
       parameters:
@@ -9183,18 +9179,15 @@ paths:
                 _method:
                   type: string
                   example: patch
-                type:
-                  type: string
-                  example: Kitchen King
                 address:
                   type: string
                   example: Purano Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: akriti01@gmail.com
+                  example: akriti02@gmail.com
                 primary_phone:
                   type: integer
-                  example: '980678203'
+                  example: '980678204'
                 vat_number:
                   type: integer
                   example: '454545'
@@ -9206,12 +9199,14 @@ paths:
                   example: '2020-10-10'
                 is_tax:
                   type: string
+                  example: inactive
                 bill_heading:
                   type: string
                 bill_remarks:
                   type: string
                 company_id:
-                  type: string
+                  type: integer
+                  example: '5'
       security:
         - bearerAuth: []
       parameters:
@@ -9225,7 +9220,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '7'
+          example: '4'
       responses:
         '200':
           description: Successful response

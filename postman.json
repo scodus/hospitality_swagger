@@ -3,8 +3,8 @@
 		"_postman_id": "e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb",
 		"name": "Hospitality Management",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30047466",
-		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30047466"
+		"_exporter_id": "30036842",
+		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30036842"
 	},
 	"item": [
 		{
@@ -13590,7 +13590,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "4"
+											"value": "5"
 										}
 									]
 								}
@@ -14061,23 +14061,18 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "type",
-											"value": "Kitchen King",
-											"type": "text"
-										},
-										{
 											"key": "address",
-											"value": "Purano Baneshwor, Kathmandu",
+											"value": "Baneshwor, Kathmandu",
 											"type": "text"
 										},
 										{
 											"key": "primary_email",
-											"value": "akriti01@gmail.com",
+											"value": "akriti02@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "980678203",
+											"value": "980678204",
 											"type": "text"
 										},
 										{
@@ -14096,16 +14091,6 @@
 											"type": "text"
 										},
 										{
-											"key": "is_tax",
-											"value": "active",
-											"type": "text"
-										},
-										{
-											"key": "screenshot",
-											"type": "file",
-											"src": "/C:/Users/August/Downloads/Compressed/test-images/@ nepaL AT un.png"
-										},
-										{
 											"key": "bill_heading",
 											"value": "",
 											"type": "text"
@@ -14117,12 +14102,12 @@
 										},
 										{
 											"key": "is_tax",
-											"value": "",
+											"value": "inactive",
 											"type": "text"
 										},
 										{
 											"key": "company_id",
-											"value": "",
+											"value": "5",
 											"type": "text"
 										}
 									]
@@ -14171,23 +14156,18 @@
 											"type": "text"
 										},
 										{
-											"key": "type",
-											"value": "Kitchen King",
-											"type": "text"
-										},
-										{
 											"key": "address",
 											"value": "Purano Baneshwor, Kathmandu",
 											"type": "text"
 										},
 										{
 											"key": "primary_email",
-											"value": "akriti01@gmail.com",
+											"value": "akriti02@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "980678203",
+											"value": "980678204",
 											"type": "text"
 										},
 										{
@@ -14222,13 +14202,14 @@
 										},
 										{
 											"key": "is_tax",
-											"value": "",
+											"value": "inactive",
 											"type": "text"
 										},
 										{
 											"key": "company_id",
-											"value": "",
-											"type": "text"
+											"value": "5",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -14246,7 +14227,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "7"
+											"value": "4"
 										}
 									]
 								}
