@@ -666,22 +666,28 @@
 											"formdata": [
 												{
 													"key": "payment_name",
-													"value": "Moru",
+													"value": "IME ",
 													"type": "text"
 												},
 												{
 													"key": "payment_image",
 													"type": "file",
 													"src": "/Users/hanciephago/Downloads/pngtree-money-clipart-coin-cartoon-banknote-clipart-elements-png-image_2410174.jpg"
+												},
+												{
+													"key": "commission_percent",
+													"value": "5",
+													"type": "text"
 												}
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/payment-options",
+											"raw": "{{url}}/api/admin/payment-options",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"payment-options"
 											]
@@ -7472,8 +7478,35 @@
 								{
 									"name": "show all dashboard data",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
-										"header": []
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard"
+											]
+										}
 									},
 									"response": []
 								}
@@ -11581,7 +11614,7 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "wiwige2912@glaslack.com",
+											"value": "jedibe5032@shaflyn.com",
 											"type": "text"
 										},
 										{
@@ -12456,6 +12489,11 @@
 									"mode": "formdata",
 									"formdata": [
 										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
 											"key": "business_name",
 											"value": "Business",
 											"type": "text"
@@ -12508,11 +12546,6 @@
 										{
 											"key": "is_tax",
 											"value": "active",
-											"type": "text"
-										},
-										{
-											"key": "_method",
-											"value": "put",
 											"type": "text"
 										},
 										{
@@ -12734,7 +12767,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"wiwige2912@glaslack.com\",\n    \"roles\" : [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n       1, 4    \n    ]\n}",
+									"raw": "{\n    \"email\": \"wiwige2912@glaslack.com\",\n    \"roles\" : [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n    4    \n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -12971,6 +13004,11 @@
 									"mode": "formdata",
 									"formdata": [
 										{
+											"key": "company_id",
+											"value": "5",
+											"type": "text"
+										},
+										{
 											"key": "address",
 											"value": "Baneshwor, Kathmandu",
 											"type": "text"
@@ -13013,11 +13051,6 @@
 										{
 											"key": "is_tax",
 											"value": "inactive",
-											"type": "text"
-										},
-										{
-											"key": "company_id",
-											"value": "5",
 											"type": "text"
 										}
 									]
@@ -13064,6 +13097,12 @@
 											"key": "_method",
 											"value": "patch",
 											"type": "text"
+										},
+										{
+											"key": "company_id",
+											"value": "5",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "address",
@@ -13114,12 +13153,6 @@
 											"key": "is_tax",
 											"value": "inactive",
 											"type": "text"
-										},
-										{
-											"key": "company_id",
-											"value": "5",
-											"type": "text",
-											"disabled": true
 										}
 									]
 								},
@@ -15855,7 +15888,7 @@
 									"formdata": [
 										{
 											"key": "business_name",
-											"value": "Kitchen King",
+											"value": "K King",
 											"type": "text"
 										},
 										{
@@ -15870,12 +15903,12 @@
 										},
 										{
 											"key": "primary_email",
-											"value": "akriti01@gmail.com",
+											"value": "jedibe5032@shaflyn.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "980678203",
+											"value": "980678200",
 											"type": "text"
 										},
 										{
@@ -15899,13 +15932,18 @@
 											"src": "/home/bikash/Downloads/task 1edatt"
 										},
 										{
-											"key": "owner_id",
-											"value": "",
+											"key": "is_tax",
+											"value": "active",
 											"type": "text"
 										},
 										{
-											"key": "is_tax",
-											"value": "active",
+											"key": "service_ids[]",
+											"value": "7",
+											"type": "text"
+										},
+										{
+											"key": "service_ids[]",
+											"value": "8",
 											"type": "text"
 										}
 									]
@@ -15943,28 +15981,33 @@
 									"mode": "formdata",
 									"formdata": [
 										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
 											"key": "business_name",
-											"value": "Business",
+											"value": "K King",
 											"type": "text"
 										},
 										{
 											"key": "display_name",
-											"value": "By",
+											"value": "K. King",
 											"type": "text"
 										},
 										{
 											"key": "address",
-											"value": "KTM",
+											"value": "Purano Baneshwor, Kathmandu",
 											"type": "text"
 										},
 										{
 											"key": "primary_email",
-											"value": "admin@gmail.com",
+											"value": "jedibe5032@shaflyn.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "984334645",
+											"value": "980678200",
 											"type": "text"
 										},
 										{
@@ -15979,17 +16022,7 @@
 										},
 										{
 											"key": "start_date",
-											"value": "454545",
-											"type": "text"
-										},
-										{
-											"key": "bill_heading",
-											"value": "sfg",
-											"type": "text"
-										},
-										{
-											"key": "bill_remarks",
-											"value": "fgdhg",
+											"value": "2020-10-10",
 											"type": "text"
 										},
 										{
@@ -15998,9 +16031,15 @@
 											"type": "text"
 										},
 										{
-											"key": "_method",
-											"value": "put",
+											"key": "service_ids[]",
+											"value": "7",
 											"type": "text"
+										},
+										{
+											"key": "service_ids[]",
+											"value": "8",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "company_image",
@@ -16023,7 +16062,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "6"
 										}
 									]
 								}

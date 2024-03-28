@@ -458,7 +458,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/payment-options:
+  /api/admin/payment-options:
     post:
       tags:
         - Admin > Restaurant > Restaurant payment options
@@ -471,10 +471,13 @@ paths:
               properties:
                 payment_name:
                   type: string
-                  example: Moru
+                  example: 'IME '
                 payment_image:
                   type: string
                   format: binary
+                commission_percent:
+                  type: integer
+                  example: '5'
       security:
         - bearerAuth: []
       parameters:
@@ -536,6 +539,7 @@ paths:
                   created_at: '2023-12-20T06:51:38.000000Z'
                   updated_at: null
                 message: Payment Option Has Been Created Successfully!
+  /admin/payment-options:
     get:
       tags:
         - Admin > Restaurant > Restaurant payment options
@@ -4929,6 +4933,24 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/dashboard:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Dashboard
+      summary: show all dashboard data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/printers:
     post:
       tags:
@@ -7712,7 +7734,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: wiwige2912@glaslack.com
+                  example: jedibe5032@shaflyn.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -8263,6 +8285,9 @@ paths:
             schema:
               type: object
               properties:
+                _method:
+                  type: string
+                  example: put
                 business_name:
                   type: string
                   example: Business
@@ -8296,9 +8321,6 @@ paths:
                 is_tax:
                   type: string
                   example: active
-                _method:
-                  type: string
-                  example: put
                 company_image:
                   type: string
                   format: binary
@@ -8420,7 +8442,6 @@ paths:
                 roles:
                   - manager
                 branch_ids:
-                  - 1
                   - 4
       security:
         - bearerAuth: []
@@ -8561,6 +8582,9 @@ paths:
             schema:
               type: object
               properties:
+                company_id:
+                  type: integer
+                  example: '5'
                 address:
                   type: string
                   example: Baneshwor, Kathmandu
@@ -8586,9 +8610,6 @@ paths:
                 is_tax:
                   type: string
                   example: inactive
-                company_id:
-                  type: integer
-                  example: '5'
       security:
         - bearerAuth: []
       parameters:
@@ -8661,6 +8682,9 @@ paths:
                 _method:
                   type: string
                   example: patch
+                company_id:
+                  type: integer
+                  example: '5'
                 address:
                   type: string
                   example: Purano Baneshwor, Kathmandu
@@ -8686,9 +8710,6 @@ paths:
                   type: string
                 bill_remarks:
                   type: string
-                company_id:
-                  type: integer
-                  example: '5'
       security:
         - bearerAuth: []
       parameters:
@@ -10109,7 +10130,7 @@ paths:
               properties:
                 business_name:
                   type: string
-                  example: Kitchen King
+                  example: K King
                 display_name:
                   type: string
                   example: K. King
@@ -10118,10 +10139,10 @@ paths:
                   example: Purano Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: akriti01@gmail.com
+                  example: jedibe5032@shaflyn.com
                 primary_phone:
                   type: integer
-                  example: '980678203'
+                  example: '980678200'
                 vat_number:
                   type: integer
                   example: '454545'
@@ -10134,11 +10155,12 @@ paths:
                 company_image:
                   type: string
                   format: binary
-                owner_id:
-                  type: string
                 is_tax:
                   type: string
                   example: active
+                service_ids[]:
+                  type: integer
+                  example: '8'
       security:
         - bearerAuth: []
       parameters:
@@ -10197,21 +10219,24 @@ paths:
             schema:
               type: object
               properties:
+                _method:
+                  type: string
+                  example: put
                 business_name:
                   type: string
-                  example: Business
+                  example: K King
                 display_name:
                   type: string
-                  example: By
+                  example: K. King
                 address:
                   type: string
-                  example: KTM
+                  example: Purano Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: admin@gmail.com
+                  example: jedibe5032@shaflyn.com
                 primary_phone:
                   type: integer
-                  example: '984334645'
+                  example: '980678200'
                 vat_number:
                   type: integer
                   example: '454545'
@@ -10219,20 +10244,14 @@ paths:
                   type: integer
                   example: '54545'
                 start_date:
-                  type: integer
-                  example: '454545'
-                bill_heading:
                   type: string
-                  example: sfg
-                bill_remarks:
-                  type: string
-                  example: fgdhg
+                  example: '2020-10-10'
                 is_tax:
                   type: string
                   example: active
-                _method:
-                  type: string
-                  example: put
+                service_ids[]:
+                  type: integer
+                  example: '8'
                 company_image:
                   type: string
                   format: binary
@@ -10244,7 +10263,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '1'
+          example: '6'
       responses:
         '200':
           description: Successful response
