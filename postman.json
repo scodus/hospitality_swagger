@@ -65,11 +65,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/admin/customers",
+									"raw": "{{url}}/api/admin/customers",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"customers"
 									]
@@ -99,11 +100,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/customers?pagination_limit=4&company_id=1&search_keyword=Hancie Phago",
+									"raw": "{{url}}/api/admin/customers?pagination_limit=4&company_id=1&search_keyword=Hancie Phago",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"customers"
 									],
@@ -147,11 +149,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/customers/:customer_id",
+									"raw": "{{url}}/api/admin/customers/:customer_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"customers",
 										":customer_id"
@@ -218,11 +221,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/admin/customers/:customer_id",
+									"raw": "{{url}}/api/admin/customers/:customer_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"customers",
 										":customer_id"
@@ -259,11 +263,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/customers/:customer_id",
+									"raw": "{{url}}/api/admin/customers/:customer_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"customers",
 										":customer_id"
@@ -300,21 +305,17 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/customers/show-orders/:customer_id",
+									"raw": "{{url}}/api/api/admin/customers/show-orders/1",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"api",
 										"admin",
 										"customers",
 										"show-orders",
-										":customer_id"
-									],
-									"variable": [
-										{
-											"key": "customer_id",
-											"value": ""
-										}
+										"1"
 									]
 								}
 							},
@@ -367,11 +368,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/admin/users",
+									"raw": "{{url}}/api/admin/users",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"users"
 									]
@@ -401,11 +403,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/users?pagination_limit=5&search_keyword=Hancie&role=Waiter",
+									"raw": "{{url}}/api/admin/users?pagination_limit=5&search_keyword=Hancie&role=Waiter",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"users"
 									],
@@ -469,11 +472,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/admin/users/:user_id",
+									"raw": "{{url}}/api/admin/users/:user_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"users",
 										":user_id"
@@ -510,11 +514,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/users/:user_id",
+									"raw": "{{url}}/api/admin/users/:user_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"users",
 										":user_id"
@@ -551,11 +556,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/admin/users/:user_id",
+									"raw": "{{url}}/api/admin/users/:user_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"users",
 										":user_id"
@@ -612,11 +618,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/admin/users/change-password",
+									"raw": "{{url}}/api/admin/users/change-password",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"users",
 										"change-password"
@@ -4331,23 +4338,22 @@
 										],
 										"body": {
 											"mode": "formdata",
-											"formdata": []
+											"formdata": [
+												{
+													"key": "order_id",
+													"value": "11",
+													"type": "text"
+												}
+											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/cancel-order/:order_id",
+											"raw": "{{url}}/admin/cancel-order",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"admin",
-												"cancel-order",
-												":order_id"
-											],
-											"variable": [
-												{
-													"key": "order_id",
-													"value": ""
-												}
+												"cancel-order"
 											]
 										}
 									},
@@ -7459,6 +7465,19 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Restaurant Dashboard",
+							"item": [
+								{
+									"name": "show all dashboard data",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				},
@@ -10446,116 +10465,6 @@
 					]
 				},
 				{
-					"name": "company",
-					"item": [
-						{
-							"name": "get company detials",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/admin/company-details",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"company-details"
-									]
-								}
-							},
-							"response": [
-								{
-									"name": "get company detials",
-									"originalRequest": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/company-details",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"company-details"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Host",
-											"value": "127.0.0.1:8000"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 03 Jan 2024 10:30:27 GMT"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 03 Jan 2024 10:30:27 GMT"
-										},
-										{
-											"key": "Connection",
-											"value": "close"
-										},
-										{
-											"key": "X-Powered-By",
-											"value": "PHP/8.2.11"
-										},
-										{
-											"key": "Cache-Control",
-											"value": "no-cache, private"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "X-RateLimit-Limit",
-											"value": "60"
-										},
-										{
-											"key": "X-RateLimit-Remaining",
-											"value": "59"
-										},
-										{
-											"key": "Access-Control-Allow-Origin",
-											"value": "*"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"business_name\": \"Akriti Hotel\",\n        \"slug\": \"business\",\n        \"display_name\": \"B\",\n        \"address\": \"KTM\",\n        \"primary_email\": \"admin@gmail.com\",\n        \"primary_phone\": \"984334645\",\n        \"vat_number\": \"454545\",\n        \"registration_number\": \"54545\",\n        \"start_date\": \"454545\",\n        \"company_image\": \"http://localhost:8000/storage/1/BDD0688FF02068E5C427B0954F8A2297.webp\",\n        \"user_id\": 1\n    }\n}"
-								}
-							]
-						}
-					]
-				},
-				{
 					"name": "Inventory",
 					"item": [
 						{
@@ -11535,6 +11444,1928 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Company",
+					"item": [
+						{
+							"name": "get company detials",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/company-details",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"company-details"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get company detials",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/company-details",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"company-details"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 03 Jan 2024 10:30:27 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 03 Jan 2024 10:30:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.11"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"business_name\": \"Akriti Hotel\",\n        \"slug\": \"business\",\n        \"display_name\": \"B\",\n        \"address\": \"KTM\",\n        \"primary_email\": \"admin@gmail.com\",\n        \"primary_phone\": \"984334645\",\n        \"vat_number\": \"454545\",\n        \"registration_number\": \"54545\",\n        \"start_date\": \"454545\",\n        \"company_image\": \"http://localhost:8000/storage/1/BDD0688FF02068E5C427B0954F8A2297.webp\",\n        \"user_id\": 1\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()\r",
+											"pm.environment.set('token', response.data.token)\r",
+											"pm.environment.set('refresh_token', response.data.refresh_token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "wiwige2912@glaslack.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "refresh token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()\r",
+											"pm.environment.set('token', response.data.token)\r",
+											"pm.environment.set('refresh_token', response.data.refresh_token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/refresh-token/:refresh_token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"refresh-token",
+										":refresh_token"
+									],
+									"variable": [
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user detail",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/user-detail",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"user-detail"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user detail update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Super admin",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png",
+											"disabled": true
+										},
+										{
+											"key": "delete_image",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/update-user-detail",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"update-user-detail"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										},
+										{
+											"key": "old_password",
+											"value": "P@ssw0rd0",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/change-password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/delete-user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"delete-user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invitation accept-reject",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "tKkSUJY8hnsc9K9ZnnlaBCzJvaTCmAqa2KNjhYw9Tcz0X2V90SX6FfX2vQ17Ow6a3HlMjvPGVpawgBBMWewFSuYQdywarZm1rbunW018LvhZtSzHuGwMtrEtyI0I8KhF",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "wiwige2912@glaslack.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "is_accepted",
+											"value": "true",
+											"description": "true|false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/invitation-accept-reject",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"invitation-accept-reject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "my invitations",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/my-invitations?paginate=&page=&limit=&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"my-invitations"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": ""
+										},
+										{
+											"key": "page",
+											"value": ""
+										},
+										{
+											"key": "limit",
+											"value": ""
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "my invitations accept-reject",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "jVRbNDicfvdNO3ERhQ32FRQRFuzzs0aUi4lkuHCWprQEFdXMHWKBZrGm2TRhJxzCU7dp6kG13UYVeGTZVLiuC1wvclUZQoJKIJxGtUfNymLaOcr2DLkrt2fyCQ7LqVmb",
+											"type": "text"
+										},
+										{
+											"key": "is_accepted",
+											"value": "true",
+											"description": "true|false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/my-invitation/:id/accept-reject",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"my-invitation",
+										":id",
+										"accept-reject"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "42"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Permission",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/permission?paginate=1&limit=5&page=1&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"permission"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/permission/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"permission",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Role",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "superwaiter",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/role",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"role"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "waiter2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/role/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"role",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/role/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"role",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/role?paginate=1&limit=5&page=1&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"role"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1",
+											"description": "1||0"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "search_keyword",
+											"value": "",
+											"description": "||name"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/role/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"role",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign permission",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "company-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"permissions\": [\n        \"user-list\",\n        \"user-create\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/role/:id/assign-permission",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"role",
+										":id",
+										"assign-permission"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Company New",
+					"item": [
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "business_name",
+											"value": "Business",
+											"type": "text"
+										},
+										{
+											"key": "display_name",
+											"value": "By",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "KTM",
+											"type": "text"
+										},
+										{
+											"key": "primary_email",
+											"value": "admin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "primary_phone",
+											"value": "984334645",
+											"type": "text"
+										},
+										{
+											"key": "vat_number",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "registration_number",
+											"value": "54545",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "bill_heading",
+											"value": "sfg",
+											"type": "text"
+										},
+										{
+											"key": "bill_remarks",
+											"value": "fgdhg",
+											"type": "text"
+										},
+										{
+											"key": "is_tax",
+											"value": "active",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
+											"key": "company_image",
+											"type": "file",
+											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "company users",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:company_id/user?paginate=1&page=1&limit=10&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":company_id",
+										"user"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										}
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign or update user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"wiwige2912@glaslack.com\",\n    \"roles\" : [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n       1, 4    \n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:company_id/assign-update-user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":company_id",
+										"assign-update-user"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list company user invitations",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:company_id/user/invitations?paginate=1&page=1&limit=5&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":company_id",
+										"user",
+										"invitations"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										}
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "unassign user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": 29\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:company_id/unassign-user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":company_id",
+										"unassign-user"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user data update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": 10,\n    \"roles\" : [\n        \"view-accountingfirm-dashboard\"\n    ],\n    \"branch_ids\":[\n        1,2\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:company_id/user-data-update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":company_id",
+										"user-data-update"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Branch",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "address",
+											"value": "Baneshwor, Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "primary_email",
+											"value": "akriti02@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "primary_phone",
+											"value": "980678204",
+											"type": "text"
+										},
+										{
+											"key": "vat_number",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "registration_number",
+											"value": "54545",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2020-10-10",
+											"type": "text"
+										},
+										{
+											"key": "bill_heading",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "bill_remarks",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "is_tax",
+											"value": "inactive",
+											"type": "text"
+										},
+										{
+											"key": "company_id",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Purano Baneshwor, Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "primary_email",
+											"value": "akriti02@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "primary_phone",
+											"value": "980678204",
+											"type": "text"
+										},
+										{
+											"key": "vat_number",
+											"value": "454545",
+											"type": "text"
+										},
+										{
+											"key": "registration_number",
+											"value": "54545",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": "2020-10-10",
+											"type": "text"
+										},
+										{
+											"key": "is_tax",
+											"value": "active",
+											"type": "text"
+										},
+										{
+											"key": "bill_heading",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "bill_remarks",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "is_tax",
+											"value": "inactive",
+											"type": "text"
+										},
+										{
+											"key": "company_id",
+											"value": "5",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "in_progress",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch/:id/update-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										":id",
+										"update-status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch?paginate=1&page=1&limit=10&search_keyword=&status=&company_id=5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": ""
+										},
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -11783,7 +13614,7 @@
 			"name": "Superadmin",
 			"item": [
 				{
-					"name": "company",
+					"name": "company old",
 					"item": [
 						{
 							"name": "create company",
@@ -12607,12 +14438,666 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "delete user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/delete-user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"delete-user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Permission",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/permission?paginate=1&limit=5&page=1&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"permission"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/permission/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"permission",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Role",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "waiter1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/role",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"role"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "waiter2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/role/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"role",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/role/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"role",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/role?paginate=1&limit=5&page=1&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"role"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1",
+											"description": "1||0"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "search_keyword",
+											"value": "",
+											"description": "||name"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "single",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/role/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"role",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign permission",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "company-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"permissions\": [\n        \"user-list\",\n        \"user-create\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/role/:id/assign-permission",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"role",
+										":id",
+										"assign-permission"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
 				{
 					"name": "User",
 					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "user2@email.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "user 2",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/bikash/Downloads/logo-01.png"
+										},
+										{
+											"key": "company_id",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "roles[]",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "roles[]",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "P@ssw0rd",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "user 1",
+											"type": "text"
+										},
+										{
+											"key": "company_id",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "roles[]",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "roles[]",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": [
+												"/home/bikash/Downloads/task 1edatt",
+												"/home/bikash/Downloads/9-2-free-free-download-png.png"
+											]
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/user/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"user",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/user/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"user",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "list",
 							"request": {
@@ -12744,7 +15229,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"role\": [\n        \"superadmin\"\n    ]\n}",
+									"raw": "{\n    \"roles\": [\n        \"admin\"\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -12766,7 +15251,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "4"
 										}
 									]
 								}
@@ -12823,7 +15308,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "6"
 										}
 									]
 								}
@@ -13699,7 +16184,8 @@
 										},
 										{
 											"key": "status",
-											"value": ""
+											"value": "",
+											"description": "||active,inactive"
 										}
 									]
 								}
@@ -13756,7 +16242,7 @@
 							"response": []
 						},
 						{
-							"name": "list company users",
+							"name": "company owner",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -13789,28 +16275,29 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/superadmin/company-user/:company_id?paginate=&page=&limit=&search_keyword=",
+									"raw": "{{url}}/api/superadmin/company/:company_id/owner?paginate=1&page=1&limit=10&search_keyword=",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"superadmin",
-										"company-user",
-										":company_id"
+										"company",
+										":company_id",
+										"owner"
 									],
 									"query": [
 										{
 											"key": "paginate",
-											"value": ""
+											"value": "1"
 										},
 										{
 											"key": "page",
-											"value": ""
+											"value": "1"
 										},
 										{
 											"key": "limit",
-											"value": ""
+											"value": "10"
 										},
 										{
 											"key": "search_keyword",
@@ -13820,7 +16307,7 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "1"
+											"value": "5"
 										}
 									]
 								}
@@ -13850,7 +16337,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"company_id\": 1,\n    \"email\": \"hewan45884@cubene.com\",\n    \"permissions\" : [\n        \"view-company-dashboard\"\n    ]\n}",
+									"raw": "{\n    \"email\": \"jedibe5032@shaflyn.com\"\n    // ,\n    // \"roles\" : [\n    //     \"view-company-dashboard\"\n    // ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -13858,14 +16345,22 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/superadmin/company-assign-update-admin",
+									"raw": "{{url}}/api/superadmin/company/:company_id/assign-update-owner",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"superadmin",
-										"company-assign-update-admin"
+										"company",
+										":company_id",
+										"assign-update-owner"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
 									]
 								}
 							},
@@ -13905,28 +16400,30 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/superadmin/company-user/:company_id?paginate=&page=&limit=&search_keyword=",
+									"raw": "{{url}}/api/superadmin/company/:company_id/owner/invitations?paginate=1&page=1&limit=5&search_keyword=",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"superadmin",
-										"company-user",
-										":company_id"
+										"company",
+										":company_id",
+										"owner",
+										"invitations"
 									],
 									"query": [
 										{
 											"key": "paginate",
-											"value": ""
+											"value": "1"
 										},
 										{
 											"key": "page",
-											"value": ""
+											"value": "1"
 										},
 										{
 											"key": "limit",
-											"value": ""
+											"value": "5"
 										},
 										{
 											"key": "search_keyword",
@@ -13936,52 +16433,8 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "1"
+											"value": "5"
 										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "admin permission update",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"company_id\": 1,\n    \"user_id\": 10,\n    \"permissions\" : [\n        \"view-accountingfirm-dashboard\"\n    ]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/company-owner-permission-update",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"company-owner-permission-update"
 									]
 								}
 							},
@@ -14010,7 +16463,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"company_id\": 1,\n    \"user_id\": 10   \n}",
+									"raw": "{\n    \"user_id\": 5\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -14018,14 +16471,22 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/superadmin/company-unassign-admin",
+									"raw": "{{url}}/api/superadmin/company/:company_id/unassign-owner",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"superadmin",
-										"company-unassign-admin"
+										"company",
+										":company_id",
+										"unassign-owner"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
 									]
 								}
 							},
@@ -15234,286 +17695,6 @@
 										{
 											"key": "id",
 											"value": "1"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Role",
-					"item": [
-						{
-							"name": "list",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{access_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/superadmin/role?paginate=1&limit=5&page=1&search_keyword=",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"role"
-									],
-									"query": [
-										{
-											"key": "paginate",
-											"value": "1",
-											"description": "1||0"
-										},
-										{
-											"key": "limit",
-											"value": "5"
-										},
-										{
-											"key": "page",
-											"value": "1"
-										},
-										{
-											"key": "search_keyword",
-											"value": "",
-											"description": "||name"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "single",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{access_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/superadmin/role/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"role",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "assign permission",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "company-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"permissions\": [\n        \"user-list\",\n        \"user-create\"\n    ]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/role/:id/assign-permission",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"role",
-										":id",
-										"assign-permission"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Permission",
-					"item": [
-						{
-							"name": "list",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "company-id",
-										"value": "1",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/permission?paginate=0&page=&limit=&search_keyword=&type=accountingfirm&category",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"permission"
-									],
-									"query": [
-										{
-											"key": "paginate",
-											"value": "0"
-										},
-										{
-											"key": "page",
-											"value": ""
-										},
-										{
-											"key": "limit",
-											"value": ""
-										},
-										{
-											"key": "search_keyword",
-											"value": ""
-										},
-										{
-											"key": "type",
-											"value": "accountingfirm",
-											"description": "accountingfirm|company"
-										},
-										{
-											"key": "category",
-											"value": null
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/permission/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"permission",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "200"
 										}
 									]
 								}
