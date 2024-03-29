@@ -11,319 +11,6 @@
 			"name": "Admin",
 			"item": [
 				{
-					"name": "customer",
-					"item": [
-						{
-							"name": "create customer",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "name",
-											"value": "Hancie Phago",
-											"type": "text"
-										},
-										{
-											"key": "email",
-											"value": "hancie25@gmail.com",
-											"type": "text"
-										},
-										{
-											"key": "phone",
-											"value": "4545454555",
-											"type": "text"
-										},
-										{
-											"key": "address",
-											"value": "KTM",
-											"type": "text"
-										},
-										{
-											"key": "vat_number",
-											"value": "45456",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/customers",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"customers"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get all customers",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/customers?pagination_limit=4&company_id=1&search_keyword=Hancie Phago",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"customers"
-									],
-									"query": [
-										{
-											"key": "pagination_limit",
-											"value": "4"
-										},
-										{
-											"key": "company_id",
-											"value": "1"
-										},
-										{
-											"key": "search_keyword",
-											"value": "Hancie Phago"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete customer",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/customers/:customer_id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"customers",
-										":customer_id"
-									],
-									"variable": [
-										{
-											"key": "customer_id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update customer",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "name",
-											"value": "Hancie Phago",
-											"type": "text"
-										},
-										{
-											"key": "email",
-											"value": "hancie2@gmail.com",
-											"type": "text"
-										},
-										{
-											"key": "phone",
-											"value": "4545454555",
-											"type": "text"
-										},
-										{
-											"key": "address",
-											"value": "Jhapa",
-											"type": "text"
-										},
-										{
-											"key": "_method",
-											"value": "put",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/admin/customers/:customer_id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"customers",
-										":customer_id"
-									],
-									"variable": [
-										{
-											"key": "customer_id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show single customer",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/admin/customers/:customer_id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"admin",
-										"customers",
-										":customer_id"
-									],
-									"variable": [
-										{
-											"key": "customer_id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show single customer data",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/api/admin/customers/show-orders/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"api",
-										"admin",
-										"customers",
-										"show-orders",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "user",
 					"item": [
 						{
@@ -637,6 +324,319 @@
 				{
 					"name": "Restaurant",
 					"item": [
+						{
+							"name": "customer",
+							"item": [
+								{
+									"name": "create customer",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Hancie Phago",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "hancie25@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "4545454555",
+													"type": "text"
+												},
+												{
+													"key": "address",
+													"value": "KTM",
+													"type": "text"
+												},
+												{
+													"key": "vat_number",
+													"value": "45456",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/customers",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"customers"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all customers",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/customers?pagination_limit=4&company_id=1&search_keyword=Hancie Phago",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"customers"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "4"
+												},
+												{
+													"key": "company_id",
+													"value": "1"
+												},
+												{
+													"key": "search_keyword",
+													"value": "Hancie Phago"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete customer",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/customers/:customer_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"customers",
+												":customer_id"
+											],
+											"variable": [
+												{
+													"key": "customer_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update customer",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Hancie Phago",
+													"type": "text"
+												},
+												{
+													"key": "email",
+													"value": "hancie2@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "phone",
+													"value": "4545454555",
+													"type": "text"
+												},
+												{
+													"key": "address",
+													"value": "Jhapa",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/customers/:customer_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"customers",
+												":customer_id"
+											],
+											"variable": [
+												{
+													"key": "customer_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show single customer",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/customers/:customer_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"customers",
+												":customer_id"
+											],
+											"variable": [
+												{
+													"key": "customer_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show single customer data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/api/admin/customers/show-orders/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"api",
+												"admin",
+												"customers",
+												"show-orders",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
 						{
 							"name": "Restaurant payment options",
 							"item": [
@@ -2970,7 +2970,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"product_name\": \"Momo\",\n    \"product_category_id\": 2,\n    \"ingredient\": \"gffg\",\n    \"description\": \"fgfgfg\",\n    \"price\": 550,\n    \"quantity_reference\":\"Bottle\",\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ]\n}",
+											"raw": "{\n    \"product_name\": \"Momo\",\n    \"product_category_id\": 2,\n    \"ingredient\": \"gffg\",\n    \"description\": \"fgfgfg\",\n    \"price\": 550,\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3862,7 +3862,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"table_id\": 5,\n    \"customer_id\": 1,\n    \"pickup_user_id\": 1,\n    \"description\": \"ab cd ef gh\",\n    \"delivery_partner_id\": 2,\n    \"productDetails\": [\n        {\n            \"product_id\": 1,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"topping_details\": [\n                {\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                },\n                 {\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n            ]\n        },\n        \n        {\n            \"product_id\": 2,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"note\": \"My Note\",\n             \"topping_details\": [\n                {\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n                \n            ]\n        }\n    ]\n}",
+											"raw": "{\n    // \"table_id\": 5,\n    \"customer_id\": 1,\n    // \"pickup_user_id\": 1,\n    \"description\": \"ab cd ef gh\",\n    \"delivery_partner_id\": 2,\n    \"productDetails\": [\n        {\n            \"product_id\": 1,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"topping_details\": [\n                {\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                },\n                 {\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n            ]\n        },\n        \n        {\n            \"product_id\": 2,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"note\": \"My Note\",\n             \"topping_details\": [\n                {\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n                \n            ]\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3870,11 +3870,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/orders",
+											"raw": "{{url}}/api/admin/orders",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"orders"
 											]
@@ -5987,6 +5988,42 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "show delivery partner sales data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/delivery-partner-sales-data/3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"delivery-partner-sales-data",
+												"3"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -7505,6 +7542,66 @@
 												"api",
 												"admin",
 												"dashboard"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Delivery Partner Payment",
+							"item": [
+								{
+									"name": "store delivery partner payment",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "payment_option_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "paid_amount",
+													"value": "400",
+													"type": "text"
+												},
+												{
+													"key": "branch_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/delivery-partner-payment",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"delivery-partner-payment"
 											]
 										}
 									},
@@ -11482,7 +11579,7 @@
 					"name": "Company",
 					"item": [
 						{
-							"name": "get company detials",
+							"name": "get company details",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -11614,7 +11711,7 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "jedibe5032@shaflyn.com",
+											"value": "liboki3597@nimadir.com",
 											"type": "text"
 										},
 										{
@@ -11763,6 +11860,52 @@
 							"response": []
 						},
 						{
+							"name": "list user branches",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/admin/list-user-branches?paginate=1&page=1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"list-user-branches"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "user detail update",
 							"request": {
 								"auth": {
@@ -11791,16 +11934,25 @@
 											"type": "text"
 										},
 										{
-											"key": "image",
+											"key": "profile_image",
 											"type": "file",
-											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png",
-											"disabled": true
+											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png"
 										},
 										{
 											"key": "delete_image",
 											"value": "",
 											"type": "text",
 											"disabled": true
+										},
+										{
+											"key": "mobile_no",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "",
+											"type": "text"
 										}
 									]
 								},
@@ -11930,12 +12082,12 @@
 									"formdata": [
 										{
 											"key": "token",
-											"value": "tKkSUJY8hnsc9K9ZnnlaBCzJvaTCmAqa2KNjhYw9Tcz0X2V90SX6FfX2vQ17Ow6a3HlMjvPGVpawgBBMWewFSuYQdywarZm1rbunW018LvhZtSzHuGwMtrEtyI0I8KhF",
+											"value": "18qmUzzNc2NGQCpQBhKGmZGZvsVtIQEvQKDhUgs6HF59FI9soR3XT9DjMTMwd0G2Pzt6SHHJw7aH1MvRMWdOqeMXGvOIWp4mQz0pCwVO7aCRchsjwd7tqN8DnbwsxDfI",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "wiwige2912@glaslack.com",
+											"value": "liboki3597@nimadir.com",
 											"type": "text"
 										},
 										{
@@ -12201,7 +12353,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "superwaiter",
+											"value": "superwaiter10",
 											"type": "text"
 										}
 									]
@@ -12251,7 +12403,7 @@
 										},
 										{
 											"key": "name",
-											"value": "waiter2",
+											"value": "superadmin",
 											"type": "text"
 										}
 									]
@@ -12270,7 +12422,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "6"
+											"value": "7"
 										}
 									]
 								}
@@ -12737,7 +12889,7 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "5"
+											"value": "1"
 										}
 									]
 								}
@@ -12767,7 +12919,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"wiwige2912@glaslack.com\",\n    \"roles\" : [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n    4    \n    ]\n}",
+									"raw": "{\n    \"email\": \"liboki3597@nimadir.com\",\n    \"roles\": [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n    1    \n    ]\n    ,\n    \"is_resend\": null //true,false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -12789,7 +12941,7 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "5"
+											"value": "1"
 										}
 									]
 								}
@@ -14219,7 +14371,7 @@
 										},
 										{
 											"key": "password",
-											"value": "P@ssw0rd",
+											"value": "password",
 											"type": "text"
 										}
 									]
@@ -14391,16 +14543,25 @@
 											"type": "text"
 										},
 										{
-											"key": "image",
+											"key": "profile_image",
 											"type": "file",
-											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png",
-											"disabled": true
+											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png"
 										},
 										{
 											"key": "delete_image",
 											"value": "",
 											"type": "text",
 											"disabled": true
+										},
+										{
+											"key": "mobile_no",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "",
+											"type": "text"
 										}
 									]
 								},
@@ -14970,6 +15131,16 @@
 											"key": "status",
 											"value": "active",
 											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "",
+											"type": "text"
 										}
 									]
 								},
@@ -15060,6 +15231,16 @@
 										{
 											"key": "status",
 											"value": "active",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "",
 											"type": "text"
 										}
 									]
@@ -15596,7 +15777,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/superadmin/package?paginate=1&page=&limit=&search_keyword=&status=&is_trial=&is_recommended=&type=",
+									"raw": "{{url}}/api/superadmin/package?paginate=1&page=&limit=&search_keyword=&status=&is_trial=&is_recommended=",
 									"host": [
 										"{{url}}"
 									],
@@ -15640,7 +15821,8 @@
 										{
 											"key": "type",
 											"value": "",
-											"description": "|restaurant,hotel,event"
+											"description": "|restaurant,hotel,event",
+											"disabled": true
 										}
 									]
 								}
@@ -15888,37 +16070,37 @@
 									"formdata": [
 										{
 											"key": "business_name",
-											"value": "K King",
+											"value": "Company 2 Org",
 											"type": "text"
 										},
 										{
 											"key": "display_name",
-											"value": "K. King",
+											"value": "Company 2",
 											"type": "text"
 										},
 										{
 											"key": "address",
-											"value": "Purano Baneshwor, Kathmandu",
+											"value": "BaneshworM, Kathmandu",
 											"type": "text"
 										},
 										{
 											"key": "primary_email",
-											"value": "jedibe5032@shaflyn.com",
+											"value": "company2@company.com",
 											"type": "text"
 										},
 										{
 											"key": "primary_phone",
-											"value": "980678200",
+											"value": "9876543211",
 											"type": "text"
 										},
 										{
 											"key": "vat_number",
-											"value": "454545",
+											"value": "123456",
 											"type": "text"
 										},
 										{
 											"key": "registration_number",
-											"value": "54545",
+											"value": "123456",
 											"type": "text"
 										},
 										{
@@ -15929,7 +16111,7 @@
 										{
 											"key": "company_image",
 											"type": "file",
-											"src": "/home/bikash/Downloads/task 1edatt"
+											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png"
 										},
 										{
 											"key": "is_tax",
@@ -15938,13 +16120,14 @@
 										},
 										{
 											"key": "service_ids[]",
-											"value": "7",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "service_ids[]",
-											"value": "8",
-											"type": "text"
+											"value": "",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -16114,7 +16297,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "5"
+											"value": "2"
 										}
 									]
 								}
@@ -16346,7 +16529,7 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "5"
+											"value": "1"
 										}
 									]
 								}
@@ -16376,7 +16559,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"jedibe5032@shaflyn.com\"\n    // ,\n    // \"roles\" : [\n    //     \"view-company-dashboard\"\n    // ]\n}",
+									"raw": "{\n    \"email\": \"makogo3528@sentrau.com\",\n    \"is_resend\": null //true,false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -16398,7 +16581,7 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "5"
+											"value": "1"
 										}
 									]
 								}
@@ -16472,7 +16655,7 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "5"
+											"value": "1"
 										}
 									]
 								}
@@ -16525,430 +16708,6 @@
 										{
 											"key": "company_id",
 											"value": "5"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Branch",
-					"item": [
-						{
-							"name": "store",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "address",
-											"value": "Baneshwor, Kathmandu",
-											"type": "text"
-										},
-										{
-											"key": "primary_email",
-											"value": "akriti02@gmail.com",
-											"type": "text"
-										},
-										{
-											"key": "primary_phone",
-											"value": "980678204",
-											"type": "text"
-										},
-										{
-											"key": "vat_number",
-											"value": "454545",
-											"type": "text"
-										},
-										{
-											"key": "registration_number",
-											"value": "54545",
-											"type": "text"
-										},
-										{
-											"key": "start_date",
-											"value": "2020-10-10",
-											"type": "text"
-										},
-										{
-											"key": "bill_heading",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "bill_remarks",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "is_tax",
-											"value": "inactive",
-											"type": "text"
-										},
-										{
-											"key": "company_id",
-											"value": "5",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/branch",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"branch"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "_method",
-											"value": "patch",
-											"type": "text"
-										},
-										{
-											"key": "address",
-											"value": "Purano Baneshwor, Kathmandu",
-											"type": "text"
-										},
-										{
-											"key": "primary_email",
-											"value": "akriti02@gmail.com",
-											"type": "text"
-										},
-										{
-											"key": "primary_phone",
-											"value": "980678204",
-											"type": "text"
-										},
-										{
-											"key": "vat_number",
-											"value": "454545",
-											"type": "text"
-										},
-										{
-											"key": "registration_number",
-											"value": "54545",
-											"type": "text"
-										},
-										{
-											"key": "start_date",
-											"value": "2020-10-10",
-											"type": "text"
-										},
-										{
-											"key": "is_tax",
-											"value": "active",
-											"type": "text"
-										},
-										{
-											"key": "bill_heading",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "bill_remarks",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "is_tax",
-											"value": "inactive",
-											"type": "text"
-										},
-										{
-											"key": "company_id",
-											"value": "5",
-											"type": "text",
-											"disabled": true
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/branch/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"branch",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "4"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update status",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "status",
-											"value": "in_progress",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/branch/:id/update-status",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"branch",
-										":id",
-										"update-status"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/branch/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"branch",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "7"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "list",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/branch?paginate=&page=&limit=&search_keyword=&status=&company_id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"branch"
-									],
-									"query": [
-										{
-											"key": "paginate",
-											"value": ""
-										},
-										{
-											"key": "page",
-											"value": ""
-										},
-										{
-											"key": "limit",
-											"value": ""
-										},
-										{
-											"key": "search_keyword",
-											"value": ""
-										},
-										{
-											"key": "status",
-											"value": ""
-										},
-										{
-											"key": "company_id",
-											"value": null
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "show",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/api/superadmin/branch/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"branch",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "2"
 										}
 									]
 								}
