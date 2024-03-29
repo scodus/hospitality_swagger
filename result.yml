@@ -28,9 +28,9 @@ components:
       scheme: noauth
 tags:
   - name: Admin
-  - name: Admin > customer
   - name: Admin > user
   - name: Admin > Restaurant
+  - name: Admin > Restaurant > customer
   - name: Admin > Restaurant > Restaurant payment options
   - name: Admin > Restaurant > Restaurant Reports
   - name: Admin > Restaurant > Restaurant Cashier
@@ -59,6 +59,7 @@ tags:
   - name: Admin > Restaurant > Manager Session
   - name: Admin > Restaurant > Day Book
   - name: Admin > Restaurant > Restaurant Dashboard
+  - name: Admin > Restaurant > Delivery Partner Payment
   - name: Admin > Printers
   - name: Admin > roles
   - name: Admin > Human Resource
@@ -95,189 +96,11 @@ tags:
   - name: Superadmin > Package
   - name: Superadmin > Company New
   - name: Superadmin > Company New > Package Subscription
-  - name: Superadmin > Branch
   - name: Superadmin > Service
   - name: Superadmin > Bug
   - name: Superadmin > Bug Feedback
   - name: Superadmin > Site Setting
 paths:
-  /api/admin/customers:
-    post:
-      tags:
-        - Admin > customer
-      summary: create customer
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Hancie Phago
-                email:
-                  type: string
-                  example: hancie25@gmail.com
-                phone:
-                  type: integer
-                  example: '4545454555'
-                address:
-                  type: string
-                  example: KTM
-                vat_number:
-                  type: integer
-                  example: '45456'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > customer
-      summary: get all customers
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '4'
-        - name: company_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-          example: Hancie Phago
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/customers/{customer_id}:
-    delete:
-      tags:
-        - Admin > customer
-      summary: delete customer
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: customer_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    post:
-      tags:
-        - Admin > customer
-      summary: update customer
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Hancie Phago
-                email:
-                  type: string
-                  example: hancie2@gmail.com
-                phone:
-                  type: integer
-                  example: '4545454555'
-                address:
-                  type: string
-                  example: Jhapa
-                _method:
-                  type: string
-                  example: put
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: customer_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > customer
-      summary: show single customer
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: customer_id
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/api/admin/customers/show-orders/1:
-    get:
-      tags:
-        - Admin > customer
-      summary: show single customer data
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/admin/users:
     post:
       tags:
@@ -445,6 +268,183 @@ paths:
                 password_confirmation:
                   type: string
                   example: password
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customers:
+    post:
+      tags:
+        - Admin > Restaurant > customer
+      summary: create customer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hancie25@gmail.com
+                phone:
+                  type: integer
+                  example: '4545454555'
+                address:
+                  type: string
+                  example: KTM
+                vat_number:
+                  type: integer
+                  example: '45456'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > customer
+      summary: get all customers
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '4'
+        - name: company_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: Hancie Phago
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customers/{customer_id}:
+    delete:
+      tags:
+        - Admin > Restaurant > customer
+      summary: delete customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Restaurant > customer
+      summary: update customer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hancie2@gmail.com
+                phone:
+                  type: integer
+                  example: '4545454555'
+                address:
+                  type: string
+                  example: Jhapa
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > customer
+      summary: show single customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/api/admin/customers/show-orders/1:
+    get:
+      tags:
+        - Admin > Restaurant > customer
+      summary: show single customer data
       security:
         - bearerAuth: []
       parameters:
@@ -1886,7 +1886,6 @@ paths:
                 ingredient: gffg
                 description: fgfgfg
                 price: 550
-                quantity_reference: Bottle
                 has_inventory_tracking:
                   - inventory_product_id: 1
                     unit_name: Bottle
@@ -2506,7 +2505,7 @@ paths:
                   created_at: '2024-02-01T06:56:36.000000Z'
                   updated_at: '2024-02-01T06:56:36.000000Z'
                 message: Item removed successfully!
-  /admin/orders:
+  /api/admin/orders:
     post:
       tags:
         - Admin > Restaurant > Restaurant Order
@@ -2517,9 +2516,7 @@ paths:
             schema:
               type: object
               example:
-                table_id: 5
                 customer_id: 1
-                pickup_user_id: 1
                 description: ab cd ef gh
                 delivery_partner_id: 2
                 productDetails:
@@ -2549,28 +2546,6 @@ paths:
           schema:
             type: string
           example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Order
-      summary: get all order list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '20'
       responses:
         '200':
           description: Successful response
@@ -2628,6 +2603,29 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/orders:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Order
+      summary: get all order list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
       responses:
         '200':
           description: Successful response
@@ -3962,6 +3960,24 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/delivery-partner-sales-data/3:
+    get:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: show delivery partner sales data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/self-delivery-user:
     post:
       tags:
@@ -4938,6 +4954,39 @@ paths:
       tags:
         - Admin > Restaurant > Restaurant Dashboard
       summary: show all dashboard data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/delivery-partner-payment:
+    post:
+      tags:
+        - Admin > Restaurant > Delivery Partner Payment
+      summary: store delivery partner payment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                payment_option_id:
+                  type: integer
+                  example: '1'
+                paid_amount:
+                  type: integer
+                  example: '400'
+                branch_id:
+                  type: integer
+                  example: '1'
       security:
         - bearerAuth: []
       parameters:
@@ -7653,7 +7702,7 @@ paths:
     get:
       tags:
         - Admin > Company
-      summary: get company detials
+      summary: get company details
       security:
         - bearerAuth: []
       parameters:
@@ -7734,7 +7783,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: jedibe5032@shaflyn.com
+                  example: liboki3597@nimadir.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -7799,6 +7848,34 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/list-user-branches:
+    get:
+      tags:
+        - Admin > Authentication
+      summary: list user branches
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/update-user-detail:
     post:
       tags:
@@ -7816,10 +7893,14 @@ paths:
                 name:
                   type: string
                   example: Super admin
-                image:
+                profile_image:
                   type: string
                   format: binary
                 delete_image:
+                  type: string
+                mobile_no:
+                  type: string
+                location:
                   type: string
       security:
         - bearerAuth: []
@@ -7890,10 +7971,10 @@ paths:
                 token:
                   type: string
                   example: >-
-                    tKkSUJY8hnsc9K9ZnnlaBCzJvaTCmAqa2KNjhYw9Tcz0X2V90SX6FfX2vQ17Ow6a3HlMjvPGVpawgBBMWewFSuYQdywarZm1rbunW018LvhZtSzHuGwMtrEtyI0I8KhF
+                    18qmUzzNc2NGQCpQBhKGmZGZvsVtIQEvQKDhUgs6HF59FI9soR3XT9DjMTMwd0G2Pzt6SHHJw7aH1MvRMWdOqeMXGvOIWp4mQz0pCwVO7aCRchsjwd7tqN8DnbwsxDfI
                 email:
                   type: string
-                  example: wiwige2912@glaslack.com
+                  example: liboki3597@nimadir.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -8053,7 +8134,7 @@ paths:
               properties:
                 name:
                   type: string
-                  example: superwaiter
+                  example: superwaiter10
       security:
         - bearerAuth: []
       parameters:
@@ -8116,7 +8197,7 @@ paths:
                   example: patch
                 name:
                   type: string
-                  example: waiter2
+                  example: superadmin
       security:
         - bearerAuth: []
       parameters:
@@ -8130,7 +8211,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '6'
+          example: '7'
       responses:
         '200':
           description: Successful response
@@ -8421,7 +8502,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -8438,11 +8519,12 @@ paths:
             schema:
               type: object
               example:
-                email: wiwige2912@glaslack.com
+                email: liboki3597@nimadir.com
                 roles:
                   - manager
                 branch_ids:
-                  - 4
+                  - 1
+                is_resend: null
       security:
         - bearerAuth: []
       parameters:
@@ -8456,7 +8538,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -9224,7 +9306,7 @@ paths:
                   example: superadmin@gmail.com
                 password:
                   type: string
-                  example: P@ssw0rd
+                  example: password
       responses:
         '200':
           description: Successful response
@@ -9303,10 +9385,14 @@ paths:
                 name:
                   type: string
                   example: Super admin
-                image:
+                profile_image:
                   type: string
                   format: binary
                 delete_image:
+                  type: string
+                mobile_no:
+                  type: string
+                location:
                   type: string
       security:
         - bearerAuth: []
@@ -9545,6 +9631,10 @@ paths:
                 status:
                   type: string
                   example: active
+                mobile_no:
+                  type: string
+                location:
+                  type: string
       security:
         - bearerAuth: []
       parameters:
@@ -9642,6 +9732,10 @@ paths:
                 status:
                   type: string
                   example: active
+                mobile_no:
+                  type: string
+                location:
+                  type: string
       security:
         - bearerAuth: []
       parameters:
@@ -9872,11 +9966,6 @@ paths:
           schema:
             type: string
           description: true|false
-        - name: type
-          in: query
-          schema:
-            type: string
-          description: '|restaurant,hotel,event'
       responses:
         '200':
           description: Successful response
@@ -10130,25 +10219,25 @@ paths:
               properties:
                 business_name:
                   type: string
-                  example: K King
+                  example: Company 2 Org
                 display_name:
                   type: string
-                  example: K. King
+                  example: Company 2
                 address:
                   type: string
-                  example: Purano Baneshwor, Kathmandu
+                  example: BaneshworM, Kathmandu
                 primary_email:
                   type: string
-                  example: jedibe5032@shaflyn.com
+                  example: company2@company.com
                 primary_phone:
                   type: integer
-                  example: '980678200'
+                  example: '9876543211'
                 vat_number:
                   type: integer
-                  example: '454545'
+                  example: '123456'
                 registration_number:
                   type: integer
-                  example: '54545'
+                  example: '123456'
                 start_date:
                   type: string
                   example: '2020-10-10'
@@ -10159,8 +10248,7 @@ paths:
                   type: string
                   example: active
                 service_ids[]:
-                  type: integer
-                  example: '8'
+                  type: string
       security:
         - bearerAuth: []
       parameters:
@@ -10340,7 +10428,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '2'
       responses:
         '200':
           description: Successful response
@@ -10383,7 +10471,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -10400,7 +10488,8 @@ paths:
             schema:
               type: object
               example:
-                email: jedibe5032@shaflyn.com
+                email: makogo3528@sentrau.com
+                is_resend: null
       security:
         - bearerAuth: []
       parameters:
@@ -10414,7 +10503,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -10457,7 +10546,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -10489,239 +10578,6 @@ paths:
             type: integer
           required: true
           example: '5'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/branch:
-    post:
-      tags:
-        - Superadmin > Branch
-      summary: store
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                address:
-                  type: string
-                  example: Baneshwor, Kathmandu
-                primary_email:
-                  type: string
-                  example: akriti02@gmail.com
-                primary_phone:
-                  type: integer
-                  example: '980678204'
-                vat_number:
-                  type: integer
-                  example: '454545'
-                registration_number:
-                  type: integer
-                  example: '54545'
-                start_date:
-                  type: string
-                  example: '2020-10-10'
-                bill_heading:
-                  type: string
-                bill_remarks:
-                  type: string
-                is_tax:
-                  type: string
-                  example: inactive
-                company_id:
-                  type: integer
-                  example: '5'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Superadmin > Branch
-      summary: list
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: paginate
-          in: query
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: string
-        - name: limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-        - name: status
-          in: query
-          schema:
-            type: string
-        - name: company_id
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/branch/{id}:
-    post:
-      tags:
-        - Superadmin > Branch
-      summary: update
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                _method:
-                  type: string
-                  example: patch
-                address:
-                  type: string
-                  example: Purano Baneshwor, Kathmandu
-                primary_email:
-                  type: string
-                  example: akriti02@gmail.com
-                primary_phone:
-                  type: integer
-                  example: '980678204'
-                vat_number:
-                  type: integer
-                  example: '454545'
-                registration_number:
-                  type: integer
-                  example: '54545'
-                start_date:
-                  type: string
-                  example: '2020-10-10'
-                is_tax:
-                  type: string
-                  example: inactive
-                bill_heading:
-                  type: string
-                bill_remarks:
-                  type: string
-                company_id:
-                  type: integer
-                  example: '5'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '4'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - Superadmin > Branch
-      summary: delete
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '7'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Superadmin > Branch
-      summary: show
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '2'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/branch/{id}/update-status:
-    post:
-      tags:
-        - Superadmin > Branch
-      summary: update status
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  example: in_progress
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '2'
       responses:
         '200':
           description: Successful response
