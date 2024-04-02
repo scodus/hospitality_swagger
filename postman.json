@@ -12563,13 +12563,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/superadmin/role/:id",
+									"raw": "{{url}}/api/admin/role/:id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"superadmin",
+										"admin",
 										"role",
 										":id"
 									],
