@@ -61,7 +61,7 @@ tags:
   - name: Admin > Restaurant > Restaurant Dashboard
   - name: Admin > Restaurant > Delivery Partner Payment
   - name: Admin > Printers
-  - name: Admin > roles
+  - name: Admin > roles OLD
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
   - name: Admin > Human Resource > positions
@@ -76,11 +76,11 @@ tags:
   - name: Admin > Inventory > Unit of Measurement
   - name: Admin > Inventory > Inventory Products
   - name: Admin > Inventory > Inventory Adjustment
-  - name: Admin > Company
+  - name: Admin > Company OLD
   - name: Admin > Authentication
   - name: Admin > Permission
   - name: Admin > Role
-  - name: Admin > Company New
+  - name: Admin > Company
   - name: Admin > Branch
   - name: Public
   - name: Public > auth
@@ -94,8 +94,8 @@ tags:
   - name: Superadmin > User
   - name: Superadmin > Dashboard
   - name: Superadmin > Package
-  - name: Superadmin > Company New
-  - name: Superadmin > Company New > Package Subscription
+  - name: Superadmin > Company
+  - name: Superadmin > Company > Package Subscription
   - name: Superadmin > Service
   - name: Superadmin > Bug
   - name: Superadmin > Bug Feedback
@@ -297,10 +297,10 @@ paths:
                   example: Hancie Phago
                 email:
                   type: string
-                  example: hancie25@gmail.com
+                  example: hanciephago25@gmail.com
                 phone:
                   type: integer
-                  example: '4545454555'
+                  example: '454545455'
                 address:
                   type: string
                   example: KTM
@@ -315,6 +315,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -2054,7 +2059,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/product-category:
+  /api/admin/product-category:
     post:
       tags:
         - Admin > Restaurant > Restaurant product category
@@ -2088,11 +2093,17 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch_id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
+  /admin/product-category:
     get:
       tags:
         - Admin > Restaurant > Restaurant product category
@@ -2524,18 +2535,7 @@ paths:
                     price: 100
                     quantity: 5
                     topping_details:
-                      - topping_product_id: 3
-                        topping_quantity: 50
-                        topping_price: 110
-                      - topping_product_id: 3
-                        topping_quantity: 50
-                        topping_price: 110
-                  - product_id: 2
-                    price: 100
-                    quantity: 5
-                    note: My Note
-                    topping_details:
-                      - topping_product_id: 3
+                      - topping_product_id: 2
                         topping_quantity: 50
                         topping_price: 110
       security:
@@ -3576,7 +3576,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/tables/ask-bill/print:
+  /api/admin/tables/ask-bill/print:
     post:
       tags:
         - Admin > Restaurant > Ask Bill
@@ -5074,7 +5074,7 @@ paths:
   /admin/roles:
     post:
       tags:
-        - Admin > roles
+        - Admin > roles OLD
       summary: create roles
       requestBody:
         content:
@@ -5100,7 +5100,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > roles
+        - Admin > roles OLD
       summary: get all roles
       security:
         - bearerAuth: []
@@ -5122,7 +5122,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Admin > roles
+        - Admin > roles OLD
       summary: remove role
       security:
         - bearerAuth: []
@@ -7701,7 +7701,7 @@ paths:
   /admin/company-details:
     get:
       tags:
-        - Admin > Company
+        - Admin > Company OLD
       summary: get company details
       security:
         - bearerAuth: []
@@ -7783,7 +7783,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: liboki3597@nimadir.com
+                  example: hanciewanemphago@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -8097,6 +8097,16 @@ paths:
           in: query
           schema:
             type: string
+        - name: show_in
+          in: query
+          schema:
+            type: string
+          description: superadmin_panel|admin_panel
+          example: admin_panel
+        - name: category
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
@@ -8165,7 +8175,7 @@ paths:
           in: query
           schema:
             type: integer
-          example: '5'
+          example: '10'
         - name: page
           in: query
           schema:
@@ -8358,7 +8368,7 @@ paths:
   /api/admin/company/{id}:
     post:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: update
       requestBody:
         content:
@@ -8421,7 +8431,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: delete
       security:
         - bearerAuth: []
@@ -8444,7 +8454,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: show
       security:
         - bearerAuth: []
@@ -8468,7 +8478,7 @@ paths:
   /api/admin/company/{company_id}/user:
     get:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: company users
       security:
         - bearerAuth: []
@@ -8511,7 +8521,7 @@ paths:
   /api/admin/company/{company_id}/assign-update-user:
     post:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: assign or update user
       requestBody:
         content:
@@ -8547,7 +8557,7 @@ paths:
   /api/admin/company/{company_id}/user/invitations:
     get:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: list company user invitations
       security:
         - bearerAuth: []
@@ -8590,7 +8600,7 @@ paths:
   /api/admin/company/{company_id}/unassign-user:
     post:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: unassign user
       requestBody:
         content:
@@ -8621,7 +8631,7 @@ paths:
   /api/admin/company/{company_id}/user-data-update:
     post:
       tags:
-        - Admin > Company New
+        - Admin > Company
       summary: user data update
       requestBody:
         content:
@@ -9476,6 +9486,16 @@ paths:
           in: query
           schema:
             type: string
+        - name: show_in
+          in: query
+          schema:
+            type: string
+          description: superadmin_panel|admin_panel
+          example: superadmin_panel
+        - name: category
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
@@ -10100,7 +10120,7 @@ paths:
   /api/superadmin/company/{id}/subscribe-package:
     post:
       tags:
-        - Superadmin > Company New > Package Subscription
+        - Superadmin > Company > Package Subscription
       summary: subscribe package
       requestBody:
         content:
@@ -10139,7 +10159,7 @@ paths:
   /api/superadmin/company/{id}/modify-package:
     post:
       tags:
-        - Superadmin > Company New > Package Subscription
+        - Superadmin > Company > Package Subscription
       summary: modify package
       requestBody:
         content:
@@ -10178,7 +10198,7 @@ paths:
   /api/superadmin/company/{id}/unsubscribe-package:
     post:
       tags:
-        - Superadmin > Company New > Package Subscription
+        - Superadmin > Company > Package Subscription
       summary: unsubscribe package
       requestBody:
         content:
@@ -10209,7 +10229,7 @@ paths:
   /api/superadmin/company:
     post:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: store
       requestBody:
         content:
@@ -10264,7 +10284,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: list
       security:
         - bearerAuth: []
@@ -10299,7 +10319,7 @@ paths:
   /api/superadmin/company/{id}:
     post:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: update
       requestBody:
         content:
@@ -10359,7 +10379,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: delete
       security:
         - bearerAuth: []
@@ -10382,7 +10402,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: show
       security:
         - bearerAuth: []
@@ -10406,7 +10426,7 @@ paths:
   /api/superadmin/company/{id}/update-status:
     post:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: update status
       requestBody:
         content:
@@ -10437,7 +10457,7 @@ paths:
   /api/superadmin/company/{company_id}/owner:
     get:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: company owner
       security:
         - bearerAuth: []
@@ -10480,7 +10500,7 @@ paths:
   /api/superadmin/company/{company_id}/assign-update-owner:
     post:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: assign or update owner
       requestBody:
         content:
@@ -10512,7 +10532,7 @@ paths:
   /api/superadmin/company/{company_id}/owner/invitations:
     get:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: list company owner invitations
       security:
         - bearerAuth: []
@@ -10555,7 +10575,7 @@ paths:
   /api/superadmin/company/{company_id}/unassign-owner:
     post:
       tags:
-        - Superadmin > Company New
+        - Superadmin > Company
       summary: unassign owner
       requestBody:
         content:
