@@ -18,11 +18,10 @@
             "backgroundColor": "#FFFFFF",
             "altText": "logo"
         }
-        
     },
     "servers": [
         {
-            "url": "https://hospitality-api.nrnaglobal.com/",
+            "url": "https://hospitality-api.scoduscorp.com",
             "description": "server"
         }
     ]

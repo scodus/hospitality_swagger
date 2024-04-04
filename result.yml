@@ -16,7 +16,7 @@ info:
     name: MIT
     url: https://es.wikipedia.org/wiki/Licencia_MIT
 servers:
-  - url: https://hospitality-api.nrnaglobal.com/
+  - url: https://hospitality-api.scoduscorp.com
     description: server
 components:
   securitySchemes:
@@ -28,6 +28,10 @@ components:
       scheme: noauth
 tags:
   - name: Admin
+<<<<<<< HEAD
+=======
+  - name: Admin > user
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   - name: Admin > Restaurant
   - name: Admin > Restaurant > customer
   - name: Admin > Restaurant > Restaurant payment options
@@ -59,8 +63,13 @@ tags:
   - name: Admin > Restaurant > Day Book
   - name: Admin > Restaurant > Restaurant Dashboard
   - name: Admin > Restaurant > Delivery Partner Payment
+<<<<<<< HEAD
   - name: Admin > Restaurant > QR Payment Image
   - name: Admin > Printers
+=======
+  - name: Admin > Printers
+  - name: Admin > roles OLD
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
   - name: Admin > Human Resource > positions
@@ -75,8 +84,11 @@ tags:
   - name: Admin > Inventory > Unit of Measurement
   - name: Admin > Inventory > Inventory Products
   - name: Admin > Inventory > Inventory Adjustment
+<<<<<<< HEAD
   - name: Admin > user
   - name: Admin > roles OLD
+=======
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   - name: Admin > Company OLD
   - name: Admin > Authentication
   - name: Admin > Permission
@@ -87,8 +99,13 @@ tags:
   - name: Public > auth
   - name: Superadmin
   - name: Superadmin > company old
+<<<<<<< HEAD
   - name: Superadmin > business service old
   - name: Superadmin > business admin old
+=======
+  - name: Superadmin > business service
+  - name: Superadmin > business admin
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   - name: Superadmin > Authentication
   - name: Superadmin > Permission
   - name: Superadmin > Role
@@ -102,6 +119,189 @@ tags:
   - name: Superadmin > Bug Feedback
   - name: Superadmin > Site Setting
 paths:
+<<<<<<< HEAD
+=======
+  /api/admin/users:
+    post:
+      tags:
+        - Admin > user
+      summary: create user account
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Bishal Gurung
+                email:
+                  type: string
+                  example: grgbishal360@gmail.com
+                company_id:
+                  type: integer
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > user
+      summary: get all users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          example: Hancie
+        - name: role
+          in: query
+          schema:
+            type: string
+          example: Waiter
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/users/{user_id}:
+    post:
+      tags:
+        - Admin > user
+      summary: update user data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Nitesh Hamal
+                email:
+                  type: string
+                  example: nitesh0hamal@gmail.com
+                _method:
+                  type: string
+                  example: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > user
+      summary: delete user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > user
+      summary: show single user data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/users/change-password:
+    post:
+      tags:
+        - Admin > user
+      summary: change user password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: integer
+                  example: '12656566'
+                password:
+                  type: string
+                  example: password
+                password_confirmation:
+                  type: string
+                  example: password
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   /api/admin/customers:
     post:
       tags:
@@ -4826,6 +5026,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
+<<<<<<< HEAD
   /api/admin/qr-payment:
     post:
       tags:
@@ -4939,6 +5140,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+=======
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   /admin/printers:
     post:
       tags:
@@ -5010,6 +5213,75 @@ paths:
           description: Successful response
           content:
             application/json: {}
+<<<<<<< HEAD
+=======
+  /admin/roles:
+    post:
+      tags:
+        - Admin > roles OLD
+      summary: create roles
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                role_name:
+                  type: string
+                  example: cashier
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > roles OLD
+      summary: get all roles
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > roles OLD
+      summary: remove role
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   /admin/departments:
     post:
       tags:
@@ -7571,6 +7843,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
+<<<<<<< HEAD
   /api/admin/users:
     post:
       tags:
@@ -7817,6 +8090,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+=======
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
   /admin/company-details:
     get:
       tags:
@@ -7902,7 +8177,11 @@ paths:
               properties:
                 email:
                   type: string
+<<<<<<< HEAD
                   example: makogo3528@sentrau.com
+=======
+                  example: hanciewanemphago@gmail.com
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
                 password:
                   type: string
                   example: P@ssw0rd
@@ -8701,7 +8980,11 @@ paths:
               example:
                 user_id: 10
                 roles:
+<<<<<<< HEAD
                   - admin
+=======
+                  - view-accountingfirm-dashboard
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
                 branch_ids:
                   - 1
                   - 2
@@ -9536,7 +9819,11 @@ paths:
           in: query
           schema:
             type: integer
+<<<<<<< HEAD
           example: '100'
+=======
+          example: '5'
+>>>>>>> 4218d6ce69e60a8e277908ca9ee391d3799398f2
         - name: page
           in: query
           schema:
