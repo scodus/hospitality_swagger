@@ -3,8 +3,8 @@
 		"_postman_id": "e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb",
 		"name": "Hospitality Management",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30047466",
-		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30047466"
+		"_exporter_id": "30036842",
+		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30036842"
 	},
 	"item": [
 		{
@@ -1956,7 +1956,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":2,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":400, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n// \"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":2,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":400, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1964,11 +1964,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/order-payments",
+											"raw": "{{url}}/api/admin/order-payments",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"order-payments"
 											]
@@ -2895,6 +2896,68 @@
 													"key": "slug",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update show menu item status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "product_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "show_menu_item",
+													"value": "inactive",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/product/1/update-show_menu_status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"product",
+												"1",
+												"update-show_menu_status"
 											]
 										}
 									},
@@ -4059,17 +4122,18 @@
 											"formdata": [
 												{
 													"key": "order_id",
-													"value": "11",
+													"value": "21",
 													"type": "text"
 												}
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/cancel-order",
+											"raw": "{{url}}/api/admin/cancel-order",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"cancel-order"
 											]
@@ -4101,6 +4165,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -4108,7 +4177,7 @@
 											"formdata": [
 												{
 													"key": "floor_name",
-													"value": "F58",
+													"value": "First Floor4",
 													"type": "text"
 												},
 												{
@@ -4125,15 +4194,21 @@
 													"key": "table_numbers[]",
 													"value": "T2",
 													"type": "text"
+												},
+												{
+													"key": "floor_order_number",
+													"value": "12",
+													"type": "text"
 												}
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/floors",
+											"raw": "{{url}}/api/admin/floors",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"floors"
 											]
@@ -4160,6 +4235,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -4167,7 +4247,7 @@
 											"formdata": [
 												{
 													"key": "floor_name",
-													"value": "Floor 4",
+													"value": "Floor 45",
 													"type": "text"
 												},
 												{
@@ -4191,6 +4271,11 @@
 													"type": "text"
 												},
 												{
+													"key": "floor_order_number",
+													"value": "4",
+													"type": "text"
+												},
+												{
 													"key": "_method",
 													"value": "put",
 													"type": "text"
@@ -4198,11 +4283,12 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/floors/:floor_id",
+											"raw": "{{url}}/api/admin/floors/:floor_id",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"floors",
 												":floor_id"
@@ -4236,14 +4322,20 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/floors",
+											"raw": "{{url}}/api/admin/floors",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"floors"
 											]
@@ -4271,6 +4363,47 @@
 													"key": "floor_id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all floors with table for pos",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/pos/floors",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"pos",
+												"floors"
 											]
 										}
 									},
@@ -4336,7 +4469,7 @@
 									"response": []
 								},
 								{
-									"name": "get all company details",
+									"name": "get all tables",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -4354,14 +4487,20 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/tables?pagination_limit=5",
+											"raw": "{{url}}/api/admin/tables?pagination_limit=5",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"tables"
 											],
@@ -4477,6 +4616,68 @@
 													"key": "table_id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update show table status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "table_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "show_table",
+													"value": "inactive",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/table/update/show-table-status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"table",
+												"update",
+												"show-table-status"
 											]
 										}
 									},
@@ -5301,15 +5502,21 @@
 													"key": "delivery_partner",
 													"value": "Pathao",
 													"type": "text"
+												},
+												{
+													"key": "commission_percent",
+													"value": "5",
+													"type": "text"
 												}
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/delivery-partner",
+											"raw": "{{url}}/api/admin/delivery-partner",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"delivery-partner"
 											]
@@ -5336,16 +5543,28 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/delivery-partner",
+											"raw": "{{url}}/api/admin/delivery-partner?show_delivery_partner=active",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"delivery-partner"
+											],
+											"query": [
+												{
+													"key": "show_delivery_partner",
+													"value": "active"
+												}
 											]
 										}
 									},
@@ -5732,6 +5951,68 @@
 												"admin",
 												"delivery-partner-sales-data",
 												"3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update delivery partner status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "delivery_partner_id",
+													"value": "2",
+													"type": "text"
+												},
+												{
+													"key": "show_delivery_partner",
+													"value": "false",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "PUT",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/delivery-partner/update/status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"delivery-partner",
+												"update",
+												"status"
 											]
 										}
 									},
@@ -10451,11 +10732,12 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/unit-measurements",
+											"raw": "{{url}}/api/admin/unit-measurements",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"unit-measurements"
 											]
@@ -10914,17 +11196,28 @@
 												},
 												{
 													"key": "measurement_unit_id",
-													"value": "44",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "volume",
+													"value": "5",
+													"type": "text"
+												},
+												{
+													"key": "volume_unit",
+													"value": "5",
 													"type": "text"
 												}
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/inventory-products",
+											"raw": "{{url}}/api/admin/inventory-products",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"inventory-products"
 											]
@@ -11045,11 +11338,12 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/inventory-products?pagination_limit=5&search_keyword=momo",
+											"raw": "{{url}}/api/admin/inventory-products?pagination_limit=5&search_keyword=momo",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"inventory-products"
 											],
@@ -12874,6 +13168,439 @@
 				{
 					"name": "Company",
 					"item": [
+						{
+							"name": "Company Payment Option",
+							"item": [
+								{
+									"name": "company payment option update or create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_options\": [\n        {\n            \"payment_option_id\": 1,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        },\n        {\n            \"payment_option_id\": 2,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "company payment option create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_options\": [\n        {\n            \"payment_option_id\": 1,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        },\n        {\n            \"payment_option_id\": 2,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "company payment option update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_options\": [\n        {\n            \"payment_option_id\": 1,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        },\n        {\n            \"payment_option_id\": 2,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "company payment option update status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payment_options\": [\n        {\n            \"payment_option_id\": 1,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        },\n        {\n            \"payment_option_id\": 2,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "company payment option list",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "company payment option list show",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "company payment option list show delete",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "company payment option list show delete Copy",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
 						{
 							"name": "update",
 							"request": {
@@ -17087,6 +17814,369 @@
 										{
 											"key": "id",
 											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment Option",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "payment_name",
+											"value": "esewa",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										},
+										{
+											"key": "is_cash",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "payment_image",
+											"type": "file",
+											"src": "/home/bikash/Downloads/khalti-logo.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/payment-option",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"payment-option"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "payment_name",
+											"value": "Khalti",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										},
+										{
+											"key": "is_cash",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "payment_image",
+											"type": "file",
+											"src": "/home/bikash/Downloads/9-2-free-free-download-png.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/payment-option/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"payment-option",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "inactive",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/payment-option/:id/update-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"payment-option",
+										":id",
+										"update-status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/payment-option/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"payment-option",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/payment-option?paginate=&page=&limit=&search_keyword=&status=&is_cash",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"payment-option"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": ""
+										},
+										{
+											"key": "page",
+											"value": ""
+										},
+										{
+											"key": "limit",
+											"value": ""
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": ""
+										},
+										{
+											"key": "is_cash",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/payment-option/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"payment-option",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
 										}
 									]
 								}
