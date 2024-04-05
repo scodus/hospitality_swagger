@@ -84,6 +84,7 @@ tags:
   - name: Admin > Company
   - name: Admin > Company > Company Payment Option
   - name: Admin > Branch
+  - name: Admin > Payment Option
   - name: Public
   - name: Public > auth
   - name: Superadmin
@@ -1882,7 +1883,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/product/1/update-show_menu_status:
+  /api/admin/product/update-show-menu-status:
     post:
       tags:
         - Admin > Restaurant > Restaurant products
@@ -8634,10 +8635,33 @@ paths:
           content:
             application/json: {}
   /api/admin/company/{id}/payment-option:
+    get:
+      tags:
+        - Admin > Company > Company Payment Option
+      summary: company payment option list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
     post:
       tags:
         - Admin > Company > Company Payment Option
-      summary: company payment option update status
+      summary: company payment option update or create
       requestBody:
         content:
           application/json:
@@ -8667,28 +8691,6 @@ paths:
             type: integer
           required: true
           example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - Admin > Company > Company Payment Option
-      summary: company payment option list show delete Copy
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
@@ -9224,6 +9226,75 @@ paths:
             type: integer
           required: true
           example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/payment-option:
+    get:
+      tags:
+        - Admin > Payment Option
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: is_cash
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/payment-option/{id}:
+    get:
+      tags:
+        - Admin > Payment Option
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
       responses:
         '200':
           description: Successful response
