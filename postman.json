@@ -13226,6 +13226,66 @@
 									"response": []
 								},
 								{
+									"name": "company payment option show",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"_method\": \"PUT\",\n    \"payment_option_id\": 2,\n    \"status\": \"inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/company/:id/payment-option/:payment_option_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"company",
+												":id",
+												"payment-option",
+												":payment_option_id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												},
+												{
+													"key": "payment_option_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "company payment option create",
 									"request": {
 										"auth": {
@@ -13352,7 +13412,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"_method\": \"PUT\",\n    \"payment_option_id\": 1,\n    \"status\": \"active\"\n}",
+											"raw": "{\n    \"_method\": \"PUT\",\n    \"payment_option_id\": 2,\n    \"status\": \"inactive\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -13360,7 +13420,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"raw": "{{url}}/api/admin/company/:id/payment-option/update-status",
 											"host": [
 												"{{url}}"
 											],
@@ -13369,7 +13429,8 @@
 												"admin",
 												"company",
 												":id",
-												"payment-option"
+												"payment-option",
+												"update-status"
 											],
 											"variable": [
 												{
@@ -13382,7 +13443,7 @@
 									"response": []
 								},
 								{
-									"name": "company payment option update or create",
+									"name": "company payment option update or create DONT USE",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -15620,92 +15681,16 @@
 						{
 							"name": "list",
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/superadmin/permission?paginate=1&limit=100&page=1&search_keyword=&show_in=superadmin_panel&category=",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"permission"
-									],
-									"query": [
-										{
-											"key": "paginate",
-											"value": "1"
-										},
-										{
-											"key": "limit",
-											"value": "100"
-										},
-										{
-											"key": "page",
-											"value": "1"
-										},
-										{
-											"key": "search_keyword",
-											"value": ""
-										},
-										{
-											"key": "show_in",
-											"value": "superadmin_panel",
-											"description": "superadmin_panel|admin_panel"
-										},
-										{
-											"key": "category",
-											"value": ""
-										}
-									]
-								}
+								"header": []
 							},
 							"response": []
 						},
 						{
 							"name": "show",
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/superadmin/permission/:id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"superadmin",
-										"permission",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "1"
-										}
-									]
-								}
+								"header": []
 							},
 							"response": []
 						}
