@@ -13208,7 +13208,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"raw": "{{url}}/api/admin/company/:id/payment-option?paginate=1&page=1&limit=10&status=",
 											"host": [
 												"{{url}}"
 											],
@@ -13218,6 +13218,25 @@
 												"company",
 												":id",
 												"payment-option"
+											],
+											"query": [
+												{
+													"key": "paginate",
+													"value": "1"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "status",
+													"value": "",
+													"description": "active|inactive"
+												}
 											],
 											"variable": [
 												{
@@ -17826,7 +17845,7 @@
 									"formdata": [
 										{
 											"key": "payment_name",
-											"value": "esewa",
+											"value": "cash1",
 											"type": "text"
 										},
 										{
@@ -17836,7 +17855,7 @@
 										},
 										{
 											"key": "is_cash",
-											"value": "",
+											"value": "true",
 											"type": "text"
 										},
 										{
@@ -17891,7 +17910,7 @@
 										},
 										{
 											"key": "payment_name",
-											"value": "Khalti",
+											"value": "Khalti1",
 											"type": "text"
 										},
 										{
@@ -17901,7 +17920,7 @@
 										},
 										{
 											"key": "is_cash",
-											"value": "",
+											"value": "false",
 											"type": "text"
 										},
 										{
@@ -17925,7 +17944,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "18"
 										}
 									]
 								}
@@ -18070,7 +18089,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/superadmin/payment-option?paginate=&page=&limit=&search_keyword=&status=&is_cash",
+									"raw": "{{url}}/api/superadmin/payment-option?paginate=1&page=1&limit=10&search_keyword=&status=&is_cash",
 									"host": [
 										"{{url}}"
 									],
@@ -18082,15 +18101,15 @@
 									"query": [
 										{
 											"key": "paginate",
-											"value": ""
+											"value": "1"
 										},
 										{
 											"key": "page",
-											"value": ""
+											"value": "1"
 										},
 										{
 											"key": "limit",
-											"value": ""
+											"value": "10"
 										},
 										{
 											"key": "search_keyword",

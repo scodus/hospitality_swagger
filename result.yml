@@ -8652,6 +8652,26 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: active|inactive
         - name: id
           in: path
           schema:
@@ -11250,12 +11270,13 @@ paths:
               properties:
                 payment_name:
                   type: string
-                  example: esewa
+                  example: cash1
                 status:
                   type: string
                   example: active
                 is_cash:
-                  type: string
+                  type: boolean
+                  example: 'true'
                 payment_image:
                   type: string
                   format: binary
@@ -11287,15 +11308,18 @@ paths:
         - name: paginate
           in: query
           schema:
-            type: string
+            type: integer
+          example: '1'
         - name: page
           in: query
           schema:
-            type: string
+            type: integer
+          example: '1'
         - name: limit
           in: query
           schema:
-            type: string
+            type: integer
+          example: '10'
         - name: search_keyword
           in: query
           schema:
@@ -11329,12 +11353,13 @@ paths:
                   example: patch
                 payment_name:
                   type: string
-                  example: Khalti
+                  example: Khalti1
                 status:
                   type: string
                   example: active
                 is_cash:
-                  type: string
+                  type: boolean
+                  example: 'false'
                 payment_image:
                   type: string
                   format: binary
@@ -11351,7 +11376,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '2'
+          example: '18'
       responses:
         '200':
           description: Successful response
