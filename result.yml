@@ -8666,22 +8666,17 @@ paths:
     post:
       tags:
         - Admin > Company > Company Payment Option
-      summary: company payment option update or create DONT USE
+      summary: company payment option create
       requestBody:
         content:
           application/json:
             schema:
               type: object
               example:
-                payment_options:
-                  - payment_option_id: 1
-                    secret_key: asdf
-                    public_key: asd
-                    status: active
-                  - payment_option_id: 2
-                    secret_key: asdf
-                    public_key: asd
-                    status: active
+                payment_option_id: 1
+                secret_key: asdf
+                public_key: asd
+                status: active
       security:
         - bearerAuth: []
       parameters:

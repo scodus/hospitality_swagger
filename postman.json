@@ -13446,58 +13446,6 @@
 										}
 									},
 									"response": []
-								},
-								{
-									"name": "company payment option update or create DONT USE",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"payment_options\": [\n        {\n            \"payment_option_id\": 1,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        },\n        {\n            \"payment_option_id\": 2,\n            \"secret_key\": \"asdf\",\n            \"public_key\": \"asd\",\n            \"status\": \"active\"\n        }\n    ]\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{url}}/api/admin/company/:id/payment-option",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"api",
-												"admin",
-												"company",
-												":id",
-												"payment-option"
-											],
-											"variable": [
-												{
-													"key": "id",
-													"value": "1"
-												}
-											]
-										}
-									},
-									"response": []
 								}
 							]
 						},
