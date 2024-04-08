@@ -271,7 +271,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/customers/:customer_id",
+											"raw": "{{url}}/api/admin/customers/1",
 											"host": [
 												"{{url}}"
 											],
@@ -279,13 +279,7 @@
 												"api",
 												"admin",
 												"customers",
-												":customer_id"
-											],
-											"variable": [
-												{
-													"key": "customer_id",
-													"value": ""
-												}
+												"1"
 											]
 										}
 									},
@@ -313,12 +307,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/api/admin/customers/show-orders/1",
+											"raw": "{{url}}/api/admin/customers/show-orders/1",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
-												"api",
 												"api",
 												"admin",
 												"customers",
@@ -1860,6 +1853,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -1867,11 +1865,16 @@
 											"formdata": [
 												{
 													"key": "paid_amount",
-													"value": "20",
+													"value": "50",
 													"type": "text"
 												},
 												{
 													"key": "payment_method_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "customer_id",
 													"value": "1",
 													"type": "text"
 												},
@@ -1883,11 +1886,12 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/customer-partial-payment/1",
+											"raw": "{{url}}/api/admin/customer-partial-payment/1",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"customer-partial-payment",
 												"1"
@@ -1956,7 +1960,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n// \"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":2,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":400, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n\"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":3,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":400, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -13368,7 +13372,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/company/:id/payment-option",
+											"raw": "{{url}}/api/admin/company/:id/payment-option/update",
 											"host": [
 												"{{url}}"
 											],
@@ -13377,7 +13381,8 @@
 												"admin",
 												"company",
 												":id",
-												"payment-option"
+												"payment-option",
+												"update"
 											],
 											"variable": [
 												{
@@ -13412,7 +13417,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"_method\": \"PUT\",\n    \"payment_option_id\": 2,\n    \"status\": \"inactive\"\n}",
+											"raw": "{\n    \"_method\": \"PUT\",\n    \"payment_option_id\": 1,\n    \"status\": \"active\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -15681,16 +15686,92 @@
 						{
 							"name": "list",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/permission?paginate=1&limit=100&page=1&search_keyword=&show_in=superadmin_panel&category=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"permission"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "100"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										},
+										{
+											"key": "show_in",
+											"value": "superadmin_panel",
+											"description": "superadmin_panel|admin_panel"
+										},
+										{
+											"key": "category",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						},
 						{
 							"name": "show",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/permission/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"permission",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						}

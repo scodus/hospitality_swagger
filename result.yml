@@ -247,6 +247,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/customers/1:
     get:
       tags:
         - Admin > Restaurant > customer
@@ -259,17 +260,12 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: customer_id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /api/api/admin/customers/show-orders/1:
+  /api/admin/customers/show-orders/1:
     get:
       tags:
         - Admin > Restaurant > customer
@@ -1228,7 +1224,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/customer-partial-payment/1:
+  /api/admin/customer-partial-payment/1:
     post:
       tags:
         - Admin > Restaurant > Restaurant Customer Partial Payments
@@ -1241,8 +1237,11 @@ paths:
               properties:
                 paid_amount:
                   type: integer
-                  example: '20'
+                  example: '50'
                 payment_method_id:
+                  type: integer
+                  example: '1'
+                customer_id:
                   type: integer
                   example: '1'
                 payment_method:
@@ -1256,6 +1255,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -1293,9 +1297,10 @@ paths:
             schema:
               type: object
               example:
+                payment_method: 1
                 table_id: 5
                 customer_id: 1
-                order_id: 2
+                order_id: 3
                 subtotal: 344
                 tax: 3
                 discount: 3434
@@ -8726,6 +8731,41 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/company/{id}/payment-option/update:
+    post:
+      tags:
+        - Admin > Company > Company Payment Option
+      summary: company payment option update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: PUT
+                payment_option_id: 1
+                secret_key: asdf0
+                public_key: asd0
+                status: active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/company/{id}/payment-option/update-status:
     post:
       tags:
@@ -8738,8 +8778,8 @@ paths:
               type: object
               example:
                 _method: PUT
-                payment_option_id: 2
-                status: inactive
+                payment_option_id: 1
+                status: active
       security:
         - bearerAuth: []
       parameters:
@@ -9917,6 +9957,67 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/permission:
+    get:
+      tags:
+        - Superadmin > Permission
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '100'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: show_in
+          in: query
+          schema:
+            type: string
+          description: superadmin_panel|admin_panel
+          example: superadmin_panel
+        - name: category
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/permission/{id}:
+    get:
+      tags:
+        - Superadmin > Permission
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
       responses:
         '200':
           description: Successful response
