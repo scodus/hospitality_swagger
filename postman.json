@@ -490,11 +490,12 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/payment-options?pagination_limit=5",
+											"raw": "{{url}}/api/admin/payment-options?pagination_limit=5",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"payment-options"
 											],
@@ -5410,11 +5411,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/kot-items/update",
+											"raw": "{{url}}/api/admin/kot-items/update",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"kot-items",
 												"update"
@@ -5451,7 +5453,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"orderDetails\": [\n        {\n            \"id\": 1,\n            \"quantity\": 10,\n            \"topping_details\": [\n                {\n                    \"topping_id\": 9,\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 170\n                },\n                {\n                    \"topping_id\": 10,\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 90,\n                    \"topping_price\": 500\n                }\n            ]\n        },\n        {\n            \"id\": 61,\n            \"quantity\": 40,\n            \"note\": \"BOT Note\"\n        }\n    ]\n}",
+											"raw": "{\n    \"orderDetails\": [\n        {\n            \"id\": 39,\n            \"quantity\": 10,\n            \"topping_details\": [\n                {\n                    \"topping_id\": 9,\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 170\n                },\n                {\n                    \"topping_id\": 10,\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 90,\n                    \"topping_price\": 500\n                }\n            ]\n        },\n        {\n            \"id\": 37,\n            \"quantity\": 40,\n            \"note\": \"BOT Note\"\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -5459,11 +5461,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/bot-items/update",
+											"raw": "{{url}}/api/admin/bot-items/update",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"bot-items",
 												"update"
@@ -5942,10 +5945,15 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/delivery-partner-sales-data/3",
+											"raw": "{{url}}/api/admin/delivery-partner-sales-data/4",
 											"host": [
 												"{{url}}"
 											],
@@ -5953,7 +5961,7 @@
 												"api",
 												"admin",
 												"delivery-partner-sales-data",
-												"3"
+												"4"
 											]
 										}
 									},
@@ -6016,6 +6024,57 @@
 												"delivery-partner",
 												"update",
 												"status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all delivery partner order and sales data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/delivery-partners-data/4?limit=4&page=2",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"delivery-partners-data",
+												"4"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "4"
+												},
+												{
+													"key": "page",
+													"value": "2"
+												}
 											]
 										}
 									},
@@ -7586,14 +7645,19 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "formdata",
 											"formdata": [
 												{
-													"key": "payment_option_id",
-													"value": "1",
+													"key": "delivery_partner_id",
+													"value": "4",
 													"type": "text"
 												},
 												{
@@ -7602,8 +7666,8 @@
 													"type": "text"
 												},
 												{
-													"key": "branch_id",
-													"value": "1",
+													"key": "remarks",
+													"value": "hy",
 													"type": "text"
 												}
 											]
@@ -11211,6 +11275,11 @@
 													"key": "volume_unit",
 													"value": "5",
 													"type": "text"
+												},
+												{
+													"key": "minimum_stock_level",
+													"value": "5",
+													"type": "text"
 												}
 											]
 										},
@@ -11495,6 +11564,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -11507,11 +11581,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/inventory-adjustments",
+											"raw": "{{url}}/api/admin/inventory-adjustments",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"inventory-adjustments"
 											]
@@ -12239,7 +12314,8 @@
 											"pm.environment.set('token', response.data.token)\r",
 											"pm.environment.set('refresh_token', response.data.refresh_token)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -12258,6 +12334,12 @@
 											"key": "password",
 											"value": "P@ssw0rd",
 											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "liboki3597@nimadir.com",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -13493,22 +13575,22 @@
 										},
 										{
 											"key": "business_name",
-											"value": "Business",
+											"value": "Company 1 Ltd",
 											"type": "text"
 										},
 										{
 											"key": "display_name",
-											"value": "By",
+											"value": "Company 1",
 											"type": "text"
 										},
 										{
 											"key": "address",
-											"value": "KTM",
+											"value": "Baneshwor, Kathmandu",
 											"type": "text"
 										},
 										{
 											"key": "primary_email",
-											"value": "admin@gmail.com",
+											"value": "company1@company.com",
 											"type": "text"
 										},
 										{
@@ -13528,7 +13610,7 @@
 										},
 										{
 											"key": "start_date",
-											"value": "454545",
+											"value": "2020-10-10",
 											"type": "text"
 										},
 										{
@@ -13662,7 +13744,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "5"
+											"value": "1"
 										}
 									]
 								}
@@ -14022,18 +14104,23 @@
 											"type": "text"
 										},
 										{
-											"key": "vat_number",
-											"value": "454545",
+											"key": "contact_person_name",
+											"value": "A B",
 											"type": "text"
 										},
 										{
-											"key": "registration_number",
-											"value": "54545",
+											"key": "contact_person_designation",
+											"value": "xyz",
 											"type": "text"
 										},
 										{
-											"key": "start_date",
-											"value": "2020-10-10",
+											"key": "contact_person_email",
+											"value": "a@b.com",
+											"type": "text"
+										},
+										{
+											"key": "contact_person_phone",
+											"value": "9876543210",
 											"type": "text"
 										},
 										{
@@ -14097,14 +14184,8 @@
 											"type": "text"
 										},
 										{
-											"key": "company_id",
-											"value": "5",
-											"type": "text",
-											"disabled": true
-										},
-										{
 											"key": "address",
-											"value": "Purano Baneshwor, Kathmandu",
+											"value": "Baneshwor, Kathmandu",
 											"type": "text"
 										},
 										{
@@ -14118,23 +14199,23 @@
 											"type": "text"
 										},
 										{
-											"key": "vat_number",
-											"value": "454545",
+											"key": "contact_person_name",
+											"value": "A B",
 											"type": "text"
 										},
 										{
-											"key": "registration_number",
-											"value": "54545",
+											"key": "contact_person_designation",
+											"value": "xyz",
 											"type": "text"
 										},
 										{
-											"key": "start_date",
-											"value": "2020-10-10",
+											"key": "contact_person_email",
+											"value": "a@b.com",
 											"type": "text"
 										},
 										{
-											"key": "is_tax",
-											"value": "active",
+											"key": "contact_person_phone",
+											"value": "9876543210",
 											"type": "text"
 										},
 										{

@@ -364,7 +364,6 @@ paths:
                   created_at: '2023-12-20T06:51:38.000000Z'
                   updated_at: null
                 message: Payment Option Has Been Created Successfully!
-  /admin/payment-options:
     get:
       tags:
         - Admin > Restaurant > Restaurant payment options
@@ -3569,7 +3568,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/kot-items/update:
+  /api/admin/kot-items/update:
     post:
       tags:
         - Admin > Restaurant > KOT Items
@@ -3614,7 +3613,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/bot-items/update:
+  /api/admin/bot-items/update:
     post:
       tags:
         - Admin > Restaurant > BOT Items
@@ -3626,7 +3625,7 @@ paths:
               type: object
               example:
                 orderDetails:
-                  - id: 1
+                  - id: 39
                     quantity: 10
                     topping_details:
                       - topping_id: 9
@@ -3637,7 +3636,7 @@ paths:
                         topping_product_id: 3
                         topping_quantity: 90
                         topping_price: 500
-                  - id: 61
+                  - id: 37
                     quantity: 40
                     note: BOT Note
       security:
@@ -3940,7 +3939,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/delivery-partner-sales-data/3:
+  /api/admin/delivery-partner-sales-data/4:
     get:
       tags:
         - Admin > Restaurant > Delivery partner
@@ -3953,6 +3952,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -3991,6 +3995,39 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/delivery-partners-data/4:
+    get:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: show all delivery partner order and sales data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '4'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '2'
       responses:
         '200':
           description: Successful response
@@ -5011,15 +5048,15 @@ paths:
             schema:
               type: object
               properties:
-                payment_option_id:
+                delivery_partner_id:
                   type: integer
-                  example: '1'
+                  example: '4'
                 paid_amount:
                   type: integer
                   example: '400'
-                branch_id:
-                  type: integer
-                  example: '1'
+                remarks:
+                  type: string
+                  example: hy
       security:
         - bearerAuth: []
       parameters:
@@ -5028,6 +5065,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -7411,6 +7453,9 @@ paths:
                 volume_unit:
                   type: integer
                   example: '5'
+                minimum_stock_level:
+                  type: integer
+                  example: '5'
       security:
         - bearerAuth: []
       parameters:
@@ -7563,7 +7608,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/inventory-adjustments:
+  /api/admin/inventory-adjustments:
     post:
       tags:
         - Admin > Inventory > Inventory Adjustment
@@ -7590,11 +7635,17 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
+  /admin/inventory-adjustments:
     get:
       tags:
         - Admin > Inventory > Inventory Adjustment
@@ -8116,7 +8167,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: makogo3528@sentrau.com
+                  example: liboki3597@nimadir.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -8830,16 +8881,16 @@ paths:
                   example: put
                 business_name:
                   type: string
-                  example: Business
+                  example: Company 1 Ltd
                 display_name:
                   type: string
-                  example: By
+                  example: Company 1
                 address:
                   type: string
-                  example: KTM
+                  example: Baneshwor, Kathmandu
                 primary_email:
                   type: string
-                  example: admin@gmail.com
+                  example: company1@company.com
                 primary_phone:
                   type: integer
                   example: '984334645'
@@ -8850,8 +8901,8 @@ paths:
                   type: integer
                   example: '54545'
                 start_date:
-                  type: integer
-                  example: '454545'
+                  type: string
+                  example: '2020-10-10'
                 bill_heading:
                   type: string
                   example: sfg
@@ -8918,7 +8969,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -9135,15 +9186,18 @@ paths:
                 primary_phone:
                   type: integer
                   example: '980678204'
-                vat_number:
-                  type: integer
-                  example: '454545'
-                registration_number:
-                  type: integer
-                  example: '54545'
-                start_date:
+                contact_person_name:
                   type: string
-                  example: '2020-10-10'
+                  example: A B
+                contact_person_designation:
+                  type: string
+                  example: xyz
+                contact_person_email:
+                  type: string
+                  example: a@b.com
+                contact_person_phone:
+                  type: integer
+                  example: '9876543210'
                 bill_heading:
                   type: string
                 bill_remarks:
@@ -9223,34 +9277,34 @@ paths:
                 _method:
                   type: string
                   example: patch
-                company_id:
-                  type: integer
-                  example: '5'
                 address:
                   type: string
-                  example: Purano Baneshwor, Kathmandu
+                  example: Baneshwor, Kathmandu
                 primary_email:
                   type: string
                   example: akriti02@gmail.com
                 primary_phone:
                   type: integer
                   example: '980678204'
-                vat_number:
-                  type: integer
-                  example: '454545'
-                registration_number:
-                  type: integer
-                  example: '54545'
-                start_date:
+                contact_person_name:
                   type: string
-                  example: '2020-10-10'
-                is_tax:
+                  example: A B
+                contact_person_designation:
                   type: string
-                  example: inactive
+                  example: xyz
+                contact_person_email:
+                  type: string
+                  example: a@b.com
+                contact_person_phone:
+                  type: integer
+                  example: '9876543210'
                 bill_heading:
                   type: string
                 bill_remarks:
                   type: string
+                is_tax:
+                  type: string
+                  example: inactive
       security:
         - bearerAuth: []
       parameters:
