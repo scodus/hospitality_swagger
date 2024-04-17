@@ -304,6 +304,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"url": {
@@ -1521,11 +1526,12 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/pickup-users",
+											"raw": "{{url}}/api/admin/pickup-users",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"pickup-users"
 											]
@@ -1961,7 +1967,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":3,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":400, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
+											"raw": "{\n\"payment_method\":1, \n// \"dual_payments\":[\n//     {\n//         \"payment_method_id\":1,\n//         \"paid_amount\":200\n\n//     }\n\n// ] ,\n\"table_id\":5,\n\"customer_id\":1,\n\"order_id\":56,\n\"subtotal\":344, // amount to be paid\n\"tax\":3,\n\"discount\":3434, // given discount amount\n\"discount_type\":\"rupees\",\n\"net_total\":100, // remaining total (subtotal-paid)\n\"paid\":400, // paid amount\n\"return\":344, // amount to be returned\n\"net_amount\":34434,\n\n\"name\":\"Pravesh Rai\",\n\"email\":\"pravesh@gmail.com\",\n\"phone\":983443354,\n\"address\":\"lalitpur\"\n\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4190,12 +4196,12 @@
 													"type": "text"
 												},
 												{
-													"key": "table_numbers[]",
+													"key": "table_id[]",
 													"value": "T1",
 													"type": "text"
 												},
 												{
-													"key": "table_numbers[]",
+													"key": "table_id[]",
 													"value": "T2",
 													"type": "text"
 												},
@@ -6079,6 +6085,47 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "pos show all delivery partner",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/pos/delivery-partner",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"pos",
+												"delivery-partner"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -7334,6 +7381,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -7391,14 +7443,15 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/business-service-session-start/4",
+											"raw": "{{url}}/api/admin/business-service-session-start/5",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"business-service-session-start",
-												"4"
+												"5"
 											]
 										}
 									},
@@ -7913,11 +7966,16 @@
 										"key": "Accept",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "1",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"company_id\": 1,\n    \"printer_name\": \"aa\",\n    \"paper_width\": \"aa\",\n    \"ip_address\": \"aa\",\n    \"printer_types\":[\n\n        {\"printer_type\":\"BOT\"},\n        {\"printer_type\":\"KOT\"}\n\n    ]\n}",
+									"raw": "{\n    \"company_id\": 1,\n    \"printer_name\": \"aa\",\n    \"paper_width\": \"aa\",\n    \"ip_address\": \"aa\",\n    \"printer_types\":[\n\n        {\"printer_type\":\"BOT\"},\n        {\"printer_type\":\"KOT\"},\n        {\"printer_type\":\"Counter\"}\n\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7925,11 +7983,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/admin/printers",
+									"raw": "{{url}}/api/admin/printers",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"admin",
 										"printers"
 									]
@@ -8007,6 +8066,56 @@
 											"key": "id",
 											"value": ""
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit printer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"printer_name\": \"aa\",\n    \"paper_width\": \"aa\",\n    \"ip_address\": \"aa\",\n    \"printer_types\":[\n\n        {\"printer_type\":\"BOT\"},\n        {\"printer_type\":\"KOT\"},\n        {\"printer_type\":\"Counter\"}\n\n    ],\n    \"_method\":\"put\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/printers/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"printers",
+										"3"
 									]
 								}
 							},
@@ -11573,7 +11682,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"date\":\"2023-05-23\",\n    \"reason\":\"Breakage\",\n    \"description\":\"aa aa\",\n    \"products\":[\n        {\n            \"product_id\":1,\n            \"quantity_on_hand\":23,\n            \"adjusted_quantity\":2,\n            \"adjust_quantity\":4\n        }\n    ]\n}",
+											"raw": "{\n    \"date\":\"2023-05-23\",\n    \"reason\":\"Breakage\",\n    \"description\":\"aa aa\",\n    \"products\":[\n        {\n            \"product_id\":1,\n            \"quantity_on_hand\":23,\n            \"adjusted_quantity\":2,\n            \"adjust_quantity\":4,\n            \"adjust_volume_unit_quantity\":4\n\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -12704,12 +12813,12 @@
 									"formdata": [
 										{
 											"key": "token",
-											"value": "18qmUzzNc2NGQCpQBhKGmZGZvsVtIQEvQKDhUgs6HF59FI9soR3XT9DjMTMwd0G2Pzt6SHHJw7aH1MvRMWdOqeMXGvOIWp4mQz0pCwVO7aCRchsjwd7tqN8DnbwsxDfI",
+											"value": "ZoQgcCN1J3mIIoov14N1nQloAvex6y6UrfWs3TRKXGfhbcaqZ3Av6xzKbD23Ii3GgojezYeGCTgJmgk7lAS61E5tBSKkMDCyS3KmKXQr88ast0TyZJtwhjdaniNd2p5t",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "liboki3597@nimadir.com",
+											"value": "nihej40750@eryod.com",
 											"type": "text"
 										},
 										{
@@ -13847,7 +13956,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"liboki3597@nimadir.com\",\n    \"roles\": [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n    1    \n    ]\n    ,\n    \"is_resend\": null //true,false\n}",
+									"raw": "{\n    \"email\": \"wikoso9857@acname.com\",\n    \"roles\": [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n    1    \n    ]\n    ,\n    \"is_resend\": null //true,false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -13944,6 +14053,55 @@
 										{
 											"key": "company_id",
 											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete user invitation",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/company/:company_id/user/invitation/:user_temporary_data_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":company_id",
+										"user",
+										"invitation",
+										":user_temporary_data_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "1"
+										},
+										{
+											"key": "user_temporary_data_id",
+											"value": "23"
 										}
 									]
 								}
@@ -17622,7 +17780,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"makogo3528@sentrau.com\",\n    \"is_resend\": null //true,false\n}",
+									"raw": "{\n    \"email\": \"haror49383@etopys.com\",\n    \"is_resend\": null //true,false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -17719,6 +17877,55 @@
 										{
 											"key": "company_id",
 											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete owner invitation",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/superadmin/company/:company_id/owner/invitation/:user_temporary_data_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company",
+										":company_id",
+										"owner",
+										"invitation",
+										":user_temporary_data_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "1"
+										},
+										{
+											"key": "user_temporary_data_id",
+											"value": "23"
 										}
 									]
 								}

@@ -278,6 +278,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -967,7 +972,7 @@ paths:
                     other_payment: null
                     total_sales: null
                   total_cash_in_hand: '500.00'
-  /admin/pickup-users:
+  /api/admin/pickup-users:
     post:
       tags:
         - Admin > Restaurant > Restaurant PickUp Users
@@ -1003,6 +1008,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/pickup-users:
     get:
       tags:
         - Admin > Restaurant > Restaurant PickUp Users
@@ -1299,7 +1305,7 @@ paths:
                 payment_method: 1
                 table_id: 5
                 customer_id: 1
-                order_id: 3
+                order_id: 56
                 subtotal: 344
                 tax: 3
                 discount: 3434
@@ -2736,7 +2742,7 @@ paths:
                 description:
                   type: string
                   example: f1
-                table_numbers[]:
+                table_id[]:
                   type: string
                   example: T2
                 floor_order_number:
@@ -4033,6 +4039,29 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/pos/delivery-partner:
+    get:
+      tags:
+        - Admin > Restaurant > Delivery partner
+      summary: pos show all delivery partner
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/self-delivery-user:
     post:
       tags:
@@ -4877,12 +4906,17 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /admin/business-service-session-start/4:
+  /api/admin/business-service-session-start/5:
     post:
       tags:
         - Admin > Restaurant > Manager Session
@@ -5188,7 +5222,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/printers:
+  /api/admin/printers:
     post:
       tags:
         - Admin > Printers
@@ -5206,6 +5240,7 @@ paths:
                 printer_types:
                   - printer_type: BOT
                   - printer_type: KOT
+                  - printer_type: Counter
       security:
         - bearerAuth: []
       parameters:
@@ -5214,11 +5249,17 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
+  /admin/printers:
     get:
       tags:
         - Admin > Printers
@@ -5254,6 +5295,43 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/printers/3:
+    post:
+      tags:
+        - Admin > Printers
+      summary: edit printer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                printer_name: aa
+                paper_width: aa
+                ip_address: aa
+                printer_types:
+                  - printer_type: BOT
+                  - printer_type: KOT
+                  - printer_type: Counter
+                _method: put
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -7627,6 +7705,7 @@ paths:
                     quantity_on_hand: 23
                     adjusted_quantity: 2
                     adjust_quantity: 4
+                    adjust_volume_unit_quantity: 4
       security:
         - bearerAuth: []
       parameters:
@@ -8355,10 +8434,10 @@ paths:
                 token:
                   type: string
                   example: >-
-                    18qmUzzNc2NGQCpQBhKGmZGZvsVtIQEvQKDhUgs6HF59FI9soR3XT9DjMTMwd0G2Pzt6SHHJw7aH1MvRMWdOqeMXGvOIWp4mQz0pCwVO7aCRchsjwd7tqN8DnbwsxDfI
+                    ZoQgcCN1J3mIIoov14N1nQloAvex6y6UrfWs3TRKXGfhbcaqZ3Av6xzKbD23Ii3GgojezYeGCTgJmgk7lAS61E5tBSKkMDCyS3KmKXQr88ast0TyZJtwhjdaniNd2p5t
                 email:
                   type: string
-                  example: liboki3597@nimadir.com
+                  example: nihej40750@eryod.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -9029,7 +9108,7 @@ paths:
             schema:
               type: object
               example:
-                email: liboki3597@nimadir.com
+                email: wikoso9857@acname.com
                 roles:
                   - manager
                 branch_ids:
@@ -9092,6 +9171,36 @@ paths:
             type: integer
           required: true
           example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/company/{company_id}/user/invitation/{user_temporary_data_id}:
+    delete:
+      tags:
+        - Admin > Company
+      summary: delete user invitation
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+        - name: user_temporary_data_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '23'
       responses:
         '200':
           description: Successful response
@@ -11157,7 +11266,7 @@ paths:
             schema:
               type: object
               example:
-                email: makogo3528@sentrau.com
+                email: haror49383@etopys.com
                 is_resend: null
       security:
         - bearerAuth: []
@@ -11216,6 +11325,36 @@ paths:
             type: integer
           required: true
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/company/{company_id}/owner/invitation/{user_temporary_data_id}:
+    delete:
+      tags:
+        - Superadmin > Company
+      summary: delete owner invitation
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+        - name: user_temporary_data_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '23'
       responses:
         '200':
           description: Successful response
