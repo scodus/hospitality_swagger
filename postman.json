@@ -3,8 +3,8 @@
 		"_postman_id": "e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb",
 		"name": "Hospitality Management",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30036842",
-		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30036842"
+		"_exporter_id": "30047466",
+		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30047466"
 	},
 	"item": [
 		{
@@ -33,13 +33,11 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
 											},
 											{
 												"key": "branch-id",
-												"value": "1",
-												"type": "text"
+												"value": "1"
 											}
 										],
 										"body": {
@@ -52,12 +50,12 @@
 												},
 												{
 													"key": "email",
-													"value": "hanciephago25@gmail.com",
+													"value": "hanciephago250@gmail.com",
 													"type": "text"
 												},
 												{
 													"key": "phone",
-													"value": "454545455",
+													"value": "4545459",
 													"type": "text"
 												},
 												{
@@ -68,6 +66,16 @@
 												{
 													"key": "vat_number",
 													"value": "45456",
+													"type": "text"
+												},
+												{
+													"key": "opening_amount",
+													"value": "200",
+													"type": "text"
+												},
+												{
+													"key": "opening_date",
+													"value": "2023/01/20",
 													"type": "text"
 												}
 											]
@@ -312,7 +320,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/customers/show-orders/1",
+											"raw": "{{url}}/api/admin/customers/show-orders/1?payment_type=sale",
 											"host": [
 												"{{url}}"
 											],
@@ -322,6 +330,12 @@
 												"customers",
 												"show-orders",
 												"1"
+											],
+											"query": [
+												{
+													"key": "payment_type",
+													"value": "sale"
+												}
 											]
 										}
 									},
@@ -779,224 +793,6 @@
 												{
 													"key": "slug",
 													"value": ""
-												}
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "Restaurant Reports",
-							"item": [
-								{
-									"name": "daily income",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/reports/daily-income?pagination_limit=3&start_date=2024-01-04&end_date=2024-01-06",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"reports",
-												"daily-income"
-											],
-											"query": [
-												{
-													"key": "pagination_limit",
-													"value": "3"
-												},
-												{
-													"key": "start_date",
-													"value": "2024-01-04"
-												},
-												{
-													"key": "end_date",
-													"value": "2024-01-06"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "sales by user",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/reports/sales-by-user",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"reports",
-												"sales-by-user"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "sales by category",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/reports/sales-by-category",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"reports",
-												"sales-by-category"
-											],
-											"query": [
-												{
-													"key": "pagination_limit",
-													"value": "2",
-													"disabled": true
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "cancelled orders report",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/reports/cancelled-orders",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"reports",
-												"cancelled-orders"
-											],
-											"query": [
-												{
-													"key": "pagination_limit",
-													"value": "10",
-													"disabled": true
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "income by time",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{url}}/admin/reports/income-by-time?pagination_limit=5&date=12-04-2023",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"admin",
-												"reports",
-												"income-by-time"
-											],
-											"query": [
-												{
-													"key": "pagination_limit",
-													"value": "5"
-												},
-												{
-													"key": "date",
-													"value": "12-04-2023"
 												}
 											]
 										}
@@ -1961,8 +1757,11 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
 											}
 										],
 										"body": {
@@ -2972,6 +2771,49 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "store multiple products",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"product_category_id\": 1,\n    \"product_group_id\":4,\n    \"products\": [\n        {\n            \"product_name\": \"Momo\",\n            \"price\": 50,\n            \"ingredient\": \"gffg\",\n            \"description\": \"fgfgfg\",\n            \"has_inventory\":\"true\",\n            \"has_inventory_tracking\": [\n                {\n                    \"inventory_product_id\": 1,\n                    \"unit_name\": \"Bottle\",\n                    \"size\": \"200\"\n                }\n               \n            ]\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/store-multiple-products",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"store-multiple-products"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -3943,7 +3785,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/orders/all?pagination_limit=15&search=202401123MJJY&status=pending&user_status=table&date=04-01-2024",
+											"raw": "{{url}}/api/admin/orders/all",
 											"host": [
 												"{{url}}"
 											],
@@ -3956,23 +3798,28 @@
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "15"
+													"value": "15",
+													"disabled": true
 												},
 												{
 													"key": "search",
-													"value": "202401123MJJY"
+													"value": "202401123MJJY",
+													"disabled": true
 												},
 												{
 													"key": "status",
-													"value": "pending"
+													"value": "pending",
+													"disabled": true
 												},
 												{
 													"key": "user_status",
-													"value": "table"
+													"value": "table",
+													"disabled": true
 												},
 												{
 													"key": "date",
-													"value": "04-01-2024"
+													"value": "04-01-2024",
+													"disabled": true
 												}
 											]
 										}
@@ -4146,6 +3993,72 @@
 												"api",
 												"admin",
 												"cancel-order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "add discount to order",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "discount",
+													"value": "4",
+													"type": "text"
+												},
+												{
+													"key": "discount_type",
+													"value": "percent",
+													"type": "text"
+												},
+												{
+													"key": "net_total",
+													"value": "4",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/orders/add-discount/:order_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"orders",
+												"add-discount",
+												":order_id"
+											],
+											"variable": [
+												{
+													"key": "order_id",
+													"value": ""
+												}
 											]
 										}
 									},
@@ -5276,14 +5189,20 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/ask-bill/1",
+											"raw": "{{url}}/api/admin/ask-bill/1",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"ask-bill",
 												"1"
@@ -5351,8 +5270,11 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
 											}
 										],
 										"body": {
@@ -5360,7 +5282,7 @@
 											"formdata": [
 												{
 													"key": "order_id",
-													"value": "2",
+													"value": "21",
 													"type": "text"
 												}
 											]
@@ -5376,6 +5298,74 @@
 												"tables",
 												"ask-bill",
 												"print"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "store ask bill log",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "2"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "order_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "discount_type",
+													"value": "rupees",
+													"type": "text"
+												},
+												{
+													"key": "subtotal",
+													"value": "7787",
+													"type": "text"
+												},
+												{
+													"key": "discount_amount",
+													"value": "56",
+													"type": "text"
+												},
+												{
+													"key": "net_total",
+													"value": "6",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/ask-bill-log",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"ask-bill-log"
 											]
 										}
 									},
@@ -5476,6 +5466,332 @@
 												"admin",
 												"bot-items",
 												"update"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Restaurant Reports",
+							"item": [
+								{
+									"name": "daily income",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/reports/daily-income?pagination_limit=3&start_date=2024-01-04&end_date=2024-01-06",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"reports",
+												"daily-income"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "3"
+												},
+												{
+													"key": "start_date",
+													"value": "2024-01-04"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-01-06"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "sales by user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/reports/sales-by-user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"reports",
+												"sales-by-user"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "sales by category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/reports/sales-by-category",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"reports",
+												"sales-by-category"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "2",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cancelled orders report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/reports/cancelled-orders",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"reports",
+												"cancelled-orders"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "10",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "income by time",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/admin/reports/income-by-time?pagination_limit=5&date=12-04-2023",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"reports",
+												"income-by-time"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "5"
+												},
+												{
+													"key": "date",
+													"value": "12-04-2023"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "daily reports",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/daily-reports?date=04-15-2024",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"daily-reports"
+											],
+											"query": [
+												{
+													"key": "date",
+													"value": "04-15-2024"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "menu rate history report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "3"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/menu-rate-history?start-date&end-date&pagination_limit=10&category_id=64&group_id&item_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"menu-rate-history"
+											],
+											"query": [
+												{
+													"key": "start-date",
+													"value": null
+												},
+												{
+													"key": "end-date",
+													"value": null
+												},
+												{
+													"key": "pagination_limit",
+													"value": "10"
+												},
+												{
+													"key": "category_id",
+													"value": "64"
+												},
+												{
+													"key": "group_id",
+													"value": null
+												},
+												{
+													"key": "item_id",
+													"value": null
+												}
 											]
 										}
 									},
@@ -7188,26 +7504,21 @@
 											}
 										],
 										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "variation_name",
-													"value": "Cheese",
-													"type": "text"
-												},
-												{
-													"key": "price",
-													"value": "60",
-													"type": "text"
+											"mode": "raw",
+											"raw": "{\n    \"variation_name\": \"Momo\",\n    \"price\": 2,\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											]
+											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/topping-items",
+											"raw": "{{url}}/api/admin/topping-items",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"topping-items"
 											]
@@ -7277,31 +7588,21 @@
 											}
 										],
 										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "variation_name",
-													"value": "Chesse2",
-													"type": "text"
-												},
-												{
-													"key": "price",
-													"value": "45",
-													"type": "text"
-												},
-												{
-													"key": "_method",
-													"value": "put",
-													"type": "text"
+											"mode": "raw",
+											"raw": "{\n    \"variation_name\": \"Momo\",\n    \"price\": 2,\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ],\n    \"_method\":\"put\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											]
+											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/topping-items/:id",
+											"raw": "{{url}}/api/admin/topping-items/:id",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"topping-items",
 												":id"
@@ -7576,6 +7877,44 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "check order session",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/order-session-check",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"order-session-check"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -7656,19 +7995,281 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/dashboard",
+											"raw": "{{url}}/api/admin/dashboard/",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"api",
 												"admin",
-												"dashboard"
+												"dashboard",
+												""
+											],
+											"query": [
+												{
+													"key": "floor_id",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "check business session",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/business-session-check",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"business-session-check"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show sales by area",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/sales-by-area?floor_id=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"sales-by-area"
+											],
+											"query": [
+												{
+													"key": "floor_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show peak time by daily",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/peak-time-by-daily",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"peak-time-by-daily"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "last 30 days top selling table",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/last-30-days-top-selling-tables",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"last-30-days-top-selling-tables"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "top selling items by week",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/top-selling-item-by-week?category_id=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"top-selling-item-by-week"
+											],
+											"query": [
+												{
+													"key": "category_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "top selling item by month",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "1"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard/top-selling-item-by-month?category_id=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard",
+												"top-selling-item-by-month"
+											],
+											"query": [
+												{
+													"key": "category_id",
+													"value": "1"
+												}
 											]
 										}
 									},
@@ -8827,11 +9428,12 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/employees",
+											"raw": "{{url}}/api/admin/employees",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"employees"
 											]
@@ -9271,6 +9873,90 @@
 											"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"company_id\": 1,\n        \"position_id\": \"1\",\n        \"name\": \"employee name\",\n        \"short_name\": \"emp\",\n        \"slug\": \"employee-name\",\n        \"description\": \"employee description\",\n        \"status\": \"active\",\n        \"created_at\": \"2023-12-26T07:17:25.000000Z\",\n        \"updated_at\": \"2023-12-26T07:31:41.000000Z\"\n    },\n    \"message\": \"Employee record updated successfully!\"\n}"
 										}
 									]
+								},
+								{
+									"name": "show single employee details",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/employees/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employees",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show employee day book data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch_id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/employees/daybook-data/:employee_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"employees",
+												"daybook-data",
+												":employee_id"
+											],
+											"variable": [
+												{
+													"key": "employee_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
@@ -11644,6 +12330,84 @@
 													"key": "id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show single inventory product data",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show inventory product adjustment details",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products/show-inventory-adjustment-details/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products",
+												"show-inventory-adjustment-details",
+												"1"
 											]
 										}
 									},
@@ -14782,7 +15546,8 @@
 											"const response = pm.response.json()",
 											"pm.environment.set('token', response.data.token)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -14806,9 +15571,8 @@
 										},
 										{
 											"key": "password",
-											"value": "password",
-											"type": "text",
-											"disabled": true
+											"value": "P@ssw0rd",
+											"type": "text"
 										},
 										{
 											"key": "email",
@@ -14818,17 +15582,19 @@
 										{
 											"key": "password",
 											"value": "12345",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/login",
+									"raw": "{{url}}/api/admin/login",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
+										"admin",
 										"login"
 									]
 								}
@@ -19275,6 +20041,14 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
