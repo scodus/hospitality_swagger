@@ -2207,6 +2207,31 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/transfer-menu-items:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant product category
+      summary: transfer all category and products
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '13'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/favourite-menu-items:
     post:
       tags:
@@ -3236,6 +3261,31 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/cancel-kitchen-order-ticket/{id}:
+    post:
+      tags:
+        - Admin > Restaurant > Kitchen Order Ticket
+      summary: cancel kicthen order ticket
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: _method
+          in: header
+          schema:
+            type: string
+          example: PUT
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/bot:
     get:
       tags:
@@ -3456,6 +3506,18 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/cancel-bar-order-ticket/881:
+    put:
+      tags:
+        - Admin > Restaurant > Bar Order Ticket
+      summary: cancel bar order ticket
+      requestBody:
+        content: {}
       responses:
         '200':
           description: Successful response
@@ -3849,6 +3911,239 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/kot-bot-correction-history:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: kot bot correction history report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+        - name: start-date
+          in: query
+          schema:
+            type: string
+        - name: end-date
+          in: query
+          schema:
+            type: string
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/discount-amount-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: discount amount report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/discount-amount-report-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: discount amount report summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary-item:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '12'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/order-cancellation-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: order cancellation report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/order-cancellation-report-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: order calcellation report summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/floor-table-sales-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: flooar and table sales report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-by-item:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales by item report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/provisional-invoice:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: provisional report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
       responses:
         '200':
           description: Successful response
@@ -11116,10 +11411,10 @@ paths:
             schema:
               type: object
               example:
-                name: Standard0 Package
-                user: 3
-                table: 12
-                menu_item: 8
+                name: Un Package
+                user: -1
+                table: -1
+                payment_integration: true
                 period_prices:
                   - period: 30
                     price: 1000
@@ -11134,8 +11429,7 @@ paths:
                     price: 10000
                     branch_price: 6000
                 is_trial: false
-                is_recommended: true
-                type: restaurant
+                is_recommended: false
       security:
         - bearerAuth: []
       parameters:
@@ -11208,7 +11502,7 @@ paths:
                 name: Standard Package
                 user: 3
                 table: 12
-                menu_item: 8
+                payment_integration: true
                 period_prices:
                   - id: 3
                     period: 30
@@ -11240,7 +11534,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '4'
+          example: '3'
       responses:
         '200':
           description: Successful response
@@ -11313,7 +11607,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '4'
+          example: '3'
       responses:
         '200':
           description: Successful response
@@ -11330,7 +11624,7 @@ paths:
             schema:
               type: object
               example:
-                package_id: 4
+                package_id: 2
                 period: 30
                 price: 1001
                 branch_price: 1001
@@ -11338,7 +11632,7 @@ paths:
                 discount: null
                 user: 1
                 table: 10
-                menu_item: 10
+                payment_integration: true
       security:
         - bearerAuth: []
       parameters:
@@ -11352,7 +11646,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '4'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -11369,15 +11663,13 @@ paths:
             schema:
               type: object
               example:
-                package_id: 4
+                package_id: 3
                 period: 30
                 price: 1011
                 branch_price: 1001
-                no_of_branch: 2
+                no_of_branch: 4
                 discount: null
-                user: 11
-                table: 12
-                menu_item: 13
+                table: 1200
       security:
         - bearerAuth: []
       parameters:
@@ -11391,7 +11683,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '4'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -11408,7 +11700,7 @@ paths:
             schema:
               type: object
               example:
-                package_id: 1
+                package_id: 3
       security:
         - bearerAuth: []
       parameters:
@@ -11422,7 +11714,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '1'
+          example: '11'
       responses:
         '200':
           description: Successful response
@@ -11619,7 +11911,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '4'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -11650,7 +11942,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '2'
+          example: '1'
       responses:
         '200':
           description: Successful response

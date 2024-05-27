@@ -3,8 +3,8 @@
 		"_postman_id": "e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb",
 		"name": "Hospitality Management",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30047466",
-		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=30047466"
+		"_exporter_id": "34883146",
+		"_collection_link": "https://nrna-team.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=34883146"
 	},
 	"item": [
 		{
@@ -3234,6 +3234,44 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "transfer all category and products",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "13"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/transfer-menu-items",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"transfer-menu-items"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -4884,6 +4922,41 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "cancel kicthen order ticket",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "_method",
+												"value": "PUT"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/cancel-kitchen-order-ticket/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"cancel-kitchen-order-ticket",
+												"{id}"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -5160,6 +5233,26 @@
 												"admin",
 												"bot-status",
 												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cancel bar order ticket",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/cancel-bar-order-ticket/881",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"cancel-bar-order-ticket",
+												"881"
 											]
 										}
 									},
@@ -5792,6 +5885,419 @@
 													"key": "item_id",
 													"value": null
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "kot bot correction history report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "3"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/kot-bot-correction-history?start-date&end-date&pagination_limit=10",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"kot-bot-correction-history"
+											],
+											"query": [
+												{
+													"key": "start-date",
+													"value": null
+												},
+												{
+													"key": "end-date",
+													"value": null
+												},
+												{
+													"key": "pagination_limit",
+													"value": "10"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "discount amount report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "3"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/discount-amount-report",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"discount-amount-report"
+											],
+											"query": [
+												{
+													"key": "start-date",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "end-date",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "pagination_limit",
+													"value": "10",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "discount amount report summary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Branch-id",
+												"value": "3"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/discount-amount-report-summary",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"discount-amount-report-summary"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "sales summary report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/sales-summary-item",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"sales-summary-item"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "sales summary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "12"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/sales-summary",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"sales-summary"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "order cancellation report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/order-cancellation-report",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"order-cancellation-report"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "order calcellation report summary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/order-cancellation-report-summary",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"order-cancellation-report-summary"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "flooar and table sales report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/floor-table-sales-report",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"floor-table-sales-report"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "sales by item report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/sales-by-item",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"sales-by-item"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "provisional report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/provisional-invoice",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"provisional-invoice"
 											]
 										}
 									},
@@ -17572,13 +18078,12 @@
 								"header": [
 									{
 										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
+										"value": "application/json"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Standard0 Package\",\n    \"user\": 3, //-1 for unlimited\n    \"table\": 12, //-1 for unlimited\n    \"menu_item\": 8, //-1 for unlimited\n    // \"room\": 10,//-1 for unlimited\n    \"period_prices\": [\n        {\n            \"period\": 30,\n            \"price\": 1000,\n            \"branch_price\": 800\n        },\n        {\n            \"period\": 90,\n            \"price\": 2800,\n            \"branch_price\": 1500\n        },\n        {\n            \"period\": 180,\n            \"price\": 5200,\n            \"branch_price\": 4000\n        },\n        {\n            \"period\": 365,\n            \"price\": 10000,\n            \"branch_price\": 6000\n        }\n    ],\n    \"is_trial\": false, //true|false\n    \"is_recommended\": true, //true|false\n    \"type\": \"restaurant\"\n}",
+									"raw": "{\n    \"name\": \"Un Package\",\n    \"user\": -1, //-1 for unlimited\n    \"table\": -1, //-1 for unlimited\n    // \"menu_item\": 8, //-1 for unlimited\n    \"payment_integration\": true, //true|false\n    // \"room\": 10,//-1 for unlimited\n    \"period_prices\": [\n        {\n            \"period\": 30,\n            \"price\": 1000,\n            \"branch_price\": 800\n        },\n        {\n            \"period\": 90,\n            \"price\": 2800,\n            \"branch_price\": 1500\n        },\n        {\n            \"period\": 180,\n            \"price\": 5200,\n            \"branch_price\": 4000\n        },\n        {\n            \"period\": 365,\n            \"price\": 10000,\n            \"branch_price\": 6000\n        }\n    ],\n    \"is_trial\": false, //true|false\n    \"is_recommended\": false //true|false\n    // \"type\": \"restaurant\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -17616,7 +18121,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_method\": \"patch\",\n    \"name\": \"Standard Package\",\n    \"user\": 3, //-1 for unlimited\n    \"table\": 12, //-1 for unlimited\n    \"menu_item\": 8, //-1 for unlimited\n    // \"room\": 10,//-1 for unlimited\n    \"period_prices\": [\n        {\n            \"id\":3,\n            \"period\": 30,\n            \"price\": 1001,\n            \"branch_price\": 801\n        },\n        {\n            \"id\":4,\n            \"period\": 90,\n            \"price\": 2801,\n            \"branch_price\": 1501\n        },\n        {\n            \"id\":5,\n            \"period\": 180,\n            \"price\": 5201,\n            \"branch_price\": 4001\n        },\n        {\n            \"id\":6,\n            \"period\": 365,\n            \"price\": 10001,\n            \"branch_price\": 6001\n        },\n        {\n            \"period\": 730,\n            \"price\": 15001,\n            \"branch_price\": 11001\n        }\n        \n    ],\n    \"is_trial\":false,//true|false\n    \"is_recommended\":false,//true|false\n    \"type\": \"restaurant\"\n\n}",
+									"raw": "{\n    \"_method\": \"patch\",\n    \"name\": \"Standard Package\",\n    \"user\": 3, //-1 for unlimited\n    \"table\": 12, //-1 for unlimited\n    // \"menu_item\": 8, //-1 for unlimited\n    \"payment_integration\": true, //true|false\n    // \"room\": 10,//-1 for unlimited\n    \"period_prices\": [\n        {\n            \"id\": 3,\n            \"period\": 30,\n            \"price\": 1001,\n            \"branch_price\": 801\n        },\n        {\n            \"id\": 4,\n            \"period\": 90,\n            \"price\": 2801,\n            \"branch_price\": 1501\n        },\n        {\n            \"id\": 5,\n            \"period\": 180,\n            \"price\": 5201,\n            \"branch_price\": 4001\n        },\n        {\n            \"id\": 6,\n            \"period\": 365,\n            \"price\": 10001,\n            \"branch_price\": 6001\n        },\n        {\n            \"period\": 730,\n            \"price\": 15001,\n            \"branch_price\": 11001\n        }\n    ],\n    \"is_trial\": false, //true|false\n    \"is_recommended\": false, //true|false\n    \"type\": \"restaurant\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -17637,7 +18142,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "4"
+											"value": "3"
 										}
 									]
 								}
@@ -17683,7 +18188,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "4"
+											"value": "3"
 										}
 									]
 								}
@@ -17890,13 +18395,12 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"package_id\": 4,\n    \"period\": 30,\n    \"price\": 1001, //-1 for unlimited\n    \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 2, //-1 for unlimited\n    \"discount\":null,\n    \"user\": 1, //-1 for unlimited \n    \"table\": 10, //-1 for unlimited \n    \"menu_item\": 10 //-1 for unlimited\n    // \"room\": 1//-1 for unlimited \n}",
+											"raw": "{\n    \"package_id\": 2,\n    \"period\": 30,\n    \"price\": 1001, //-1 for unlimited\n    \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 2, //-1 for unlimited\n    \"discount\":null,\n    \"user\": 1, //-1 for unlimited \n    \"table\": 10, //-1 for unlimited \n    // \"menu_item\": 10 //-1 for unlimited\n     \"payment_integration\": true //true|false\n    // \"room\": 1//-1 for unlimited \n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17918,7 +18422,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "4"
+													"value": "1"
 												}
 											]
 										}
@@ -17942,13 +18446,12 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"package_id\": 4,\n    \"period\": 30,\n    \"price\": 1011, //-1 for unlimited \n    \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 2, //-1 for unlimited\n    \"discount\":null,\n    \"user\": 11, //-1 for unlimited \n    \"table\": 12, //-1 for unlimited \n    \"menu_item\": 13 //-1 for unlimited \n    // \"room\": 14//-1 for unlimited \n}",
+											"raw": "{\n    \"package_id\": 3,\n    \"period\": 30,\n    \"price\": 1011, //-1 for unlimited \n    \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 4, //-1 for unlimited\n    \"discount\":null\n    ,\n    // \"user\": -1, //-1 for unlimited \n    \"table\": 1200\n    // , //-1 for unlimited \n    // \"menu_item\": 13 //-1 for unlimited \n    //  \"payment_integration\": true //true|false\n    // \"room\": 14//-1 for unlimited \n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17970,7 +18473,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "4"
+													"value": "1"
 												}
 											]
 										}
@@ -17994,13 +18497,12 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"package_id\": 1\n}",
+											"raw": "{\n    \"package_id\": 3\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -18022,7 +18524,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "1"
+													"value": "11"
 												}
 											]
 										}
@@ -18284,7 +18786,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "1"
 										}
 									]
 								}
@@ -18421,8 +18923,7 @@
 								"header": [
 									{
 										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
+										"value": "application/json"
 									}
 								],
 								"body": {
@@ -18443,7 +18944,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "4"
+											"value": "1"
 										}
 									]
 								}
