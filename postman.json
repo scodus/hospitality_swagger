@@ -2012,6 +2012,51 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "void order payment",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/void-order-payment/:order_id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"void-order-payment",
+												":order_id"
+											],
+											"variable": [
+												{
+													"key": "order_id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -4936,15 +4981,19 @@
 												}
 											]
 										},
-										"method": "POST",
+										"method": "PATCH",
 										"header": [
 											{
 												"key": "_method",
 												"value": "PUT"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/cancel-kitchen-order-ticket/{id}",
+											"raw": "{{url}}/api/admin/cancel-kitchen-order-ticket/881",
 											"host": [
 												"{{url}}"
 											],
@@ -4952,7 +5001,7 @@
 												"api",
 												"admin",
 												"cancel-kitchen-order-ticket",
-												"{id}"
+												"881"
 											]
 										}
 									},
@@ -6298,6 +6347,45 @@
 												"admin",
 												"reports",
 												"provisional-invoice"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "void order payment report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/unsettled-order-payment",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"unsettled-order-payment"
 											]
 										}
 									},
@@ -13107,16 +13195,16 @@
 										"header": [
 											{
 												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
+												"value": "application/json"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/inventory-adjustments/:id",
+											"raw": "{{url}}/api/admin/inventory-adjustments/:id",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"inventory-adjustments",
 												":id"
@@ -13126,6 +13214,44 @@
 													"key": "id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "inventroy adjustment reasons",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-adjustment-reasons",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-adjustment-reasons"
 											]
 										}
 									},
@@ -13706,8 +13832,9 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "makogo3528@sentrau.com",
-											"type": "text"
+											"value": "hanciewanemphago@gmail.com",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password",
@@ -13716,9 +13843,8 @@
 										},
 										{
 											"key": "email",
-											"value": "liboki3597@nimadir.com",
-											"type": "text",
-											"disabled": true
+											"value": "augxdeveloper@gmail.com",
+											"type": "text"
 										}
 									]
 								},
@@ -14074,8 +14200,7 @@
 								"header": [
 									{
 										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
+										"value": "application/json"
 									}
 								],
 								"body": {
@@ -14083,12 +14208,12 @@
 									"formdata": [
 										{
 											"key": "token",
-											"value": "ZoQgcCN1J3mIIoov14N1nQloAvex6y6UrfWs3TRKXGfhbcaqZ3Av6xzKbD23Ii3GgojezYeGCTgJmgk7lAS61E5tBSKkMDCyS3KmKXQr88ast0TyZJtwhjdaniNd2p5t",
+											"value": "thw73DGWx14mvdOwpj8veFu1q7KSuHUqdmx04gy4WykXJydg5VcQjnZn4fkhwTwxiE2uxGySC9iegk24vFmlKjaHMlpcCGDmmQKtoNSfeqm6MhU1lzCfbvZt67ZEO0oN",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "nihej40750@eryod.com",
+											"value": "augxdeveloper@gmail.com",
 											"type": "text"
 										},
 										{
@@ -16026,6 +16151,722 @@
 										{
 											"key": "id",
 											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Supplier",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "A B",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Baneshwor, Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "a@b.com",
+											"type": "text"
+										},
+										{
+											"key": "contact_number",
+											"value": "980678204",
+											"type": "text"
+										},
+										{
+											"key": "pan_vat_number",
+											"value": "122343",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Baneshwor, Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "A B",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Baneshwor, Kathmandu",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "a@b.com",
+											"type": "text"
+										},
+										{
+											"key": "contact_number",
+											"value": "980678204",
+											"type": "text"
+										},
+										{
+											"key": "pan_vat_number",
+											"value": "122343",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "inactive",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier/:id/update-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier",
+										":id",
+										"update-status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/supplier?paginate=1&page=1&limit=10&search_keyword=&status=&company_id=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": ""
+										},
+										{
+											"key": "company_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Supplier Product",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "A B",
+											"type": "text"
+										},
+										{
+											"key": "code_sku",
+											"value": "qw",
+											"type": "text"
+										},
+										{
+											"key": "vat",
+											"value": "13",
+											"description": "in:null,0,13",
+											"type": "text"
+										},
+										{
+											"key": "note",
+											"value": "980678204 asdf asdf  dfsa fsdaf sdfsd ",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-product",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "A B",
+											"type": "text"
+										},
+										{
+											"key": "code_sku",
+											"value": "ab",
+											"type": "text"
+										},
+										{
+											"key": "vat",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "note",
+											"value": "980678204 asdf asdf  dfsa fsdaf sdfsd ",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-product/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "inactive",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-product/:id/update-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-product",
+										":id",
+										"update-status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-product/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-product?paginate=1&page=1&limit=10&search_keyword=&status=&company_id=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-product"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": ""
+										},
+										{
+											"key": "company_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-product/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-product",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
 										}
 									]
 								}
@@ -18400,7 +19241,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"package_id\": 2,\n    \"period\": 30,\n    \"price\": 1001, //-1 for unlimited\n    \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 2, //-1 for unlimited\n    \"discount\":null,\n    \"user\": 1, //-1 for unlimited \n    \"table\": 10, //-1 for unlimited \n    // \"menu_item\": 10 //-1 for unlimited\n     \"payment_integration\": true //true|false\n    // \"room\": 1//-1 for unlimited \n}",
+											"raw": "{\n    \"package_id\": 2,\n    \"period\": 30,\n    // \"price\": 1001, //-1 for unlimited\n    // \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 2, //-1 for unlimited\n    \"discount\":null,\n    \"user\": 1, //-1 for unlimited \n    \"table\": 10, //-1 for unlimited \n    \"payment_integration\": true //true|false\n    // \"menu_item\": 10, //-1 for unlimited\n    // \"room\": 1 //-1 for unlimited \n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -18451,7 +19292,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"package_id\": 3,\n    \"period\": 30,\n    \"price\": 1011, //-1 for unlimited \n    \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 4, //-1 for unlimited\n    \"discount\":null\n    ,\n    // \"user\": -1, //-1 for unlimited \n    \"table\": 1200\n    // , //-1 for unlimited \n    // \"menu_item\": 13 //-1 for unlimited \n    //  \"payment_integration\": true //true|false\n    // \"room\": 14//-1 for unlimited \n}",
+											"raw": "{\n    \"package_id\": 11,\n    \"period\": 10,\n    // \"price\": 1011, //-1 for unlimited \n    // \"branch_price\": 1001, //-1 for unlimited\n    \"no_of_branch\": 4, //-1 for unlimited\n    \"discount\":null,\n    \"user\": -1, //-1 for unlimited \n    \"table\": -1, //-1 for unlimited \n    \"payment_integration\": true //true|false\n    // \"menu_item\": 13, //-1 for unlimited \n    // \"room\": 14//-1 for unlimited \n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -18473,7 +19314,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "1"
+													"value": "12"
 												}
 											]
 										}
@@ -19041,13 +19882,12 @@
 								"header": [
 									{
 										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
+										"value": "application/json"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"haror49383@etopys.com\",\n    \"is_resend\": null //true,false\n}",
+									"raw": "{\n    \"email\": \"augxdeveloper@gmail.com\",\n    \"is_resend\": null //true,false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
