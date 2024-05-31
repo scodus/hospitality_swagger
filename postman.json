@@ -16608,7 +16608,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "1"
 										}
 									]
 								}
@@ -16997,13 +16997,90 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"supplier_id\": 1,\n    \"bill_date\": \"2024-06-15\",\n    \"reference\": \"adsfasdf sdaf asdf a111111\",\n    \"note\": \"adsfasdf sdaf asdf a\",\n    \"discount\": 1,\n    \"status\": \"draft\", //draft,approved,void \n    \"purchase_supplier_products\": [\n        {\n            // \"id\":null,\n            \"supplier_product_id\": 1,\n            \"quantity\": 1000,\n            \"rate\": 1000,\n            \"vat\": 13\n        },\n        {\n            \"supplier_product_id\": 4,\n            \"quantity\": 1000,\n            \"rate\": 100,\n            \"vat\": 13\n        }\n    ]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "supplier_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "bill_date",
+											"value": "2024-06-15",
+											"type": "text"
+										},
+										{
+											"key": "reference",
+											"value": "adsfasdf sdaf asdf a111111",
+											"type": "text"
+										},
+										{
+											"key": "note",
+											"value": "adsfasdf sdaf asdf a",
+											"type": "text"
+										},
+										{
+											"key": "discount",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "draft",
+											"description": ", //draft,approved,void",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][supplier_product_id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][quantity]",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][rate]",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][vat]",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][supplier_product_id]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][quantity]",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][rate]",
+											"value": "12",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][vat]",
+											"value": "13",
+											"type": "text"
+										},
+										{
+											"key": "attachments[]",
+											"type": "file",
+											"src": "/C:/Users/Scodus/Downloads/logoB.jpg"
+										},
+										{
+											"key": "attachments[]",
+											"type": "file",
+											"src": "/C:/Users/Scodus/Pictures/Screenshots/Screenshot (2).png"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{url}}/api/admin/purchase",
@@ -17040,13 +17117,89 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"_method\":\"patch\",\n    \"supplier_id\": 1,\n    \"bill_date\": \"2024-06-15\",\n    \"reference\": \"adsfasdf sdaf asdf a111111\",\n    \"note\": \"adsfasdf sdaf asdf a\",\n    \"discount\": 1,\n    \"status\": \"draft\", //draft,approved,void \n    \"purchase_supplier_products\": [\n        {\n\n            \"supplier_product_id\": 1,\n            \"quantity\": 1000,\n            \"rate\": 1000,\n            \"vat\": 13\n        }\n        ,\n        {\n            \"supplier_product_id\": 4,\n            \"quantity\": 1000,\n            \"rate\": 100,\n            \"vat\": 13\n        }\n        // ,\n        //  {\n        //     \"supplier_product_id\": 2,\n        //     \"quantity\": 1000,\n        //     \"rate\": 100,\n        //     \"vat\": 13\n        // }\n    ]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "PATCH",
+											"type": "text"
+										},
+										{
+											"key": "supplier_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "bill_date",
+											"value": "2024-06-15",
+											"type": "text"
+										},
+										{
+											"key": "reference",
+											"value": "adsfasdf sdaf asdf a111111",
+											"type": "text"
+										},
+										{
+											"key": "note",
+											"value": "adsfasdf sdaf asdf a",
+											"type": "text"
+										},
+										{
+											"key": "discount",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "draft",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][supplier_product_id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][quantity]",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][rate]",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[0][vat]",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][supplier_product_id]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][quantity]",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][rate]",
+											"value": "12",
+											"type": "text"
+										},
+										{
+											"key": "purchase_supplier_products[1][vat]",
+											"value": "13",
+											"type": "text"
+										},
+										{
+											"key": "attachments[]",
+											"type": "file",
+											"src": "/C:/Users/Scodus/Pictures/Screenshots/Screenshot (2).png"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{url}}/api/admin/purchase/:id",
@@ -17062,7 +17215,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "8"
+											"value": "16"
 										}
 									]
 								}
@@ -17287,7 +17440,165 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "16"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "attachment rename",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "asdffggg",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PATCH",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/purchase/:id/attachment/:file_id/rename",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"purchase",
+										":id",
+										"attachment",
+										":file_id",
+										"rename"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "16"
+										},
+										{
+											"key": "file_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "attachment delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/purchase/:id/attachment/:file_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"purchase",
+										":id",
+										"attachment",
+										":file_id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "16"
+										},
+										{
+											"key": "file_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "attachment dowload",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/purchase/:id/attachment/:file_id/download",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"purchase",
+										":id",
+										"attachment",
+										":file_id",
+										"download"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "16"
+										},
+										{
+											"key": "file_id",
+											"value": "4"
 										}
 									]
 								}
@@ -17611,6 +17922,354 @@
 										{
 											"key": "id",
 											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Supplier Payment",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "supplier_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "10",
+											"description": "in:null,0,13",
+											"type": "text"
+										},
+										{
+											"key": "note",
+											"value": "980678204 asdf asdf  dfsa fsdaf sdfsd",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-payment",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "supplier_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "note",
+											"value": "980678204 asdf asdf  dfsa fsdaf sdfsd ",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-payment/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-payment",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-payment/:id/update-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-payment",
+										":id",
+										"update-status"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-payment/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-payment",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-payment?paginate=1&page=1&limit=10&search_keyword=&status=&company_id=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-payment"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "1"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": ""
+										},
+										{
+											"key": "company_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/supplier-payment/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"supplier-payment",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
 										}
 									]
 								}

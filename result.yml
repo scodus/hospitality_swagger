@@ -89,6 +89,7 @@ tags:
   - name: Admin > Supplier Product
   - name: Admin > Purchase
   - name: Admin > Purchase Return
+  - name: Admin > Supplier Payment
   - name: Public
   - name: Public > auth
   - name: Superadmin
@@ -10644,7 +10645,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '2'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -10905,25 +10906,56 @@ paths:
       summary: store
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
-              example:
-                supplier_id: 1
-                bill_date: '2024-06-15'
-                reference: adsfasdf sdaf asdf a111111
-                note: adsfasdf sdaf asdf a
-                discount: 1
-                status: draft
-                purchase_supplier_products:
-                  - supplier_product_id: 1
-                    quantity: 1000
-                    rate: 1000
-                    vat: 13
-                  - supplier_product_id: 4
-                    quantity: 1000
-                    rate: 100
-                    vat: 13
+              properties:
+                supplier_id:
+                  type: integer
+                  example: '1'
+                bill_date:
+                  type: string
+                  example: '2024-06-15'
+                reference:
+                  type: string
+                  example: adsfasdf sdaf asdf a111111
+                note:
+                  type: string
+                  example: adsfasdf sdaf asdf a
+                discount:
+                  type: integer
+                  example: '1'
+                status:
+                  type: string
+                  description: ', //draft,approved,void'
+                  example: draft
+                purchase_supplier_products[0][supplier_product_id]:
+                  type: integer
+                  example: '1'
+                purchase_supplier_products[0][quantity]:
+                  type: integer
+                  example: '11'
+                purchase_supplier_products[0][rate]:
+                  type: integer
+                  example: '100'
+                purchase_supplier_products[0][vat]:
+                  type: integer
+                  example: '10'
+                purchase_supplier_products[1][supplier_product_id]:
+                  type: integer
+                  example: '2'
+                purchase_supplier_products[1][quantity]:
+                  type: integer
+                  example: '100'
+                purchase_supplier_products[1][rate]:
+                  type: integer
+                  example: '12'
+                purchase_supplier_products[1][vat]:
+                  type: integer
+                  example: '13'
+                attachments[]:
+                  type: string
+                  format: binary
       security:
         - bearerAuth: []
       parameters:
@@ -10995,26 +11027,58 @@ paths:
       summary: update
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
-              example:
-                _method: patch
-                supplier_id: 1
-                bill_date: '2024-06-15'
-                reference: adsfasdf sdaf asdf a111111
-                note: adsfasdf sdaf asdf a
-                discount: 1
-                status: draft
-                purchase_supplier_products:
-                  - supplier_product_id: 1
-                    quantity: 1000
-                    rate: 1000
-                    vat: 13
-                  - supplier_product_id: 4
-                    quantity: 1000
-                    rate: 100
-                    vat: 13
+              properties:
+                _method:
+                  type: string
+                  example: PATCH
+                supplier_id:
+                  type: integer
+                  example: '1'
+                bill_date:
+                  type: string
+                  example: '2024-06-15'
+                reference:
+                  type: string
+                  example: adsfasdf sdaf asdf a111111
+                note:
+                  type: string
+                  example: adsfasdf sdaf asdf a
+                discount:
+                  type: integer
+                  example: '1'
+                status:
+                  type: string
+                  example: draft
+                purchase_supplier_products[0][supplier_product_id]:
+                  type: integer
+                  example: '1'
+                purchase_supplier_products[0][quantity]:
+                  type: integer
+                  example: '11'
+                purchase_supplier_products[0][rate]:
+                  type: integer
+                  example: '100'
+                purchase_supplier_products[0][vat]:
+                  type: integer
+                  example: '10'
+                purchase_supplier_products[1][supplier_product_id]:
+                  type: integer
+                  example: '2'
+                purchase_supplier_products[1][quantity]:
+                  type: integer
+                  example: '100'
+                purchase_supplier_products[1][rate]:
+                  type: integer
+                  example: '12'
+                purchase_supplier_products[1][vat]:
+                  type: integer
+                  example: '13'
+                attachments[]:
+                  type: string
+                  format: binary
       security:
         - bearerAuth: []
       parameters:
@@ -11028,7 +11092,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '8'
+          example: '16'
       responses:
         '200':
           description: Successful response
@@ -11074,7 +11138,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '1'
+          example: '16'
       responses:
         '200':
           description: Successful response
@@ -11107,6 +11171,108 @@ paths:
             type: integer
           required: true
           example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/attachment/{file_id}/rename:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: attachment rename
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: asdffggg
+                _method:
+                  type: string
+                  example: PATCH
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+        - name: file_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/attachment/{file_id}:
+    delete:
+      tags:
+        - Admin > Purchase
+      summary: attachment delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+        - name: file_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/attachment/{file_id}/download:
+    get:
+      tags:
+        - Admin > Purchase
+      summary: attachment dowload
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+        - name: file_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
       responses:
         '200':
           description: Successful response
@@ -11319,6 +11485,214 @@ paths:
             type: integer
           required: true
           example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-payment:
+    post:
+      tags:
+        - Admin > Supplier Payment
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                supplier_id:
+                  type: integer
+                  example: '1'
+                amount:
+                  type: integer
+                  description: in:null,0,13
+                  example: '10'
+                note:
+                  type: string
+                  example: 980678204 asdf asdf  dfsa fsdaf sdfsd
+                status:
+                  type: string
+                  example: active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier Payment
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-payment/{id}:
+    post:
+      tags:
+        - Admin > Supplier Payment
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                supplier_id:
+                  type: integer
+                  example: '1'
+                amount:
+                  type: integer
+                  example: '10'
+                note:
+                  type: string
+                  example: '980678204 asdf asdf  dfsa fsdaf sdfsd '
+                status:
+                  type: string
+                  example: active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Supplier Payment
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier Payment
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-payment/{id}/update-status:
+    post:
+      tags:
+        - Admin > Supplier Payment
+      summary: update status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: active
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
       responses:
         '200':
           description: Successful response
