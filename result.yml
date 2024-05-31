@@ -87,6 +87,8 @@ tags:
   - name: Admin > Payment Option
   - name: Admin > Supplier
   - name: Admin > Supplier Product
+  - name: Admin > Purchase
+  - name: Admin > Purchase Return
   - name: Public
   - name: Public > auth
   - name: Superadmin
@@ -4186,6 +4188,47 @@ paths:
       tags:
         - Admin > Restaurant > Restaurant Reports
       summary: void order payment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/customer-payments/:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer payment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-position:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory position report
       security:
         - bearerAuth: []
       parameters:
@@ -10621,6 +10664,9 @@ paths:
                 status:
                   type: string
                   example: inactive
+                _method:
+                  type: string
+                  example: patch
       security:
         - bearerAuth: []
       parameters:
@@ -10830,6 +10876,9 @@ paths:
                 status:
                   type: string
                   example: inactive
+                _method:
+                  type: string
+                  example: patch
       security:
         - bearerAuth: []
       parameters:
@@ -10844,6 +10893,432 @@ paths:
             type: integer
           required: true
           example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                supplier_id: 1
+                bill_date: '2024-06-15'
+                reference: adsfasdf sdaf asdf a111111
+                note: adsfasdf sdaf asdf a
+                discount: 1
+                status: draft
+                purchase_supplier_products:
+                  - supplier_product_id: 1
+                    quantity: 1000
+                    rate: 1000
+                    vat: 13
+                  - supplier_product_id: 4
+                    quantity: 1000
+                    rate: 100
+                    vat: 13
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: '//draft,approved,void '
+        - name: supplier_id
+          in: query
+          schema:
+            type: string
+        - name: bill_date
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                supplier_id: 1
+                bill_date: '2024-06-15'
+                reference: adsfasdf sdaf asdf a111111
+                note: adsfasdf sdaf asdf a
+                discount: 1
+                status: draft
+                purchase_supplier_products:
+                  - supplier_product_id: 1
+                    quantity: 1000
+                    rate: 1000
+                    vat: 13
+                  - supplier_product_id: 4
+                    quantity: 1000
+                    rate: 100
+                    vat: 13
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Purchase
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/update-status:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: update status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                status: approved
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase-return:
+    post:
+      tags:
+        - Admin > Purchase Return
+      summary: store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                supplier_id: 1
+                return_date: '2024-06-15'
+                reference: adsfasdf sdaf asdf a111111
+                note: adsfasdf sdaf asdf a
+                status: draft
+                purchase_return_supplier_products:
+                  - supplier_product_id: 1
+                    quantity: 1000
+                    rate: 1000
+                    vat: 13
+                  - supplier_product_id: 4
+                    quantity: 1000
+                    rate: 100
+                    vat: 13
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase Return
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: '//draft,approved,void '
+        - name: supplier_id
+          in: query
+          schema:
+            type: string
+        - name: return_date
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase-return/{id}:
+    post:
+      tags:
+        - Admin > Purchase Return
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                supplier_id: 1
+                return_date: '2024-06-15'
+                reference: adsfasdf sdaf asdf a111111
+                note: adsfasdf sdaf asdf a
+                status: draft
+                purchase_return_supplier_products:
+                  - supplier_product_id: 1
+                    quantity: 1000
+                    rate: 1000
+                    vat: 13
+                  - supplier_product_id: 4
+                    quantity: 1000
+                    rate: 100
+                    vat: 13
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Purchase Return
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase Return
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase-return/{id}/update-status:
+    post:
+      tags:
+        - Admin > Purchase Return
+      summary: update status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                status: approved
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
       responses:
         '200':
           description: Successful response
