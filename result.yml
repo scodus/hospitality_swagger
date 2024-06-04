@@ -10687,6 +10687,45 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/supplier/{id}/transaction:
+    get:
+      tags:
+        - Admin > Supplier
+      summary: supplier transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/supplier-product:
     post:
       tags:
