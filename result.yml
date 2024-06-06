@@ -4248,6 +4248,52 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/reports/inventory-adjustments:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory adjustment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-consumption:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory consumption report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/delivery-partner:
     post:
       tags:
@@ -9323,10 +9369,10 @@ paths:
                 token:
                   type: string
                   example: >-
-                    thw73DGWx14mvdOwpj8veFu1q7KSuHUqdmx04gy4WykXJydg5VcQjnZn4fkhwTwxiE2uxGySC9iegk24vFmlKjaHMlpcCGDmmQKtoNSfeqm6MhU1lzCfbvZt67ZEO0oN
+                    4der5GlrH7Jelz6hkNqfcgZaoTRbKaWocMdCbd2ObrFf9VDj4YVzwPnWh5OsjFOzIe45f9aWJUJ6ijO9eCw32g8e1XWFu7r9xsz87bFaKxsgHvH2kTKXdjHb1uhibC0U
                 email:
                   type: string
-                  example: augxdeveloper@gmail.com
+                  example: hanciewanemphago@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -10968,28 +11014,28 @@ paths:
                   type: string
                   description: ', //draft,approved,void'
                   example: draft
-                purchase_supplier_products[0][supplier_product_id]:
+                supplier_products[0][supplier_product_id]:
                   type: integer
                   example: '1'
-                purchase_supplier_products[0][quantity]:
+                supplier_products[0][quantity]:
                   type: integer
                   example: '11'
-                purchase_supplier_products[0][rate]:
+                supplier_products[0][rate]:
                   type: integer
                   example: '100'
-                purchase_supplier_products[0][vat]:
+                supplier_products[0][vat]:
                   type: integer
                   example: '10'
-                purchase_supplier_products[1][supplier_product_id]:
+                supplier_products[1][supplier_product_id]:
                   type: integer
                   example: '2'
-                purchase_supplier_products[1][quantity]:
+                supplier_products[1][quantity]:
                   type: integer
                   example: '100'
-                purchase_supplier_products[1][rate]:
+                supplier_products[1][rate]:
                   type: integer
                   example: '12'
-                purchase_supplier_products[1][vat]:
+                supplier_products[1][vat]:
                   type: integer
                   example: '13'
                 attachments[]:
@@ -11091,28 +11137,28 @@ paths:
                 status:
                   type: string
                   example: draft
-                purchase_supplier_products[0][supplier_product_id]:
+                supplier_products[0][supplier_product_id]:
                   type: integer
                   example: '1'
-                purchase_supplier_products[0][quantity]:
+                supplier_products[0][quantity]:
                   type: integer
                   example: '11'
-                purchase_supplier_products[0][rate]:
+                supplier_products[0][rate]:
                   type: integer
                   example: '100'
-                purchase_supplier_products[0][vat]:
+                supplier_products[0][vat]:
                   type: integer
                   example: '10'
-                purchase_supplier_products[1][supplier_product_id]:
+                supplier_products[1][supplier_product_id]:
                   type: integer
                   example: '2'
-                purchase_supplier_products[1][quantity]:
+                supplier_products[1][quantity]:
                   type: integer
                   example: '100'
-                purchase_supplier_products[1][rate]:
+                supplier_products[1][rate]:
                   type: integer
                   example: '12'
-                purchase_supplier_products[1][vat]:
+                supplier_products[1][vat]:
                   type: integer
                   example: '13'
                 attachments[]:
@@ -11333,7 +11379,7 @@ paths:
                 reference: adsfasdf sdaf asdf a111111
                 note: adsfasdf sdaf asdf a
                 status: draft
-                purchase_return_supplier_products:
+                supplier_products:
                   - supplier_product_id: 1
                     quantity: 1000
                     rate: 1000
@@ -11423,7 +11469,7 @@ paths:
                 reference: adsfasdf sdaf asdf a111111
                 note: adsfasdf sdaf asdf a
                 status: draft
-                purchase_return_supplier_products:
+                supplier_products:
                   - supplier_product_id: 1
                     quantity: 1000
                     rate: 1000
@@ -13389,7 +13435,7 @@ paths:
             schema:
               type: object
               example:
-                email: augxdeveloper@gmail.com
+                email: hanciewanemphago@gmail.com
                 is_resend: null
       security:
         - bearerAuth: []

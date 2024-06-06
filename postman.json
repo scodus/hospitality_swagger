@@ -6478,6 +6478,84 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "inventory adjustment report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/inventory-adjustments",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"inventory-adjustments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "inventory consumption report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "11"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/inventory-consumption",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"inventory-consumption"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -13921,8 +13999,7 @@
 										{
 											"key": "email",
 											"value": "hanciewanemphago@gmail.com",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										},
 										{
 											"key": "password",
@@ -13932,7 +14009,8 @@
 										{
 											"key": "email",
 											"value": "augxdeveloper@gmail.com",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -14296,12 +14374,12 @@
 									"formdata": [
 										{
 											"key": "token",
-											"value": "thw73DGWx14mvdOwpj8veFu1q7KSuHUqdmx04gy4WykXJydg5VcQjnZn4fkhwTwxiE2uxGySC9iegk24vFmlKjaHMlpcCGDmmQKtoNSfeqm6MhU1lzCfbvZt67ZEO0oN",
+											"value": "4der5GlrH7Jelz6hkNqfcgZaoTRbKaWocMdCbd2ObrFf9VDj4YVzwPnWh5OsjFOzIe45f9aWJUJ6ijO9eCw32g8e1XWFu7r9xsz87bFaKxsgHvH2kTKXdjHb1uhibC0U",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "augxdeveloper@gmail.com",
+											"value": "hanciewanemphago@gmail.com",
 											"type": "text"
 										},
 										{
@@ -17102,42 +17180,42 @@
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][supplier_product_id]",
+											"key": "supplier_products[0][supplier_product_id]",
 											"value": "1",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][quantity]",
+											"key": "supplier_products[0][quantity]",
 											"value": "11",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][rate]",
+											"key": "supplier_products[0][rate]",
 											"value": "100",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][vat]",
+											"key": "supplier_products[0][vat]",
 											"value": "10",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][supplier_product_id]",
+											"key": "supplier_products[1][supplier_product_id]",
 											"value": "2",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][quantity]",
+											"key": "supplier_products[1][quantity]",
 											"value": "100",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][rate]",
+											"key": "supplier_products[1][rate]",
 											"value": "12",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][vat]",
+											"key": "supplier_products[1][vat]",
 											"value": "13",
 											"type": "text"
 										},
@@ -17226,42 +17304,42 @@
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][supplier_product_id]",
+											"key": "supplier_products[0][supplier_product_id]",
 											"value": "1",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][quantity]",
+											"key": "supplier_products[0][quantity]",
 											"value": "11",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][rate]",
+											"key": "supplier_products[0][rate]",
 											"value": "100",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[0][vat]",
+											"key": "supplier_products[0][vat]",
 											"value": "10",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][supplier_product_id]",
+											"key": "supplier_products[1][supplier_product_id]",
 											"value": "2",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][quantity]",
+											"key": "supplier_products[1][quantity]",
 											"value": "100",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][rate]",
+											"key": "supplier_products[1][rate]",
 											"value": "12",
 											"type": "text"
 										},
 										{
-											"key": "purchase_supplier_products[1][vat]",
+											"key": "supplier_products[1][vat]",
 											"value": "13",
 											"type": "text"
 										},
@@ -17703,7 +17781,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"supplier_id\": 1,\n    \"return_date\": \"2024-06-15\",\n    \"reference\": \"adsfasdf sdaf asdf a111111\",\n    \"note\": \"adsfasdf sdaf asdf a\",\n    \"status\": \"draft\", //draft,approved,void \n    \"purchase_return_supplier_products\": [\n        {\n            \"supplier_product_id\": 1,\n            \"quantity\": 1000,\n            \"rate\": 1000,\n            \"vat\": 13\n        },\n        {\n            \"supplier_product_id\": 4,\n            \"quantity\": 1000,\n            \"rate\": 100,\n            \"vat\": 13\n        }\n    ]\n}",
+									"raw": "{\n    \"supplier_id\": 1,\n    \"return_date\": \"2024-06-15\",\n    \"reference\": \"adsfasdf sdaf asdf a111111\",\n    \"note\": \"adsfasdf sdaf asdf a\",\n    \"status\": \"draft\", //draft,approved,void \n    \"supplier_products\": [\n        {\n            \"supplier_product_id\": 1,\n            \"quantity\": 1000,\n            \"rate\": 1000,\n            \"vat\": 13\n        },\n        {\n            \"supplier_product_id\": 4,\n            \"quantity\": 1000,\n            \"rate\": 100,\n            \"vat\": 13\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -17746,7 +17824,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_method\": \"patch\",\n    \"supplier_id\": 1,\n    \"return_date\": \"2024-06-15\",\n    \"reference\": \"adsfasdf sdaf asdf a111111\",\n    \"note\": \"adsfasdf sdaf asdf a\",\n    \"status\": \"draft\", //draft,approved,void \n    \"purchase_return_supplier_products\": [\n        {\n            \"supplier_product_id\": 1,\n            \"quantity\": 1000,\n            \"rate\": 1000,\n            \"vat\": 13\n        },\n        {\n            \"supplier_product_id\": 4,\n            \"quantity\": 1000,\n            \"rate\": 100,\n            \"vat\": 13\n        }\n        // ,\n        // {\n        //     \"supplier_product_id\": 2,\n        //     \"quantity\": 1000,\n        //     \"rate\": 100,\n        //     \"vat\": 13\n        // }\n    ]\n}",
+									"raw": "{\n    \"_method\": \"patch\",\n    \"supplier_id\": 1,\n    \"return_date\": \"2024-06-15\",\n    \"reference\": \"adsfasdf sdaf asdf a111111\",\n    \"note\": \"adsfasdf sdaf asdf a\",\n    \"status\": \"draft\", //draft,approved,void \n    \"supplier_products\": [\n        {\n            \"supplier_product_id\": 1,\n            \"quantity\": 1000,\n            \"rate\": 1000,\n            \"vat\": 13\n        },\n        {\n            \"supplier_product_id\": 4,\n            \"quantity\": 1000,\n            \"rate\": 100,\n            \"vat\": 13\n        }\n        // ,\n        // {\n        //     \"supplier_product_id\": 2,\n        //     \"quantity\": 1000,\n        //     \"rate\": 100,\n        //     \"vat\": 13\n        // }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -21361,7 +21439,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"augxdeveloper@gmail.com\",\n    \"is_resend\": null //true,false\n}",
+									"raw": "{\n    \"email\": \"hanciewanemphago@gmail.com\",\n    \"is_resend\": null //true,false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
