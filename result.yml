@@ -91,11 +91,6 @@ tags:
   - name: Admin > Purchase
   - name: Admin > Purchase Return
   - name: Admin > Supplier Payment
-  - name: Admin > Supplier
-  - name: Admin > Supplier Product
-  - name: Admin > Purchase
-  - name: Admin > Purchase Return
-  - name: Admin > Supplier Payment
   - name: Public
   - name: Public > auth
   - name: Superadmin
@@ -115,6 +110,7 @@ tags:
   - name: Superadmin > Bug
   - name: Superadmin > Bug Feedback
   - name: Superadmin > Site Setting
+  - name: Superadmin > Order
 paths:
   /api/admin/customers:
     post:
@@ -305,6 +301,100 @@ paths:
           schema:
             type: string
           example: sale
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customer-excel-import:
+    post:
+      tags:
+        - Admin > Restaurant > customer
+      summary: Customer excel import
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/excel-sample/{customer}:
+    get:
+      tags:
+        - Admin > Restaurant > customer
+      summary: customer excel template export
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: customer
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customer-opening-balance:
+    post:
+      tags:
+        - Admin > Restaurant > customer
+      summary: customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer_opening_balance:
+                  - customer_id: 4
+                    opening_balance: 4.5
+                  - customer_id: 5
+                    opening_balance: 80.5
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
       responses:
         '200':
           description: Successful response
@@ -1393,6 +1483,64 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/void-order-payment/{order_id}:
+    patch:
+      tags:
+        - Admin > Restaurant > Restaurant Order Payment
+      summary: void order payment
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+        - name: order_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/complementary-payment:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Order Payment
+      summary: complementary payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                table_id: 5
+                customer_id: 1
+                order_id: 56
+                subtotal: 344
+                tax: 3
+                net_total: 100
+                net_amount: 34434
+                guest_company_name: Pravesh Rai
+                pan_number: pravesh@gmail.com
+                contact: 983443354
+                address: lalitpur
+                approved_by: Hancie
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/order-details/{id}:
     delete:
       tags:
@@ -2372,7 +2520,6 @@ paths:
             schema:
               type: object
               example:
-                customer_id: 1
                 description: ab cd ef gh
                 delivery_partner_id: 2
                 productDetails:
@@ -2399,6 +2546,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: barnch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -2560,7 +2712,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/orders/all:
+  /api/admin/pos/orders/all:
     get:
       tags:
         - Admin > Restaurant > Restaurant Order
@@ -2577,7 +2729,17 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '3'
+        - name: user_status
+          in: query
+          schema:
+            type: string
+          example: table
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 11-07-2024
       responses:
         '200':
           description: Successful response
@@ -3930,6 +4092,560 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/kot-bot-correction-history:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: kot bot correction history report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+        - name: start-date
+          in: query
+          schema:
+            type: string
+        - name: end-date
+          in: query
+          schema:
+            type: string
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/discount-amount-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: discount amount report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/discount-amount-report-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: discount amount report summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary-item:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '12'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/order-cancellation-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: order cancellation report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/order-cancellation-report-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: order calcellation report summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/floor-table-sales-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: flooar and table sales report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-by-item:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales by item report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/provisional-invoice:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: provisional report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/unsettled-order-payment:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: void order payment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/customer-payments/:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer payment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-position:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory position report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-adjustments:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory adjustment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-consumption:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory consumption report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/supplier-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: supplier report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: supplier_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-17'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-17'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/purchase-bill:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: purchase bill report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/purchase-return-bill:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: purchase return report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary-excel:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary excel download
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/floor-table-sales-report-excel:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: floor and table sales excel export
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/purchase-bill-excel:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: purchase report excel download
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/complementary-payments:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: complementary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
       responses:
         '200':
           description: Successful response
@@ -9033,10 +9749,10 @@ paths:
                 token:
                   type: string
                   example: >-
-                    ZoQgcCN1J3mIIoov14N1nQloAvex6y6UrfWs3TRKXGfhbcaqZ3Av6xzKbD23Ii3GgojezYeGCTgJmgk7lAS61E5tBSKkMDCyS3KmKXQr88ast0TyZJtwhjdaniNd2p5t
+                    eykLUanCwDfzeb3RGdNa6OhapkaqdzUQDEVmbUqaJv1PMOtAVjPWheLYDhRxEufrobSzUbGG3TYWeqjmJR0jXP3APWCkqPde66g8zeuK8DfeWdjHw6lSJdpd1x0y5P2s
                 email:
                   type: string
-                  example: nihej40750@eryod.com
+                  example: augxdeveloper@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -10169,6 +10885,1271 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier:
+    post:
+      tags:
+        - Admin > Supplier
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: A B 2
+                address:
+                  type: string
+                  example: Baneshwor, Kathmandu
+                email:
+                  type: string
+                  example: a@b.com
+                contact_number:
+                  type: integer
+                  example: '980678204'
+                pan_vat_number:
+                  type: integer
+                  example: '122343'
+                status:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier/{id}:
+    post:
+      tags:
+        - Admin > Supplier
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                address:
+                  type: string
+                  example: Baneshwor, Kathmandu
+                name:
+                  type: string
+                  example: A B
+                email:
+                  type: string
+                  example: a@b.com
+                contact_number:
+                  type: integer
+                  example: '980678204'
+                pan_vat_number:
+                  type: integer
+                  example: '122343'
+                status:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Supplier
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '7'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier/{id}/update-status:
+    post:
+      tags:
+        - Admin > Supplier
+      summary: update status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: inactive
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier/{id}/transaction:
+    get:
+      tags:
+        - Admin > Supplier
+      summary: supplier transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '7'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-product:
+    post:
+      tags:
+        - Admin > Supplier Product
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: A1B
+                code_sku:
+                  type: string
+                  example: qw
+                vat:
+                  type: integer
+                  description: in:null,0,13
+                  example: '13'
+                note:
+                  type: string
+                  example: '980678204 asdf asdf  dfsa fsdaf sdfsd '
+                status:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier Product
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-product/{id}:
+    post:
+      tags:
+        - Admin > Supplier Product
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                name:
+                  type: string
+                  example: A B
+                code_sku:
+                  type: string
+                  example: ab
+                vat:
+                  type: integer
+                  example: '0'
+                note:
+                  type: string
+                  example: '980678204 asdf asdf  dfsa fsdaf sdfsd '
+                status:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Supplier Product
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier Product
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-product/{id}/update-status:
+    post:
+      tags:
+        - Admin > Supplier Product
+      summary: update status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: inactive
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                supplier_id:
+                  type: integer
+                  example: '1'
+                bill_date:
+                  type: string
+                  example: '2024-06-15'
+                reference:
+                  type: string
+                  example: adsfasdf sdaf asdf a111111
+                note:
+                  type: string
+                  example: adsfasdf sdaf asdf a
+                discount:
+                  type: integer
+                  example: '10'
+                status:
+                  type: string
+                  description: ', //draft,approved,void'
+                  example: draft
+                supplier_products[0][supplier_product_id]:
+                  type: integer
+                  example: '1'
+                supplier_products[0][quantity]:
+                  type: integer
+                  example: '11'
+                supplier_products[0][rate]:
+                  type: integer
+                  example: '100'
+                supplier_products[0][vat]:
+                  type: integer
+                  example: '10'
+                supplier_products[1][supplier_product_id]:
+                  type: integer
+                  example: '2'
+                supplier_products[1][quantity]:
+                  type: integer
+                  example: '100'
+                supplier_products[1][rate]:
+                  type: integer
+                  example: '12'
+                supplier_products[1][vat]:
+                  type: integer
+                  example: '13'
+                attachments[]:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: '//draft,approved,void '
+        - name: supplier_id
+          in: query
+          schema:
+            type: string
+        - name: bill_date
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PATCH
+                supplier_id:
+                  type: integer
+                  example: '1'
+                bill_date:
+                  type: string
+                  example: '2024-06-15'
+                reference:
+                  type: string
+                  example: adsfasdf sdaf asdf a111111
+                note:
+                  type: string
+                  example: adsfasdf sdaf asdf a
+                discount:
+                  type: integer
+                  example: '1'
+                status:
+                  type: string
+                  example: draft
+                supplier_products[0][supplier_product_id]:
+                  type: integer
+                  example: '1'
+                supplier_products[0][quantity]:
+                  type: integer
+                  example: '11'
+                supplier_products[0][rate]:
+                  type: integer
+                  example: '100'
+                supplier_products[0][vat]:
+                  type: integer
+                  example: '10'
+                supplier_products[1][supplier_product_id]:
+                  type: integer
+                  example: '2'
+                supplier_products[1][quantity]:
+                  type: integer
+                  example: '100'
+                supplier_products[1][rate]:
+                  type: integer
+                  example: '12'
+                supplier_products[1][vat]:
+                  type: integer
+                  example: '13'
+                attachments[]:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Purchase
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/update-status:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: update status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                status: approved
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/attachment/{file_id}/rename:
+    post:
+      tags:
+        - Admin > Purchase
+      summary: attachment rename
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: asdffggg
+                _method:
+                  type: string
+                  example: PATCH
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+        - name: file_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/attachment/{file_id}:
+    delete:
+      tags:
+        - Admin > Purchase
+      summary: attachment delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+        - name: file_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase/{id}/attachment/{file_id}/download:
+    get:
+      tags:
+        - Admin > Purchase
+      summary: attachment dowload
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '16'
+        - name: file_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase-return:
+    post:
+      tags:
+        - Admin > Purchase Return
+      summary: store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                supplier_id: 1
+                return_date: '2024-06-15'
+                reference: adsfasdf sdaf asdf a111111
+                note: adsfasdf sdaf asdf a
+                supplier_products:
+                  - supplier_product_id: 1
+                    quantity: 1
+                    rate: 1000
+                    vat: 13
+                  - supplier_product_id: 2
+                    quantity: 1
+                    rate: 100
+                    vat: 13
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase Return
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: '//draft,approved,void '
+        - name: supplier_id
+          in: query
+          schema:
+            type: string
+        - name: return_date
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase-return/{id}:
+    post:
+      tags:
+        - Admin > Purchase Return
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                supplier_id: 1
+                return_date: '2024-06-15'
+                reference: adsfasdf sdaf asdf a111111
+                note: adsfasdf sdaf asdf a
+                supplier_products:
+                  - supplier_product_id: 1
+                    quantity: 1000
+                    rate: 1000
+                    vat: 13
+                  - supplier_product_id: 1
+                    quantity: 1000
+                    rate: 100
+                    vat: 13
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Purchase Return
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Purchase Return
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/purchase-return/{id}/update-status:
+    post:
+      tags:
+        - Admin > Purchase Return
+      summary: update status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                status: approved
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-payment:
+    post:
+      tags:
+        - Admin > Supplier Payment
+      summary: store
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                supplier_id:
+                  type: integer
+                  example: '7'
+                amount:
+                  type: integer
+                  description: in:null,0,13
+                  example: '100'
+                note:
+                  type: string
+                  example: 980678204 asdf asdf  dfsa fsdaf sdfsd
+                status:
+                  type: string
+                  example: active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier Payment
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: company_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-payment/{id}:
+    post:
+      tags:
+        - Admin > Supplier Payment
+      summary: update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                supplier_id:
+                  type: integer
+                  example: '1'
+                amount:
+                  type: integer
+                  example: '10'
+                note:
+                  type: string
+                  example: '980678204 asdf asdf  dfsa fsdaf sdfsd '
+                status:
+                  type: string
+                  example: active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Supplier Payment
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Supplier Payment
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/supplier-payment/{id}/update-status:
+    post:
+      tags:
+        - Admin > Supplier Payment
+      summary: update status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: active
+                _method:
+                  type: string
+                  example: patch
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
         - name: id
           in: path
           schema:
@@ -11832,7 +13813,7 @@ paths:
             schema:
               type: object
               example:
-                email: haror49383@etopys.com
+                email: augxdeveloper@gmail.com
                 is_resend: null
       security:
         - bearerAuth: []
@@ -12647,6 +14628,18 @@ paths:
                 logo:
                   type: string
                   format: binary
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/orders:
+    get:
+      tags:
+        - Superadmin > Order
+      summary: show all order lsit
       security:
         - bearerAuth: []
       responses:
