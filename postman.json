@@ -37,7 +37,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "1"
+												"value": "5"
 											}
 										],
 										"body": {
@@ -113,10 +113,15 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/customers?pagination_limit=4&company_id=1&search_keyword=Hancie Phago",
+											"raw": "{{url}}/api/admin/customers?pagination_limit=4",
 											"host": [
 												"{{url}}"
 											],
@@ -132,11 +137,13 @@
 												},
 												{
 													"key": "company_id",
-													"value": "1"
+													"value": "1",
+													"disabled": true
 												},
 												{
 													"key": "search_keyword",
-													"value": "Hancie Phago"
+													"value": "Hancie Phago",
+													"disabled": true
 												}
 											]
 										}
@@ -433,7 +440,7 @@
 									"response": []
 								},
 								{
-									"name": "customer",
+									"name": "customer opening balance update",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -460,7 +467,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n   \"customer_opening_balance\":[\n     {\n        \"customer_id\":4,\n        \"opening_balance\":4.5\n     },\n      {\n        \"customer_id\":5,\n        \"opening_balance\":80.5\n     }\n   ]\n}",
+											"raw": "{\n   \"customer_opening_balance\":[\n     {\n        \"customer_id\":4,\n        \"opening_balance\":4.5\n     },\n      {\n        \"customer_id\":5,\n        \"opening_balance\":50\n     }\n   ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -476,6 +483,61 @@
 												"api",
 												"admin",
 												"customer-opening-balance"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update customer status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "customer_id",
+													"value": "938",
+													"type": "text"
+												},
+												{
+													"key": "status",
+													"value": "inactive",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/update-customer-status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"update-customer-status"
 											]
 										}
 									},
@@ -1022,6 +1084,88 @@
 													"value": "3",
 													"disabled": true
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cashier today credit sales",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/cashier/today-credit-sales",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"cashier",
+												"today-credit-sales"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cashier today credit settlement",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/cashier/today-credit-settlement",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"cashier",
+												"today-credit-settlement"
 											]
 										}
 									},
@@ -3027,6 +3171,100 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "Tranfer Order Items To Another Table",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"destination_table_id\": 100,\n    \"order_id\":1,\n\n    \"transfer_order_items\": [\n        {\n            \"kot_item_id\": 745,\n            \"product_id\":316,\n            // \"old_quantity\":5,\n            \"new_quantity\":5,\n            \"price\":190\n        },\n           {\n            \"kot_item_id\": 721,\n            \"product_id\":284,\n            \"old_quantity\":5,\n            \"new_quantity\":5,\n             \"price\":250\n        }\n    ],\n    \"_method\":\"put\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/transfer-menu-item/94",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"transfer-menu-item",
+												"94"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Product rate update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"products_data\": [\n        {\n            \"product_id\": 1,\n            \"product_rate\": 20\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/product-rate-update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"product-rate-update"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -3727,14 +3965,14 @@
 												"type": "text"
 											},
 											{
-												"key": "barnch-id",
-												"value": "1",
+												"key": "branch-id",
+												"value": "11",
 												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    // \"table_id\": 5,\n    // \"customer_id\": 1,\n    // \"pickup_user_id\": 1,\n    \"description\": \"ab cd ef gh\",\n    \"delivery_partner_id\": 2,\n    \"productDetails\": [\n        {\n            \"product_id\": 1,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"topping_details\": [\n                {\n                    \"topping_product_id\": 2,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n                \n            ]\n        },\n        \n        {\n            \"product_id\": 2,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"note\": \"My Note\",\n             \"topping_details\": [\n                {\n                    \"topping_product_id\": 3,\n                    \"topping_quantity\": 50,\n                    \"topping_price\": 110\n                }\n                \n            ]\n        }\n    ]\n}",
+											"raw": "{\n    \"table_id\": 94,\n    // \"customer_id\": 1,\n    // \"pickup_user_id\": 1,\n    \"description\": \"ab cd ef gh\",\n    // \"delivery_partner_id\": 2,\n    \"productDetails\": [\n        {\n            \"product_id\": 299,\n            \"price\": 100,\n            \"quantity\": 5\n            // \"topping_details\": [\n            //     {\n            //         \"topping_product_id\": 2,\n            //         \"topping_quantity\": 50,\n            //         \"topping_price\": 110\n            //     }\n                \n            // ]\n        },\n        \n        {\n            \"product_id\": 300,\n            \"price\": 100,\n            \"quantity\": 5,\n            \"note\": \"My Note\"\n            //  \"topping_details\": [\n            //     {\n            //         \"topping_product_id\": 3,\n            //         \"topping_quantity\": 50,\n            //         \"topping_price\": 110\n            //     }\n                \n            // ]\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4503,7 +4741,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "11",
 												"type": "text"
 											}
 										],
@@ -6273,10 +6511,15 @@
 											{
 												"key": "Accept",
 												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/sales-summary-item",
+											"raw": "{{url}}/api/admin/reports/sales-summary-item?payment_option_id=credit",
 											"host": [
 												"{{url}}"
 											],
@@ -6285,6 +6528,12 @@
 												"admin",
 												"reports",
 												"sales-summary-item"
+											],
+											"query": [
+												{
+													"key": "payment_option_id",
+													"value": "credit"
+												}
 											]
 										}
 									},
@@ -7073,6 +7322,572 @@
 												"admin",
 												"reports",
 												"complementary-payments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "daily-sales-summary-total",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/daily-sales-summary-total",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"daily-sales-summary-total"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "menu performance report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/menu-performance-items?start_date=2024-01-20&end_date=2024-10-20",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"menu-performance-items"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "paginate",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "floor_id",
+													"value": "21",
+													"disabled": true
+												},
+												{
+													"key": "start_date",
+													"value": "2024-01-20"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-10-20"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "customer due void report",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/void-due-payment",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"void-due-payment"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "daily sales report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/daily-sales-report?pagination_limit",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"daily-sales-report"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "2024-09-06",
+													"disabled": true
+												},
+												{
+													"key": "end_date",
+													"value": "2024-09-06",
+													"disabled": true
+												},
+												{
+													"key": "pagination_limit",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "customer order report total",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/customer-payments-total?customer_id=146&start_date=2024-03-30&end_date=2024-03-30&payment_type=payment",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"customer-payments-total"
+											],
+											"query": [
+												{
+													"key": "customer_id",
+													"value": "146"
+												},
+												{
+													"key": "start_date",
+													"value": "2024-03-30"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-03-30"
+												},
+												{
+													"key": "payment_type",
+													"value": "payment"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "monthly summary report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/monthly-summary-report?fiscal_year=2081/82",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"monthly-summary-report"
+											],
+											"query": [
+												{
+													"key": "fiscal_year",
+													"value": "2081/82"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "monthly sales by category",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-category?fiscal_year=2081/82",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"monthly-sales-by-category"
+											],
+											"query": [
+												{
+													"key": "fiscal_year",
+													"value": "2081/82"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "monthly sales by floor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-floor?fiscal_year=2081/82",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"monthly-sales-by-floor"
+											],
+											"query": [
+												{
+													"key": "fiscal_year",
+													"value": "2081/82"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "monthly sales by type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-type?fiscal_year=2081/82",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"monthly-sales-by-type"
+											],
+											"query": [
+												{
+													"key": "fiscal_year",
+													"value": "2081/82"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "monthly sales by credit",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-credit?fiscal_year=2081/82",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"monthly-sales-by-credit"
+											],
+											"query": [
+												{
+													"key": "fiscal_year",
+													"value": "2081/82"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "customer credit report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/customer-credit-report?pagination_limit=20",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"customer-credit-report"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "20"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "customer statements",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/customer-statements/{customer_id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"customer-statements",
+												"{customer_id}"
 											]
 										}
 									},
@@ -9280,7 +10095,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "1"
+												"value": "11"
 											}
 										],
 										"url": {
@@ -9551,6 +10366,86 @@
 													"key": "category_id",
 													"value": "1"
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "dashboard primary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard-primary",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard-primary"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "dashboard secondary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch_id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/dashboard-secondary",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"dashboard-secondary"
 											]
 										}
 									},
@@ -9862,6 +10757,187 @@
 												"api",
 												"admin",
 												"complementary-users"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "FonePay",
+							"item": [
+								{
+									"name": "merchantDetailsForThirdParty/thirdPartyDynamicQrDownload",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"amount\": \"10\",\n    \"remarks1\": \"test1\",\n    \"remarks2\": \"test2\",\n    \"prn\": \"9999\",\n    \"merchantCode\": \"1908230072\",\n    \"dataValidation\": \"88271767a508c8357908f1560c1dbf393248123fbf0bb8a021c4767d061e5edd58897266ab9a6b782fb71365f90918fef5e014adb6cbef9236b335ab786ec3ff\",\n    \"username\": \"9851193791@fonepay.com.np\",\n    \"password\": \"Kimchi@2066\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://merchantapi.fonepay.com/api/merchant/merchantDetailsForThirdParty/thirdPartyDynamicQrDownload",
+											"protocol": "https",
+											"host": [
+												"merchantapi",
+												"fonepay",
+												"com"
+											],
+											"path": [
+												"api",
+												"merchant",
+												"merchantDetailsForThirdParty",
+												"thirdPartyDynamicQrDownload"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Generate Dynamic FonePay Qr",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "amount",
+													"value": "10",
+													"type": "text"
+												},
+												{
+													"key": "order_id",
+													"value": "456",
+													"type": "text"
+												},
+												{
+													"key": "company_id",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/generate-fonepay-dynamic-qr",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"generate-fonepay-dynamic-qr"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Check QR Request Status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "prn",
+													"value": "ea6791f2-5104-476a-859d-6a045135e4f5",
+													"type": "text"
+												},
+												{
+													"key": "order_id",
+													"value": "6777",
+													"type": "text"
+												},
+												{
+													"key": "subtotal",
+													"value": "656",
+													"type": "text"
+												},
+												{
+													"key": "net_total",
+													"value": "5656",
+													"type": "text"
+												},
+												{
+													"key": "paid",
+													"value": "656",
+													"type": "text"
+												},
+												{
+													"key": "company_id",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/check-qr-request-status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"check-qr-request-status"
 											]
 										}
 									},
@@ -12123,6 +13199,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -12135,11 +13216,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/restaurant-roster",
+											"raw": "{{url}}/api/admin/restaurant-roster",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"restaurant-roster"
 											]
@@ -12149,6 +13231,9 @@
 								},
 								{
 									"name": "get all roster list",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -12166,14 +13251,24 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
 										"url": {
-											"raw": "{{url}}/admin/restaurant-floor-plan?date=2023-08-23",
+											"raw": "{{url}}/api/admin/restaurant-floor-plan?date=2023-08-23",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"restaurant-floor-plan"
 											],
@@ -12303,11 +13398,16 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"_method\": \"PATCH\",\n  \"floor_id\": 9,\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 122\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 200\n        }\n      ]\n    }\n  ]\n}",
+											"raw": "{\n  \"_method\": \"PATCH\",\n  \"floor_id\": 2,\n  \"date\": \"2023-08-23\",\n  \"roster_task_time_employee\": [\n    {\n      \"roster_task_id\": 1,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 122\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 1\n        }\n      ]\n    },\n    {\n      \"roster_task_id\": 2,\n      \"roster_time_employee\": [\n        {\n          \"roster_time_id\": 1,\n          \"employee_id\": 1\n        },\n        {\n          \"roster_time_id\": 2,\n          \"employee_id\": 200\n        }\n      ]\n    }\n  ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -12315,11 +13415,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/restaurant-roster/update",
+											"raw": "{{url}}/api/admin/restaurant-roster/update",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"restaurant-roster",
 												"update"
@@ -13043,14 +14144,20 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/unit-measurements?pagination_limit=5&search_keyword=ml",
+											"raw": "{{url}}/api/admin/unit-measurements?pagination_limit=5&search_keyword=ml",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"unit-measurements"
 											],
@@ -13367,6 +14474,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -13393,13 +14505,23 @@
 													"type": "text"
 												},
 												{
-													"key": "volume_unit",
+													"key": "volume_unit_id",
 													"value": "5",
 													"type": "text"
 												},
 												{
 													"key": "minimum_stock_level",
 													"value": "5",
+													"type": "text"
+												},
+												{
+													"key": "enable_custom_yield",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "custom_yield_percent",
+													"value": "50",
 													"type": "text"
 												}
 											]
@@ -13528,10 +14650,15 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/inventory-products?pagination_limit=5&search_keyword=momo",
+											"raw": "{{url}}/api/admin/inventory-products?pagination_limit=5",
 											"host": [
 												"{{url}}"
 											],
@@ -13547,7 +14674,8 @@
 												},
 												{
 													"key": "search_keyword",
-													"value": "momo"
+													"value": "momo",
+													"disabled": true
 												}
 											]
 										}
@@ -13573,6 +14701,11 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -13590,7 +14723,27 @@
 												},
 												{
 													"key": "measurement_unit_id",
-													"value": "4545",
+													"value": "3",
+													"type": "text"
+												},
+												{
+													"key": "custom_yield_percent",
+													"value": "60",
+													"type": "text"
+												},
+												{
+													"key": "enable_custom_yield",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "volume_unit_id",
+													"value": "5",
+													"type": "text"
+												},
+												{
+													"key": "volume",
+													"value": "60",
 													"type": "text"
 												},
 												{
@@ -13601,20 +14754,15 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/inventory-products/:id",
+											"raw": "{{url}}/api/admin/inventory-products/141",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"inventory-products",
-												":id"
-											],
-											"variable": [
-												{
-													"key": "id",
-													"value": ""
-												}
+												"141"
 											]
 										}
 									},
@@ -13734,6 +14882,88 @@
 												"inventory-products",
 												"show-inventory-adjustment-details",
 												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show product inventory consumption",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products-consumption/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products-consumption",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "inventory products in and out",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "11",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-products-consumption/93",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-products-consumption",
+												"93"
 											]
 										}
 									},
@@ -13984,6 +15214,301 @@
 												"api",
 												"admin",
 												"inventory-adjustment-reasons"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Inventory Audit",
+							"item": [
+								{
+									"name": "store inventory audit",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \n    \"inventory_audit_data\": [\n        {\n            \"inventory_product_id\": 2,\n            \"quantity_on_hand\": 100,\n            \"adjust_quantity\": null,\n            \"adjust_volume_unit_quantity\": null,\n            \"variance\": 5\n\n           \n        }\n        \n      \n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-audit",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-audit"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all inventory audit list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-audit",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-audit"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "lock inventory audit batch",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "inventory_batch_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "lock_status",
+													"value": "lock",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-audit-batch-lock",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-audit-batch-lock"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete inventory audit batch",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/inventory-audit/{id}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"inventory-audit",
+												"{id}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Storage Area",
+							"item": [
+								{
+									"name": "store storage area",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "storage_area_name",
+													"value": "First Floor4",
+													"type": "text"
+												},
+												{
+													"key": "inventory_product_id[]",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "inventory_product_id[]",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/storage-area",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"storage-area"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show all stoarge area",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/storage-area",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"storage-area"
 											]
 										}
 									},
@@ -14301,6 +15826,46 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "show current branch users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "6",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/current-branch-users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"current-branch-users"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -14564,12 +16129,12 @@
 									"formdata": [
 										{
 											"key": "email",
-											"value": "hanciewanemphago@gmail.com",
+											"value": "bishowraut@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "P@ssw0rd",
+											"value": "P@ssw0rd!23",
 											"type": "text"
 										},
 										{
@@ -16097,11 +17662,16 @@
 										"key": "Accept",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "2",
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"wikoso9857@acname.com\",\n    \"roles\": [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n    1    \n    ]\n    ,\n    \"is_resend\": null //true,false\n}",
+									"raw": "{\n    \"email\": \"thirstytorvalds@freethecookies.com\",\n    \"roles\": [\n        // \"admin\"\n        // ,\n        \"manager\"\n    ]\n    ,\n    \"branch_ids\": [\n    1    \n    ]\n    ,\n    \"is_resend\": null //true,false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -16123,7 +17693,7 @@
 									"variable": [
 										{
 											"key": "company_id",
-											"value": "1"
+											"value": "2"
 										}
 									]
 								}
@@ -16775,6 +18345,62 @@
 											"key": "id",
 											"value": "2"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hide Delivery",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "11",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "branch_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "hide_delivery",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch/hide-delivery",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										"hide-delivery"
 									]
 								}
 							},
@@ -23545,16 +25171,103 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Fiscal Year",
+					"item": [
+						{
+							"name": "store fiscal year",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "2081/83",
+											"type": "text"
+										},
+										{
+											"key": "from_bs",
+											"value": "2081-01-20",
+											"type": "text"
+										},
+										{
+											"key": "to_bs",
+											"value": "2082-01-20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/fiscal-years",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"fiscal-years"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all fiscal years",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/superadmin/fiscal-years",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"fiscal-years"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
 		}
 	]
 }
