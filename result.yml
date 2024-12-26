@@ -20,14 +20,15 @@ servers:
     description: server
 components:
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
     noauthAuth:
       type: http
       scheme: noauth
+    bearerAuth:
+      type: http
+      scheme: bearer
 tags:
   - name: Admin
+  - name: Admin > Authentication
   - name: Admin > Restaurant
   - name: Admin > Restaurant > customer
   - name: Admin > Restaurant > Restaurant payment options
@@ -40,6 +41,7 @@ tags:
   - name: Admin > Restaurant > Restaurant product variation
   - name: Admin > Restaurant > Restaurant products
   - name: Admin > Restaurant > Restaurant product category
+  - name: Admin > Restaurant > Restaurant Reports
   - name: Admin > Restaurant > Favourite Menu Items
   - name: Admin > Restaurant > Restaurant Order
   - name: Admin > Restaurant > Restaurant floor
@@ -49,7 +51,6 @@ tags:
   - name: Admin > Restaurant > Ask Bill
   - name: Admin > Restaurant > KOT Items
   - name: Admin > Restaurant > BOT Items
-  - name: Admin > Restaurant > Restaurant Reports
   - name: Admin > Restaurant > Delivery partner
   - name: Admin > Restaurant > Self Delivery User
   - name: Admin > Restaurant > Split Bill
@@ -82,7 +83,6 @@ tags:
   - name: Admin > user
   - name: Admin > roles OLD
   - name: Admin > Company OLD
-  - name: Admin > Authentication
   - name: Admin > Permission
   - name: Admin > Role
   - name: Admin > Company
@@ -97,10 +97,10 @@ tags:
   - name: Public
   - name: Public > auth
   - name: Superadmin
+  - name: Superadmin > Authentication
   - name: Superadmin > company old
   - name: Superadmin > business service old
   - name: Superadmin > business admin old
-  - name: Superadmin > Authentication
   - name: Superadmin > Permission
   - name: Superadmin > Role
   - name: Superadmin > User
@@ -116,6 +116,312 @@ tags:
   - name: Superadmin > Order
   - name: Superadmin > Fiscal Year
 paths:
+  /api/admin/login:
+    post:
+      tags:
+        - Public > auth
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciewanemphago@gmail.com
+                password:
+                  type: integer
+                  example: '12345'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/refresh-token/{refresh_token}:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: refresh token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: refresh_token
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{refresh_token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/logout:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: logout
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/user-detail:
+    get:
+      tags:
+        - Admin > Authentication
+      summary: user detail
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/list-user-branches:
+    get:
+      tags:
+        - Admin > Authentication
+      summary: list user branches
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/update-user-detail:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: user detail update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PUT
+                name:
+                  type: string
+                  example: Super admin
+                profile_image:
+                  type: string
+                  format: binary
+                delete_image:
+                  type: string
+                mobile_no:
+                  type: string
+                location:
+                  type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/change-password:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: change password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PUT
+                old_password:
+                  type: string
+                  example: P@ssw0rd0
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/delete-user:
+    delete:
+      tags:
+        - Admin > Authentication
+      summary: delete user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/invitation-accept-reject:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: invitation accept-reject
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: >-
+                    eykLUanCwDfzeb3RGdNa6OhapkaqdzUQDEVmbUqaJv1PMOtAVjPWheLYDhRxEufrobSzUbGG3TYWeqjmJR0jXP3APWCkqPde66g8zeuK8DfeWdjHw6lSJdpd1x0y5P2s
+                email:
+                  type: string
+                  example: augxdeveloper@gmail.com
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+                is_accepted:
+                  type: boolean
+                  description: true|false
+                  example: 'true'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/my-invitations:
+    get:
+      tags:
+        - Admin > Authentication
+      summary: my invitations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: paginate
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/my-invitation/{id}/accept-reject:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: my invitations accept-reject
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: >-
+                    jVRbNDicfvdNO3ERhQ32FRQRFuzzs0aUi4lkuHCWprQEFdXMHWKBZrGm2TRhJxzCU7dp6kG13UYVeGTZVLiuC1wvclUZQoJKIJxGtUfNymLaOcr2DLkrt2fyCQ7LqVmb
+                is_accepted:
+                  type: boolean
+                  description: true|false
+                  example: 'true'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '42'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/customers:
     post:
       tags:
@@ -2540,6 +2846,1234 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/reports/daily-income:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: daily income
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '3'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-01-04'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-01-06'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/sales-by-user:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales by user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/sales-by-category:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales by category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/cancelled-orders:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: cancelled orders report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/reports/income-by-time:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: income by time
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 12-04-2023
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/daily-reports:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: daily reports
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 04-15-2024
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/menu-rate-history:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: menu rate history report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+        - name: start-date
+          in: query
+          schema:
+            type: string
+        - name: end-date
+          in: query
+          schema:
+            type: string
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: category_id
+          in: query
+          schema:
+            type: integer
+          example: '64'
+        - name: group_id
+          in: query
+          schema:
+            type: string
+        - name: item_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/kot-bot-correction-history:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: kot bot correction history report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+        - name: start-date
+          in: query
+          schema:
+            type: string
+        - name: end-date
+          in: query
+          schema:
+            type: string
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/discount-amount-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: discount amount report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/discount-amount-report-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: discount amount report summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-07-16'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-08-16'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary-item:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '100'
+        - name: sales_type
+          in: query
+          schema:
+            type: string
+        - name: delivery_partner_id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-11-01'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-11-30'
+        - name: payment_option_id
+          in: query
+          schema:
+            type: string
+          description: credit
+        - name: order_id
+          in: query
+          schema:
+            type: string
+          description: '25851'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary total
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: sales_type
+          in: query
+          schema:
+            type: string
+        - name: delivery_partner_id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-11-29'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-11-29'
+        - name: payment_option_id
+          in: query
+          schema:
+            type: string
+        - name: order_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/order-cancellation-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: order cancellation report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/order-cancellation-report-summary:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: order calcellation report summary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/floor-table-sales-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: flooar and table sales report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-by-item:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales by item report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/provisional-invoice:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: provisional report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/unsettled-order-payment:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: void order payment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/customer-payments/:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer payment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-position:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory position report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-adjustments:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory adjustment report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/inventory-consumption:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: inventory consumption report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/supplier-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: supplier report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: supplier_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-17'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-17'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/purchase-bill:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: purchase bill report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/purchase-return-bill:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: purchase return report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '3'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/sales-summary-excel:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: sales summary excel download
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: sales_type
+          in: query
+          schema:
+            type: string
+        - name: delivery_partner_id
+          in: query
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-09-07'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-09-07'
+        - name: payment_option_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/floor-table-sales-report-excel:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: floor and table sales excel export
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/purchase-bill-excel:
+    post:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: purchase report excel download
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-06-18'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/complementary-payments:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: complementary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/daily-sales-summary-total:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: daily-sales-summary-total
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/menu-performance-items:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: menu performance report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-09-07'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-09-07'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/void-due-payment:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer due void report
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/daily-sales-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: daily sales report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-11-27'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-11-29'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/customer-payments-total:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer order report total
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: customer_id
+          in: query
+          schema:
+            type: integer
+          example: '146'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-03-30'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-03-30'
+        - name: payment_type
+          in: query
+          schema:
+            type: string
+          example: payment
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/monthly-summary-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: monthly summary report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: fiscal_year
+          in: query
+          schema:
+            type: string
+          example: 2081/2082
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/monthly-sales-by-category:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: monthly sales by category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: fiscal_year
+          in: query
+          schema:
+            type: string
+          example: 2081/82
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/monthly-sales-by-floor:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: monthly sales by floor
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: fiscal_year
+          in: query
+          schema:
+            type: string
+          example: 2081/82
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/monthly-sales-by-type:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: monthly sales by type
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: fiscal_year
+          in: query
+          schema:
+            type: string
+          example: 2081/82
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/monthly-sales-by-credit:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: monthly sales by credit
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: fiscal_year
+          in: query
+          schema:
+            type: string
+          example: 2081/82
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/customer-credit-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer credit report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/customer-credit-data:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer credit report Copy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-23'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customer-statements/{customer_id}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: customer statements
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/favourite-menu-items:
     post:
       tags:
@@ -2669,16 +4203,21 @@ paths:
             schema:
               type: object
               example:
-                table_id: 94
-                description: ab cd ef gh
+                description: ''
                 productDetails:
-                  - product_id: 299
-                    price: 100
-                    quantity: 5
-                  - product_id: 300
-                    price: 100
-                    quantity: 5
-                    note: My Note
+                  - is_free_menu_item: null
+                    note: ''
+                    price: 630
+                    product_id: 689
+                    quantity: 2
+                    topping_details: []
+                  - is_free_menu_item: null
+                    note: ''
+                    price: 35
+                    product_id: 634
+                    quantity: 2
+                    topping_details: []
+                table_id: '47'
       security:
         - bearerAuth: []
       parameters:
@@ -2690,8 +4229,8 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '11'
+            type: string
+          example: '{{branch_id}}'
       responses:
         '200':
           description: Successful response
@@ -2869,13 +4408,13 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '3'
+            type: string
+          example: '{{branch_id}}'
         - name: user_status
           in: query
           schema:
             type: string
-          example: table
+          description: table
         - name: date
           in: query
           schema:
@@ -4046,1089 +5585,6 @@ paths:
           schema:
             type: string
           example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/daily-income:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: daily income
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '3'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-01-04'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-01-06'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/sales-by-user:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: sales by user
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/sales-by-category:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: sales by category
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/cancelled-orders:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: cancelled orders report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/reports/income-by-time:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: income by time
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '5'
-        - name: date
-          in: query
-          schema:
-            type: string
-          example: 12-04-2023
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/daily-reports:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: daily reports
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: date
-          in: query
-          schema:
-            type: string
-          example: 04-15-2024
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/menu-rate-history:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: menu rate history report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '3'
-        - name: start-date
-          in: query
-          schema:
-            type: string
-        - name: end-date
-          in: query
-          schema:
-            type: string
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '10'
-        - name: category_id
-          in: query
-          schema:
-            type: integer
-          example: '64'
-        - name: group_id
-          in: query
-          schema:
-            type: string
-        - name: item_id
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/kot-bot-correction-history:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: kot bot correction history report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '3'
-        - name: start-date
-          in: query
-          schema:
-            type: string
-        - name: end-date
-          in: query
-          schema:
-            type: string
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '10'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/discount-amount-report:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: discount amount report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '3'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/discount-amount-report-summary:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: discount amount report summary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Branch-id
-          in: header
-          schema:
-            type: integer
-          example: '3'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/sales-summary-item:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: sales summary report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: payment_option_id
-          in: query
-          schema:
-            type: string
-          example: credit
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/sales-summary:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: sales summary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '12'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/order-cancellation-report:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: order cancellation report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: Branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/order-cancellation-report-summary:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: order calcellation report summary
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/floor-table-sales-report:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: flooar and table sales report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/sales-by-item:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: sales by item report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/provisional-invoice:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: provisional report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/unsettled-order-payment:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: void order payment report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/customer-payments/:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: customer payment report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/inventory-position:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: inventory position report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/inventory-adjustments:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: inventory adjustment report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/inventory-consumption:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: inventory consumption report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/supplier-report:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: supplier report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: supplier_id
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-17'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-17'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/purchase-bill:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: purchase bill report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-18'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-18'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/purchase-return-bill:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: purchase return report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '3'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-18'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-18'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/sales-summary-excel:
-    post:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: sales summary excel download
-      requestBody:
-        content: {}
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/floor-table-sales-report-excel:
-    post:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: floor and table sales excel export
-      requestBody:
-        content: {}
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-        - name: status
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/purchase-bill-excel:
-    post:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: purchase report excel download
-      requestBody:
-        content: {}
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-18'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-06-18'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/complementary-payments:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: complementary report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/daily-sales-summary-total:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: daily-sales-summary-total
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '11'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/menu-performance-items:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: menu performance report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-01-20'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-10-20'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/void-due-payment:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: customer due void report
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/daily-sales-report:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: daily sales report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/customer-payments-total:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: customer order report total
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: customer_id
-          in: query
-          schema:
-            type: integer
-          example: '146'
-        - name: start_date
-          in: query
-          schema:
-            type: string
-          example: '2024-03-30'
-        - name: end_date
-          in: query
-          schema:
-            type: string
-          example: '2024-03-30'
-        - name: payment_type
-          in: query
-          schema:
-            type: string
-          example: payment
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/monthly-summary-report:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: monthly summary report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: fiscal_year
-          in: query
-          schema:
-            type: string
-          example: 2081/82
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/monthly-sales-by-category:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: monthly sales by category
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: fiscal_year
-          in: query
-          schema:
-            type: string
-          example: 2081/82
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/monthly-sales-by-floor:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: monthly sales by floor
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: fiscal_year
-          in: query
-          schema:
-            type: string
-          example: 2081/82
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/monthly-sales-by-type:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: monthly sales by type
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: fiscal_year
-          in: query
-          schema:
-            type: string
-          example: 2081/82
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/monthly-sales-by-credit:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: monthly sales by credit
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: fiscal_year
-          in: query
-          schema:
-            type: string
-          example: 2081/82
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/reports/customer-credit-report:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: customer credit report
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: pagination_limit
-          in: query
-          schema:
-            type: integer
-          example: '20'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/customer-statements/{customer_id}:
-    get:
-      tags:
-        - Admin > Restaurant > Restaurant Reports
-      summary: customer statements
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '5'
-        - name: customer_id
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: Successful response
@@ -6949,39 +7405,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/merchant/merchantDetailsForThirdParty/thirdPartyDynamicQrDownload:
-    post:
-      tags:
-        - Admin > Restaurant > FonePay
-      summary: merchantDetailsForThirdParty/thirdPartyDynamicQrDownload
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                amount: '10'
-                remarks1: test1
-                remarks2: test2
-                prn: '9999'
-                merchantCode: '1908230072'
-                dataValidation: >-
-                  88271767a508c8357908f1560c1dbf393248123fbf0bb8a021c4767d061e5edd58897266ab9a6b782fb71365f90918fef5e014adb6cbef9236b335ab786ec3ff
-                username: 9851193791@fonepay.com.np
-                password: Kimchi@2066
-      security:
-        - noauthAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/admin/generate-fonepay-dynamic-qr:
     post:
       tags:
@@ -6995,13 +7418,16 @@ paths:
               properties:
                 amount:
                   type: integer
-                  example: '10'
+                  example: '150'
                 order_id:
                   type: integer
-                  example: '456'
+                  example: '53500'
                 company_id:
                   type: integer
-                  example: '2'
+                  example: '1'
+                subTotal:
+                  type: integer
+                  example: '150'
       security:
         - bearerAuth: []
       parameters:
@@ -7013,8 +7439,8 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '11'
+            type: string
+          example: '{{branch_id}}'
       responses:
         '200':
           description: Successful response
@@ -7060,8 +7486,76 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '11'
+            type: string
+          example: '{{branch_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/merchant/merchantDetailsForThirdParty/thirdPartyDynamicQrDownload:
+    post:
+      tags:
+        - Admin > Restaurant > FonePay
+      summary: >-
+        https://merchantapi.fonepay.com/api/merchant/merchantDetailsForThirdParty/thirdPartyDynamicQrDownload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: '10'
+                remarks1: test1
+                remarks2: test2
+                prn: '1111111115'
+                merchantCode: '1908230072'
+                dataValidation: >-
+                  88271767a508c8357908f1560c1dbf393248123fbf0bb8a021c4767d061e5edd58897266ab9a6b782fb71365f90918fef5e014adb6cbef9236b335ab786ec3ff
+                username: 9851193791@fonepay.com.np
+                password: Kimchi@2066
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/merchant/merchantDetailsForThirdParty/thirdPartyDynamicQrGetStatus:
+    post:
+      tags:
+        - Admin > Restaurant > FonePay
+      summary: >-
+        https://merchantapi.fonepay.com/api/merchant/merchantDetailsForThirdParty/thirdPartyDynamicQrGetStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: '10'
+                remarks1: test1
+                remarks2: test2
+                prn: '9999'
+                merchantCode: '1908230072'
+                dataValidation: >-
+                  88271767a508c8357908f1560c1dbf393248123fbf0bb8a021c4767d061e5edd58897266ab9a6b782fb71365f90918fef5e014adb6cbef9236b335ab786ec3ff
+                username: 9851193791@fonepay.com.np
+                password: Kimchi@2066
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -10478,312 +10972,6 @@ paths:
                   company_image: >-
                     http://localhost:8000/storage/1/BDD0688FF02068E5C427B0954F8A2297.webp
                   user_id: 1
-  /api/admin/login:
-    post:
-      tags:
-        - Public > auth
-      summary: login
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: hanciewanemphago@gmail.com
-                password:
-                  type: integer
-                  example: '12345'
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/refresh-token/{refresh_token}:
-    post:
-      tags:
-        - Admin > Authentication
-      summary: refresh token
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-      security:
-        - noauthAuth: []
-      parameters:
-        - name: refresh_token
-          in: path
-          schema:
-            type: string
-          required: true
-          example: '{{refresh_token}}'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/logout:
-    post:
-      tags:
-        - Admin > Authentication
-      summary: logout
-      requestBody:
-        content: {}
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/user-detail:
-    get:
-      tags:
-        - Admin > Authentication
-      summary: user detail
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/list-user-branches:
-    get:
-      tags:
-        - Admin > Authentication
-      summary: list user branches
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: paginate
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: page
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          example: '10'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/update-user-detail:
-    post:
-      tags:
-        - Admin > Authentication
-      summary: user detail update
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                _method:
-                  type: string
-                  example: PUT
-                name:
-                  type: string
-                  example: Super admin
-                profile_image:
-                  type: string
-                  format: binary
-                delete_image:
-                  type: string
-                mobile_no:
-                  type: string
-                location:
-                  type: string
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/change-password:
-    post:
-      tags:
-        - Admin > Authentication
-      summary: change password
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                _method:
-                  type: string
-                  example: PUT
-                old_password:
-                  type: string
-                  example: P@ssw0rd0
-                password:
-                  type: string
-                  example: P@ssw0rd
-                password_confirmation:
-                  type: string
-                  example: P@ssw0rd
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/delete-user:
-    delete:
-      tags:
-        - Admin > Authentication
-      summary: delete user
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/invitation-accept-reject:
-    post:
-      tags:
-        - Admin > Authentication
-      summary: invitation accept-reject
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                token:
-                  type: string
-                  example: >-
-                    eykLUanCwDfzeb3RGdNa6OhapkaqdzUQDEVmbUqaJv1PMOtAVjPWheLYDhRxEufrobSzUbGG3TYWeqjmJR0jXP3APWCkqPde66g8zeuK8DfeWdjHw6lSJdpd1x0y5P2s
-                email:
-                  type: string
-                  example: augxdeveloper@gmail.com
-                password:
-                  type: string
-                  example: P@ssw0rd
-                password_confirmation:
-                  type: string
-                  example: P@ssw0rd
-                is_accepted:
-                  type: boolean
-                  description: true|false
-                  example: 'true'
-      security:
-        - noauthAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/my-invitations:
-    get:
-      tags:
-        - Admin > Authentication
-      summary: my invitations
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: paginate
-          in: query
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: string
-        - name: limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/my-invitation/{id}/accept-reject:
-    post:
-      tags:
-        - Admin > Authentication
-      summary: my invitations accept-reject
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                token:
-                  type: string
-                  example: >-
-                    jVRbNDicfvdNO3ERhQ32FRQRFuzzs0aUi4lkuHCWprQEFdXMHWKBZrGm2TRhJxzCU7dp6kG13UYVeGTZVLiuC1wvclUZQoJKIJxGtUfNymLaOcr2DLkrt2fyCQ7LqVmb
-                is_accepted:
-                  type: boolean
-                  description: true|false
-                  example: 'true'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-        - name: id
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '42'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/admin/permission:
     get:
       tags:
@@ -13190,6 +13378,165 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/superadmin/login:
+    post:
+      tags:
+        - Superadmin > Authentication
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: superadmin@gmail.com
+                password:
+                  type: string
+                  example: password
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/refresh-token/{refresh_token}:
+    post:
+      tags:
+        - Superadmin > Authentication
+      summary: refresh token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: refresh_token
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{refresh_token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/logout:
+    post:
+      tags:
+        - Superadmin > Authentication
+      summary: logout
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/user-detail:
+    get:
+      tags:
+        - Superadmin > Authentication
+      summary: user detail
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/update-user-detail:
+    post:
+      tags:
+        - Superadmin > Authentication
+      summary: user detail update
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PUT
+                name:
+                  type: string
+                  example: Super admin
+                profile_image:
+                  type: string
+                  format: binary
+                delete_image:
+                  type: string
+                mobile_no:
+                  type: string
+                location:
+                  type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/change-password:
+    post:
+      tags:
+        - Superadmin > Authentication
+      summary: change password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: PUT
+                old_password:
+                  type: string
+                  example: P@ssw0rd0
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/delete-user:
+    delete:
+      tags:
+        - Superadmin > Authentication
+      summary: delete user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/company:
     post:
       tags:
@@ -13496,165 +13843,6 @@ paths:
                 business_id:
                   type: integer
                   example: '1'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/login:
-    post:
-      tags:
-        - Superadmin > Authentication
-      summary: login
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: superadmin@gmail.com
-                password:
-                  type: string
-                  example: password
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/refresh-token/{refresh_token}:
-    post:
-      tags:
-        - Superadmin > Authentication
-      summary: refresh token
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-      security:
-        - noauthAuth: []
-      parameters:
-        - name: refresh_token
-          in: path
-          schema:
-            type: string
-          required: true
-          example: '{{refresh_token}}'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/logout:
-    post:
-      tags:
-        - Superadmin > Authentication
-      summary: logout
-      requestBody:
-        content: {}
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/user-detail:
-    get:
-      tags:
-        - Superadmin > Authentication
-      summary: user detail
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/update-user-detail:
-    post:
-      tags:
-        - Superadmin > Authentication
-      summary: user detail update
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                _method:
-                  type: string
-                  example: PUT
-                name:
-                  type: string
-                  example: Super admin
-                profile_image:
-                  type: string
-                  format: binary
-                delete_image:
-                  type: string
-                mobile_no:
-                  type: string
-                location:
-                  type: string
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/change-password:
-    post:
-      tags:
-        - Superadmin > Authentication
-      summary: change password
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                _method:
-                  type: string
-                  example: PUT
-                old_password:
-                  type: string
-                  example: P@ssw0rd0
-                password:
-                  type: string
-                  example: P@ssw0rd
-                password_confirmation:
-                  type: string
-                  example: P@ssw0rd
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/superadmin/delete-user:
-    delete:
-      tags:
-        - Superadmin > Authentication
-      summary: delete user
       security:
         - bearerAuth: []
       parameters:
