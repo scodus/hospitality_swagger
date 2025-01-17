@@ -3142,7 +3142,7 @@ paths:
           in: query
           schema:
             type: integer
-          example: '100'
+          example: '10'
         - name: sales_type
           in: query
           schema:
@@ -3451,8 +3451,23 @@ paths:
         - name: branch-id
           in: header
           schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-23'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-26'
+        - name: pagination_limit
+          in: query
+          schema:
             type: integer
-          example: '11'
+          example: '20'
       responses:
         '200':
           description: Successful response
@@ -3889,13 +3904,13 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '5'
+            type: string
+          example: '{{branch_id}}'
         - name: fiscal_year
           in: query
           schema:
             type: string
-          example: 2081/82
+          example: 2081/2082
       responses:
         '200':
           description: Successful response
@@ -3917,13 +3932,13 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '5'
+            type: string
+          example: '{{branch_id}}'
         - name: fiscal_year
           in: query
           schema:
             type: string
-          example: 2081/82
+          example: 2081/2082
       responses:
         '200':
           description: Successful response
@@ -3945,13 +3960,13 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '5'
+            type: string
+          example: '{{branch_id}}'
         - name: fiscal_year
           in: query
           schema:
             type: string
-          example: 2081/82
+          example: 2081/2082
       responses:
         '200':
           description: Successful response
@@ -3979,7 +3994,12 @@ paths:
           in: query
           schema:
             type: string
-          example: 2081/82
+          example: 2081/2082
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
       responses:
         '200':
           description: Successful response
@@ -4001,23 +4021,30 @@ paths:
         - name: branch-id
           in: header
           schema:
-            type: integer
-          example: '5'
+            type: string
+          example: '{{branch_id}}'
         - name: pagination_limit
           in: query
           schema:
             type: integer
-          example: '20'
+          example: '10'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: '2025-01-01'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
   /api/admin/reports/customer-credit-data:
-    get:
+    post:
       tags:
         - Admin > Restaurant > Restaurant Reports
-      summary: customer credit report Copy
+      summary: customer credit data
+      requestBody:
+        content: {}
       security:
         - bearerAuth: []
       parameters:
@@ -4046,6 +4073,44 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/reports/credit-settlement-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: credit-settlement-report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-01'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-31'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/customer-statements/{customer_id}:
     get:
       tags:
@@ -4064,11 +4129,116 @@ paths:
           schema:
             type: integer
           example: '5'
+        - name: pagination
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-01'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-31'
         - name: customer_id
           in: path
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/report-total/{report_type}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: report-total
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-01'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-31'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: '2024-07-30'
+        - name: report_type
+          in: path
+          schema:
+            type: string
+          required: true
+          description: credit_settlement_report|customer_credit_report
+          example: customer_credit_report
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/report-excel/{report_type}:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: report-excel
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-01'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-31'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-30'
+        - name: report_type
+          in: path
+          schema:
+            type: string
+          required: true
+          description: credit_settlement_report|customer_credit_report
+          example: customer_credit_report
       responses:
         '200':
           description: Successful response

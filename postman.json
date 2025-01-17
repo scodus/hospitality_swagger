@@ -4841,7 +4841,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/sales-summary-item?pagination_limit=100&sales_type&delivery_partner_id&user_id&start_date=2024-11-01&end_date=2024-11-30&payment_option_id=&order_id=",
+											"raw": "{{url}}/api/admin/reports/sales-summary-item?pagination_limit=10&sales_type&delivery_partner_id&user_id&start_date=2024-11-01&end_date=2024-11-30&payment_option_id=&order_id=",
 											"host": [
 												"{{url}}"
 											],
@@ -4854,7 +4854,7 @@
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "100"
+													"value": "10"
 												},
 												{
 													"key": "sales_type",
@@ -4885,6 +4885,11 @@
 													"key": "order_id",
 													"value": "",
 													"description": "25851"
+												},
+												{
+													"key": "page",
+													"value": "",
+													"disabled": true
 												}
 											]
 										}
@@ -5342,11 +5347,11 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "11"
+												"value": "{{branch_id}}"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/inventory-consumption",
+											"raw": "{{url}}/api/admin/reports/inventory-consumption?start_date=2024-12-23&end_date=2024-12-26&pagination_limit=20",
 											"host": [
 												"{{url}}"
 											],
@@ -5355,6 +5360,20 @@
 												"admin",
 												"reports",
 												"inventory-consumption"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "2024-12-23"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-12-26"
+												},
+												{
+													"key": "pagination_limit",
+													"value": "20"
+												}
 											]
 										}
 									},
@@ -6037,12 +6056,12 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "{{branch_id}}",
 												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/monthly-sales-by-category?fiscal_year=2081/82",
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-category?fiscal_year=2081/2082",
 											"host": [
 												"{{url}}"
 											],
@@ -6055,7 +6074,7 @@
 											"query": [
 												{
 													"key": "fiscal_year",
-													"value": "2081/82"
+													"value": "2081/2082"
 												}
 											]
 										}
@@ -6084,12 +6103,12 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "{{branch_id}}",
 												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/monthly-sales-by-floor?fiscal_year=2081/82",
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-floor?fiscal_year=2081/2082",
 											"host": [
 												"{{url}}"
 											],
@@ -6102,7 +6121,7 @@
 											"query": [
 												{
 													"key": "fiscal_year",
-													"value": "2081/82"
+													"value": "2081/2082"
 												}
 											]
 										}
@@ -6131,12 +6150,12 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "{{branch_id}}",
 												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/monthly-sales-by-type?fiscal_year=2081/82",
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-type?fiscal_year=2081/2082",
 											"host": [
 												"{{url}}"
 											],
@@ -6149,7 +6168,7 @@
 											"query": [
 												{
 													"key": "fiscal_year",
-													"value": "2081/82"
+													"value": "2081/2082"
 												}
 											]
 										}
@@ -6183,7 +6202,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/monthly-sales-by-credit?fiscal_year=2081/82",
+											"raw": "{{url}}/api/admin/reports/monthly-sales-by-credit?fiscal_year=2081/2082&pagination_limit=10",
 											"host": [
 												"{{url}}"
 											],
@@ -6196,7 +6215,16 @@
 											"query": [
 												{
 													"key": "fiscal_year",
-													"value": "2081/82"
+													"value": "2081/2082"
+												},
+												{
+													"key": "pagination_limit",
+													"value": "10"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"disabled": true
 												}
 											]
 										}
@@ -6225,12 +6253,12 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "{{branch_id}}",
 												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/customer-credit-report?pagination_limit=20",
+											"raw": "{{url}}/api/admin/reports/customer-credit-report?pagination_limit=10&date=2025-01-01",
 											"host": [
 												"{{url}}"
 											],
@@ -6243,7 +6271,21 @@
 											"query": [
 												{
 													"key": "pagination_limit",
-													"value": "20"
+													"value": "10"
+												},
+												{
+													"key": "start_date",
+													"value": "2024-12-21",
+													"disabled": true
+												},
+												{
+													"key": "end_date",
+													"value": "2024-12-22",
+													"disabled": true
+												},
+												{
+													"key": "date",
+													"value": "2025-01-01"
 												}
 											]
 										}
@@ -6251,7 +6293,7 @@
 									"response": []
 								},
 								{
-									"name": "customer credit report Copy",
+									"name": "customer credit data",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -6263,7 +6305,7 @@
 												}
 											]
 										},
-										"method": "GET",
+										"method": "POST",
 										"header": [
 											{
 												"key": "Accept",
@@ -6295,6 +6337,68 @@
 												{
 													"key": "date",
 													"value": "2024-12-23"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "credit-settlement-report",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "{{branch_id}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/reports/credit-settlement-report?pagination_limit=10&start_date=2024-12-01&end_date=2024-12-31",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"credit-settlement-report"
+											],
+											"query": [
+												{
+													"key": "pagination_limit",
+													"value": "10"
+												},
+												{
+													"key": "start_date",
+													"value": "2024-12-01"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-12-31"
 												}
 											]
 										}
@@ -6341,7 +6445,7 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/customer-statements/{customer_id}",
+											"raw": "{{url}}/api/admin/customer-statements/{customer_id}?pagination=10&start_date=2024-12-01&end_date=2024-12-31",
 											"host": [
 												"{{url}}"
 											],
@@ -6350,6 +6454,172 @@
 												"admin",
 												"customer-statements",
 												"{customer_id}"
+											],
+											"query": [
+												{
+													"key": "pagination",
+													"value": "10"
+												},
+												{
+													"key": "start_date",
+													"value": "2024-12-01"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-12-31"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "report-total",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "application_id",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/reports/report-total/:report_type?start_date=2024-12-01&end_date=2024-12-31&date=2024-07-30",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"report-total",
+												":report_type"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "2024-12-01"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-12-31"
+												},
+												{
+													"key": "date",
+													"value": "2024-07-30"
+												}
+											],
+											"variable": [
+												{
+													"key": "report_type",
+													"value": "customer_credit_report",
+													"description": "credit_settlement_report|customer_credit_report"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "report-excel",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "application_id",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/reports/report-excel/:report_type?start_date=2024-12-01&end_date=2024-12-31&date=2024-12-30",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"report-excel",
+												":report_type"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "2024-12-01"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-12-31"
+												},
+												{
+													"key": "date",
+													"value": "2024-12-30"
+												}
+											],
+											"variable": [
+												{
+													"key": "report_type",
+													"value": "customer_credit_report",
+													"description": "credit_settlement_report|customer_credit_report"
+												}
 											]
 										}
 									},
