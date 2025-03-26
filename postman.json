@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb",
+		"_postman_id": "ed34ebca-76ab-43ec-bde0-2865ac25796c",
 		"name": "SROT Hospitality",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "34883146",
-		"_collection_link": "https://nrna-hospitality-restaurant.postman.co/workspace/NRNA~0b0ccb09-1ac4-4aa4-9ef0-7b29f77c824e/collection/30047466-e25d8ca6-d6e9-49fc-a5b3-d1341d4e06bb?action=share&source=collection_link&creator=34883146"
+		"_exporter_id": "42517497",
+		"_collection_link": "https://bikash-projects.postman.co/workspace/Bikash's-Workspace~07b4d747-08b6-4eac-9f94-41a4bad205fa/collection/34655126-ed34ebca-76ab-43ec-bde0-2865ac25796c?action=share&source=collection_link&creator=42517497"
 	},
 	"item": [
 		{
@@ -27,6 +27,16 @@
 										"type": "text/javascript",
 										"packages": {}
 									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
 								}
 							],
 							"request": {
@@ -43,7 +53,7 @@
 										},
 										{
 											"key": "password",
-											"value": "P@ssw0rd!23",
+											"value": "P@ssw0rd123",
 											"type": "text",
 											"disabled": true
 										},
@@ -98,11 +108,23 @@
 										{
 											"key": "email",
 											"value": "kimchifastfoods@gmail.com",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password",
 											"value": "Kimchi@2065",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "gsaurav2000@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
 											"type": "text"
 										}
 									]
@@ -746,6 +768,58 @@
 													"key": "pagination_limit",
 													"value": "4"
 												},
+												{
+													"key": "company_id",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "search_keyword",
+													"value": "Hancie Phago",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Active Customers",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/active-customers",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"active-customers"
+											],
+											"query": [
 												{
 													"key": "company_id",
 													"value": "1",
@@ -2769,7 +2843,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/payment-order-details\\:table_id",
+											"raw": "{{url}}/admin/payment-order-details/:table_id",
 											"host": [
 												"{{url}}"
 											],
@@ -2799,7 +2873,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{url}}/admin/payment-order-details\\:table_id",
+													"raw": "{{url}}/admin/payment-order-details/:table_id",
 													"host": [
 														"{{url}}"
 													],
@@ -4731,11 +4805,11 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "3"
+												"value": "5"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/discount-amount-report",
+											"raw": "{{url}}/api/admin/reports/discount-amount-report?start-date=2024-05-01&end-date=2025-12-01&pagination_limit=10",
 											"host": [
 												"{{url}}"
 											],
@@ -4748,18 +4822,15 @@
 											"query": [
 												{
 													"key": "start-date",
-													"value": null,
-													"disabled": true
+													"value": "2024-05-01"
 												},
 												{
 													"key": "end-date",
-													"value": null,
-													"disabled": true
+													"value": "2025-12-01"
 												},
 												{
 													"key": "pagination_limit",
-													"value": "10",
-													"disabled": true
+													"value": "10"
 												}
 											]
 										}
@@ -4917,11 +4988,11 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "{{branch_id}}"
+												"value": "5"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/sales-summary?sales_type=&delivery_partner_id=&user_id=&start_date=2024-11-29&end_date=2024-11-29&payment_option_id=&order_id=",
+											"raw": "{{url}}/api/admin/reports/sales-summary?start_date=2025-02-27&end_date=2025-03-13",
 											"host": [
 												"{{url}}"
 											],
@@ -4934,31 +5005,36 @@
 											"query": [
 												{
 													"key": "sales_type",
-													"value": ""
+													"value": "",
+													"disabled": true
 												},
 												{
 													"key": "delivery_partner_id",
-													"value": ""
+													"value": "",
+													"disabled": true
 												},
 												{
 													"key": "user_id",
-													"value": ""
+													"value": "",
+													"disabled": true
 												},
 												{
 													"key": "start_date",
-													"value": "2024-11-29"
+													"value": "2025-02-27"
 												},
 												{
 													"key": "end_date",
-													"value": "2024-11-29"
+													"value": "2025-03-13"
 												},
 												{
 													"key": "payment_option_id",
-													"value": ""
+													"value": "9",
+													"disabled": true
 												},
 												{
 													"key": "order_id",
-													"value": ""
+													"value": "",
+													"disabled": true
 												}
 											]
 										}
@@ -5558,7 +5634,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/sales-summary-excel?pagination_limit=&sales_type=&delivery_partner_id=&user_id=&start_date=2024-09-07&end_date=2024-09-07&payment_option_id=",
+											"raw": "{{url}}/api/admin/reports/sales-summary-excel?pagination_limit=&sales_type=&delivery_partner_id=&user_id=&start_date=2024-10-07&end_date=2024-12-07&payment_option_id=",
 											"host": [
 												"{{url}}"
 											],
@@ -5587,11 +5663,11 @@
 												},
 												{
 													"key": "start_date",
-													"value": "2024-09-07"
+													"value": "2024-10-07"
 												},
 												{
 													"key": "end_date",
-													"value": "2024-09-07"
+													"value": "2024-12-07"
 												},
 												{
 													"key": "payment_option_id",
@@ -5854,6 +5930,62 @@
 									"response": []
 								},
 								{
+									"name": "menu performance summary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/reports/menu-performance-summary?start_date=2025-02-27&end_date=2025-03-13",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"menu-performance-summary"
+											],
+											"query": [
+												{
+													"key": "floor_id",
+													"value": "21",
+													"disabled": true
+												},
+												{
+													"key": "start_date",
+													"value": "2025-02-27"
+												},
+												{
+													"key": "end_date",
+													"value": "2025-03-13"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "customer due void report",
 									"request": {
 										"method": "GET",
@@ -5900,7 +6032,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/reports/daily-sales-report?start_date=2024-11-27&end_date=2024-11-29&pagination_limit",
+											"raw": "{{url}}/api/admin/reports/daily-sales-report?start_date=2024-11-01&end_date=2024-11-29",
 											"host": [
 												"{{url}}"
 											],
@@ -5913,7 +6045,7 @@
 											"query": [
 												{
 													"key": "start_date",
-													"value": "2024-11-27"
+													"value": "2024-11-01"
 												},
 												{
 													"key": "end_date",
@@ -5921,7 +6053,8 @@
 												},
 												{
 													"key": "pagination_limit",
-													"value": null
+													"value": "10",
+													"disabled": true
 												}
 											]
 										}
@@ -11465,7 +11598,8 @@
 											},
 											{
 												"key": "branch_id",
-												"value": "11",
+												"value": "5",
+												"description": "saurav 22 | old 11 | bishow  5 -6 - 17",
 												"type": "text"
 											}
 										],
@@ -14515,7 +14649,7 @@
 					"name": "Hotel",
 					"item": [
 						{
-							"name": "hotel floor",
+							"name": "hotel floor -old",
 							"item": [
 								{
 									"name": "create hotel floor",
@@ -15046,6 +15180,2092 @@
 											"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"company_id\": 1,\n        \"title\": \"hy\",\n        \"slug\": \"hy\",\n        \"description\": \"fgfg\",\n        \"status\": \"active\",\n        \"created_at\": \"2023-12-28T11:53:49.000000Z\",\n        \"updated_at\": \"2023-12-28T11:54:03.000000Z\"\n    },\n    \"message\": \"Floor deleted successfully!\"\n}"
 										}
 									]
+								}
+							]
+						},
+						{
+							"name": "Floor Plan",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "Floor 1",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "1st floor of building a",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/floor-plans",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"floor-plans"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/floor-plans/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"floor-plans",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "Floor 1",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "base floor of building a",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/floor-plans/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"floor-plans",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/floor-plans/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"floor-plans",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "list",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/floor-plans?q=any",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"floor-plans"
+											],
+											"query": [
+												{
+													"key": "paginate",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": "2",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "2",
+													"disabled": true
+												},
+												{
+													"key": "q",
+													"value": "any"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create with multiple rooms",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "id",
+													"value": "26",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "Floor any floor",
+													"type": "text"
+												},
+												{
+													"key": "rooms[0][name]",
+													"value": "10110",
+													"type": "text"
+												},
+												{
+													"key": "rooms[0][id]",
+													"value": "4",
+													"type": "text"
+												},
+												{
+													"key": "rooms[1][name]",
+													"value": "102",
+													"type": "text"
+												},
+												{
+													"key": "rooms[2][name]",
+													"value": "103",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/floor-plans/rooms",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"floor-plans",
+												"rooms"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "rooms",
+							"item": [
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "new name",
+													"type": "text"
+												},
+												{
+													"key": "condition",
+													"value": "CLEAN",
+													"type": "text"
+												},
+												{
+													"key": "is_active",
+													"value": "1",
+													"description": "1/0",
+													"type": "text"
+												},
+												{
+													"key": "hotel_floor_plan_id",
+													"value": "26",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/rooms/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"rooms",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "12"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/rooms",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"rooms"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/rooms/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"rooms",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "14"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all available rooms",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/rooms/available",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"rooms",
+												"available"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "amenities",
+							"item": [
+								{
+									"name": "get all",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/amenities",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"amenities"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "Air Conditioning",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "Air conditioning service of top brand",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/amenities",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"amenities"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "Air Conditioning 1",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "Air conditioning service of top brand 1",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/amenities/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"amenities",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/amenities/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"amenities",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "5"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "room type",
+							"item": [
+								{
+									"name": "room type discount",
+									"item": [
+										{
+											"name": "get all",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:room-type-id/discounts",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":room-type-id",
+														"discounts"
+													],
+													"variable": [
+														{
+															"key": "room-type-id",
+															"value": "2"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "store",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "title",
+															"value": "Dashain discount",
+															"type": "text"
+														},
+														{
+															"key": "type",
+															"value": "FIXED",
+															"description": "PERCENTAGE/FIXED",
+															"type": "text"
+														},
+														{
+															"key": "amount",
+															"value": "100",
+															"type": "text"
+														},
+														{
+															"key": "valid_from",
+															"value": "2020-02-02 02:02:02",
+															"type": "text"
+														},
+														{
+															"key": "valid_to",
+															"value": "2020-02-02 02:02:02",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:room-type-id/discounts",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":room-type-id",
+														"discounts"
+													],
+													"variable": [
+														{
+															"key": "room-type-id",
+															"value": "2"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "show",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": []
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:room-type-id/discounts/:discount-id",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":room-type-id",
+														"discounts",
+														":discount-id"
+													],
+													"variable": [
+														{
+															"key": "room-type-id",
+															"value": "2"
+														},
+														{
+															"key": "discount-id",
+															"value": "6"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "update",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "title",
+															"value": "Dashain discount 1",
+															"type": "text"
+														},
+														{
+															"key": "type",
+															"value": "FIXED",
+															"description": "PERCENTAGE/FIXED",
+															"type": "text"
+														},
+														{
+															"key": "amount",
+															"value": "100",
+															"type": "text"
+														},
+														{
+															"key": "valid_from",
+															"value": "2020-02-02 02:02:02",
+															"type": "text"
+														},
+														{
+															"key": "valid_to",
+															"value": "2020-02-02 02:02:02",
+															"type": "text"
+														},
+														{
+															"key": "_method",
+															"value": "put",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:room-type-id/discounts/:discount-id",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":room-type-id",
+														"discounts",
+														":discount-id"
+													],
+													"variable": [
+														{
+															"key": "room-type-id",
+															"value": "2"
+														},
+														{
+															"key": "discount-id",
+															"value": "6"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "delete",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:room-type-id/discounts/:discount-id",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":room-type-id",
+														"discounts",
+														":discount-id"
+													],
+													"variable": [
+														{
+															"key": "room-type-id",
+															"value": "2"
+														},
+														{
+															"key": "discount-id",
+															"value": "6"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "room type breakdown",
+									"item": [
+										{
+											"name": "save",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "hotel_room_ids[0]",
+															"value": "7",
+															"type": "text"
+														},
+														{
+															"key": "hotel_room_ids[1]",
+															"value": "8",
+															"type": "text"
+														},
+														{
+															"key": "hotel_room_ids[2]",
+															"value": "9",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:room-type-id/rooms",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":room-type-id",
+														"rooms"
+													],
+													"variable": [
+														{
+															"key": "room-type-id",
+															"value": "2"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "media",
+									"item": [
+										{
+											"name": "save media",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "media[0][id]",
+															"value": "91",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "media[0][file]",
+															"type": "file",
+															"src": "/C:/Users/User/Downloads/logo with letters OPC.png"
+														},
+														{
+															"key": "media[1][id]",
+															"value": "72",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "media[1][file]",
+															"type": "file",
+															"src": "/C:/Users/User/Downloads/logo with letters OPC.png"
+														},
+														{
+															"key": "media[2][id]",
+															"value": "73",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "media[2][file]",
+															"type": "file",
+															"src": "/C:/Users/User/Downloads/logo with letters OPC.png"
+														},
+														{
+															"key": "media[0][delete]",
+															"value": "1",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "media[1][delete]",
+															"value": "1",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "media[2][delete]",
+															"value": "1",
+															"type": "text",
+															"disabled": true
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:id/media/:type",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":id",
+														"media",
+														":type"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "2"
+														},
+														{
+															"key": "type",
+															"value": "featured-images",
+															"description": "gallery/featured-images"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "get media",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/room-types/:id/media/:type",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"room-types",
+														":id",
+														"media",
+														":type"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "2"
+														},
+														{
+															"key": "type",
+															"value": "featured-images",
+															"description": "gallery/featured-images"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Delux double room",
+													"type": "text"
+												},
+												{
+													"key": "base_price",
+													"value": "100000",
+													"type": "text"
+												},
+												{
+													"key": "max_number_of_guests",
+													"value": "10",
+													"type": "text"
+												},
+												{
+													"key": "number_of_adults",
+													"value": "8",
+													"type": "text"
+												},
+												{
+													"key": "number_of_children",
+													"value": "2",
+													"type": "text"
+												},
+												{
+													"key": "advance_type",
+													"value": "FIXED",
+													"description": "FIXED/PERCENTAGE",
+													"type": "text"
+												},
+												{
+													"key": "advance_amount",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "some description",
+													"type": "text"
+												},
+												{
+													"key": "amenities[0]",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "amenities[1]",
+													"value": "2",
+													"type": "text"
+												},
+												{
+													"key": "amenities[2]",
+													"value": "3",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Delux double room 1",
+													"type": "text"
+												},
+												{
+													"key": "base_price",
+													"value": "10000",
+													"type": "text"
+												},
+												{
+													"key": "max_number_of_guests",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "number_of_adults",
+													"value": "80",
+													"type": "text"
+												},
+												{
+													"key": "number_of_children",
+													"value": "2",
+													"type": "text"
+												},
+												{
+													"key": "advance_type",
+													"value": "PERCENTAGE",
+													"description": "FIXED/PERCENTAGE",
+													"type": "text"
+												},
+												{
+													"key": "advance_amount",
+													"value": "100",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "some description",
+													"type": "text"
+												},
+												{
+													"key": "amenities[0]",
+													"value": "4",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types?paginate=1&page=2&limit=2&q=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types"
+											],
+											"query": [
+												{
+													"key": "paginate",
+													"value": "1"
+												},
+												{
+													"key": "page",
+													"value": "2"
+												},
+												{
+													"key": "limit",
+													"value": "2"
+												},
+												{
+													"key": "q",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "7"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "reservation source",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "phone",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "All the reservations that are registered with phone",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservation-sources",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservation-sources"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "phones",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "All the reservations that are registered with phones",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservation-sources/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservation-sources",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservation-sources?paginate=1&page=2&limit=2",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservation-sources"
+											],
+											"query": [
+												{
+													"key": "q",
+													"value": "phones",
+													"disabled": true
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												},
+												{
+													"key": "page",
+													"value": "2"
+												},
+												{
+													"key": "limit",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservation-sources/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservation-sources",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservation-sources/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservation-sources",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "reservation",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "guest[name]",
+													"value": "hari bahadur",
+													"type": "text"
+												},
+												{
+													"key": "guest[phone]",
+													"value": "984900000000",
+													"type": "text"
+												},
+												{
+													"key": "guest[email]",
+													"value": "haribahadur@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "guest[country]",
+													"value": "NEPAL",
+													"type": "text"
+												},
+												{
+													"key": "guest[address]",
+													"value": "random address",
+													"type": "text"
+												},
+												{
+													"key": "guest[note]",
+													"value": "random note",
+													"type": "text"
+												},
+												{
+													"key": "reservation[start_date]",
+													"value": "2020-02-02 02:02:02",
+													"type": "text"
+												},
+												{
+													"key": "reservation[end_date]",
+													"value": "2020-02-02 02:02:02",
+													"type": "text"
+												},
+												{
+													"key": "reservation[hotel_reservation_source_id]",
+													"value": "2",
+													"type": "text"
+												},
+												{
+													"key": "reservation[advance_amount]",
+													"value": "200",
+													"type": "text"
+												},
+												{
+													"key": "reservation[advance_payment_option_id]",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "reservation_detail[0][hotel_room_type_id]",
+													"value": "2",
+													"type": "text"
+												},
+												{
+													"key": "reservation_detail[0][quantity]",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "reservation_detail[0][rate]",
+													"value": "100",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservations",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservations"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservations?paginate=1&limit=1&page=1&from=2020-02-02 02:00:00&to=2020-02-02 02:03:00",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservations"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "DEPARTURES",
+													"description": "ARRIVALS/DEPARTURES",
+													"disabled": true
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "1"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "from",
+													"value": "2020-02-02 02:00:00"
+												},
+												{
+													"key": "to",
+													"value": "2020-02-02 02:03:00"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
@@ -21134,6 +23354,50 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Print Issue store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "branch-id",
+								"value": "5",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 2, //required|integer\r\n    \"order_id\": 54232,//required|integer\r\n    \"order_type\": \"KOT\", //\"required|string\" - KOT|BOT|KOT1|BOT1\r\n    \"order_type_no\": 2, //\"required|integer\" - kot_no | bot_no\r\n    \"extra\": {\r\n        \"printer_ip_address\" : \"192.168.10.1\",\r\n        \"device_ip_address\" : \"192.168.10.1\"\r\n    }\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/print-issue",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"print-issue"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -21397,6 +23661,14 @@
 											"pm.environment.set('token', response.data.token)\r",
 											"pm.environment.set('refresh_token', response.data.refresh_token)"
 										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
 										"type": "text/javascript"
 									}
 								}
@@ -25763,6 +28035,146 @@
 										"api",
 										"superadmin",
 										"fiscal-years"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DB Backup",
+					"item": [
+						{
+							"name": "Db Backup",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/db-backup/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"db-backup",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Db Backup and Delete Record",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/backup-database-delete-record?date=2025-01-30",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"backup-database-delete-record"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2025-01-30"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Print Issue",
+					"item": [
+						{
+							"name": "Print Issue All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/print-issue?pagination_limit=10&page=1&branch_id=5&user_id=2&start_date=2025-03-10&end_date=2025-03-11&order_type=KOT",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"print-issue"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "branch_id",
+											"value": "5"
+										},
+										{
+											"key": "user_id",
+											"value": "2"
+										},
+										{
+											"key": "start_date",
+											"value": "2025-03-10"
+										},
+										{
+											"key": "end_date",
+											"value": "2025-03-11"
+										},
+										{
+											"key": "order_type",
+											"value": "KOT",
+											"description": "KOT|BOT|KOT1|BOT1"
+										},
+										{
+											"key": "order_id",
+											"value": "2",
+											"disabled": true
+										}
 									]
 								}
 							},
