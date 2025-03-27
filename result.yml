@@ -9915,11 +9915,6 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: q
-          in: query
-          schema:
-            type: string
-          example: any
       responses:
         '200':
           description: Successful response
@@ -9948,7 +9943,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '2'
+          example: '26'
       responses:
         '200':
           description: Successful response
@@ -10022,28 +10017,20 @@ paths:
       summary: create with multiple rooms
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
-              properties:
-                id:
-                  type: integer
-                  example: '26'
-                title:
-                  type: string
-                  example: Floor any floor
-                rooms[0][name]:
-                  type: integer
-                  example: '10110'
-                rooms[0][id]:
-                  type: integer
-                  example: '4'
-                rooms[1][name]:
-                  type: integer
-                  example: '102'
-                rooms[2][name]:
-                  type: integer
-                  example: '103'
+              example:
+                id: 30
+                title: new Floor 2
+                rooms:
+                  - id: 20
+                    name: '2011'
+                  - id: 21
+                    name: '2021'
+                  - id: 22
+                    name: '2031'
+                    delete: true
       security:
         - bearerAuth: []
       parameters:
@@ -10502,11 +10489,41 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/hotels/room-types/{id}/media/{type}:
+  /api/admin/hotels/room-types/{id}/media:
     post:
       tags:
         - Admin > Hotel > room type > media
       summary: save media
+      description: |-
+        **Logic**
+
+        parameters for creation
+
+        - file: File
+            
+        - collectionName: string
+            
+        - order: integer
+            
+
+        parameter to update(order):
+
+        - id: integer
+            
+        - collectionName: string
+            
+        - order: integer
+            
+
+        parameter to delete:
+
+        - id: integerr
+            
+        - collectionName: string (any)
+            
+        - order: integer (any)
+            
+        - delete: boolean
       requestBody:
         content:
           multipart/form-data:
@@ -10515,29 +10532,42 @@ paths:
               properties:
                 media[0][id]:
                   type: integer
-                  example: '91'
+                  example: '104'
                 media[0][file]:
                   type: string
                   format: binary
+                media[0][collectionName]:
+                  type: string
+                  description: gallery/featured
+                  example: featured
+                media[0][order]:
+                  type: integer
+                  example: '1'
                 media[1][id]:
                   type: integer
-                  example: '72'
+                  example: '92'
+                media[1][collectionName]:
+                  type: string
+                  example: gallery
                 media[1][file]:
+                  type: string
+                  format: binary
+                media[1][order]:
+                  type: integer
+                  example: '1'
+                media[2][file]:
                   type: string
                   format: binary
                 media[2][id]:
                   type: integer
-                  example: '73'
-                media[2][file]:
-                  type: string
-                  format: binary
-                media[0][delete]:
-                  type: integer
-                  example: '1'
-                media[1][delete]:
-                  type: integer
-                  example: '1'
+                  example: '95'
                 media[2][delete]:
+                  type: integer
+                  example: '1'
+                media[2][collectionName]:
+                  type: string
+                  example: gallerysdd
+                media[2][order]:
                   type: integer
                   example: '1'
       security:
@@ -10554,13 +10584,6 @@ paths:
             type: integer
           required: true
           example: '2'
-        - name: type
-          in: path
-          schema:
-            type: string
-          required: true
-          description: gallery/featured-images
-          example: featured-images
       responses:
         '200':
           description: Successful response
@@ -10584,13 +10607,6 @@ paths:
             type: integer
           required: true
           example: '2'
-        - name: type
-          in: path
-          schema:
-            type: string
-          required: true
-          description: gallery/featured-images
-          example: featured-images
       responses:
         '200':
           description: Successful response
@@ -10798,6 +10814,39 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/hotels/room-types/available:
+    get:
+      tags:
+        - Admin > Hotel > room type
+      summary: get available room types
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: from
+          in: query
+          schema:
+            type: string
+          example: '2020-02-01 15:00:00'
+        - name: to
+          in: query
+          schema:
+            type: string
+          example: '2020-02-05 15:00:00'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/reservation-sources:
     post:
       tags:
@@ -10815,6 +10864,9 @@ paths:
                 description:
                   type: string
                   example: All the reservations that are registered with phone
+                is_active:
+                  type: integer
+                  example: '1'
       security:
         - bearerAuth: []
       parameters:
@@ -10880,6 +10932,9 @@ paths:
                 _method:
                   type: string
                   example: put
+                is_active:
+                  type: integer
+                  example: '0'
       security:
         - bearerAuth: []
       parameters:
@@ -11023,31 +11078,6 @@ paths:
           schema:
             type: integer
           example: '1'
-        - name: paginate
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: page
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: from
-          in: query
-          schema:
-            type: string
-          example: '2020-02-02 02:00:00'
-        - name: to
-          in: query
-          schema:
-            type: string
-          example: '2020-02-02 02:03:00'
       responses:
         '200':
           description: Successful response

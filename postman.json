@@ -15278,7 +15278,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "2"
+													"value": "26"
 												}
 											]
 										}
@@ -15418,7 +15418,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/floor-plans?q=any",
+											"raw": "{{url}}/api/admin/hotels/floor-plans",
 											"host": [
 												"{{url}}"
 											],
@@ -15446,7 +15446,8 @@
 												},
 												{
 													"key": "q",
-													"value": "any"
+													"value": "any",
+													"disabled": true
 												}
 											]
 										}
@@ -15480,39 +15481,13 @@
 											}
 										],
 										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "id",
-													"value": "26",
-													"type": "text"
-												},
-												{
-													"key": "title",
-													"value": "Floor any floor",
-													"type": "text"
-												},
-												{
-													"key": "rooms[0][name]",
-													"value": "10110",
-													"type": "text"
-												},
-												{
-													"key": "rooms[0][id]",
-													"value": "4",
-													"type": "text"
-												},
-												{
-													"key": "rooms[1][name]",
-													"value": "102",
-													"type": "text"
-												},
-												{
-													"key": "rooms[2][name]",
-													"value": "103",
-													"type": "text"
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":30,\r\n    \"title\":\"new Floor 2\",\r\n    \"rooms\":[\r\n        {\r\n            \"id\":20,\r\n            \"name\":\"2011\"\r\n        },\r\n        {\r\n            \"id\":21,\r\n            \"name\":\"2021\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"name\":\"2031\",\r\n            \"delete\":true\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											]
+											}
 										},
 										"url": {
 											"raw": "{{url}}/api/admin/hotels/floor-plans/rooms",
@@ -16352,9 +16327,8 @@
 													"formdata": [
 														{
 															"key": "media[0][id]",
-															"value": "91",
-															"type": "text",
-															"disabled": true
+															"value": "104",
+															"type": "text"
 														},
 														{
 															"key": "media[0][file]",
@@ -16362,10 +16336,25 @@
 															"src": "/C:/Users/User/Downloads/logo with letters OPC.png"
 														},
 														{
+															"key": "media[0][collectionName]",
+															"value": "featured",
+															"description": "gallery/featured",
+															"type": "text"
+														},
+														{
+															"key": "media[0][order]",
+															"value": "1",
+															"type": "text"
+														},
+														{
 															"key": "media[1][id]",
-															"value": "72",
-															"type": "text",
-															"disabled": true
+															"value": "92",
+															"type": "text"
+														},
+														{
+															"key": "media[1][collectionName]",
+															"value": "gallery",
+															"type": "text"
 														},
 														{
 															"key": "media[1][file]",
@@ -16373,10 +16362,9 @@
 															"src": "/C:/Users/User/Downloads/logo with letters OPC.png"
 														},
 														{
-															"key": "media[2][id]",
-															"value": "73",
-															"type": "text",
-															"disabled": true
+															"key": "media[1][order]",
+															"value": "1",
+															"type": "text"
 														},
 														{
 															"key": "media[2][file]",
@@ -16384,27 +16372,29 @@
 															"src": "/C:/Users/User/Downloads/logo with letters OPC.png"
 														},
 														{
-															"key": "media[0][delete]",
-															"value": "1",
-															"type": "text",
-															"disabled": true
-														},
-														{
-															"key": "media[1][delete]",
-															"value": "1",
-															"type": "text",
-															"disabled": true
+															"key": "media[2][id]",
+															"value": "95",
+															"type": "text"
 														},
 														{
 															"key": "media[2][delete]",
 															"value": "1",
-															"type": "text",
-															"disabled": true
+															"type": "text"
+														},
+														{
+															"key": "media[2][collectionName]",
+															"value": "gallerysdd",
+															"type": "text"
+														},
+														{
+															"key": "media[2][order]",
+															"value": "1",
+															"type": "text"
 														}
 													]
 												},
 												"url": {
-													"raw": "{{url}}/api/admin/hotels/room-types/:id/media/:type",
+													"raw": "{{url}}/api/admin/hotels/room-types/:id/media",
 													"host": [
 														"{{url}}"
 													],
@@ -16414,21 +16404,16 @@
 														"hotels",
 														"room-types",
 														":id",
-														"media",
-														":type"
+														"media"
 													],
 													"variable": [
 														{
 															"key": "id",
 															"value": "2"
-														},
-														{
-															"key": "type",
-															"value": "featured-images",
-															"description": "gallery/featured-images"
 														}
 													]
-												}
+												},
+												"description": "**Logic**\n\nparameters for creation\n\n- file: File\n    \n- collectionName: string\n    \n- order: integer\n    \n\nparameter to update(order):\n\n- id: integer\n    \n- collectionName: string\n    \n- order: integer\n    \n\nparameter to delete:\n\n- id: integerr\n    \n- collectionName: string (any)\n    \n- order: integer (any)\n    \n- delete: boolean"
 											},
 											"response": []
 										},
@@ -16454,7 +16439,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{url}}/api/admin/hotels/room-types/:id/media/:type",
+													"raw": "{{url}}/api/admin/hotels/room-types/:id/media",
 													"host": [
 														"{{url}}"
 													],
@@ -16464,18 +16449,12 @@
 														"hotels",
 														"room-types",
 														":id",
-														"media",
-														":type"
+														"media"
 													],
 													"variable": [
 														{
 															"key": "id",
 															"value": "2"
-														},
-														{
-															"key": "type",
-															"value": "featured-images",
-															"description": "gallery/featured-images"
 														}
 													]
 												}
@@ -16826,6 +16805,58 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "get available room types",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types/available?from=2020-02-01 15:00:00&to=2020-02-05 15:00:00",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types",
+												"available"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "2020-02-01 15:00:00"
+												},
+												{
+													"key": "to",
+													"value": "2020-02-05 15:00:00"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -16864,6 +16895,11 @@
 												{
 													"key": "description",
 													"value": "All the reservations that are registered with phone",
+													"type": "text"
+												},
+												{
+													"key": "is_active",
+													"value": "1",
 													"type": "text"
 												}
 											]
@@ -16920,6 +16956,11 @@
 												{
 													"key": "_method",
 													"value": "put",
+													"type": "text"
+												},
+												{
+													"key": "is_active",
+													"value": "0",
 													"type": "text"
 												}
 											]
@@ -17225,7 +17266,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/reservations?paginate=1&limit=1&page=1&from=2020-02-02 02:00:00&to=2020-02-02 02:03:00",
+											"raw": "{{url}}/api/admin/hotels/reservations",
 											"host": [
 												"{{url}}"
 											],
@@ -17244,23 +17285,28 @@
 												},
 												{
 													"key": "paginate",
-													"value": "1"
+													"value": "1",
+													"disabled": true
 												},
 												{
 													"key": "limit",
-													"value": "1"
+													"value": "1",
+													"disabled": true
 												},
 												{
 													"key": "page",
-													"value": "1"
+													"value": "1",
+													"disabled": true
 												},
 												{
 													"key": "from",
-													"value": "2020-02-02 02:00:00"
+													"value": "2020-02-02 02:00:00",
+													"disabled": true
 												},
 												{
 													"key": "to",
-													"value": "2020-02-02 02:03:00"
+													"value": "2020-02-02 02:03:00",
+													"disabled": true
 												}
 											]
 										}
