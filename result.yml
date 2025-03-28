@@ -83,6 +83,7 @@ tags:
   - name: Admin > Hotel > room type > media
   - name: Admin > Hotel > reservation source
   - name: Admin > Hotel > reservation
+  - name: Admin > Hotel > reservation > reservation detail
   - name: Admin > Inventory
   - name: Admin > Inventory > Unit of Measurement
   - name: Admin > Inventory > Inventory Products
@@ -10682,26 +10683,6 @@ paths:
           schema:
             type: integer
           example: '1'
-        - name: paginate
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: page
-          in: query
-          schema:
-            type: integer
-          example: '2'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          example: '2'
-        - name: q
-          in: query
-          schema:
-            type: integer
-          example: '1'
       responses:
         '200':
           description: Successful response
@@ -11000,6 +10981,78 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/hotels/reservations/10/detail:
+    post:
+      tags:
+        - Admin > Hotel > reservation > reservation detail
+      summary: save
+      description: |-
+        Create/Update/Delete room types related to hotel reservation
+
+        **Required parameters for each operation**
+
+        1. Create
+            
+            1. hotel_room_type_id: integer
+                
+            2. quantity: integer
+                
+            3. rate: numeric
+                
+        2. Update
+            
+            1. id: integer
+                
+            2. hotel_room_type_id: integer
+                
+            3. quantity: integer
+                
+            4. rate: numeric
+                
+        3. Delete
+            
+            1. id: integer
+                
+            2. hotel_room_type_id: integer
+                
+            3. quantity: integer
+                
+            4. rate: numeric
+                
+            5. delete: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                reservation_detail:
+                  - id: 15
+                    hotel_room_type_id: 2
+                    quantity: 2
+                    rate: 1000
+                  - id: 14
+                    hotel_room_type_id: 2
+                    quantity: 2
+                    rate: 100
+                  - id: 13
+                    hotel_room_type_id: 2
+                    quantity: 2
+                    rate: 100
+                    delete: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/reservations:
     post:
       tags:
@@ -11007,52 +11060,27 @@ paths:
       summary: create
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
-              properties:
-                guest[name]:
-                  type: string
-                  example: hari bahadur
-                guest[phone]:
-                  type: integer
-                  example: '984900000000'
-                guest[email]:
-                  type: string
-                  example: haribahadur@gmail.com
-                guest[country]:
-                  type: string
-                  example: NEPAL
-                guest[address]:
-                  type: string
-                  example: random address
-                guest[note]:
-                  type: string
-                  example: random note
-                reservation[start_date]:
-                  type: string
-                  example: '2020-02-02 02:02:02'
-                reservation[end_date]:
-                  type: string
-                  example: '2020-02-02 02:02:02'
-                reservation[hotel_reservation_source_id]:
-                  type: integer
-                  example: '2'
-                reservation[advance_amount]:
-                  type: integer
-                  example: '200'
-                reservation[advance_payment_option_id]:
-                  type: integer
-                  example: '1'
-                reservation_detail[0][hotel_room_type_id]:
-                  type: integer
-                  example: '2'
-                reservation_detail[0][quantity]:
-                  type: integer
-                  example: '1'
-                reservation_detail[0][rate]:
-                  type: integer
-                  example: '100'
+              example:
+                guest:
+                  name: Guest 1
+                  phone: '98490000000'
+                reservation:
+                  start_date: '2021-02-02 15:00:00'
+                  end_date: '2021-02-03 15:00:00'
+                  hotel_reservation_source_id: 2
+                reservation_detail:
+                  - hotel_room_type_id: 3
+                    quantity: 1
+                    rate: 5000
+                  - hotel_room_type_id: 5
+                    quantity: 1
+                    rate: 6000
+                  - hotel_room_type_id: 6
+                    quantity: 1
+                    rate: 7000
       security:
         - bearerAuth: []
       parameters:
@@ -11073,6 +11101,118 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{id}:
+    get:
+      tags:
+        - Admin > Hotel > reservation
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{id}/check-in:
+    post:
+      tags:
+        - Admin > Hotel > reservation
+      summary: check in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                reservation_detail:
+                  - id: 28
+                    hotel_room_type_id: 3
+                    quantity: 2
+                    rate: 2000
+                    rooms:
+                      - hotel_room_id: 1
+                      - hotel_room_id: 2
+                      - hotel_room_id: 3
+                  - id: 29
+                    hotel_room_type_id: 3
+                    quantity: 1
+                    rate: 50000
+                    rooms:
+                      - hotel_room_id: 1
+                      - hotel_room_id: 2
+                      - hotel_room_id: 3
+                    delete: true
+                reservation_guest:
+                  - hotel_guest:
+                      name: New guest name
+                      phone: '123456789'
+                  - id: 15
+                    hotel_guest:
+                      name: Guest 2
+                      phone: '123456789'
+                      document:
+                        type: CITIZENSHIP
+                        document_number: '123456789'
+                        document_issuing_country: NEPAL
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '13'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/countries:
+    get:
+      tags:
+        - Admin > Hotel
+      summary: get countries
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
         - name: branch-id
           in: header
           schema:
