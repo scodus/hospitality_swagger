@@ -24628,6 +24628,50 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Save floor and table",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "branch-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 67,\r\n    \"floor_name\": \"Floor new name\",\r\n    \"floor_order_number\": 5,\r\n    \"tables\": [\r\n        {\r\n            \"id\": 397,\r\n            \"table_number\": \"Table some\",\r\n            \"table_capacity\": \"9\"\r\n        },\r\n        {\r\n            \"id\": 396,\r\n            \"table_number\": \"Table 2\",\r\n            \"table_capacity\": \"4\"\r\n        },\r\n        {\r\n            \"id\": 395,\r\n            \"table_number\": \"Table 3\",\r\n            \"table_capacity\": \"4\",\r\n            \"delete\":true\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/floor-and-tables",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"floor-and-tables"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -29339,6 +29383,48 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Branch Db Backup and Delete Record",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/branch-backup-database-delete-record/:branch_id?date=2024-12-31",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"branch-backup-database-delete-record",
+										":branch_id"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2024-12-31"
+										}
+									],
+									"variable": [
+										{
+											"key": "branch_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -29459,6 +29545,45 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "transfer products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from_company_id\":14,\r\n    \"from_branch_id\":22,\r\n    \"to_company_id\":14,\r\n    \"to_branch_id\":28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/superadmin/menu-products/transfer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"superadmin",
+								"menu-products",
+								"transfer"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

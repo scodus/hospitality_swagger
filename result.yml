@@ -15559,6 +15559,44 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/floor-and-tables:
+    post:
+      tags:
+        - Admin
+      summary: Save floor and table
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 67
+                floor_name: Floor new name
+                floor_order_number: 5
+                tables:
+                  - id: 397
+                    table_number: Table some
+                    table_capacity: '9'
+                  - id: 396
+                    table_number: Table 2
+                    table_capacity: '4'
+                  - id: 395
+                    table_number: Table 3
+                    table_capacity: '4'
+                    delete: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/account-verification:
     post:
       tags:
@@ -18129,6 +18167,32 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/superadmin/branch-backup-database-delete-record/{branch_id}:
+    post:
+      tags:
+        - Superadmin > DB Backup
+      summary: Branch Db Backup and Delete Record
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: '2024-12-31'
+        - name: branch_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/superadmin/print-issue:
     get:
       tags:
@@ -18194,6 +18258,28 @@ paths:
             type: integer
           required: true
           example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/menu-products/transfer:
+    post:
+      tags:
+        - Superadmin
+      summary: transfer products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                from_company_id: 14
+                from_branch_id: 22
+                to_company_id: 14
+                to_branch_id: 28
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Successful response
