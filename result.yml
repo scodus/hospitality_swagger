@@ -2307,6 +2307,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
         - name: pagination_limit
           in: query
           schema:
@@ -4914,17 +4919,29 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/floors/{floor_id}:
     delete:
       tags:
         - Admin > Restaurant > Restaurant floor
       summary: delete floor
+      security:
+        - bearerAuth: []
       parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
         - name: floor_id
           in: path
           schema:
-            type: string
+            type: integer
           required: true
+          example: '67'
       responses:
         '200':
           description: Successful response
@@ -10903,45 +10920,12 @@ paths:
           in: query
           schema:
             type: string
-          example: '2020-02-01 15:00:00'
+          example: '2025-05-02 02:00:00'
         - name: to
           in: query
           schema:
             type: string
-          example: '2020-02-05 15:00:00'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/admin/hotels/room-types/available-rooms:
-    get:
-      tags:
-        - Admin > Hotel > room type
-      summary: get available room by room types
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: room_type_ids[0]
-          in: query
-          schema:
-            type: integer
-          example: '2'
-        - name: room_type_ids[1]
-          in: query
-          schema:
-            type: integer
-          example: '3'
-        - name: room_type_ids[2]
-          in: query
-          schema:
-            type: integer
-          example: '6'
+          example: '2025-05-03 10:00:00'
       responses:
         '200':
           description: Successful response
@@ -11232,23 +11216,21 @@ paths:
             schema:
               type: object
               example:
-                guest:
-                  name: Guest 1
+                reserved_by:
+                  id: 135
+                  name: New Guest 2
                   phone: '98490000000'
                 reservation:
-                  start_date: '2021-02-02 15:00:00'
-                  end_date: '2021-02-03 15:00:00'
+                  start_date: '2025-05-02 02:00:00'
+                  end_date: '2025-05-03 10:00:00'
                   hotel_reservation_source_id: 2
+                  advance_amount: 500
+                  advance_payment_option_id: 1
+                  business_session_id: 1
                 reservation_detail:
-                  - hotel_room_type_id: 3
-                    quantity: 1
+                  - hotel_room_type_id: 30
+                    quantity: 3
                     rate: 5000
-                  - hotel_room_type_id: 5
-                    quantity: 1
-                    rate: 6000
-                  - hotel_room_type_id: 6
-                    quantity: 1
-                    rate: 7000
       security:
         - bearerAuth: []
       parameters:
@@ -11358,7 +11340,66 @@ paths:
           schema:
             type: integer
           required: true
-          example: '20'
+          example: '55'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{id}/check-out:
+    post:
+      tags:
+        - Admin > Hotel > reservation
+      summary: check out
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                paid_amount: 86000
+                business_session_id: 1
+                is_complimentary_payment: false
+                customer_id: 1172
+                fragments:
+                  - payment_option_id: 1
+                    paid_amount: 86000
+                    received_amount: 80000
+                  - payment_option_id: 2
+                    paid_amount: 86000
+                    received_amount: 6000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '51'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/30/available-rooms:
+    get:
+      tags:
+        - Admin > Hotel > reservation
+      summary: get available rooms
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -11696,7 +11737,7 @@ paths:
                   example: HOUSEKEEPING
                 status:
                   type: string
-                  example: active
+                  example: inactive
       security:
         - bearerAuth: []
       parameters:
@@ -15576,13 +15617,59 @@ paths:
                 tables:
                   - id: 397
                     table_number: Table some
+                    show_table: active
                     table_capacity: '9'
                   - id: 396
                     table_number: Table 2
                     table_capacity: '4'
+                    show_table: inactive
                   - id: 395
                     table_number: Table 3
                     table_capacity: '4'
+                    show_table: inactive
+                    delete: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/delivery-partners/4/products:
+    post:
+      tags:
+        - Admin
+      summary: save delivery partner product
+      description: |-
+        How to perform operations:
+
+        1. **Create**: provice only `product_id` and `price`
+            
+        2. **Update**: provide `id` with above data
+            
+        3. Delete: provide boolean `delete` with above data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                delivery_partners:
+                  - id: 1
+                    product_id: 111
+                    price: 100
+                  - id: 2
+                    product_id: 112
+                    price: 100
+                  - id: 3
+                    product_id: 125
+                    price: 500
                     delete: true
       security:
         - bearerAuth: []
