@@ -110,6 +110,61 @@ tags:
   - name: Admin > Purchase
   - name: Admin > Purchase Return
   - name: Admin > Supplier Payment
+  - name: Admin > Event Booking
+    description: >-
+      Documentation of used quering library:  
+
+      [https://spatie.be/docs/laravel-query-builder](https://spatie.be/docs/laravel-query-builder)
+
+
+      Each of these parameters are applicable for every `fetch all` query:
+
+
+      - `paginate: 0|1`
+          
+      - `limit: 10`
+          
+      - `page: 1`
+          
+
+      **Filtering**:
+
+
+      ```
+
+      filter[name]=john&filter[email]=gmail //where name like john and email
+      like gmail
+
+      filter[name]=seb,freek //where name like seb or freek
+
+       ```
+
+      **Sorting**:
+
+
+      ```
+
+      sort=name // sort column name in ascending order
+
+      sort=-name // sort column name in descending order
+
+       ```
+
+      **Including related relationships**:
+
+
+      ```
+
+      include=posts,permissions //include posts and permissions relationships of
+      the records to be fetched
+
+       ```
+  - name: Admin > Event Booking > Shifts
+  - name: Admin > Event Booking > Types
+  - name: Admin > Event Booking > Source
+  - name: Admin > Event Booking > Categories
+  - name: Admin > Event Booking > Halls
+  - name: Admin > Event Booking > Bookings
   - name: Public
   - name: Public > auth
   - name: Superadmin
@@ -4444,21 +4499,20 @@ paths:
             schema:
               type: object
               example:
-                description: ''
+                delivery_partner_id: '18'
                 productDetails:
-                  - is_free_menu_item: null
-                    note: ''
-                    price: 630
-                    product_id: 689
-                    quantity: 2
+                  - is_free_menu_item: 'false'
+                    note: null
+                    product_id: 4357
+                    price: 20
+                    quantity: 1
                     topping_details: []
-                  - is_free_menu_item: null
-                    note: ''
-                    price: 35
-                    product_id: 634
-                    quantity: 2
+                  - is_free_menu_item: 'false'
+                    note: null
+                    product_id: 4358
+                    price: 15
+                    quantity: 1
                     topping_details: []
-                table_id: '47'
       security:
         - bearerAuth: []
       parameters:
@@ -15569,6 +15623,696 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/events/shifts:
+    post:
+      tags:
+        - Admin > Event Booking > Shifts
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Morning Shift
+                from: '06:00'
+                to: '11:00'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Event Booking > Shifts
+      summary: get all
+      description: |-
+        Allowed search column:
+
+        - title
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: filter[title]
+          in: query
+          schema:
+            type: string
+          example: evening
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/shifts/{id}:
+    put:
+      tags:
+        - Admin > Event Booking > Shifts
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Morning Shift sdfsd
+                from: '06:00'
+                to: '11:00'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Event Booking > Shifts
+      summary: get one
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Event Booking > Shifts
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/types:
+    post:
+      tags:
+        - Admin > Event Booking > Types
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Wedding
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Event Booking > Types
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: filter[title]
+          in: query
+          schema:
+            type: string
+          example: cele
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/types/{id}:
+    put:
+      tags:
+        - Admin > Event Booking > Types
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: New title
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Event Booking > Types
+      summary: get one
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Event Booking > Types
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/sources:
+    post:
+      tags:
+        - Admin > Event Booking > Source
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: phone
+                is_active: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Event Booking > Source
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: filter[name]
+          in: query
+          schema:
+            type: string
+          example: phone
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/sources/{id}:
+    put:
+      tags:
+        - Admin > Event Booking > Source
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: email
+                is_active: false
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Event Booking > Source
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/categories:
+    post:
+      tags:
+        - Admin > Event Booking > Categories
+      summary: save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 2
+                name: Beverage
+                products:
+                  - id: 2
+                    name: Beer
+                    price: 500
+                    is_active: true
+                  - id: 3
+                    name: Rum
+                    price: 500
+                    is_active: true
+                  - id: 4
+                    name: Coca Cola
+                    price: 500
+                    is_active: false
+                    delete: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Host:
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.3.19
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Apr 2025 06:52:33 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '600'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '597'
+            Vary:
+              schema:
+                type: string
+                example: Origin
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: success
+                message: Successfully saved category and its related products
+    get:
+      tags:
+        - Admin > Event Booking > Categories
+      summary: get all
+      description: |-
+        Supported search query
+
+        - query
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/halls:
+    post:
+      tags:
+        - Admin > Event Booking > Halls
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Hall 1
+                pax_count: 1000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Event Booking > Halls
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: ''
+          in: header
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/halls/{id}:
+    put:
+      tags:
+        - Admin > Event Booking > Halls
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Hall asdf
+                pax_count: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Event Booking > Halls
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/bookings:
+    post:
+      tags:
+        - Admin > Event Booking > Bookings
+      summary: create
+      description: |-
+        ### **Validation Rules**
+
+        - **booked_date**
+            
+            - Required
+                
+            - Format: `Y-m-d`
+                
+        - **event_shift_id**, **event_type_id**, **event_source_id**
+            
+            - Required
+                
+            - Must exist in their respective tables (`event_shifts`, `event_types`, `event_sources`)
+                
+        - **estimated_guest_count**
+            
+            - Required
+                
+            - Must be a non-negative integer
+                
+        - **advance_amount**, **advance_payment_option_id**
+            
+            - Optional
+                
+            - Must be numeric and exist in the `payment_options` table, respectively
+                
+        - **booked_by**
+            
+            - Required
+                
+            - Must be an array
+                
+            - **name** (optional)
+                
+                - Must be a string with a maximum length of 255 characters
+                    
+            - **phone** (required)
+                
+                - Must be a string with a maximum length of 255 characters
+                    
+            - **email** (optional)
+                
+                - Must be a string with a maximum length of 255 characters
+                    
+            - **address** (optional)
+                
+                - Must be a string with a maximum length of 255 characters
+                    
+        - **booking_menu_products**
+            
+            - Required
+                
+            - Must be an array
+                
+            - **event_menu_product_id** (required)
+                
+                - Must exist in the `event_menu_products` table
+                    
+        - **booking_halls**
+            
+            - Required
+                
+            - Must be an array
+                
+            - **event_hall_id** (required)
+                
+                - Must exist in the `event_halls` table
+                    
+        - **override_guest_detail**
+            
+            - Optional
+                
+            - Nullable
+                
+            - Boolean
+                
+            - Must be provided to override existing detail of the guest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                booked_date: '2022-07-25'
+                event_shift_id: 1
+                event_type_id: 1
+                event_source_id: 1
+                estimated_guest_count: 100
+                advance_amount: 500
+                advance_payment_option_id: 1
+                booked_by:
+                  name: John Doe asd
+                  phone: 123-456-7890
+                  email: johndoe@example.com
+                  address: 123 Main St
+                booking_menu_products:
+                  - event_menu_product_id: 5
+                  - event_menu_product_id: 6
+                booking_halls:
+                  - event_hall_id: 1
+                  - event_hall_id: 2
+                override_guest_detail: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/print-issue:
     post:
       tags:
@@ -15617,17 +16361,19 @@ paths:
                 tables:
                   - id: 397
                     table_number: Table some
-                    show_table: active
+                    show_table: inactive
                     table_capacity: '9'
                   - id: 396
                     table_number: Table 2
                     table_capacity: '4'
                     show_table: inactive
-                  - id: 395
+                  - id: 398
                     table_number: Table 3
                     table_capacity: '4'
                     show_table: inactive
-                    delete: true
+                  - table_number: Table new
+                    table_capacity: '4'
+                    show_table: inactive
       security:
         - bearerAuth: []
       parameters:
@@ -18344,7 +19090,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          example: '22'
       responses:
         '200':
           description: Successful response
