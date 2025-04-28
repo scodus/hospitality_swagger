@@ -17301,7 +17301,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"reservation_detail\": [\r\n        {\r\n            \"id\": 15,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 1000\r\n        },\r\n        {\r\n            \"id\": 14,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 100\r\n        },\r\n        {\r\n            \"id\": 13,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 100,\r\n            \"delete\": true\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"reservation_detail\": [\r\n        {\r\n            \"id\": 15,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 1000,\r\n            \"rooms\": [\r\n                {\r\n                    \"hotel_room_type_breakdown_id\": 10\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 14,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 100\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -17323,6 +17323,44 @@
 													]
 												},
 												"description": "Create/Update/Delete room types related to hotel reservation\n\n**Required parameters for each operation**\n\n1. Create\n    \n    1. hotel_room_type_id: integer\n        \n    2. quantity: integer\n        \n    3. rate: numeric\n        \n2. Update\n    \n    1. id: integer\n        \n    2. hotel_room_type_id: integer\n        \n    3. quantity: integer\n        \n    4. rate: numeric\n        \n3. Delete\n    \n    1. id: integer\n        \n    2. hotel_room_type_id: integer\n        \n    3. quantity: integer\n        \n    4. rate: numeric\n        \n    5. delete: boolean"
+											},
+											"response": []
+										},
+										{
+											"name": "get all",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/reservations/10/detail",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"reservations",
+														"10",
+														"detail"
+													]
+												}
 											},
 											"response": []
 										}
@@ -17378,6 +17416,108 @@
 														"reservations",
 														":id",
 														"products"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "10"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "reservation guests",
+									"item": [
+										{
+											"name": "get all",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/reservations/:id/guests",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"reservations",
+														":id",
+														"guests"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "10"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "save",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"reservation_guests\": [\r\n        {\r\n            \"id\": 80,\r\n            \"hotel_guest\": {\r\n                \"name\": \"Some other name\"\r\n            },\r\n            \"delete\": true\r\n        }\r\n    ]\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/reservations/:id/guests",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"reservations",
+														":id",
+														"guests"
 													],
 													"variable": [
 														{
@@ -25718,7 +25858,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"booked_date\": \"2022-07-25\",\r\n    \"event_shift_id\": 1,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"advance_amount\": 500.00,\r\n    \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"John Doe asd\",\r\n        \"phone\": \"123-456-7890\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 5\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 6\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        },\r\n        {\r\n            \"event_hall_id\": 2\r\n        }\r\n    ],\r\n    \"override_guest_detail\":true\r\n}",
+											"raw": "{\r\n    \"booked_date\": \"2022-09-05\",\r\n    \"event_shift_id\": 2,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"advance_amount\": 500.00,\r\n    \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"Other\",\r\n        \"phone\": \"12345789\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 5\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 6\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        }\r\n        ,\r\n        {\r\n            \"event_hall_id\": 2\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -25737,7 +25877,269 @@
 												"bookings"
 											]
 										},
-										"description": "### **Validation Rules**\n\n- **booked_date**\n    \n    - Required\n        \n    - Format: `Y-m-d`\n        \n- **event_shift_id**, **event_type_id**, **event_source_id**\n    \n    - Required\n        \n    - Must exist in their respective tables (`event_shifts`, `event_types`, `event_sources`)\n        \n- **estimated_guest_count**\n    \n    - Required\n        \n    - Must be a non-negative integer\n        \n- **advance_amount**, **advance_payment_option_id**\n    \n    - Optional\n        \n    - Must be numeric and exist in the `payment_options` table, respectively\n        \n- **booked_by**\n    \n    - Required\n        \n    - Must be an array\n        \n    - **name** (optional)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n    - **phone** (required)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n    - **email** (optional)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n    - **address** (optional)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n- **booking_menu_products**\n    \n    - Required\n        \n    - Must be an array\n        \n    - **event_menu_product_id** (required)\n        \n        - Must exist in the `event_menu_products` table\n            \n- **booking_halls**\n    \n    - Required\n        \n    - Must be an array\n        \n    - **event_hall_id** (required)\n        \n        - Must exist in the `event_halls` table\n            \n- **override_guest_detail**\n    \n    - Optional\n        \n    - Nullable\n        \n    - Boolean\n        \n    - Must be provided to override existing detail of the guest"
+										"description": "### **Validation Rules**\n\n- **booked_date**\n    \n    - Required\n        \n    - Format: `Y-m-d`\n        \n- **event_shift_id**, **event_type_id**, **event_source_id**\n    \n    - Required\n        \n    - Must exist in their respective tables (`event_shifts`, `event_types`, `event_sources`)\n        \n- **estimated_guest_count**\n    \n    - Required\n        \n    - Must be a non-negative integer\n        \n- **advance_amount**, **advance_payment_option_id**\n    \n    - Optional\n        \n    - Must be numeric and exist in the `payment_options` table, respectively\n        \n- **booked_by**\n    \n    - Required\n        \n    - Must be an array\n        \n    - **name** (optional)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n    - **phone** (required)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n    - **email** (optional)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n    - **address** (optional)\n        \n        - Must be a string with a maximum length of 255 characters\n            \n- **booking_menu_products**\n    \n    - Required\n        \n    - Must be an array\n        \n    - **event_menu_product_id** (required)\n        \n        - Must exist in the `event_menu_products` table\n            \n- **booking_halls**\n    \n    - Required\n        \n    - Must be an array\n        \n    - **event_hall_id** (required)\n        \n        - Must exist in the `event_halls` table\n            \n- **booking_facilities**\n    \n    - Optional\n        \n    - Must be and array\n        \n    - **name**(required)\n        \n        - name of the facility\n            \n    - **price**(required)\n        \n        - price of the facility\n            \n    - **description**(optional)\n        \n        - description of the facility\n            \n- **override_guest_detail**\n    \n    - Optional\n        \n    - Nullable\n        \n    - Boolean\n        \n    - Must be provided to override existing detail of the guest"
+									},
+									"response": []
+								},
+								{
+									"name": "modify facilities",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"booking_facilities\": [\r\n        {\r\n            \"id\": 3,\r\n            \"name\": \"Facility asd\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\",\r\n            \"delete\": true\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"new facility\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id/facilities",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id",
+												"facilities"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "7"
+												}
+											]
+										},
+										"description": "**Instructions for operations**\n\n- include nothing to create a facility\n    \n- include `id` and modify remaining values for update\n    \n- include `id` and `delete:true` to delete the selected facility"
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"booked_date\": \"2022-07-25\",\r\n    \"event_shift_id\": 1,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"advance_amount\": 500.00,\r\n    \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"John Doe asd\",\r\n        \"phone\": \"123-456-7890\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"id\": 19,\r\n            \"event_menu_product_id\": 7\r\n        },\r\n        {\r\n            \"id\": 20,\r\n            \"event_menu_product_id\": 6,\r\n            \"delete\": true\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"id\": 17,\r\n            \"event_hall_id\": 3\r\n        },\r\n        {\r\n            \"id\": 18,\r\n            \"event_hall_id\": 2,\r\n            \"delete\": true\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"id\": 8,\r\n            \"name\": \"Facility  asd 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\",\r\n            \"delete\": true\r\n        },\r\n        {\r\n            \"id\": 9,\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"id\": 10,\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "9"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings?paginate=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings"
+											],
+											"query": [
+												{
+													"key": "filter[type]",
+													"value": "BOOKING",
+													"disabled": true
+												},
+												{
+													"key": "filter[booking_code]",
+													"value": "3",
+													"disabled": true
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get statistics",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"types\": [\r\n        \"AGGREGATE_BY_COUNT\",\r\n        \"AGGREGATE_BY_DETAIL\"\r\n    ],\r\n    \"AGGREGATE_BY_COUNT\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"AGGREGATE_BY_DETAIL\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/statistics",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												"statistics"
+											]
+										},
+										"description": "Supported Types:\n\n- AGGREGATE_BY_COUNT\n    \n- AGGREGATE_BY_DETAIL"
+									},
+									"response": []
+								},
+								{
+									"name": "pay",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"actual_rate_per_pax\": 1000,\r\n    \"actual_guest_count\": 100,\r\n    // \"discount\": 100,\r\n    // \"discount_type\":\"AMOUNT\",\r\n    // \"customer_id\": 812,\r\n    \"paid_amount\": 1000,\r\n    \"fragments\": [\r\n        {\r\n            \"payment_option_id\": 1,\r\n            \"received_amount\": 100000\r\n        },\r\n        {\r\n            \"payment_option_id\": 2,\r\n            \"received_amount\": 12387\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id/pay",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id",
+												"pay"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "63"
+												}
+											]
+										},
+										"description": "supported discount types\n\n- PERCENT\n    \n- AMOUNT"
 									},
 									"response": []
 								}
