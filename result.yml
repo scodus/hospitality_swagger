@@ -11309,10 +11309,18 @@ paths:
               type: object
               example:
                 reservation_guests:
-                  - id: 80
+                  - id: 89
                     hotel_guest:
-                      name: Some other name
-                    delete: true
+                      name: Alan Walker 1
+                      phone: '87789789'
+                      country: BURUNDI
+                      email: email@gmail.com
+                      address: dfojadofi
+                      note: afdfaddf
+                      document:
+                        type: ID_CARD
+                        document_number: Milk
+                        document_issuing_country: CENTRAL_AFRICAN_REPUBLIC
       security:
         - bearerAuth: []
       parameters:
@@ -15717,7 +15725,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '22'
       responses:
         '200':
           description: Successful response
@@ -16176,6 +16184,7 @@ paths:
               example:
                 name: Hall 1
                 pax_count: 1000
+                is_active: false
       security:
         - bearerAuth: []
       parameters:
@@ -16223,6 +16232,7 @@ paths:
               example:
                 name: Hall asdf
                 pax_count: 1
+                is_active: true
       security:
         - bearerAuth: []
       parameters:
@@ -16559,7 +16569,7 @@ paths:
           content:
             application/json: {}
   /api/admin/events/bookings/statistics:
-    get:
+    post:
       tags:
         - Admin > Event Booking > Bookings
       summary: get statistics
@@ -16569,6 +16579,25 @@ paths:
         - AGGREGATE_BY_COUNT
             
         - AGGREGATE_BY_DETAIL
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                types:
+                  - AGGREGATE_BY_COUNT
+                  - AGGREGATE_BY_DETAIL
+                  - HALLS_BY_DATE_AND_SHIFT
+                AGGREGATE_BY_COUNT:
+                  from: '2022-07-01'
+                  to: '2022-07-30'
+                AGGREGATE_BY_DETAIL:
+                  from: '2022-07-01'
+                  to: '2022-07-30'
+                HALLS_BY_DATE_AND_SHIFT:
+                  date: '2022-07-25'
+                  event_shift_id: 1
       security:
         - bearerAuth: []
       parameters:
@@ -16621,6 +16650,37 @@ paths:
             type: integer
           required: true
           example: '63'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/bookings/{id}/actual-guest-count:
+    patch:
+      tags:
+        - Admin > Event Booking > Bookings
+      summary: update actual guest count
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                actual_guest_count: 1000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '9'
       responses:
         '200':
           description: Successful response

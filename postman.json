@@ -17499,7 +17499,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"reservation_guests\": [\r\n        {\r\n            \"id\": 80,\r\n            \"hotel_guest\": {\r\n                \"name\": \"Some other name\"\r\n            },\r\n            \"delete\": true\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"reservation_guests\": [\r\n        {\r\n            \"id\": 89,\r\n            \"hotel_guest\": {\r\n                \"name\": \"Alan Walker 1\",\r\n                \"phone\": \"87789789\",\r\n                \"country\": \"BURUNDI\",\r\n                \"email\": \"email@gmail.com\",\r\n                \"address\": \"dfojadofi\",\r\n                \"note\": \"afdfaddf\"\r\n                ,\r\n                \"document\": {\r\n                    \"type\": \"ID_CARD\",\r\n                    \"document_number\": \"Milk\",\r\n                    \"document_issuing_country\": \"CENTRAL_AFRICAN_REPUBLIC\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -24815,7 +24815,7 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "22",
 												"type": "text"
 											}
 										],
@@ -25665,7 +25665,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"name\": \"Hall 1\",\r\n    \"pax_count\": 1000\r\n}",
+											"raw": "{\r\n    \"name\": \"Hall 1\",\r\n    \"pax_count\": 1000,\r\n    \"is_active\": false\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -25710,7 +25710,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"name\": \"Hall asdf\",\r\n    \"pax_count\": 1\r\n}",
+											"raw": "{\r\n    \"name\": \"Hall asdf\",\r\n    \"pax_count\": 1,\r\n    \"is_active\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26041,9 +26041,6 @@
 								},
 								{
 									"name": "get statistics",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -26055,7 +26052,7 @@
 												}
 											]
 										},
-										"method": "GET",
+										"method": "POST",
 										"header": [
 											{
 												"key": "branch-id",
@@ -26065,7 +26062,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"types\": [\r\n        \"AGGREGATE_BY_COUNT\",\r\n        \"AGGREGATE_BY_DETAIL\"\r\n    ],\r\n    \"AGGREGATE_BY_COUNT\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"AGGREGATE_BY_DETAIL\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    }\r\n}",
+											"raw": "{\r\n    \"types\": [\r\n        \"AGGREGATE_BY_COUNT\",\r\n        \"AGGREGATE_BY_DETAIL\",\r\n        \"HALLS_BY_DATE_AND_SHIFT\"\r\n    ],\r\n    \"AGGREGATE_BY_COUNT\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"AGGREGATE_BY_DETAIL\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"HALLS_BY_DATE_AND_SHIFT\": {\r\n        \"date\": \"2022-07-25\",\r\n        \"event_shift_id\": 1\r\n    }\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26140,6 +26137,59 @@
 											]
 										},
 										"description": "supported discount types\n\n- PERCENT\n    \n- AMOUNT"
+									},
+									"response": []
+								},
+								{
+									"name": "update actual guest count",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"actual_guest_count\": 1000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id/actual-guest-count",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id",
+												"actual-guest-count"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "9"
+												}
+											]
+										}
 									},
 									"response": []
 								}
