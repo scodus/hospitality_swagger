@@ -16408,13 +16408,11 @@ paths:
             schema:
               type: object
               example:
-                booked_date: '2022-09-05'
+                booked_date: '2022-09-12'
                 event_shift_id: 2
                 event_type_id: 1
                 event_source_id: 1
                 estimated_guest_count: 100
-                advance_amount: 500
-                advance_payment_option_id: 1
                 booked_by:
                   name: Other
                   phone: '12345789'
@@ -16594,6 +16592,29 @@ paths:
           description: Successful response
           content:
             application/json: {}
+    get:
+      tags:
+        - Admin > Event Booking > Bookings
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '79'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/events/bookings/statistics:
     post:
       tags:
@@ -16707,6 +16728,38 @@ paths:
             type: integer
           required: true
           example: '9'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/bookings/{id}/confirm:
+    post:
+      tags:
+        - Admin > Event Booking > Bookings
+      summary: confirm booking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                advance_amount: 10000
+                advance_payment_option_id: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '79'
       responses:
         '200':
           description: Successful response

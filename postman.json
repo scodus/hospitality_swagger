@@ -25935,7 +25935,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"booked_date\": \"2022-09-05\",\r\n    \"event_shift_id\": 2,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"advance_amount\": 500.00,\r\n    \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"Other\",\r\n        \"phone\": \"12345789\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 5\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 6\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        }\r\n        ,\r\n        {\r\n            \"event_hall_id\": 2\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
+											"raw": "{\r\n    \"booked_date\": \"2022-09-12\",\r\n    \"event_shift_id\": 2,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    // \"advance_amount\": 500.00,\r\n    // \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"Other\",\r\n        \"phone\": \"12345789\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 5\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 6\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        }\r\n        ,\r\n        {\r\n            \"event_hall_id\": 2\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26264,6 +26264,102 @@
 												{
 													"key": "id",
 													"value": "9"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "confirm booking",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"advance_amount\": 10000,\r\n    \"advance_payment_option_id\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id/confirm",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id",
+												"confirm"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "79"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "79"
 												}
 											]
 										}
