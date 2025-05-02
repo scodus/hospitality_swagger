@@ -16975,7 +16975,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/room-types/available?from=2025-05-02 02:00:00&to=2025-05-03 10:00:00",
+											"raw": "{{url}}/api/admin/hotels/room-types/available?from=2025-07-02 02:00:00&to=2025-07-03 10:00:00",
 											"host": [
 												"{{url}}"
 											],
@@ -16989,11 +16989,11 @@
 											"query": [
 												{
 													"key": "from",
-													"value": "2025-05-02 02:00:00"
+													"value": "2025-07-02 02:00:00"
 												},
 												{
 													"key": "to",
-													"value": "2025-05-03 10:00:00"
+													"value": "2025-07-03 10:00:00"
 												}
 											]
 										}
@@ -17301,7 +17301,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"reservation_detail\": [\r\n        {\r\n            \"id\": 15,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 1000,\r\n            \"rooms\": [\r\n                {\r\n                    \"hotel_room_type_breakdown_id\": 10\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 14,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 100\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"reservation_detail\": [\r\n        {\r\n            \"id\":174,\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 2,\r\n            \"rate\": 1000\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -17309,7 +17309,7 @@
 													}
 												},
 												"url": {
-													"raw": "{{url}}/api/admin/hotels/reservations/10/detail",
+													"raw": "{{url}}/api/admin/hotels/reservations/:id/detail",
 													"host": [
 														"{{url}}"
 													],
@@ -17318,8 +17318,14 @@
 														"admin",
 														"hotels",
 														"reservations",
-														"10",
+														":id",
 														"detail"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "57"
+														}
 													]
 												},
 												"description": "Create/Update/Delete room types related to hotel reservation\n\n**Required parameters for each operation**\n\n1. Create\n    \n    1. hotel_room_type_id: integer\n        \n    2. quantity: integer\n        \n    3. rate: numeric\n        \n2. Update\n    \n    1. id: integer\n        \n    2. hotel_room_type_id: integer\n        \n    3. quantity: integer\n        \n    4. rate: numeric\n        \n3. Delete\n    \n    1. id: integer\n        \n    2. hotel_room_type_id: integer\n        \n    3. quantity: integer\n        \n    4. rate: numeric\n        \n    5. delete: boolean"
@@ -17348,7 +17354,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{url}}/api/admin/hotels/reservations/10/detail",
+													"raw": "{{url}}/api/admin/hotels/reservations/:id/detail",
 													"host": [
 														"{{url}}"
 													],
@@ -17357,8 +17363,73 @@
 														"admin",
 														"hotels",
 														"reservations",
-														"10",
+														":id",
 														"detail"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "36"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "set rooms",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "1",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"reservation_rooms\": [\r\n        // {\r\n        //     \"id\": 182,\r\n        //     \"hotel_room_type_breakdown_id\": 10,\r\n        //     \"delete\": true\r\n        // },\r\n        // {\r\n        //     \"id\": 184,\r\n        //     \"hotel_room_type_breakdown_id\": 11,\r\n        //     \"delete\": true\r\n        // },\r\n        {\r\n            \"id\": 183,\r\n            \"hotel_room_type_breakdown_id\": 12\r\n        },\r\n        {\r\n            \"hotel_room_type_breakdown_id\": 11\r\n        }\r\n    ]\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/reservations/:reservation-id/detail/:reservation-detail-id/rooms",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"reservations",
+														":reservation-id",
+														"detail",
+														":reservation-detail-id",
+														"rooms"
+													],
+													"variable": [
+														{
+															"key": "reservation-id",
+															"value": "57"
+														},
+														{
+															"key": "reservation-detail-id",
+															"value": "174"
+														}
 													]
 												}
 											},
@@ -17554,7 +17625,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reserved_by\": {\r\n        \"id\":135,\r\n        \"name\": \"New Guest 2\",\r\n        \"phone\": \"98490000000\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-05-02 02:00:00\",\r\n        \"end_date\": \"2025-05-03 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 30,\r\n            \"quantity\": 3,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"reserved_by\": {\r\n        \"id\":135,\r\n        \"name\": \"New Guest 2\",\r\n        \"phone\": \"98490000000\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-07-02 02:00:00\",\r\n        \"end_date\": \"2025-07-03 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17681,7 +17752,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "11"
+													"value": "57"
 												}
 											]
 										}
@@ -17716,7 +17787,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 3,\r\n            \"quantity\": 2,\r\n            \"rate\": 2000,\r\n            \"rooms\": [\r\n                {\r\n                    \"hotel_room_type_breakdown_id\": 13\r\n                },\r\n                {\r\n                    \"hotel_room_type_breakdown_id\": 14\r\n                },\r\n                {\r\n                    \"hotel_room_type_breakdown_id\": 15\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"reservation_guest\": [\r\n        {\r\n            \"hotel_guest\": {\r\n                \"name\": \"New guest name\",\r\n                \"phone\": \"123456789\"\r\n            }\r\n        },\r\n        {\r\n            \"hotel_guest\": {\r\n                \"name\": \"Guest 2\",\r\n                \"phone\": \"123456789\",\r\n                \"document\": {\r\n                    \"type\": \"CITIZENSHIP\",\r\n                    \"document_number\": \"123456789\",\r\n                    \"document_issuing_country\": \"NEPAL\"\r\n                }\r\n            }\r\n        }\r\n    ],\r\n    \"reservation_products\": [\r\n        {\r\n            \"hotel_product_id\": 1,\r\n            \"quantity\": 5,\r\n            \"rate\": 5000\r\n        },\r\n        {\r\n            \"hotel_product_id\": 2,\r\n            \"quantity\": 5,\r\n            \"rate\": 8000\r\n        }\r\n    ]\r\n}",
+											"raw": "",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17821,7 +17892,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/reservations/30/available-rooms",
+											"raw": "{{url}}/api/admin/hotels/reservations/:id/available-rooms",
 											"host": [
 												"{{url}}"
 											],
@@ -17830,8 +17901,14 @@
 												"admin",
 												"hotels",
 												"reservations",
-												"30",
+												":id",
 												"available-rooms"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "57"
+												}
 											]
 										}
 									},

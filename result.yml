@@ -10975,12 +10975,12 @@ paths:
           in: query
           schema:
             type: string
-          example: '2025-05-02 02:00:00'
+          example: '2025-07-02 02:00:00'
         - name: to
           in: query
           schema:
             type: string
-          example: '2025-05-03 10:00:00'
+          example: '2025-07-03 10:00:00'
       responses:
         '200':
           description: Successful response
@@ -11139,7 +11139,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/hotels/reservations/10/detail:
+  /api/admin/hotels/reservations/{id}/detail:
     post:
       tags:
         - Admin > Hotel > reservation > reservation detail
@@ -11185,16 +11185,10 @@ paths:
               type: object
               example:
                 reservation_detail:
-                  - id: 15
+                  - id: 174
                     hotel_room_type_id: 2
                     quantity: 2
                     rate: 1000
-                    rooms:
-                      - hotel_room_type_breakdown_id: 10
-                  - id: 14
-                    hotel_room_type_id: 2
-                    quantity: 2
-                    rate: 100
       security:
         - bearerAuth: []
       parameters:
@@ -11203,6 +11197,12 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '57'
       responses:
         '200':
           description: Successful response
@@ -11220,6 +11220,52 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '36'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{reservation-id}/detail/{reservation-detail-id}/rooms:
+    post:
+      tags:
+        - Admin > Hotel > reservation > reservation detail
+      summary: set rooms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                reservation_rooms:
+                  - id: 183
+                    hotel_room_type_breakdown_id: 12
+                  - hotel_room_type_breakdown_id: 11
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: reservation-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '57'
+        - name: reservation-detail-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '174'
       responses:
         '200':
           description: Successful response
@@ -11356,15 +11402,15 @@ paths:
                   name: New Guest 2
                   phone: '98490000000'
                 reservation:
-                  start_date: '2025-05-02 02:00:00'
-                  end_date: '2025-05-03 10:00:00'
+                  start_date: '2025-07-02 02:00:00'
+                  end_date: '2025-07-03 10:00:00'
                   hotel_reservation_source_id: 2
                   advance_amount: 500
                   advance_payment_option_id: 1
                   business_session_id: 1
                 reservation_detail:
-                  - hotel_room_type_id: 30
-                    quantity: 3
+                  - hotel_room_type_id: 2
+                    quantity: 1
                     rate: 5000
       security:
         - bearerAuth: []
@@ -11414,7 +11460,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '11'
+          example: '57'
       responses:
         '200':
           description: Successful response
@@ -11430,33 +11476,7 @@ paths:
           application/json:
             schema:
               type: object
-              example:
-                reservation_detail:
-                  - hotel_room_type_id: 3
-                    quantity: 2
-                    rate: 2000
-                    rooms:
-                      - hotel_room_type_breakdown_id: 13
-                      - hotel_room_type_breakdown_id: 14
-                      - hotel_room_type_breakdown_id: 15
-                reservation_guest:
-                  - hotel_guest:
-                      name: New guest name
-                      phone: '123456789'
-                  - hotel_guest:
-                      name: Guest 2
-                      phone: '123456789'
-                      document:
-                        type: CITIZENSHIP
-                        document_number: '123456789'
-                        document_issuing_country: NEPAL
-                reservation_products:
-                  - hotel_product_id: 1
-                    quantity: 5
-                    rate: 5000
-                  - hotel_product_id: 2
-                    quantity: 5
-                    rate: 8000
+              example: ''
       security:
         - bearerAuth: []
       parameters:
@@ -11522,7 +11542,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/hotels/reservations/30/available-rooms:
+  /api/admin/hotels/reservations/{id}/available-rooms:
     get:
       tags:
         - Admin > Hotel > reservation
@@ -11535,6 +11555,12 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '57'
       responses:
         '200':
           description: Successful response
