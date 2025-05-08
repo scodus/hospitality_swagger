@@ -166,6 +166,7 @@ tags:
   - name: Admin > Event Booking > Categories
   - name: Admin > Event Booking > Halls
   - name: Admin > Event Booking > Bookings
+  - name: Admin > Event Booking > Reports
   - name: Public
   - name: Public > auth
   - name: Superadmin
@@ -563,7 +564,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '5'
+          example: '1'
         - name: pagination_limit
           in: query
           schema:
@@ -591,7 +592,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '5'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -4298,12 +4299,12 @@ paths:
           in: header
           schema:
             type: integer
-          example: '5'
+          example: '1'
         - name: start_date
           in: query
           schema:
             type: string
-          example: '2024-12-01'
+          example: '2024-01-01'
         - name: end_date
           in: query
           schema:
@@ -4319,18 +4320,26 @@ paths:
           schema:
             type: string
           required: true
-          description: credit_settlement_report|customer_credit_report
-          example: customer_credit_report
+          description: credit_settlement_report|customer_credit_report|day_book_item_report
+          example: day_book_item_report
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
   /api/admin/reports/report-excel/{report_type}:
-    get:
+    post:
       tags:
         - Admin > Restaurant > Restaurant Reports
       summary: report-excel
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                application_id:
+                  type: string
       security:
         - bearerAuth: []
       parameters:
@@ -4343,29 +4352,52 @@ paths:
           in: header
           schema:
             type: integer
-          example: '5'
+          example: '1'
         - name: start_date
           in: query
           schema:
             type: string
-          example: '2024-12-01'
+          example: '2024-01-01'
         - name: end_date
           in: query
           schema:
             type: string
           example: '2024-12-31'
-        - name: date
-          in: query
-          schema:
-            type: string
-          example: '2024-12-30'
         - name: report_type
           in: path
           schema:
             type: string
           required: true
-          description: credit_settlement_report|customer_credit_report
-          example: customer_credit_report
+          description: credit_settlement_report|customer_credit_report|day_book_item_report
+          example: day_book_item_report
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/reports/day-book-item-report:
+    get:
+      tags:
+        - Admin > Restaurant > Restaurant Reports
+      summary: day book item
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: start_date
+          in: query
+          schema:
+            type: string
+          example: '2024-01-01'
+        - name: end_date
+          in: query
+          schema:
+            type: string
+          example: '2025-01-01'
       responses:
         '200':
           description: Successful response
@@ -6921,11 +6953,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/cash-in-out:
+  /api/admin/cash-in-out:
     post:
       tags:
         - Admin > Restaurant > Cash In/Out
-      summary: store chas in/out
+      summary: store cash in/out
       requestBody:
         content:
           multipart/form-data:
@@ -6944,6 +6976,12 @@ paths:
                 remarks:
                   type: string
                   example: hy
+                cash_in_out_item_id:
+                  type: integer
+                  example: '1'
+                particular:
+                  type: string
+                  example: custom
       security:
         - bearerAuth: []
       parameters:
@@ -6952,6 +6990,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: OK
@@ -7007,6 +7050,7 @@ paths:
                   created_at: '2024-02-22T08:25:18.000000Z'
                   id: 1
                 message: Cash In/Out saved successfully!
+  /admin/cash-in-out:
     get:
       tags:
         - Admin > Restaurant > Cash In/Out
@@ -7090,6 +7134,53 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/cash-in-out-items:
+    post:
+      tags:
+        - Admin > Restaurant > Cash In/Out
+      summary: store cash in/out items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: item 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Restaurant > Cash In/Out
+      summary: get all cash-in-out items
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -11398,12 +11489,11 @@ paths:
               type: object
               example:
                 reserved_by:
-                  id: 135
                   name: New Guest 2
                   phone: '98490000000'
                 reservation:
-                  start_date: '2025-07-02 02:00:00'
-                  end_date: '2025-07-03 10:00:00'
+                  start_date: '2025-08-02 02:00:00'
+                  end_date: '2025-08-03 10:00:00'
                   hotel_reservation_source_id: 2
                   advance_amount: 500
                   advance_payment_option_id: 1
@@ -11476,7 +11566,11 @@ paths:
           application/json:
             schema:
               type: object
-              example: ''
+              example:
+                reservation_detail:
+                  - hotel_room_type_id: 2
+                    quantity: 1
+                    rate: 5000
       security:
         - bearerAuth: []
       parameters:
@@ -11495,7 +11589,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '55'
+          example: '61'
       responses:
         '200':
           description: Successful response
@@ -11512,17 +11606,16 @@ paths:
             schema:
               type: object
               example:
-                paid_amount: 86000
-                business_session_id: 1
+                paid_amount: 5000
                 is_complimentary_payment: false
                 customer_id: 1172
                 fragments:
                   - payment_option_id: 1
-                    paid_amount: 86000
-                    received_amount: 80000
+                    paid_amount: 5000
+                    received_amount: 3000
                   - payment_option_id: 2
-                    paid_amount: 86000
-                    received_amount: 6000
+                    paid_amount: 5000
+                    received_amount: 2000
       security:
         - bearerAuth: []
       parameters:
@@ -11536,7 +11629,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '51'
+          example: '60'
       responses:
         '200':
           description: Successful response
@@ -13911,6 +14004,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
         - name: paginate
           in: query
           schema:
@@ -16408,14 +16506,15 @@ paths:
             schema:
               type: object
               example:
-                booked_date: '2022-09-12'
+                booked_date: '2022-09-18'
                 event_shift_id: 2
                 event_type_id: 1
                 event_source_id: 1
-                estimated_guest_count: 100
+                estimated_guest_count: 10
+                actual_rate_per_pax: 100
                 booked_by:
                   name: Other
-                  phone: '12345789'
+                  phone: '123457810'
                   email: johndoe@example.com
                   address: 123 Main St
                 booking_menu_products:
@@ -16457,11 +16556,31 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: filter[type]
+          in: query
+          schema:
+            type: string
+          example: INQUIRY,BOOKING
+        - name: filter[booking_code]
+          in: query
+          schema:
+            type: integer
+          example: '3'
         - name: paginate
           in: query
           schema:
             type: integer
           example: '1'
+        - name: filter[booking_date_between]
+          in: query
+          schema:
+            type: string
+          example: 2022-09-11,2022-09-12
+        - name: filter[eventBookingHalls.eventHall.name]
+          in: query
+          schema:
+            type: string
+          example: Hall asdf
       responses:
         '200':
           description: Successful response
@@ -16487,17 +16606,10 @@ paths:
               type: object
               example:
                 booking_facilities:
-                  - id: 3
-                    name: Facility asd
-                    price: 100
+                  - name: Facility asd 12
+                    price: 1000
                     description: some description
-                    delete: true
-                  - id: 4
-                    name: Facility 2
-                    price: 200
-                    description: some description
-                  - id: 5
-                    name: new facility
+                  - name: Facility 2
                     price: 200
                     description: some description
       security:
@@ -16535,8 +16647,7 @@ paths:
                 event_type_id: 1
                 event_source_id: 1
                 estimated_guest_count: 100
-                advance_amount: 500
-                advance_payment_option_id: 1
+                actual_rate_per_pax: 20
                 booked_by:
                   name: John Doe asd
                   phone: 123-456-7890
@@ -16545,31 +16656,20 @@ paths:
                 booking_menu_products:
                   - id: 19
                     event_menu_product_id: 7
-                  - id: 20
-                    event_menu_product_id: 6
-                    delete: true
                 booking_halls:
-                  - id: 17
+                  - id: 164
                     event_hall_id: 3
-                  - id: 18
-                    event_hall_id: 2
-                    delete: true
                 booking_facilities:
-                  - id: 8
-                    name: Facility  asd 1
+                  - name: Facility  asd 1
                     price: 100
                     description: some description
-                    delete: true
-                  - id: 9
-                    name: Facility 2
+                  - name: Facility 2
                     price: 200
                     description: some description
-                  - id: 10
-                    name: Facility 1
+                  - name: Facility 1
                     price: 100
                     description: some description
-                  - id: 11
-                    name: Facility 2
+                  - name: Facility 2
                     price: 200
                     description: some description
                 override_guest_detail: true
@@ -16586,7 +16686,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '9'
+          example: '90'
       responses:
         '200':
           description: Successful response
@@ -16604,12 +16704,17 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '79'
+          example: '102'
       responses:
         '200':
           description: Successful response
@@ -16675,14 +16780,15 @@ paths:
             schema:
               type: object
               example:
-                actual_rate_per_pax: 1000
+                actual_rate_per_pax: 10
                 actual_guest_count: 100
-                paid_amount: 1000
+                discount: 100
+                discount_type: AMOUNT
+                customer_id: 812
+                paid_amount: 1356
                 fragments:
-                  - payment_option_id: 1
-                    received_amount: 100000
-                  - payment_option_id: 2
-                    received_amount: 12387
+                  - payment_option_id: 40
+                    received_amount: 1356
       security:
         - bearerAuth: []
       parameters:
@@ -16696,7 +16802,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '63'
+          example: '115'
       responses:
         '200':
           description: Successful response
@@ -16760,6 +16866,136 @@ paths:
             type: integer
           required: true
           example: '79'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/bookings/{id}/cancel:
+    post:
+      tags:
+        - Admin > Event Booking > Bookings
+      summary: cancel booking
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '79'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/report/excel:
+    get:
+      tags:
+        - Admin > Event Booking > Reports
+      summary: get report
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: EVENT_BOOKING_REPORT
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: from
+          in: query
+          schema:
+            type: string
+          example: '2022-08-01'
+        - name: to
+          in: query
+          schema:
+            type: string
+          example: '2022-08-30'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/report/records:
+    get:
+      tags:
+        - Admin > Event Booking > Reports
+      summary: get records
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: EVENT_BOOKING_REPORT
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: from
+          in: query
+          schema:
+            type: string
+          example: '2022-08-01'
+        - name: to
+          in: query
+          schema:
+            type: string
+          example: '2022-08-30'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/report/aggregate:
+    get:
+      tags:
+        - Admin > Event Booking > Reports
+      summary: get aggregate
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: EVENT_BOOKING_REPORT
       responses:
         '200':
           description: Successful response
@@ -19472,7 +19708,8 @@ paths:
           schema:
             type: integer
           required: true
-          example: '5'
+          description: 2 - Wings Factory NB / 5-Kimchi Anamnagar
+          example: '2'
       responses:
         '200':
           description: Successful response

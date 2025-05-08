@@ -749,7 +749,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "1",
 												"type": "text"
 											}
 										],
@@ -805,7 +805,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "1",
 												"type": "text"
 											}
 										],
@@ -6636,7 +6636,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "1",
 												"type": "text"
 											}
 										],
@@ -6651,7 +6651,7 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/reports/report-total/:report_type?start_date=2024-12-01&end_date=2024-12-31&date=2024-07-30",
+											"raw": "{{url}}/api/admin/reports/report-total/:report_type?start_date=2024-01-01&end_date=2024-12-31&date=2024-07-30",
 											"host": [
 												"{{url}}"
 											],
@@ -6665,7 +6665,7 @@
 											"query": [
 												{
 													"key": "start_date",
-													"value": "2024-12-01"
+													"value": "2024-01-01"
 												},
 												{
 													"key": "end_date",
@@ -6679,8 +6679,8 @@
 											"variable": [
 												{
 													"key": "report_type",
-													"value": "customer_credit_report",
-													"description": "credit_settlement_report|customer_credit_report"
+													"value": "day_book_item_report",
+													"description": "credit_settlement_report|customer_credit_report|day_book_item_report"
 												}
 											]
 										}
@@ -6689,9 +6689,80 @@
 								},
 								{
 									"name": "report-excel",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "application_id",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/reports/report-excel/:report_type?start_date=2024-01-01&end_date=2024-12-31",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"reports",
+												"report-excel",
+												":report_type"
+											],
+											"query": [
+												{
+													"key": "start_date",
+													"value": "2024-01-01"
+												},
+												{
+													"key": "end_date",
+													"value": "2024-12-31"
+												},
+												{
+													"key": "date",
+													"value": "2024-12-30",
+													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "report_type",
+													"value": "day_book_item_report",
+													"description": "credit_settlement_report|customer_credit_report|day_book_item_report"
+												}
+											]
+										}
 									},
+									"response": []
+								},
+								{
+									"name": "day book item",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -6706,28 +6777,13 @@
 										"method": "GET",
 										"header": [
 											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											},
-											{
 												"key": "branch-id",
-												"value": "5",
+												"value": "1",
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "application_id",
-													"value": "",
-													"type": "text"
-												}
-											]
-										},
 										"url": {
-											"raw": "{{url}}/api/admin/reports/report-excel/:report_type?start_date=2024-12-01&end_date=2024-12-31&date=2024-12-30",
+											"raw": "{{url}}/api/admin/reports/day-book-item-report?start_date=2024-01-01&end_date=2025-01-01",
 											"host": [
 												"{{url}}"
 											],
@@ -6735,28 +6791,21 @@
 												"api",
 												"admin",
 												"reports",
-												"report-excel",
-												":report_type"
+												"day-book-item-report"
 											],
 											"query": [
 												{
 													"key": "start_date",
-													"value": "2024-12-01"
+													"value": "2024-01-01"
 												},
 												{
 													"key": "end_date",
-													"value": "2024-12-31"
+													"value": "2025-01-01"
 												},
 												{
-													"key": "date",
-													"value": "2024-12-30"
-												}
-											],
-											"variable": [
-												{
-													"key": "report_type",
-													"value": "customer_credit_report",
-													"description": "credit_settlement_report|customer_credit_report"
+													"key": "pagination_limit",
+													"value": "10",
+													"disabled": true
 												}
 											]
 										}
@@ -10570,7 +10619,7 @@
 							"name": "Cash In/Out",
 							"item": [
 								{
-									"name": "store chas in/out",
+									"name": "store cash in/out",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -10587,6 +10636,11 @@
 											{
 												"key": "Accept",
 												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "1",
 												"type": "text"
 											}
 										],
@@ -10612,15 +10666,26 @@
 													"key": "remarks",
 													"value": "hy",
 													"type": "text"
+												},
+												{
+													"key": "cash_in_out_item_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "particular",
+													"value": "custom",
+													"type": "text"
 												}
 											]
 										},
 										"url": {
-											"raw": "{{url}}/admin/cash-in-out",
+											"raw": "{{url}}/api/admin/cash-in-out",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
+												"api",
 												"admin",
 												"cash-in-out"
 											]
@@ -10871,6 +10936,90 @@
 													"key": "id",
 													"value": ""
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "store cash in/out items",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\":\"item 1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/cash-in-out-items",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"cash-in-out-items"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all cash-in-out items",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/cash-in-out-items",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"cash-in-out-items"
 											]
 										}
 									},
@@ -17625,7 +17774,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reserved_by\": {\r\n        \"id\":135,\r\n        \"name\": \"New Guest 2\",\r\n        \"phone\": \"98490000000\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-07-02 02:00:00\",\r\n        \"end_date\": \"2025-07-03 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"New Guest 2\",\r\n        \"phone\": \"98490000000\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-08-02 02:00:00\",\r\n        \"end_date\": \"2025-08-03 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17787,7 +17936,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "",
+											"raw": "{\r\n        \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17810,7 +17959,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "55"
+													"value": "61"
 												}
 											]
 										}
@@ -17840,7 +17989,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"paid_amount\": 86000,\r\n    \"business_session_id\": 1,\r\n    \"is_complimentary_payment\": false,\r\n    \"customer_id\":1172,\r\n    \"fragments\": [\r\n        {\r\n            \"payment_option_id\": 1,\r\n            \"paid_amount\": 86000,\r\n            \"received_amount\": 80000\r\n        },\r\n        {\r\n            \"payment_option_id\": 2,\r\n            \"paid_amount\": 86000,\r\n            \"received_amount\": 6000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"paid_amount\": 5000,\r\n    \"is_complimentary_payment\": false,\r\n    \"customer_id\":1172,\r\n    \"fragments\": [\r\n        {\r\n            \"payment_option_id\": 1,\r\n            \"paid_amount\": 5000,\r\n            \"received_amount\": 3000\r\n        },\r\n        {\r\n            \"payment_option_id\": 2,\r\n            \"paid_amount\": 5000,\r\n            \"received_amount\": 2000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17863,7 +18012,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "51"
+													"value": "60"
 												}
 											]
 										}
@@ -21828,6 +21977,11 @@
 									{
 										"key": "Accept",
 										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "1",
 										"type": "text"
 									}
 								],
@@ -25935,7 +26089,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"booked_date\": \"2022-09-12\",\r\n    \"event_shift_id\": 2,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    // \"advance_amount\": 500.00,\r\n    // \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"Other\",\r\n        \"phone\": \"12345789\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 5\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 6\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        }\r\n        ,\r\n        {\r\n            \"event_hall_id\": 2\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
+											"raw": "{\r\n    \"booked_date\": \"2022-09-18\",\r\n    \"event_shift_id\": 2,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 10,\r\n    \"actual_rate_per_pax\": 100,\r\n    // \"advance_amount\": 7300,\r\n    // \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"Other\",\r\n        \"phone\": \"123457810\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 5\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 6\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        },\r\n        {\r\n            \"event_hall_id\": 2\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -25981,7 +26135,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"booking_facilities\": [\r\n        {\r\n            \"id\": 3,\r\n            \"name\": \"Facility asd\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\",\r\n            \"delete\": true\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"new facility\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"booking_facilities\": [\r\n        {\r\n            // \"id\": 3,\r\n            \"name\": \"Facility asd 12\",\r\n            \"price\": 1000,\r\n            \"description\": \"some description\"\r\n            // \"delete\": true\r\n        },\r\n        {\r\n            // \"id\": 4,\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26035,7 +26189,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"booked_date\": \"2022-07-25\",\r\n    \"event_shift_id\": 1,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"advance_amount\": 500.00,\r\n    \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"John Doe asd\",\r\n        \"phone\": \"123-456-7890\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"id\": 19,\r\n            \"event_menu_product_id\": 7\r\n        },\r\n        {\r\n            \"id\": 20,\r\n            \"event_menu_product_id\": 6,\r\n            \"delete\": true\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"id\": 17,\r\n            \"event_hall_id\": 3\r\n        },\r\n        {\r\n            \"id\": 18,\r\n            \"event_hall_id\": 2,\r\n            \"delete\": true\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"id\": 8,\r\n            \"name\": \"Facility  asd 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\",\r\n            \"delete\": true\r\n        },\r\n        {\r\n            \"id\": 9,\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"id\": 10,\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
+											"raw": "{\r\n    \"booked_date\": \"2022-07-25\",\r\n    \"event_shift_id\": 1,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"actual_rate_per_pax\": 20,\r\n    \"booked_by\": {\r\n        \"name\": \"John Doe asd\",\r\n        \"phone\": \"123-456-7890\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"id\": 19,\r\n            \"event_menu_product_id\": 7\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"id\": 164,\r\n            \"event_hall_id\": 3\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility  asd 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26057,7 +26211,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "9"
+													"value": "90"
 												}
 											]
 										}
@@ -26086,7 +26240,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/events/bookings?paginate=1",
+											"raw": "{{url}}/api/admin/events/bookings?filter[type]=INQUIRY,BOOKING&filter[booking_code]=3&paginate=1&filter[booking_date_between]=2022-09-11,2022-09-12&filter[eventBookingHalls.eventHall.name]=Hall asdf",
 											"host": [
 												"{{url}}"
 											],
@@ -26099,17 +26253,23 @@
 											"query": [
 												{
 													"key": "filter[type]",
-													"value": "BOOKING",
-													"disabled": true
+													"value": "INQUIRY,BOOKING"
 												},
 												{
 													"key": "filter[booking_code]",
-													"value": "3",
-													"disabled": true
+													"value": "3"
 												},
 												{
 													"key": "paginate",
 													"value": "1"
+												},
+												{
+													"key": "filter[booking_date_between]",
+													"value": "2022-09-11,2022-09-12"
+												},
+												{
+													"key": "filter[eventBookingHalls.eventHall.name]",
+													"value": "Hall asdf"
 												}
 											]
 										}
@@ -26186,7 +26346,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"actual_rate_per_pax\": 1000,\r\n    \"actual_guest_count\": 100,\r\n    // \"discount\": 100,\r\n    // \"discount_type\":\"AMOUNT\",\r\n    // \"customer_id\": 812,\r\n    \"paid_amount\": 1000,\r\n    \"fragments\": [\r\n        {\r\n            \"payment_option_id\": 1,\r\n            \"received_amount\": 100000\r\n        },\r\n        {\r\n            \"payment_option_id\": 2,\r\n            \"received_amount\": 12387\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"actual_rate_per_pax\": 10,\r\n    \"actual_guest_count\": 100,\r\n    \"discount\": 100,\r\n    \"discount_type\":\"AMOUNT\",\r\n    \"customer_id\": 812,\r\n    \"paid_amount\": 1356,\r\n    \"fragments\": [\r\n        {\r\n            \"payment_option_id\": 40,\r\n            \"received_amount\": 1356\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26209,7 +26369,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "63"
+													"value": "115"
 												}
 											]
 										},
@@ -26342,6 +26502,11 @@
 												"key": "branch-id",
 												"value": "1",
 												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"url": {
@@ -26359,7 +26524,214 @@
 											"variable": [
 												{
 													"key": "id",
+													"value": "102"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "cancel booking",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id/cancel",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id",
+												"cancel"
+											],
+											"variable": [
+												{
+													"key": "id",
 													"value": "79"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Reports",
+							"item": [
+								{
+									"name": "get report",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/events/report/excel?type=EVENT_BOOKING_REPORT&paginate=1&from=2022-08-01&to=2022-08-30",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"report",
+												"excel"
+											],
+											"query": [
+												{
+													"key": "type",
+													"value": "EVENT_BOOKING_REPORT"
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												},
+												{
+													"key": "from",
+													"value": "2022-08-01"
+												},
+												{
+													"key": "to",
+													"value": "2022-08-30"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get records",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/events/report/records?type=EVENT_BOOKING_REPORT&paginate=1&from=2022-08-01&to=2022-08-30",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"report",
+												"records"
+											],
+											"query": [
+												{
+													"key": "type",
+													"value": "EVENT_BOOKING_REPORT"
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												},
+												{
+													"key": "from",
+													"value": "2022-08-01"
+												},
+												{
+													"key": "to",
+													"value": "2022-08-30"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get aggregate",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/events/report/aggregate?type=EVENT_BOOKING_REPORT",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"report",
+												"aggregate"
+											],
+											"query": [
+												{
+													"key": "type",
+													"value": "EVENT_BOOKING_REPORT"
 												}
 											]
 										}
@@ -31252,7 +31624,8 @@
 									"variable": [
 										{
 											"key": "branch_id",
-											"value": "5"
+											"value": "2",
+											"description": "2 - Wings Factory NB / 5-Kimchi Anamnagar"
 										}
 									]
 								}
