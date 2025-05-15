@@ -48,14 +48,12 @@
 										{
 											"key": "email",
 											"value": "bishowraut@gmail.com",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										},
 										{
 											"key": "password",
 											"value": "P@ssw0rd123",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										},
 										{
 											"key": "email",
@@ -120,12 +118,14 @@
 										{
 											"key": "email",
 											"value": "gsaurav2000@gmail.com",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password",
 											"value": "P@ssw0rd",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -490,11 +490,12 @@
 										{
 											"key": "token",
 											"value": "eykLUanCwDfzeb3RGdNa6OhapkaqdzUQDEVmbUqaJv1PMOtAVjPWheLYDhRxEufrobSzUbGG3TYWeqjmJR0jXP3APWCkqPde66g8zeuK8DfeWdjHw6lSJdpd1x0y5P2s",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "email",
-											"value": "augxdeveloper@gmail.com",
+											"value": "randommail@gmail.com",
 											"type": "text"
 										},
 										{
@@ -516,7 +517,7 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/admin/invitation-accept-reject",
+									"raw": "{{url}}/api/admin/invitation-accept-reject?email=randommail@gmail.com&token=706S7OVmaE2KRzt1IM7JENV9U81WhYuMzGp7C8uPrgV5ZgXxzBQQ4LeEJa2roC3IzRDUcZMp9DwmPPFZ4dSgsk693reNK7Dp78YguUHrPWOrJFEqX3rZ4VZ3rLEMyqxI&organization=Dicta%20illum%20id%20et%20d",
 									"host": [
 										"{{url}}"
 									],
@@ -524,6 +525,20 @@
 										"api",
 										"admin",
 										"invitation-accept-reject"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "randommail@gmail.com"
+										},
+										{
+											"key": "token",
+											"value": "706S7OVmaE2KRzt1IM7JENV9U81WhYuMzGp7C8uPrgV5ZgXxzBQQ4LeEJa2roC3IzRDUcZMp9DwmPPFZ4dSgsk693reNK7Dp78YguUHrPWOrJFEqX3rZ4VZ3rLEMyqxI"
+										},
+										{
+											"key": "organization",
+											"value": "Dicta%20illum%20id%20et%20d"
+										}
 									]
 								}
 							},
@@ -10674,7 +10689,7 @@
 												},
 												{
 													"key": "particular",
-													"value": "custom",
+													"value": "CUStOM",
 													"type": "text"
 												}
 											]
@@ -10969,7 +10984,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"title\":\"item 1\"\r\n}",
+											"raw": "{\r\n    \"title\":\"New\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -22796,6 +22811,57 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Other Setting",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"hide_delivery\" : 0,\r\n    \"notify_table_transfer\" : 0 ,\r\n    \"pay_first\":0,\r\n    \"computer_printer_status\" :1,\r\n    \"computer_printer_ip_address\":\"192.168.100.10\",\r\n    \"branch_id\":5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/branch/other-setting/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										"other-setting",
+										""
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -26299,7 +26365,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"types\": [\r\n        \"AGGREGATE_BY_COUNT\",\r\n        \"AGGREGATE_BY_DETAIL\",\r\n        \"HALLS_BY_DATE_AND_SHIFT\"\r\n    ],\r\n    \"AGGREGATE_BY_COUNT\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"AGGREGATE_BY_DETAIL\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"HALLS_BY_DATE_AND_SHIFT\": {\r\n        \"date\": \"2022-07-25\",\r\n        \"event_shift_id\": 1\r\n    }\r\n}",
+											"raw": "{\r\n    \"types\": [\r\n        // \"AGGREGATE_BY_COUNT\",\r\n        \"AGGREGATE_BY_DETAIL\"\r\n        // \"HALLS_BY_DATE_AND_SHIFT\"\r\n    ],\r\n    \"AGGREGATE_BY_COUNT\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"AGGREGATE_BY_DETAIL\": {\r\n        \"from\": \"2022-07-01\",\r\n        \"to\": \"2022-07-30\"\r\n    },\r\n    \"HALLS_BY_DATE_AND_SHIFT\": {\r\n        \"date\": \"2022-07-25\",\r\n        \"event_shift_id\": 1\r\n    }\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26742,6 +26808,201 @@
 						}
 					],
 					"description": "Documentation of used quering library:  \n[https://spatie.be/docs/laravel-query-builder](https://spatie.be/docs/laravel-query-builder)\n\nEach of these parameters are applicable for every `fetch all` query:\n\n- `paginate: 0|1`\n    \n- `limit: 10`\n    \n- `page: 1`\n    \n\n**Filtering**:\n\n```\nfilter[name]=john&filter[email]=gmail //where name like john and email like gmail\nfilter[name]=seb,freek //where name like seb or freek\n\n ```\n\n**Sorting**:\n\n```\nsort=name // sort column name in ascending order\nsort=-name // sort column name in descending order\n\n ```\n\n**Including related relationships**:\n\n```\ninclude=posts,permissions //include posts and permissions relationships of the records to be fetched\n\n ```"
+				},
+				{
+					"name": "V2",
+					"item": [
+						{
+							"name": "list all branches",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v2/admin/companies/branches",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"admin",
+										"companies",
+										"branches"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all users of company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v2/admin/companies/:company-id/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"admin",
+										"companies",
+										":company-id",
+										"users"
+									],
+									"variable": [
+										{
+											"key": "company-id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invite user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"newer@user.com\",\r\n    // \"send_user_invite\": false,\r\n    \"roles\": [\r\n        \"admin\"\r\n    ],\r\n    \"branch_ids\": [\r\n        1,16\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v2/admin/companies/:company-id/invite-user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"admin",
+										"companies",
+										":company-id",
+										"invite-user"
+									],
+									"variable": [
+										{
+											"key": "company-id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accept/reject invitaiton",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"newer@user.com\",\r\n    // \"password\": \"P@ssw0rd\",\r\n    // \"password_confirmation\": \"P@ssw0rd\",\r\n    \"is_accepted\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v2/admin/accept-reject-invitation?email=newer@user.com&token=1XZaGCuqYA6DTuGlXg5chK2r8KPYuOdMbTX5IpMZ1BjweDIdNdS252eskZziRbx2gTy96JHVLGUzxqNXry3ZYFvsmMPoyHTvwOTqbHpqRfEuoxOwDUJcopszz5Ag0ZqE&organization=Demo%20Company",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"admin",
+										"accept-reject-invitation"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "newer@user.com"
+										},
+										{
+											"key": "token",
+											"value": "1XZaGCuqYA6DTuGlXg5chK2r8KPYuOdMbTX5IpMZ1BjweDIdNdS252eskZziRbx2gTy96JHVLGUzxqNXry3ZYFvsmMPoyHTvwOTqbHpqRfEuoxOwDUJcopszz5Ag0ZqE"
+										},
+										{
+											"key": "organization",
+											"value": "Demo%20Company"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Print Issue store",

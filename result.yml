@@ -167,6 +167,7 @@ tags:
   - name: Admin > Event Booking > Halls
   - name: Admin > Event Booking > Bookings
   - name: Admin > Event Booking > Reports
+  - name: Admin > V2
   - name: Public
   - name: Public > auth
   - name: Superadmin
@@ -402,7 +403,7 @@ paths:
                     eykLUanCwDfzeb3RGdNa6OhapkaqdzUQDEVmbUqaJv1PMOtAVjPWheLYDhRxEufrobSzUbGG3TYWeqjmJR0jXP3APWCkqPde66g8zeuK8DfeWdjHw6lSJdpd1x0y5P2s
                 email:
                   type: string
-                  example: augxdeveloper@gmail.com
+                  example: randommail@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -421,6 +422,22 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: email
+          in: query
+          schema:
+            type: string
+          example: randommail@gmail.com
+        - name: token
+          in: query
+          schema:
+            type: string
+          example: >-
+            706S7OVmaE2KRzt1IM7JENV9U81WhYuMzGp7C8uPrgV5ZgXxzBQQ4LeEJa2roC3IzRDUcZMp9DwmPPFZ4dSgsk693reNK7Dp78YguUHrPWOrJFEqX3rZ4VZ3rLEMyqxI
+        - name: organization
+          in: query
+          schema:
+            type: string
+          example: Dicta%20illum%20id%20et%20d
       responses:
         '200':
           description: Successful response
@@ -6981,7 +6998,7 @@ paths:
                   example: '1'
                 particular:
                   type: string
-                  example: custom
+                  example: CUStOM
       security:
         - bearerAuth: []
       parameters:
@@ -7150,7 +7167,7 @@ paths:
             schema:
               type: object
               example:
-                title: item 1
+                title: New
       security:
         - bearerAuth: []
       parameters:
@@ -14494,6 +14511,41 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/branch/other-setting/:
+    post:
+      tags:
+        - Admin > Branch
+      summary: Other Setting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                hide_delivery: 0
+                notify_table_transfer: 0
+                pay_first: 0
+                computer_printer_status: 1
+                computer_printer_ip_address: 192.168.100.10
+                branch_id: 5
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/payment-option:
     get:
       tags:
@@ -16738,9 +16790,7 @@ paths:
               type: object
               example:
                 types:
-                  - AGGREGATE_BY_COUNT
                   - AGGREGATE_BY_DETAIL
-                  - HALLS_BY_DATE_AND_SHIFT
                 AGGREGATE_BY_COUNT:
                   from: '2022-07-01'
                   to: '2022-07-30'
@@ -16996,6 +17046,105 @@ paths:
           schema:
             type: string
           example: EVENT_BOOKING_REPORT
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/admin/companies/branches:
+    get:
+      tags:
+        - Admin > V2
+      summary: list all branches
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/admin/companies/{company-id}/users:
+    get:
+      tags:
+        - Admin > V2
+      summary: get all users of company
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: company-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/admin/companies/{company-id}/invite-user:
+    post:
+      tags:
+        - Admin > V2
+      summary: invite user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: newer@user.com
+                roles:
+                  - admin
+                branch_ids:
+                  - 1
+                  - 16
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: company-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/admin/accept-reject-invitation:
+    post:
+      tags:
+        - Admin > V2
+      summary: accept/reject invitaiton
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: newer@user.com
+                is_accepted: true
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: email
+          in: query
+          schema:
+            type: string
+          example: newer@user.com
+        - name: token
+          in: query
+          schema:
+            type: string
+          example: >-
+            1XZaGCuqYA6DTuGlXg5chK2r8KPYuOdMbTX5IpMZ1BjweDIdNdS252eskZziRbx2gTy96JHVLGUzxqNXry3ZYFvsmMPoyHTvwOTqbHpqRfEuoxOwDUJcopszz5Ag0ZqE
+        - name: organization
+          in: query
+          schema:
+            type: string
+          example: Demo%20Company
       responses:
         '200':
           description: Successful response
