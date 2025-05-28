@@ -48,12 +48,14 @@
 										{
 											"key": "email",
 											"value": "bishowraut@gmail.com",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password",
 											"value": "P@ssw0rd123",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "email",
@@ -118,14 +120,12 @@
 										{
 											"key": "email",
 											"value": "gsaurav2000@gmail.com",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										},
 										{
 											"key": "password",
 											"value": "P@ssw0rd",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										}
 									]
 								},
@@ -246,7 +246,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5IiwianRpIjoiZDU1NTA2MWNlMTMxODIyMDQ0MjQ3MzZjNjk4NjY4ZWZkNTQyM2QxODM4M2FjMzY3NmIzMzkyNTA4MzNkYjYzY2NjMzZkYmZjMDY2Nzg2YTIiLCJpYXQiOjE3NDcyOTM3MDUuOTcwMDY0LCJuYmYiOjE3NDcyOTM3MDUuOTcwMDY1LCJleHAiOjE3NDg1ODk3MDUuOTQ4NjY4LCJzdWIiOiI5MyIsInNjb3BlcyI6W119.ZgtTBCKTt3umNwrUlMK6p1bd9NGcf6xtLeqyI5rdhFMZItzaQySIQnoO--1k1VCXhVilEvxv7jlruI0Yj2f1mkLR4uY5-wG5PtcFyISN-56Wh9em2UyiZsFZb_QCgCMSdaB4a8SMoCeRcfGqgSTozsEKCjAuWFiwPCQcsVYqvgH4Is95FCkwt6vAdxdU8qgD7O35_3P83O2AUrA3vPRRLnLYcwhV--7mgz6utjOZBt6RFWw2voCtd475GDrd6vr9cqWDc5Y2h-QVX5HlYvbZ2jgIN5CWoYeMO-MTZvZZjB5F73WOHpV-5ulcPvprT5b8XFpSjbdI3La945axXP3vavQu6ll9dxTyNut7p3Jl0_ItHYs8frjzwYF3LWqg1in4bmlVeTll09kQY7QYoCS1UWXUn1nfgOQVCewVGBoAiipfsT7NcCl4E7O6--qflvDPWnmZhGwhcvaYXPaI4rYwhuNmyiAg23iOrNVuI7DcnsZhTOVyUdiIKa7zODb4rWANR65u9i-9bl8Bql6WFLR7BHjpcA-tVqoDuGDFBP4kqxWHqAAib_V4kGggQ5UQ7ZXKTTvw62912nY2Mvj1a_F0NrE_HSXhuLt9SgUfY1FBiP4_VlmnepHLjak7wIEfph2OyJK5NnhyKC2DLruotEyefbKntXI8cezNhmCEgaZs1ng",
 											"type": "string"
 										}
 									]
@@ -15911,11 +15911,11 @@
 											}
 										],
 										"body": {
-											"mode": "formdata",
-											"formdata": []
+											"mode": "raw",
+											"raw": ""
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/rooms",
+											"raw": "{{url}}/api/admin/hotels/rooms?is_active=",
 											"host": [
 												"{{url}}"
 											],
@@ -15924,6 +15924,12 @@
 												"admin",
 												"hotels",
 												"rooms"
+											],
+											"query": [
+												{
+													"key": "is_active",
+													"value": ""
+												}
 											]
 										}
 									},
@@ -16553,6 +16559,11 @@
 														"key": "branch-id",
 														"value": "1",
 														"type": "text"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
 													}
 												],
 												"body": {
@@ -16591,7 +16602,7 @@
 													"variable": [
 														{
 															"key": "room-type-id",
-															"value": "10"
+															"value": "30"
 														}
 													]
 												}
@@ -17139,7 +17150,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/room-types/available?from=2025-07-02 02:00:00&to=2025-07-03 10:00:00",
+											"raw": "{{url}}/api/admin/hotels/room-types/available?from=2025-08-02 02:00:00&to=2025-08-03 10:00:00",
 											"host": [
 												"{{url}}"
 											],
@@ -17153,11 +17164,11 @@
 											"query": [
 												{
 													"key": "from",
-													"value": "2025-07-02 02:00:00"
+													"value": "2025-08-02 02:00:00"
 												},
 												{
 													"key": "to",
-													"value": "2025-07-03 10:00:00"
+													"value": "2025-08-03 10:00:00"
 												}
 											]
 										}
@@ -17563,7 +17574,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"reservation_rooms\": [\r\n        // {\r\n        //     \"id\": 182,\r\n        //     \"hotel_room_type_breakdown_id\": 10,\r\n        //     \"delete\": true\r\n        // },\r\n        // {\r\n        //     \"id\": 184,\r\n        //     \"hotel_room_type_breakdown_id\": 11,\r\n        //     \"delete\": true\r\n        // },\r\n        {\r\n            \"id\": 183,\r\n            \"hotel_room_type_breakdown_id\": 12\r\n        },\r\n        {\r\n            \"hotel_room_type_breakdown_id\": 11\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"reservation_rooms\": [\r\n        {\r\n            \"hotel_room_id\": 5\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -17588,11 +17599,11 @@
 													"variable": [
 														{
 															"key": "reservation-id",
-															"value": "57"
+															"value": "73"
 														},
 														{
 															"key": "reservation-detail-id",
-															"value": "174"
+															"value": "199"
 														}
 													]
 												}
@@ -17632,7 +17643,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"reservation_products\": [\r\n        {\r\n            \"id\": 1,\r\n            \"hotel_product_id\": 1,\r\n            \"quantity\": 5,\r\n            \"rate\": 500\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"hotel_product_id\": 2,\r\n            \"quantity\": 5,\r\n            \"rate\": 800\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"hotel_product_id\": 3,\r\n            \"quantity\": 5,\r\n            \"rate\": 100,\r\n            \"delete\": true\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"reservation_products\": [\r\n        {\r\n            \"hotel_product_id\": 1,\r\n            \"quantity\": 5,\r\n            \"rate\": 500\r\n        },\r\n        {\r\n            \"hotel_product_id\": 2,\r\n            \"quantity\": 5,\r\n            \"rate\": 800\r\n        },\r\n        {\r\n            \"hotel_product_id\": 3,\r\n            \"quantity\": 5,\r\n            \"rate\": 100\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -17733,13 +17744,39 @@
 													}
 												],
 												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"reservation_guests\": [\r\n        {\r\n            \"id\": 89,\r\n            \"hotel_guest\": {\r\n                \"name\": \"Alan Walker 1\",\r\n                \"phone\": \"87789789\",\r\n                \"country\": \"BURUNDI\",\r\n                \"email\": \"email@gmail.com\",\r\n                \"address\": \"dfojadofi\",\r\n                \"note\": \"afdfaddf\"\r\n                ,\r\n                \"document\": {\r\n                    \"type\": \"ID_CARD\",\r\n                    \"document_number\": \"Milk\",\r\n                    \"document_issuing_country\": \"CENTRAL_AFRICAN_REPUBLIC\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "reservation_guests[0][id]",
+															"value": "118",
+															"type": "text"
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][name]",
+															"value": "Alan Walker 1",
+															"type": "text"
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][document][type]",
+															"value": "ID_CARD",
+															"type": "text"
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][document][document_number]",
+															"value": "123456",
+															"type": "text"
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][document][document_issuing_country]",
+															"value": "NEPAL",
+															"type": "text"
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][document][file]",
+															"type": "file",
+															"src": "/C:/Users/User/Downloads/sample-local-pdf.pdf"
 														}
-													}
+													]
 												},
 												"url": {
 													"raw": "{{url}}/api/admin/hotels/reservations/:id/guests",
@@ -17789,7 +17826,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"New Guest 2\",\r\n        \"phone\": \"98490000000\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-08-02 02:00:00\",\r\n        \"end_date\": \"2025-08-03 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 2,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"Newest\",\r\n        \"phone\": \"98490000002\",\r\n        \"email\":\"some@email.com\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-09-03 02:00:00\",\r\n        \"end_date\": \"2025-09-04 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"exclude_advance\":true,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 32,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -17916,7 +17953,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "57"
+													"value": "71"
 												}
 											]
 										}
@@ -17974,7 +18011,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "61"
+													"value": "74"
 												}
 											]
 										}
@@ -18004,7 +18041,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"paid_amount\": 5000,\r\n    \"is_complimentary_payment\": false,\r\n    \"customer_id\":1172,\r\n    \"fragments\": [\r\n        {\r\n            \"payment_option_id\": 1,\r\n            \"paid_amount\": 5000,\r\n            \"received_amount\": 3000\r\n        },\r\n        {\r\n            \"payment_option_id\": 2,\r\n            \"paid_amount\": 5000,\r\n            \"received_amount\": 2000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"paid_amount\": 75000,\r\n    \"is_complimentary_payment\": false,\r\n    \"customer_id\":1192,\r\n    \"fragments\": [\r\n        {\r\n            \"company_payment_option_id\": 1,\r\n            \"received_amount\": 70000\r\n        },\r\n        {\r\n            \"company_payment_option_id\": 2,\r\n            \"received_amount\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -18027,7 +18064,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "60"
+													"value": "71"
 												}
 											]
 										}
@@ -18071,7 +18108,51 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "57"
+													"value": "73"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get summary",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "1",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservations/:id/summary",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservations",
+												":id",
+												"summary"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "71"
 												}
 											]
 										}
@@ -22668,7 +22749,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/admin/branch?paginate=1&page=1&limit=10&search_keyword=&status=&company_id=5",
+									"raw": "{{url}}/api/admin/branch?company_id=14",
 									"host": [
 										"{{url}}"
 									],
@@ -22680,27 +22761,32 @@
 									"query": [
 										{
 											"key": "paginate",
-											"value": "1"
+											"value": "1",
+											"disabled": true
 										},
 										{
 											"key": "page",
-											"value": "1"
+											"value": "1",
+											"disabled": true
 										},
 										{
 											"key": "limit",
-											"value": "10"
+											"value": "10",
+											"disabled": true
 										},
 										{
 											"key": "search_keyword",
-											"value": ""
+											"value": "",
+											"disabled": true
 										},
 										{
 											"key": "status",
-											"value": ""
+											"value": "",
+											"disabled": true
 										},
 										{
 											"key": "company_id",
-											"value": "5"
+											"value": "14"
 										}
 									]
 								}
@@ -26830,8 +26916,7 @@
 									{
 										"key": "branch-id",
 										"value": "1",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									}
 								],
 								"url": {
@@ -26913,13 +26998,12 @@
 									{
 										"key": "branch-id",
 										"value": "1",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"newer@user.com\",\r\n    // \"send_user_invite\": false,\r\n    \"roles\": [\r\n        \"admin\"\r\n    ],\r\n    \"branch_ids\": [\r\n        1,16\r\n    ]\r\n}",
+									"raw": "{\r\n    \"email\": \"latest@user.com\",\r\n    // \"send_user_invite\": false,\r\n    \"roles\": [\r\n        \"cashier\",\"waiter\"\r\n    ],\r\n    \"branch_ids\": [\r\n        1,16\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -26996,6 +27080,56 @@
 										{
 											"key": "organization",
 											"value": "Demo%20Company"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "unassign user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v2/admin/companies/:company-id/users/:user-id/unassign",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"admin",
+										"companies",
+										":company-id",
+										"users",
+										":user-id",
+										"unassign"
+									],
+									"variable": [
+										{
+											"key": "company-id",
+											"value": "1"
+										},
+										{
+											"key": "user-id",
+											"value": "103"
 										}
 									]
 								}
