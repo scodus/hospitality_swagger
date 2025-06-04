@@ -63,6 +63,7 @@ tags:
   - name: Admin > Restaurant > QR Payment Image
   - name: Admin > Restaurant > Complementary User
   - name: Admin > Restaurant > FonePay
+  - name: Admin > Restaurant > Hotel
   - name: Admin > Printers
   - name: Admin > Human Resource
   - name: Admin > Human Resource > department
@@ -8057,6 +8058,32 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/order/{order-id}/hotel-dispatch:
+    patch:
+      tags:
+        - Admin > Restaurant > Hotel
+      summary: Dispatch hotel order
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: order-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '241031'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/printers:
     post:
       tags:
@@ -11082,7 +11109,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: Accept
           in: header
           schema:
@@ -11526,7 +11553,7 @@ paths:
                   exclude_advance: true
                   business_session_id: 1
                 reservation_detail:
-                  - hotel_room_type_id: 32
+                  - hotel_room_type_id: 1
                     quantity: 1
                     rate: 5000
       security:
@@ -11536,7 +11563,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -11605,7 +11632,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: Accept
           in: header
           schema:
@@ -11616,7 +11643,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '74'
+          example: '16'
       responses:
         '200':
           description: Successful response
@@ -11632,15 +11659,7 @@ paths:
           application/json:
             schema:
               type: object
-              example:
-                paid_amount: 75000
-                is_complimentary_payment: false
-                customer_id: 1192
-                fragments:
-                  - company_payment_option_id: 1
-                    received_amount: 70000
-                  - company_payment_option_id: 2
-                    received_amount: 5000
+              example: ''
       security:
         - bearerAuth: []
       parameters:
@@ -11648,13 +11667,50 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '71'
+          example: '16'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{id}/pay:
+    post:
+      tags:
+        - Admin > Hotel > reservation
+      summary: pay
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                paid_amount: 6000
+                is_complimentary_payment: false
+                fragments:
+                  - company_payment_option_id: 1
+                    received_amount: 5000
+                  - company_payment_option_id: 2
+                    received_amount: 1000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '20'
       responses:
         '200':
           description: Successful response
@@ -11672,13 +11728,13 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '73'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -11696,13 +11752,13 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '71'
+          example: '16'
       responses:
         '200':
           description: Successful response
@@ -11753,9 +11809,7 @@ paths:
               type: object
               example:
                 assignment_check_lists:
-                  - id: 1
-                    cleaning_check_list_id: 2
-                    delete: true
+                  - cleaning_check_list_id: 2
                   - cleaning_check_list_id: 3
                   - cleaning_check_list_id: 4
       security:
@@ -11817,10 +11871,8 @@ paths:
               type: object
               example:
                 assignments:
-                  - id: 2
-                    employee_id: 1
+                  - employee_id: 1
                     hotel_room_id: 6
-                    delete: true
                   - employee_id: 1
                     hotel_room_id: 7
                   - employee_id: 1
@@ -11832,7 +11884,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -11849,7 +11901,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: from
           in: query
           schema:
@@ -11917,7 +11969,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: Accept
           in: header
           schema:
@@ -12048,7 +12100,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -12078,7 +12130,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -17203,6 +17255,68 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/v2/admin/login:
+    post:
+      tags:
+        - Admin > V2
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: gsaurav2000@gmail.com
+                password: P@ssw0rd
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/admin/companies/{company-id}/update-user-detail:
+    put:
+      tags:
+        - Admin > V2
+      summary: update user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                user_id: 1
+                roles:
+                  - waiter
+                  - admin
+                branch_ids:
+                  - 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: company-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/print-issue:
     post:
       tags:
@@ -19982,6 +20096,27 @@ paths:
             type: integer
           required: true
           example: '22'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sync-due-payments/{branch_id}:
+    post:
+      tags:
+        - Superadmin > System Sync
+      summary: Sync Payments
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
       responses:
         '200':
           description: Successful response
