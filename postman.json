@@ -12484,21 +12484,21 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/order/:order-id/hotel-dispatch",
+											"raw": "{{url}}/api/admin/tables/:table-id/hotel-dispatch",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"api",
 												"admin",
-												"order",
-												":order-id",
+												"tables",
+												":table-id",
 												"hotel-dispatch"
 											],
 											"variable": [
 												{
-													"key": "order-id",
-													"value": "241031"
+													"key": "table-id",
+													"value": "1135"
 												}
 											]
 										}

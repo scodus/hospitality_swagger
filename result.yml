@@ -8058,7 +8058,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/order/{order-id}/hotel-dispatch:
+  /api/admin/tables/{table-id}/hotel-dispatch:
     patch:
       tags:
         - Admin > Restaurant > Hotel
@@ -8073,12 +8073,12 @@ paths:
           schema:
             type: integer
           example: '5'
-        - name: order-id
+        - name: table-id
           in: path
           schema:
             type: integer
           required: true
-          example: '241031'
+          example: '1135'
       responses:
         '200':
           description: Successful response
