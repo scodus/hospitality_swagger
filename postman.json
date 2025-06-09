@@ -15821,7 +15821,7 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											},
 											{
@@ -15832,7 +15832,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"id\":30,\r\n    \"title\":\"new Floor 2\",\r\n    \"rooms\":[\r\n        {\r\n            \"id\":20,\r\n            \"name\":\"2011\"\r\n        },\r\n        {\r\n            \"id\":21,\r\n            \"name\":\"2021\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"name\":\"2031\",\r\n            \"delete\":true\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"id\": 2,\r\n    \"title\": \"new Floor 2\",\r\n    \"rooms\": [\r\n        {\r\n            \"id\": 7,\r\n            \"name\": \"2011\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"name\": \"2021\"\r\n        },\r\n        {\r\n            \"id\": 9,\r\n            \"name\": \"2031\",\r\n            \"delete\": true\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -16058,6 +16058,52 @@
 												"hotels",
 												"rooms",
 												"available"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "sync tables",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/rooms/sync-tables",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"rooms",
+												"sync-tables"
 											]
 										}
 									},
@@ -17222,6 +17268,53 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "get list of available rooms with room types",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types/available-rooms?from=2025-06-13 00:00:00&to=2025-06-13 00:00:00",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types",
+												"available-rooms"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "2025-06-13 00:00:00"
+												},
+												{
+													"key": "to",
+													"value": "2025-06-13 00:00:00"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -17652,6 +17745,71 @@
 														{
 															"key": "reservation-detail-id",
 															"value": "199"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "transfer room",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "5",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"new_hotel_room_id\": 4,\r\n    \"rate\": 1000\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/reservations/:reservation-id/detail/:reservation-detail-id/rooms/:reservation-room-id/transfer",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"reservations",
+														":reservation-id",
+														"detail",
+														":reservation-detail-id",
+														"rooms",
+														":reservation-room-id",
+														"transfer"
+													],
+													"variable": [
+														{
+															"key": "reservation-id",
+															"value": "34"
+														},
+														{
+															"key": "reservation-detail-id",
+															"value": "35"
+														},
+														{
+															"key": "reservation-room-id",
+															"value": "28"
 														}
 													]
 												}
@@ -18254,6 +18412,59 @@
 												{
 													"key": "id",
 													"value": "16"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "extend reservation",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"from\": \"2025-06-13\",\r\n    \"to\": \"2025-06-14\",\r\n    \"new_hotel_room_id\": 4,\r\n    \"rate\": 500\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservations/:id/extend",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservations",
+												":id",
+												"extend"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "34"
 												}
 											]
 										}

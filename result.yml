@@ -10315,14 +10315,14 @@ paths:
             schema:
               type: object
               example:
-                id: 30
+                id: 2
                 title: new Floor 2
                 rooms:
-                  - id: 20
+                  - id: 7
                     name: '2011'
-                  - id: 21
+                  - id: 8
                     name: '2021'
-                  - id: 22
+                  - id: 9
                     name: '2031'
                     delete: true
       security:
@@ -10332,7 +10332,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: Accept
           in: header
           schema:
@@ -10447,6 +10447,35 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/rooms/sync-tables:
+    post:
+      tags:
+        - Admin > Hotel > rooms
+      summary: sync tables
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '""'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -11130,6 +11159,34 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/hotels/room-types/available-rooms:
+    get:
+      tags:
+        - Admin > Hotel > room type
+      summary: get list of available rooms with room types
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: from
+          in: query
+          schema:
+            type: string
+          example: '2025-06-13 00:00:00'
+        - name: to
+          in: query
+          schema:
+            type: string
+          example: '2025-06-13 00:00:00'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/reservation-sources:
     post:
       tags:
@@ -11408,6 +11465,50 @@ paths:
             type: integer
           required: true
           example: '199'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{reservation-id}/detail/{reservation-detail-id}/rooms/{reservation-room-id}/transfer:
+    post:
+      tags:
+        - Admin > Hotel > reservation > reservation detail
+      summary: transfer room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                new_hotel_room_id: 4
+                rate: 1000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: reservation-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '34'
+        - name: reservation-detail-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '35'
+        - name: reservation-room-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '28'
       responses:
         '200':
           description: Successful response
@@ -11759,6 +11860,40 @@ paths:
             type: integer
           required: true
           example: '16'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{id}/extend:
+    post:
+      tags:
+        - Admin > Hotel > reservation
+      summary: extend reservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                from: '2025-06-13'
+                to: '2025-06-14'
+                new_hotel_room_id: 4
+                rate: 500
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '34'
       responses:
         '200':
           description: Successful response
