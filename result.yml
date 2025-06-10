@@ -11542,8 +11542,53 @@ paths:
             schema:
               type: object
               example:
-                new_hotel_room_id: 4
+                new_hotel_room_id: 8
                 rate: 1000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: reservation-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '34'
+        - name: reservation-detail-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '35'
+        - name: reservation-room-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '28'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{reservation-id}/detail/{reservation-detail-id}/rooms/{reservation-room-id}/extend:
+    post:
+      tags:
+        - Admin > Hotel > reservation > reservation detail
+      summary: extend room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                to: '2025-06-14'
+                new_hotel_room_id: 18
+                rate: 500
       security:
         - bearerAuth: []
       parameters:
