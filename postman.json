@@ -17953,7 +17953,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"to\": \"2025-06-14\",\r\n    \"new_hotel_room_id\": 18,\r\n    \"rate\": 500\r\n}",
+													"raw": "{\r\n    \"to\": \"2025-06-20\",\r\n    \"rate\": 500\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -17984,11 +17984,11 @@
 														},
 														{
 															"key": "reservation-detail-id",
-															"value": "35"
+															"value": "49"
 														},
 														{
 															"key": "reservation-room-id",
-															"value": "28"
+															"value": "42"
 														}
 													]
 												}
@@ -18017,7 +18017,7 @@
 												"header": [
 													{
 														"key": "branch-id",
-														"value": "1",
+														"value": "5",
 														"type": "text"
 													},
 													{
@@ -18028,7 +18028,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"reservation_products\": [\r\n        {\r\n            \"hotel_product_id\": 1,\r\n            \"quantity\": 5,\r\n            \"rate\": 500\r\n        },\r\n        {\r\n            \"hotel_product_id\": 2,\r\n            \"quantity\": 5,\r\n            \"rate\": 800\r\n        },\r\n        {\r\n            \"hotel_product_id\": 3,\r\n            \"quantity\": 5,\r\n            \"rate\": 100\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"reservation_products\": [\r\n        {\r\n            \"inventory_product_id\": 388,\r\n            \"quantity\": 5,\r\n            \"rate\": 800\r\n        },\r\n        {\r\n            \"inventory_product_id\": 386,\r\n            \"quantity\": 5,\r\n            \"rate\": 100\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -18051,7 +18051,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "10"
+															"value": "32"
 														}
 													]
 												}
@@ -18319,7 +18319,7 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
@@ -18338,7 +18338,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "71"
+													"value": "32"
 												}
 											]
 										}
@@ -18590,7 +18590,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "16"
+													"value": "32"
 												}
 											]
 										}
@@ -18672,12 +18672,12 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/products?paginate=1&limit=2&is_service=0",
+											"raw": "{{url}}/api/admin/hotels/inventory-products",
 											"host": [
 												"{{url}}"
 											],
@@ -18685,16 +18685,18 @@
 												"api",
 												"admin",
 												"hotels",
-												"products"
+												"inventory-products"
 											],
 											"query": [
 												{
 													"key": "paginate",
-													"value": "1"
+													"value": "1",
+													"disabled": true
 												},
 												{
 													"key": "limit",
-													"value": "2"
+													"value": "2",
+													"disabled": true
 												},
 												{
 													"key": "page",
@@ -18708,7 +18710,8 @@
 												},
 												{
 													"key": "is_service",
-													"value": "0"
+													"value": "0",
+													"disabled": true
 												}
 											]
 										}
@@ -27689,7 +27692,7 @@
 								"header": [
 									{
 										"key": "branch-id",
-										"value": "1",
+										"value": "5",
 										"type": "text"
 									}
 								],

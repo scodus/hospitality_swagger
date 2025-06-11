@@ -11586,8 +11586,7 @@ paths:
             schema:
               type: object
               example:
-                to: '2025-06-14'
-                new_hotel_room_id: 18
+                to: '2025-06-20'
                 rate: 500
       security:
         - bearerAuth: []
@@ -11608,13 +11607,13 @@ paths:
           schema:
             type: integer
           required: true
-          example: '35'
+          example: '49'
         - name: reservation-room-id
           in: path
           schema:
             type: integer
           required: true
-          example: '28'
+          example: '42'
       responses:
         '200':
           description: Successful response
@@ -11632,13 +11631,10 @@ paths:
               type: object
               example:
                 reservation_products:
-                  - hotel_product_id: 1
-                    quantity: 5
-                    rate: 500
-                  - hotel_product_id: 2
+                  - inventory_product_id: 388
                     quantity: 5
                     rate: 800
-                  - hotel_product_id: 3
+                  - inventory_product_id: 386
                     quantity: 5
                     rate: 100
       security:
@@ -11648,7 +11644,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: Accept
           in: header
           schema:
@@ -11659,7 +11655,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '10'
+          example: '32'
       responses:
         '200':
           description: Successful response
@@ -11805,13 +11801,13 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '71'
+          example: '32'
       responses:
         '200':
           description: Successful response
@@ -11965,7 +11961,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '16'
+          example: '32'
       responses:
         '200':
           description: Successful response
@@ -12005,7 +12001,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/hotels/products:
+  /api/admin/hotels/inventory-products:
     get:
       tags:
         - Admin > Hotel > products
@@ -12017,22 +12013,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
-        - name: paginate
-          in: query
-          schema:
-            type: integer
-          example: '1'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-          example: '2'
-        - name: is_service
-          in: query
-          schema:
-            type: integer
-          example: '0'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -17546,7 +17527,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: company-id
           in: path
           schema:
