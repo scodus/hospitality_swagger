@@ -93,6 +93,7 @@ tags:
   - name: Admin > Hotel > employee > assignments
   - name: Admin > Hotel > employee > assignments > check list
   - name: Admin > Hotel > cleaning check list
+  - name: Admin > Hotel > guests
   - name: Admin > Inventory
   - name: Admin > Inventory > Unit of Measurement
   - name: Admin > Inventory > Inventory Products
@@ -10542,6 +10543,24 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/hotels/rooms/employee-assignments:
+    get:
+      tags:
+        - Admin > Hotel > rooms
+      summary: rooms with employee assignments
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/amenities:
     get:
       tags:
@@ -11542,7 +11561,7 @@ paths:
             schema:
               type: object
               example:
-                new_hotel_room_id: 8
+                new_hotel_room_id: 5
                 rate: 1000
       security:
         - bearerAuth: []
@@ -11557,19 +11576,19 @@ paths:
           schema:
             type: integer
           required: true
-          example: '34'
+          example: '49'
         - name: reservation-detail-id
           in: path
           schema:
             type: integer
           required: true
-          example: '35'
+          example: '88'
         - name: reservation-room-id
           in: path
           schema:
             type: integer
           required: true
-          example: '28'
+          example: '76'
       responses:
         '200':
           description: Successful response
@@ -11601,19 +11620,19 @@ paths:
           schema:
             type: integer
           required: true
-          example: '34'
+          example: '49'
         - name: reservation-detail-id
           in: path
           schema:
             type: integer
           required: true
-          example: '49'
+          example: '81'
         - name: reservation-room-id
           in: path
           schema:
             type: integer
           required: true
-          example: '42'
+          example: '71'
       responses:
         '200':
           description: Successful response
@@ -11673,13 +11692,13 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '10'
+          example: '36'
       responses:
         '200':
           description: Successful response
@@ -11695,12 +11714,30 @@ paths:
             schema:
               type: object
               properties:
+                reservation_guests[1][id]:
+                  type: integer
+                  example: '36'
+                reservation_guests[1][delete]:
+                  type: integer
+                  example: '1'
+                reservation_guests[1][hotel_guest][name]:
+                  type: string
+                  example: Alan Walker 1
+                reservation_guests[1][hotel_guest][phone]:
+                  type: integer
+                  example: '123456789'
                 reservation_guests[0][id]:
                   type: integer
-                  example: '118'
+                  example: '37'
                 reservation_guests[0][hotel_guest][name]:
                   type: string
                   example: Alan Walker 1
+                reservation_guests[0][hotel_guest][phone]:
+                  type: integer
+                  example: '123456789'
+                reservation_guests[0][hotel_guest][email]:
+                  type: string
+                  example: email@email.com
                 reservation_guests[0][hotel_guest][document][type]:
                   type: string
                   example: ID_CARD
@@ -11720,13 +11757,13 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '10'
+          example: '36'
       responses:
         '200':
           description: Successful response
@@ -11757,7 +11794,7 @@ paths:
                   business_session_id: 1
                 reservation_detail:
                   - hotel_room_type_id: 1
-                    quantity: 1
+                    quantity: 3
                     rate: 5000
       security:
         - bearerAuth: []
@@ -11784,6 +11821,12 @@ paths:
           schema:
             type: integer
           example: '1'
+        - name: status
+          in: query
+          schema:
+            type: string
+          description: ARRIVALS/DEPARTURES
+          example: DEPARTURES
       responses:
         '200':
           description: Successful response
@@ -12001,6 +12044,37 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/hotels/reservations/{id}/cancel:
+    post:
+      tags:
+        - Admin > Hotel > reservation
+      summary: cancel reservation
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '44'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/inventory-products:
     get:
       tags:
@@ -12019,7 +12093,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/hotels/employee/assignments/{id}:
+  /api/admin/hotels/employee/assignments/{id}/checklists:
     post:
       tags:
         - Admin > Hotel > employee > assignments > check list
@@ -12041,7 +12115,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: Accept
           in: header
           schema:
@@ -12058,29 +12132,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-    delete:
-      tags:
-        - Admin > Hotel > employee > assignments
-      summary: delete
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: branch-id
-          in: header
-          schema:
-            type: integer
-          example: '1'
-        - name: id
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '2'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /api/admin/hotels/employee/assignments:
     post:
       tags:
@@ -12092,13 +12143,10 @@ paths:
             schema:
               type: object
               example:
-                assignments:
-                  - employee_id: 1
-                    hotel_room_id: 6
-                  - employee_id: 1
-                    hotel_room_id: 7
-                  - employee_id: 1
-                    hotel_room_id: 8
+                employee_id: 1
+                hotel_room_id: 6
+                priority: MEDIUM
+                comment: some
       security:
         - bearerAuth: []
       parameters:
@@ -12112,10 +12160,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-    get:
+  /api/admin/hotels/employee/assignments/{id}:
+    delete:
       tags:
         - Admin > Hotel > employee > assignments
-      summary: get all
+      summary: delete
       security:
         - bearerAuth: []
       parameters:
@@ -12124,16 +12173,50 @@ paths:
           schema:
             type: integer
           example: '5'
-        - name: from
-          in: query
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Admin > Hotel > employee > assignments
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                employee_id: 2
+                hotel_room_id: 6
+                priority: HIGH
+                comment: some
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: Accept
+          in: header
           schema:
             type: string
-          example: '2020-02-03 00:00:00'
-        - name: to
-          in: query
+          example: application/json
+        - name: id
+          in: path
           schema:
-            type: string
-          example: '2020-02-05 23:59:59'
+            type: integer
+          required: true
+          example: '4'
       responses:
         '200':
           description: Successful response
@@ -12432,6 +12515,24 @@ paths:
             type: integer
           required: true
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/guests:
+    get:
+      tags:
+        - Admin > Hotel > guests
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
       responses:
         '200':
           description: Successful response

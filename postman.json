@@ -16222,6 +16222,55 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "rooms with employee assignments",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/rooms/employee-assignments",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"rooms",
+												"employee-assignments"
+											],
+											"query": [
+												{
+													"key": "paginate",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -17888,7 +17937,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"new_hotel_room_id\": 8,\r\n    \"rate\": 1000\r\n}",
+													"raw": "{\r\n    \"new_hotel_room_id\": 5,\r\n    \"rate\": 1000\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -17915,15 +17964,15 @@
 													"variable": [
 														{
 															"key": "reservation-id",
-															"value": "34"
+															"value": "49"
 														},
 														{
 															"key": "reservation-detail-id",
-															"value": "35"
+															"value": "88"
 														},
 														{
 															"key": "reservation-room-id",
-															"value": "28"
+															"value": "76"
 														}
 													]
 												}
@@ -17980,15 +18029,15 @@
 													"variable": [
 														{
 															"key": "reservation-id",
-															"value": "34"
-														},
-														{
-															"key": "reservation-detail-id",
 															"value": "49"
 														},
 														{
+															"key": "reservation-detail-id",
+															"value": "81"
+														},
+														{
 															"key": "reservation-room-id",
-															"value": "42"
+															"value": "71"
 														}
 													]
 												}
@@ -18080,7 +18129,7 @@
 												"header": [
 													{
 														"key": "branch-id",
-														"value": "1",
+														"value": "5",
 														"type": "text"
 													}
 												],
@@ -18100,7 +18149,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "10"
+															"value": "36"
 														}
 													]
 												}
@@ -18124,7 +18173,7 @@
 												"header": [
 													{
 														"key": "branch-id",
-														"value": "1",
+														"value": "5",
 														"type": "text"
 													}
 												],
@@ -18132,34 +18181,72 @@
 													"mode": "formdata",
 													"formdata": [
 														{
-															"key": "reservation_guests[0][id]",
-															"value": "118",
+															"key": "reservation_guests[1][id]",
+															"value": "36",
 															"type": "text"
 														},
 														{
-															"key": "reservation_guests[0][hotel_guest][name]",
+															"key": "reservation_guests[1][delete]",
+															"value": "1",
+															"type": "text"
+														},
+														{
+															"key": "reservation_guests[1][hotel_guest][name]",
 															"value": "Alan Walker 1",
 															"type": "text"
 														},
 														{
+															"key": "reservation_guests[1][hotel_guest][phone]",
+															"value": "123456789",
+															"type": "text"
+														},
+														{
+															"key": "reservation_guests[0][id]",
+															"value": "37",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][name]",
+															"value": "Alan Walker 1",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][phone]",
+															"value": "123456789",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "reservation_guests[0][hotel_guest][email]",
+															"value": "email@email.com",
+															"type": "text",
+															"disabled": true
+														},
+														{
 															"key": "reservation_guests[0][hotel_guest][document][type]",
 															"value": "ID_CARD",
-															"type": "text"
+															"type": "text",
+															"disabled": true
 														},
 														{
 															"key": "reservation_guests[0][hotel_guest][document][document_number]",
 															"value": "123456",
-															"type": "text"
+															"type": "text",
+															"disabled": true
 														},
 														{
 															"key": "reservation_guests[0][hotel_guest][document][document_issuing_country]",
 															"value": "NEPAL",
-															"type": "text"
+															"type": "text",
+															"disabled": true
 														},
 														{
 															"key": "reservation_guests[0][hotel_guest][document][file]",
 															"type": "file",
-															"src": "/C:/Users/User/Downloads/sample-local-pdf.pdf"
+															"src": "/C:/Users/User/Downloads/Robots (2005)/WWW.YIFY-TORRENTS.COM.jpg",
+															"disabled": true
 														}
 													]
 												},
@@ -18179,7 +18266,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "10"
+															"value": "36"
 														}
 													]
 												}
@@ -18211,7 +18298,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"Newest\",\r\n        \"phone\": \"98490000002\",\r\n        \"email\":\"some@email.com\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-09-03 02:00:00\",\r\n        \"end_date\": \"2025-09-04 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"exclude_advance\":true,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 1,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"Newest\",\r\n        \"phone\": \"98490000002\",\r\n        \"email\":\"some@email.com\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-09-03 02:00:00\",\r\n        \"end_date\": \"2025-09-04 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"exclude_advance\":true,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 1,\r\n            \"quantity\": 3,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -18255,7 +18342,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/reservations",
+											"raw": "{{url}}/api/admin/hotels/reservations?status=DEPARTURES",
 											"host": [
 												"{{url}}"
 											],
@@ -18269,8 +18356,7 @@
 												{
 													"key": "status",
 													"value": "DEPARTURES",
-													"description": "ARRIVALS/DEPARTURES",
-													"disabled": true
+													"description": "ARRIVALS/DEPARTURES"
 												},
 												{
 													"key": "paginate",
@@ -18649,6 +18735,55 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "cancel reservation",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservations/:id/cancel",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservations",
+												":id",
+												"cancel"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "44"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -18746,7 +18881,7 @@
 														"header": [
 															{
 																"key": "branch-id",
-																"value": "1",
+																"value": "5",
 																"type": "text"
 															},
 															{
@@ -18765,7 +18900,7 @@
 															}
 														},
 														"url": {
-															"raw": "{{url}}/api/admin/hotels/employee/assignments/:id",
+															"raw": "{{url}}/api/admin/hotels/employee/assignments/:id/checklists",
 															"host": [
 																"{{url}}"
 															],
@@ -18775,7 +18910,8 @@
 																"hotels",
 																"employee",
 																"assignments",
-																":id"
+																":id",
+																"checklists"
 															],
 															"variable": [
 																{
@@ -18812,7 +18948,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"assignments\": [\r\n        {\r\n            // \"id\": 2,\r\n            \"employee_id\": 1,\r\n            \"hotel_room_id\": 6\r\n            // \"delete\": true\r\n        },\r\n        {\r\n            \"employee_id\": 1,\r\n            \"hotel_room_id\": 7\r\n        },\r\n        {\r\n            \"employee_id\": 1,\r\n            \"hotel_room_id\": 8\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"employee_id\": 1,\r\n    \"hotel_room_id\": 6,\r\n    \"priority\": \"MEDIUM\",\r\n    \"comment\":\"some\"\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -18852,7 +18988,7 @@
 												"header": [
 													{
 														"key": "branch-id",
-														"value": "1",
+														"value": "5",
 														"type": "text"
 													}
 												],
@@ -18872,7 +19008,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "2"
+															"value": "8"
 														}
 													]
 												}
@@ -18880,10 +19016,7 @@
 											"response": []
 										},
 										{
-											"name": "get all",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
+											"name": "update",
 											"request": {
 												"auth": {
 													"type": "bearer",
@@ -18895,17 +19028,22 @@
 														}
 													]
 												},
-												"method": "GET",
+												"method": "PUT",
 												"header": [
 													{
 														"key": "branch-id",
 														"value": "5",
 														"type": "text"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
 													}
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "",
+													"raw": "{\r\n    \"employee_id\": 2,\r\n    \"hotel_room_id\": 6,\r\n    \"priority\": \"HIGH\",\r\n    \"comment\":\"some\"\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -18913,7 +19051,7 @@
 													}
 												},
 												"url": {
-													"raw": "{{url}}/api/admin/hotels/employee/assignments?from=2020-02-03 00:00:00&to=2020-02-05 23:59:59",
+													"raw": "{{url}}/api/admin/hotels/employee/assignments/:id",
 													"host": [
 														"{{url}}"
 													],
@@ -18922,26 +19060,13 @@
 														"admin",
 														"hotels",
 														"employee",
-														"assignments"
+														"assignments",
+														":id"
 													],
-													"query": [
+													"variable": [
 														{
-															"key": "from",
-															"value": "2020-02-03 00:00:00"
-														},
-														{
-															"key": "to",
-															"value": "2020-02-05 23:59:59"
-														},
-														{
-															"key": "from",
-															"value": "2025-04-02 00:00:00",
-															"disabled": true
-														},
-														{
-															"key": "to",
-															"value": "2020-04-02 23:59:59",
-															"disabled": true
+															"key": "id",
+															"value": "4"
 														}
 													]
 												}
@@ -19476,6 +19601,67 @@
 											]
 										},
 										"description": "Supported types\n\n- HOUSEKEEPING\n    \n- LAUNDRY\n    \n\nSupported status\n\n- active\n    \n- inactive"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "guests",
+							"item": [
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "reservation_guests[0][hotel_guest][document][file]",
+													"type": "file",
+													"src": "/C:/Users/User/Downloads/Robots (2005)/WWW.YIFY-TORRENTS.COM.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/guests",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"guests"
+											],
+											"query": [
+												{
+													"key": "active_reservation",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
 									},
 									"response": []
 								}
