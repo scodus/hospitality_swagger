@@ -130,12 +130,11 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/admin/login",
+									"raw": "{{localUrl}}/admin/login",
 									"host": [
-										"{{url}}"
+										"{{localUrl}}"
 									],
 									"path": [
-										"api",
 										"admin",
 										"login"
 									]
@@ -3528,11 +3527,16 @@
 												"key": "Accept",
 												"value": "application/json",
 												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"product_name\": \"Momo\",\n    \"product_category_id\": 2,\n    \"ingredient\": \"gffg\",\n    \"description\": \"fgfgfg\",\n    \"price\": 550,\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ]\n}",
+											"raw": "{\n    \"product_name\": \"Momo\",\n    \"product_category_id\": 2,\n    \"ingredient\": \"gffg\",\n    \"description\": \"fgfgfg\",\n    \"price\": 550,\n    \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ],\n    \"is_combo\" : 1,\n    \"combo_items\": [\n        {\n            \"menu_item_id\": 18643,\n            \"quantity\":2\n        },\n        {\n            \"menu_item_id\": 18235,\n            \"quantity\":3\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3540,9 +3544,9 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/products",
+											"raw": "{{localUrl}}/admin/products",
 											"host": [
-												"{{url}}"
+												"{{localUrl}}"
 											],
 											"path": [
 												"admin",
@@ -3654,14 +3658,14 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/admin/products?pagination_limit=5",
+											"raw": "{{localUrl}}/admin/products?pagination_limit=5&type=combo",
 											"host": [
-												"{{url}}"
+												"{{localUrl}}"
 											],
 											"path": [
 												"admin",
@@ -3676,6 +3680,10 @@
 													"key": "search_keyword",
 													"value": "Momo",
 													"disabled": true
+												},
+												{
+													"key": "type",
+													"value": "combo"
 												}
 											]
 										}
@@ -3705,7 +3713,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n\n\"product_name\":\"Chicken\",\n\"product_category_id\":1,\n\"ingredient\":\"gffg\",\n\"description\":\"fgfgfg\",\n \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ],\n\n\n\"base_price\":550,\n\"_method\":\"put\"\n}",
+											"raw": "{\n\n\"product_name\":\"Chicken\",\n\"product_category_id\":1,\n\"ingredient\":\"gffg\",\n\"description\":\"fgfgfg\",\n \"has_inventory_tracking\": [\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        },\n        {\n            \"inventory_product_id\": 1,\n            \"unit_name\":\"Bottle\",\n            \"size\": \"XL\"\n            \n        }\n    ],\n    \"is_combo\" : 1,\n    \"combo_items\": [\n        {\n            \"menu_item_id\": 1,\n            \"quantity\":2\n        },\n        {\n            \"menu_item_id\": 1,\n            \"quantity\":3\n        }\n    ],\n\n\n\"base_price\":550,\n\"_method\":\"put\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3713,9 +3721,9 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/admin/products/:slug",
+											"raw": "{{localUrl}}/admin/products/:slug",
 											"host": [
-												"{{url}}"
+												"{{localUrl}}"
 											],
 											"path": [
 												"admin",
@@ -18676,7 +18684,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "32"
+													"value": "37"
 												}
 											]
 										}
@@ -19644,7 +19652,7 @@
 											]
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/guests",
+											"raw": "{{url}}/api/admin/hotels/guests?active_reservation=1&paginate=1",
 											"host": [
 												"{{url}}"
 											],
@@ -19657,8 +19665,135 @@
 											"query": [
 												{
 													"key": "active_reservation",
+													"value": "1"
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "customers",
+							"item": [
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "reservation_guests[0][hotel_guest][document][file]",
+													"type": "file",
+													"src": "/C:/Users/User/Downloads/Robots (2005)/WWW.YIFY-TORRENTS.COM.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/customers?is_active=0",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"customers"
+											],
+											"query": [
+												{
+													"key": "is_active",
+													"value": "0"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get reservations related to customer",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "reservation_guests[0][hotel_guest][document][file]",
+													"type": "file",
+													"src": "/C:/Users/User/Downloads/Robots (2005)/WWW.YIFY-TORRENTS.COM.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/customers/:id/hotel-reservations",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"customers",
+												":id",
+												"hotel-reservations"
+											],
+											"query": [
+												{
+													"key": "active_reservation",
 													"value": "1",
 													"disabled": true
+												}
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2304"
 												}
 											]
 										}

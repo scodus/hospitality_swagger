@@ -94,6 +94,7 @@ tags:
   - name: Admin > Hotel > employee > assignments > check list
   - name: Admin > Hotel > cleaning check list
   - name: Admin > Hotel > guests
+  - name: Admin > Hotel > customers
   - name: Admin > Inventory
   - name: Admin > Inventory > Unit of Measurement
   - name: Admin > Inventory > Inventory Products
@@ -196,10 +197,10 @@ tags:
   - name: Superadmin > Print Issue
   - name: Superadmin > System Sync
 paths:
-  /api/admin/login:
+  /admin/login:
     post:
       tags:
-        - Public > auth
+        - Admin > Authentication
       summary: login
       requestBody:
         content:
@@ -209,16 +210,10 @@ paths:
               properties:
                 email:
                   type: string
-                  example: hanciewanemphago@gmail.com
+                  example: gsaurav2000@gmail.com
                 password:
-                  type: integer
-                  example: '12345'
-      parameters:
-        - name: Accept
-          in: header
-          schema:
-            type: string
-          example: application/json
+                  type: string
+                  example: P@ssw0rd
       responses:
         '200':
           description: Successful response
@@ -2297,6 +2292,12 @@ paths:
                   - inventory_product_id: 1
                     unit_name: Bottle
                     size: XL
+                is_combo: 1
+                combo_items:
+                  - menu_item_id: 18643
+                    quantity: 2
+                  - menu_item_id: 18235
+                    quantity: 3
       security:
         - bearerAuth: []
       parameters:
@@ -2305,6 +2306,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
       responses:
         '200':
           description: OK
@@ -2388,12 +2394,17 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: pagination_limit
           in: query
           schema:
             type: integer
           example: '5'
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: combo
       responses:
         '200':
           description: Successful response
@@ -2421,6 +2432,12 @@ paths:
                   - inventory_product_id: 1
                     unit_name: Bottle
                     size: XL
+                is_combo: 1
+                combo_items:
+                  - menu_item_id: 1
+                    quantity: 2
+                  - menu_item_id: 1
+                    quantity: 3
                 base_price: 550
                 _method: put
       security:
@@ -12004,7 +12021,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '32'
+          example: '37'
       responses:
         '200':
           description: Successful response
@@ -12533,6 +12550,63 @@ paths:
           schema:
             type: integer
           example: '5'
+        - name: active_reservation
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/customers:
+    get:
+      tags:
+        - Admin > Hotel > customers
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: is_active
+          in: query
+          schema:
+            type: integer
+          example: '0'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/customers/{id}/hotel-reservations:
+    get:
+      tags:
+        - Admin > Hotel > customers
+      summary: get reservations related to customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2304'
       responses:
         '200':
           description: Successful response
@@ -17752,6 +17826,34 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/login:
+    post:
+      tags:
+        - Public > auth
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciewanemphago@gmail.com
+                password:
+                  type: integer
+                  example: '12345'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
