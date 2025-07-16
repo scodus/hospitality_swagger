@@ -50,6 +50,7 @@ tags:
   - name: Admin > Restaurant > Bar Order Ticket
   - name: Admin > Restaurant > Ask Bill
   - name: Admin > Restaurant > KOT Items
+  - name: Admin > Restaurant > Combo Items
   - name: Admin > Restaurant > BOT Items
   - name: Admin > Restaurant > Delivery partner
   - name: Admin > Restaurant > Self Delivery User
@@ -94,6 +95,8 @@ tags:
   - name: Admin > Hotel > cleaning check list
   - name: Admin > Hotel > guests
   - name: Admin > Hotel > customers
+  - name: Admin > Hotel > statistics
+  - name: Admin > Hotel > reports
   - name: Admin > Inventory
   - name: Admin > Inventory > Unit of Measurement
   - name: Admin > Inventory > Inventory Products
@@ -5956,6 +5959,39 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/combo-items/update:
+    post:
+      tags:
+        - Admin > Restaurant > Combo Items
+      summary: update combo items quantity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                orderDetails:
+                  - id: 826474
+                    quantity: 2
+                    note: my note
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/bot-items/update:
     post:
       tags:
@@ -10500,6 +10536,29 @@ paths:
           description: Successful response
           content:
             application/json: {}
+    get:
+      tags:
+        - Admin > Hotel > rooms > assignments
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: room-id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/rooms/{room-id}/assignments/{assignment-id}:
     put:
       tags:
@@ -10583,6 +10642,9 @@ paths:
               example:
                 assignment_check_lists:
                   - cleaning_check_list_id: 2
+                  - cleaning_check_list_id: 1
+                  - cleaning_check_list_id: 3
+                  - cleaning_check_list_id: 4
       security:
         - bearerAuth: []
       parameters:
@@ -10689,11 +10751,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
-        - name: is_active
-          in: query
-          schema:
-            type: string
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -11441,12 +11499,35 @@ paths:
           in: query
           schema:
             type: string
-          example: '2025-06-13 00:00:00'
+          example: '2025-07-03 00:00:00'
         - name: to
           in: query
           schema:
             type: string
-          example: '2025-06-13 00:00:00'
+          example: '2025-07-04 00:00:00'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/room-types/rooms:
+    get:
+      tags:
+        - Admin > Hotel > room type
+      summary: get all rooms types with rooms
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -11790,8 +11871,8 @@ paths:
             schema:
               type: object
               example:
-                to: '2025-06-20'
-                rate: 500
+                to: '2025-07-06'
+                rate: 5000
       security:
         - bearerAuth: []
       parameters:
@@ -11805,19 +11886,19 @@ paths:
           schema:
             type: integer
           required: true
-          example: '49'
+          example: '56'
         - name: reservation-detail-id
           in: path
           schema:
             type: integer
           required: true
-          example: '81'
+          example: '120'
         - name: reservation-room-id
           in: path
           schema:
             type: integer
           required: true
-          example: '71'
+          example: '108'
       responses:
         '200':
           description: Successful response
@@ -11970,8 +12051,8 @@ paths:
                   phone: '98490000002'
                   email: some@email.com
                 reservation:
-                  start_date: '2025-09-03 02:00:00'
-                  end_date: '2025-09-04 10:00:00'
+                  start_date: '2025-07-17'
+                  end_date: '2025-07-23'
                   hotel_reservation_source_id: 2
                   advance_amount: 500
                   advance_payment_option_id: 1
@@ -11979,7 +12060,7 @@ paths:
                   business_session_id: 1
                 reservation_detail:
                   - hotel_room_type_id: 1
-                    quantity: 3
+                    quantity: 1
                     rate: 5000
       security:
         - bearerAuth: []
@@ -12005,13 +12086,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
-        - name: status
-          in: query
-          schema:
-            type: string
-          description: ARRIVALS/DEPARTURES
-          example: DEPARTURES
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -12035,7 +12110,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '32'
+          example: '37'
       responses:
         '200':
           description: Successful response
@@ -12121,13 +12196,11 @@ paths:
             schema:
               type: object
               example:
-                paid_amount: 6000
+                paid_amount: 4500
                 is_complimentary_payment: false
                 fragments:
-                  - company_payment_option_id: 1
-                    received_amount: 5000
-                  - company_payment_option_id: 2
-                    received_amount: 1000
+                  - company_payment_option_id: 9
+                    received_amount: 4500
       security:
         - bearerAuth: []
       parameters:
@@ -12141,7 +12214,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '20'
+          example: '68'
       responses:
         '200':
           description: Successful response
@@ -12165,7 +12238,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '1'
+          example: '69'
       responses:
         '200':
           description: Successful response
@@ -12189,7 +12262,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '37'
+          example: '59'
       responses:
         '200':
           description: Successful response
@@ -12255,6 +12328,69 @@ paths:
             type: integer
           required: true
           example: '44'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{id}/refund:
+    post:
+      tags:
+        - Admin > Hotel > reservation
+      summary: refund
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_payment_option_id: 9
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '64'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reservations/{id}/advance:
+    post:
+      tags:
+        - Admin > Hotel > reservation
+      summary: save advance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                advance_amount: 2000
+                advance_payment_option_id: 9
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '95'
       responses:
         '200':
           description: Successful response
@@ -12651,6 +12787,105 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/hotels/statistics/aggregate:
+    get:
+      tags:
+        - Admin > Hotel > statistics
+      summary: get aggregate statistics
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reports:
+    get:
+      tags:
+        - Admin > Hotel > reports
+      summary: get report
+      description: |-
+        Supported types
+
+        1. DAILY_RESERVATION_REPORT
+            
+        2. NO_SHOW_AND_CANCELLATION_REPORT
+            
+        3. RESERVATION_SOURCE_REPORT
+            
+        4. UPCOMING_CHECK_IN_REPORT
+            
+        5. UPCOMING_CHECK_OUT_REPORT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reports/records:
+    get:
+      tags:
+        - Admin > Hotel > reports
+      summary: get records
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/reports/aggregate:
+    get:
+      tags:
+        - Admin > Hotel > reports
+      summary: get aggregate
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/countries:
     get:
       tags:
@@ -12669,6 +12904,18 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - Admin > Hotel
+      summary: test
+      requestBody:
+        content: {}
       responses:
         '200':
           description: Successful response
@@ -14769,10 +15016,10 @@ paths:
               properties:
                 company_id:
                   type: integer
-                  example: '5'
+                  example: '4'
                 address:
                   type: string
-                  example: Baneshwor, Kathmandu
+                  example: Test Branch
                 primary_email:
                   type: string
                   example: akriti02@gmail.com
@@ -14806,6 +15053,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -17574,12 +17826,17 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: string
+          example: '{{branch_id}}'
         - name: company-id
           in: path
           schema:
-            type: integer
+            type: string
           required: true
-          example: '1'
+          example: '{{company_id}}'
       responses:
         '200':
           description: Successful response
@@ -17712,6 +17969,32 @@ paths:
           schema:
             type: integer
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /000/api/v2/admin/orders:
+    post:
+      tags:
+        - Admin > V2
+      summary: order Store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: gsaurav2000@gmail.com
+                password: P@ssw0rd
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
       responses:
         '200':
           description: Successful response

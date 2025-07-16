@@ -22,6 +22,7 @@
 										"exec": [
 											"const response = pm.response.json()\r",
 											"pm.environment.set('token', response.data.token)\r",
+											"pm.environment.set('access_token', response.data.token)\r",
 											"pm.environment.set('refresh_token', response.data.refresh_token)"
 										],
 										"type": "text/javascript",
@@ -151,8 +152,17 @@
 										"exec": [
 											"const response = pm.response.json()\r",
 											"pm.environment.set('token', response.data.token)\r",
+											"pm.environment.set('access_token', response.data.token)\r",
 											"pm.environment.set('refresh_token', response.data.refresh_token)"
 										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
 										"type": "text/javascript"
 									}
 								}
@@ -245,7 +255,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5IiwianRpIjoiZDU1NTA2MWNlMTMxODIyMDQ0MjQ3MzZjNjk4NjY4ZWZkNTQyM2QxODM4M2FjMzY3NmIzMzkyNTA4MzNkYjYzY2NjMzZkYmZjMDY2Nzg2YTIiLCJpYXQiOjE3NDcyOTM3MDUuOTcwMDY0LCJuYmYiOjE3NDcyOTM3MDUuOTcwMDY1LCJleHAiOjE3NDg1ODk3MDUuOTQ4NjY4LCJzdWIiOiI5MyIsInNjb3BlcyI6W119.ZgtTBCKTt3umNwrUlMK6p1bd9NGcf6xtLeqyI5rdhFMZItzaQySIQnoO--1k1VCXhVilEvxv7jlruI0Yj2f1mkLR4uY5-wG5PtcFyISN-56Wh9em2UyiZsFZb_QCgCMSdaB4a8SMoCeRcfGqgSTozsEKCjAuWFiwPCQcsVYqvgH4Is95FCkwt6vAdxdU8qgD7O35_3P83O2AUrA3vPRRLnLYcwhV--7mgz6utjOZBt6RFWw2voCtd475GDrd6vr9cqWDc5Y2h-QVX5HlYvbZ2jgIN5CWoYeMO-MTZvZZjB5F73WOHpV-5ulcPvprT5b8XFpSjbdI3La945axXP3vavQu6ll9dxTyNut7p3Jl0_ItHYs8frjzwYF3LWqg1in4bmlVeTll09kQY7QYoCS1UWXUn1nfgOQVCewVGBoAiipfsT7NcCl4E7O6--qflvDPWnmZhGwhcvaYXPaI4rYwhuNmyiAg23iOrNVuI7DcnsZhTOVyUdiIKa7zODb4rWANR65u9i-9bl8Bql6WFLR7BHjpcA-tVqoDuGDFBP4kqxWHqAAib_V4kGggQ5UQ7ZXKTTvw62912nY2Mvj1a_F0NrE_HSXhuLt9SgUfY1FBiP4_VlmnepHLjak7wIEfph2OyJK5NnhyKC2DLruotEyefbKntXI8cezNhmCEgaZs1ng",
+											"value": "{{token}}",
 											"type": "string"
 										}
 									]
@@ -9168,6 +9178,61 @@
 							]
 						},
 						{
+							"name": "Combo Items",
+							"item": [
+								{
+									"name": "update combo items quantity",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"orderDetails\": [\n        {\n            \"id\": 826474,\n            \"quantity\": 2,\n            \"note\": \"my note\"\n            // \"topping_details\": [\n            //     {\n            //         \"topping_id\": 9,\n            //         \"topping_product_id\": 3,\n            //         \"topping_quantity\": 50,\n            //         \"topping_price\": 170\n            //     },\n            //     {\n            //         \"topping_id\": 10,\n            //         \"topping_product_id\": 3,\n            //         \"topping_quantity\": 90,\n            //         \"topping_price\": 500\n            //     }\n            // ]\n        }\n        \n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/combo-items/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"combo-items",
+												"update"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "BOT Items",
 							"item": [
 								{
@@ -16279,7 +16344,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"assignment_check_lists\": [\r\n        {\r\n            \"cleaning_check_list_id\": 2\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"assignment_check_lists\": [\r\n        {\r\n            \"cleaning_check_list_id\": 2\r\n        },\r\n        {\r\n            \"cleaning_check_list_id\": 1\r\n        },\r\n        {\r\n            \"cleaning_check_list_id\": 3\r\n        },\r\n        {\r\n            \"cleaning_check_list_id\": 4\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -16309,6 +16374,57 @@
 														{
 															"key": "assignment-id",
 															"value": "1"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "get all",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "branch-id",
+														"value": "5",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": ""
+												},
+												"url": {
+													"raw": "{{url}}/api/admin/hotels/rooms/:room-id/assignments",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"api",
+														"admin",
+														"hotels",
+														"rooms",
+														":room-id",
+														"assignments"
+													],
+													"variable": [
+														{
+															"key": "room-id",
+															"value": "2"
 														}
 													]
 												}
@@ -16411,7 +16527,7 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
@@ -16420,7 +16536,7 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/rooms?is_active=",
+											"raw": "{{url}}/api/admin/hotels/rooms",
 											"host": [
 												"{{url}}"
 											],
@@ -16433,7 +16549,8 @@
 											"query": [
 												{
 													"key": "is_active",
-													"value": ""
+													"value": "",
+													"disabled": true
 												}
 											]
 										}
@@ -17748,7 +17865,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/room-types/available-rooms?from=2025-06-13 00:00:00&to=2025-06-13 00:00:00",
+											"raw": "{{url}}/api/admin/hotels/room-types/available-rooms?from=2025-07-03 00:00:00&to=2025-07-04 00:00:00",
 											"host": [
 												"{{url}}"
 											],
@@ -17762,12 +17879,61 @@
 											"query": [
 												{
 													"key": "from",
-													"value": "2025-06-13 00:00:00"
+													"value": "2025-07-03 00:00:00"
 												},
 												{
 													"key": "to",
-													"value": "2025-06-13 00:00:00"
+													"value": "2025-07-04 00:00:00"
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all rooms types with rooms",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/room-types/rooms",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"room-types",
+												"rooms"
 											]
 										}
 									},
@@ -18296,7 +18462,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"to\": \"2025-06-20\",\r\n    \"rate\": 500\r\n}",
+													"raw": "{\r\n    \"to\": \"2025-07-06\",\r\n    \"rate\": 5000\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -18323,15 +18489,15 @@
 													"variable": [
 														{
 															"key": "reservation-id",
-															"value": "49"
+															"value": "56"
 														},
 														{
 															"key": "reservation-detail-id",
-															"value": "81"
+															"value": "120"
 														},
 														{
 															"key": "reservation-room-id",
-															"value": "71"
+															"value": "108"
 														}
 													]
 												}
@@ -18592,7 +18758,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"Newest\",\r\n        \"phone\": \"98490000002\",\r\n        \"email\":\"some@email.com\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-09-03 02:00:00\",\r\n        \"end_date\": \"2025-09-04 10:00:00\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"exclude_advance\":true,\r\n        \"business_session_id\":1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 1,\r\n            \"quantity\": 3,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"Newest\",\r\n        \"phone\": \"98490000002\",\r\n        \"email\": \"some@email.com\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-07-17\",\r\n        \"end_date\": \"2025-07-23\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"exclude_advance\": true,\r\n        \"business_session_id\": 1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 1,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -18631,12 +18797,12 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/reservations?status=DEPARTURES",
+											"raw": "{{url}}/api/admin/hotels/reservations",
 											"host": [
 												"{{url}}"
 											],
@@ -18650,7 +18816,8 @@
 												{
 													"key": "status",
 													"value": "DEPARTURES",
-													"description": "ARRIVALS/DEPARTURES"
+													"description": "ARRIVALS/DEPARTURES",
+													"disabled": true
 												},
 												{
 													"key": "paginate",
@@ -18718,7 +18885,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "32"
+													"value": "37"
 												}
 											]
 										}
@@ -18859,7 +19026,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"paid_amount\": 6000,\r\n    \"is_complimentary_payment\": false,\r\n    // \"customer_id\":1192,\r\n    \"fragments\": [\r\n        {\r\n            \"company_payment_option_id\": 1,\r\n            \"received_amount\": 5000\r\n        },\r\n        {\r\n            \"company_payment_option_id\": 2,\r\n            \"received_amount\": 1000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"paid_amount\": 4500,\r\n    \"is_complimentary_payment\": false,\r\n    // \"customer_id\":1192,\r\n    \"fragments\": [\r\n        {\r\n            \"company_payment_option_id\": 9,\r\n            \"received_amount\": 4500\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -18882,7 +19049,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "20"
+													"value": "68"
 												}
 											]
 										}
@@ -18926,7 +19093,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "1"
+													"value": "69"
 												}
 											]
 										}
@@ -18970,7 +19137,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "37"
+													"value": "59"
 												}
 											]
 										}
@@ -19073,6 +19240,112 @@
 												{
 													"key": "id",
 													"value": "44"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "refund",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"company_payment_option_id\": 9\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservations/:id/refund",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservations",
+												":id",
+												"refund"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "64"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "save advance",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"advance_amount\":2000,\r\n    \"advance_payment_option_id\":9\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reservations/:id/advance",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reservations",
+												":id",
+												"advance"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "95"
 												}
 											]
 										}
@@ -19872,6 +20145,222 @@
 							]
 						},
 						{
+							"name": "statistics",
+							"item": [
+								{
+									"name": "get aggregate statistics",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/statistics/aggregate",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"statistics",
+												"aggregate"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "reports",
+							"item": [
+								{
+									"name": "get report",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"UPCOMING_CHECK_OUT_REPORT\",\r\n    \"date\": \"2025-07-15\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reports",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reports"
+											]
+										},
+										"description": "Supported types\n\n1. DAILY_RESERVATION_REPORT\n    \n2. NO_SHOW_AND_CANCELLATION_REPORT\n    \n3. RESERVATION_SOURCE_REPORT\n    \n4. UPCOMING_CHECK_IN_REPORT\n    \n5. UPCOMING_CHECK_OUT_REPORT"
+									},
+									"response": []
+								},
+								{
+									"name": "get records",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"UPCOMING_CHECK_OUT_REPORT\",\r\n    \"date\": \"2025-07-15\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reports/records",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reports",
+												"records"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get aggregate",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"UPCOMING_CHECK_IN_REPORT\",\r\n    \"date\": \"2025-07-11\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/reports/aggregate",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"reports",
+												"aggregate"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "get countries",
 							"request": {
 								"auth": {
@@ -19907,6 +20396,25 @@
 										"admin",
 										"hotels",
 										"countries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "test",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
 									]
 								}
 							},
@@ -23322,6 +23830,11 @@
 										"key": "Accept",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -23329,12 +23842,12 @@
 									"formdata": [
 										{
 											"key": "company_id",
-											"value": "5",
+											"value": "4",
 											"type": "text"
 										},
 										{
 											"key": "address",
-											"value": "Baneshwor, Kathmandu",
+											"value": "Test Branch",
 											"type": "text"
 										},
 										{
@@ -23370,12 +23883,14 @@
 										{
 											"key": "bill_heading",
 											"value": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "bill_remarks",
 											"value": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "is_tax",
@@ -27836,9 +28351,8 @@
 								"header": [
 									{
 										"key": "branch-id",
-										"value": "1",
-										"type": "text",
-										"disabled": true
+										"value": "{{branch_id}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -27857,7 +28371,7 @@
 									"variable": [
 										{
 											"key": "company-id",
-											"value": "1"
+											"value": "{{company_id}}"
 										}
 									]
 								}
@@ -28060,6 +28574,52 @@
 										"v2",
 										"admin",
 										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order Store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"gsaurav2000@gmail.com\",\r\n    \"password\":\"P@ssw0rd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/v2/admin/orders",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v2",
+										"admin",
+										"orders"
 									]
 								}
 							},
@@ -28271,10 +28831,18 @@
 									"script": {
 										"exec": [
 											"const response = pm.response.json()",
-											"pm.environment.set('token', response.data.token)"
+											"pm.environment.set('token', response.data.token)",
+											"pm.environment.set('access_token', response.data.token)"
 										],
 										"type": "text/javascript",
 										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -28370,8 +28938,17 @@
 									"script": {
 										"exec": [
 											"const resp = pm.response.json();",
-											"pm.environment.set(\"token\", resp.data.token)"
+											"pm.environment.set(\"token\", resp.data.token)",
+											"pm.environment.set(\"access_token\", resp.data.token)"
 										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
 										"type": "text/javascript"
 									}
 								}
@@ -28515,6 +29092,7 @@
 										"exec": [
 											"const response = pm.response.json()\r",
 											"pm.environment.set('token', response.data.token)\r",
+											"pm.environment.set('access_token', response.data.token)\r",
 											"pm.environment.set('refresh_token', response.data.refresh_token)"
 										],
 										"type": "text/javascript",
@@ -28524,8 +29102,11 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -28570,8 +29151,17 @@
 										"exec": [
 											"const response = pm.response.json()\r",
 											"pm.environment.set('token', response.data.token)\r",
+											"pm.environment.set('access_token', response.data.token)\r",
 											"pm.environment.set('refresh_token', response.data.refresh_token)"
 										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
 										"type": "text/javascript"
 									}
 								}
