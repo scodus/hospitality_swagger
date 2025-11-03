@@ -325,6 +325,44 @@
 							"response": []
 						},
 						{
+							"name": "Other User Password Update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":494,\r\n    \"password\":\"P@ssw0rd\",\r\n    \"confirm_password\":\"P@ssw0rd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/user-password-update",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"user-password-update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "delete user",
 							"request": {
 								"auth": {
@@ -1562,7 +1600,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "{{superAdminToken}}",
 											"type": "string"
 										}
 									]
@@ -1570,9 +1608,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/superadmin/user?paginate=1&limit=5&page=1&status=&search_keyword&role=&roles=&superadmin_panel_users=",
+									"raw": "{{localApiUrl}}/api/superadmin/user?paginate=1&limit=25&page=1&status=&search_keyword&company_id=1",
 									"host": [
-										"{{url}}"
+										"{{localApiUrl}}"
 									],
 									"path": [
 										"api",
@@ -1586,7 +1624,7 @@
 										},
 										{
 											"key": "limit",
-											"value": "5"
+											"value": "25"
 										},
 										{
 											"key": "page",
@@ -1604,17 +1642,24 @@
 										{
 											"key": "role",
 											"value": "",
-											"description": "superadmin"
+											"description": "superadmin",
+											"disabled": true
 										},
 										{
 											"key": "roles",
-											"value": "",
-											"description": "[\"superadmin\",\"admin\"]"
+											"value": "[\"superadmin\",\"admin\"]",
+											"description": "[\"superadmin\",\"admin\"]",
+											"disabled": true
 										},
 										{
 											"key": "superadmin_panel_users",
 											"value": "",
-											"description": "1|0"
+											"description": "1|0",
+											"disabled": true
+										},
+										{
+											"key": "company_id",
+											"value": "1"
 										}
 									]
 								}
@@ -26117,7 +26162,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"type\": \"HOTEL_GUESTS\"\r\n    // \"paginate\": 1,\r\n    // \"limit\": 10\r\n}",
+											"raw": "{\r\n    \"type\": \"HOTEL_GUESTS\",\r\n    \"content\":\"PDF\"\r\n    // \"from\":\"2025-10-25 00:00:00\",\r\n    // \"to\":\"2025-10-30 00:00:00\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -26125,7 +26170,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/pdf",
+											"raw": "{{url}}/api/admin/hotels/export",
 											"host": [
 												"{{url}}"
 											],
@@ -26133,7 +26178,283 @@
 												"api",
 												"admin",
 												"hotels",
-												"pdf"
+												"export"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "meal plan",
+							"item": [
+								{
+									"name": "store",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"meal_plan_id\",pm.response.json().data.id)"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Continental\",\r\n    \"code\":\"CP\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/meal-plans",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"meal-plans"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Continental 1\",\r\n    \"code\":\"CP\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/meal-plans/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"meal-plans",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{meal_plan_id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/meal-plans/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"meal-plans",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{meal_plan_id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/meal-plans",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"meal-plans"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "save room type meal plan",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"meal_plan\": [\n        {\n            \"hotel_room_type_id\": 1,\n            \"hotel_meal_plan_id\": 1,\n            \"price\": 5000\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/meal-plans/room-types",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"meal-plans",
+												"room-types"
 											]
 										}
 									},

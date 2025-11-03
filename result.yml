@@ -124,6 +124,7 @@ tags:
   - name: APIs Admin (Company Panel) > Hotel > statistics
   - name: APIs Admin (Company Panel) > Hotel > reports
   - name: APIs Admin (Company Panel) > Hotel > PDFs
+  - name: APIs Admin (Company Panel) > Hotel > meal plan
   - name: APIs Admin (Company Panel) > Inventory
   - name: APIs Admin (Company Panel) > Inventory > Unit of Measurement
   - name: APIs Admin (Company Panel) > Inventory > Inventory Products
@@ -341,6 +342,27 @@ paths:
                 password_confirmation:
                   type: string
                   example: P@ssw0rd
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/user-password-update:
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > Authentication
+      summary: Other User Password Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                user_id: 494
+                password: P@ssw0rd
+                confirm_password: P@ssw0rd
       security:
         - bearerAuth: []
       responses:
@@ -987,7 +1009,7 @@ paths:
           in: query
           schema:
             type: integer
-          example: '5'
+          example: '25'
         - name: page
           in: query
           schema:
@@ -1002,21 +1024,11 @@ paths:
           in: query
           schema:
             type: string
-        - name: role
+        - name: company_id
           in: query
           schema:
-            type: string
-          description: superadmin
-        - name: roles
-          in: query
-          schema:
-            type: string
-          description: '["superadmin","admin"]'
-        - name: superadmin_panel_users
-          in: query
-          schema:
-            type: string
-          description: 1|0
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -16153,11 +16165,162 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/admin/hotels/pdf:
+  /api/admin/hotels/export:
     get:
       tags:
         - APIs Admin (Company Panel) > Hotel > PDFs
       summary: get pdf
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/meal-plans:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Hotel > meal plan
+      summary: store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Continental
+                code: CP
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Hotel > meal plan
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/meal-plans/{id}:
+    put:
+      tags:
+        - APIs Admin (Company Panel) > Hotel > meal plan
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Continental 1
+                code: CP
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{meal_plan_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - APIs Admin (Company Panel) > Hotel > meal plan
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{meal_plan_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/hotels/meal-plans/room-types:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Hotel > meal plan
+      summary: save room type meal plan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                meal_plan:
+                  - hotel_room_type_id: 1
+                    hotel_meal_plan_id: 1
+                    price: 5000
       security:
         - bearerAuth: []
       parameters:
