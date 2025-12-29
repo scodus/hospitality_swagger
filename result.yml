@@ -39,6 +39,8 @@ tags:
   - name: APIs SUPERADMIN PANEL > Package
   - name: APIs SUPERADMIN PANEL > Company
   - name: APIs SUPERADMIN PANEL > Company > Package Subscription
+  - name: APIs SUPERADMIN PANEL > Company Transaction Histroy
+  - name: APIs SUPERADMIN PANEL > Company Package Extension
   - name: APIs SUPERADMIN PANEL > Service
   - name: APIs SUPERADMIN PANEL > Payment Option
   - name: APIs SUPERADMIN PANEL > Bug
@@ -49,8 +51,13 @@ tags:
   - name: APIs SUPERADMIN PANEL > DB Backup
   - name: APIs SUPERADMIN PANEL > Print Issue
   - name: APIs SUPERADMIN PANEL > System Sync
+  - name: APIs SUPERADMIN PANEL > Sync Suppler and Inventory Products
   - name: APIs SUPERADMIN PANEL > Table
   - name: APIs SUPERADMIN PANEL > Order Back date
+  - name: APIs SUPERADMIN PANEL > SMS
+  - name: APIs SUPERADMIN PANEL > SMS > credits
+  - name: APIs SUPERADMIN PANEL > SMS > companies
+  - name: APIs SUPERADMIN PANEL > SMS > templates
   - name: APIs Admin (Company Panel)
   - name: APIs Admin (Company Panel) > Authentication
   - name: APIs Admin (Company Panel) > Restaurant
@@ -82,6 +89,7 @@ tags:
   - name: APIs Admin (Company Panel) > Restaurant > Self Delivery User
   - name: APIs Admin (Company Panel) > Restaurant > Split Bill
   - name: APIs Admin (Company Panel) > Restaurant > Cash In/Out
+  - name: APIs Admin (Company Panel) > Restaurant > Cash In/Out > V2
   - name: APIs Admin (Company Panel) > Restaurant > Topping Items
   - name: APIs Admin (Company Panel) > Restaurant > Manager Session
   - name: APIs Admin (Company Panel) > Restaurant > Day Book
@@ -205,8 +213,18 @@ tags:
   - name: APIs Admin (Company Panel) > Pay First
   - name: APIs Admin (Company Panel) > Pay First > Order and Payment
   - name: APIs Admin (Company Panel) > Pay First > Pay first User
+  - name: APIs Admin (Company Panel) > Batch Production
+  - name: APIs Admin (Company Panel) > Production Journal
+  - name: APIs Admin (Company Panel) > SMS
+  - name: APIs Admin (Company Panel) > SMS > Customers
+  - name: APIs Admin (Company Panel) > SMS > Batches
+  - name: APIs Admin (Company Panel) > SMS > dispatches
+  - name: APIs Admin (Company Panel) > SMS > sms credits
+  - name: APIs Admin (Company Panel) > SMS > templates
+  - name: APIs Admin (Company Panel) > SMS > contact groups
   - name: APIs Public
   - name: APIs Public > auth
+  - name: Test Api
 paths:
   /api/superadmin/login:
     post:
@@ -1168,6 +1186,44 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/superadmin/branch-user/{user_id}/assign-role:
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > User
+      summary: Branch User Role Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                roles: admin
+                branches:
+                  - 1
+                  - 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company-id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/superadmin/user/{id}/assign-permission:
     post:
       tags:
@@ -1604,24 +1660,21 @@ paths:
           schema:
             type: integer
           example: '1'
-        - name: page
-          in: query
-          schema:
-            type: string
         - name: limit
           in: query
           schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-          example: wwebipin2009
+            type: integer
+          example: '10'
         - name: status
           in: query
           schema:
             type: string
           description: '||active,inactive'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -1951,6 +2004,199 @@ paths:
             type: integer
           required: true
           example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/company-transaction/{company_id}:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Transaction Histroy
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Package Extension
+      summary: store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: test 2
+                receivable_amount: 500
+                received_amount: 0
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/company/:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Transaction Histroy
+      summary: Company Due Total
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/company-transaction/{company_id}/{company_transcation_id}:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Package Extension
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+        - name: company_transcation_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Transaction Histroy
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+        - name: company_transcation_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/company-transaction/{company_id}/{company_transaction_id}:
+    put:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Package Extension
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: test update
+                receivable_amount: 2000
+                received_amount: 1000
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+        - name: company_transaction_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/company-package-extension/{company_id}:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Package Extension
+      summary: list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/:
+    delete:
+      tags:
+        - APIs SUPERADMIN PANEL > Company Package Extension
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -2867,6 +3113,52 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/superadmin/sync-products/{branch_id}:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > Sync Suppler and Inventory Products
+      summary: Get Products To Sync
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > Sync Suppler and Inventory Products
+      summary: Sync Products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                new_products:
+                  - supplier_product_id: 3
+                  - supplier_product_id: 4
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /superadmin/tables/{branch_id}:
     get:
       tags:
@@ -2966,6 +3258,324 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/superadmin/sms/credits:
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > credits
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_id: '3'
+                purchased_credits: '100'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: company_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > credits
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: company_id
+          in: query
+          schema:
+            type: integer
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/credits/correct:
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > credits
+      summary: correction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_id: '2'
+                target_credits: '10'
+                comment: some comment
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/companies:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > companies
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/companies/{id}:
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > companies
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                rate_per_sms: 0.9
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/companies/{id}/rate-per-sms:
+    patch:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > companies
+      summary: update rate per sms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                rate_per_sms: 1.5
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/templates:
+    post:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > templates
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: template 1
+                content: Some content of sms template
+                is_active: false
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > templates
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/templates/{id}:
+    put:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > templates
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: template 123
+                content: Some content of sms template asd 1
+                is_active: false
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > templates
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '7'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS > templates
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/logs:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS
+      summary: get logs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: company-id
+          in: header
+          schema:
+            type: integer
+          example: '2'
+        - name: company_id
+          in: query
+          schema:
+            type: integer
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/sms/statistics:
+    get:
+      tags:
+        - APIs SUPERADMIN PANEL > SMS
+      summary: get statistics
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: SOLD_CREDITS
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/superadmin/menu-products/transfer:
     post:
       tags:
@@ -3004,7 +3614,10 @@ paths:
                   example: kimchifastfoods@gmail.com
                 password:
                   type: string
-                  example: Kimchi@@@3
+                  example: P@ssw0rd
+                phone:
+                  type: integer
+                  example: '9741689372'
       responses:
         '200':
           description: Successful response
@@ -4613,18 +5226,18 @@ paths:
             schema:
               type: object
               example:
-                customer_id: 3198
-                order_id: 376294
+                customer_id: 1
+                order_id: 362661
                 payment_order_no: y41xu1hp
-                payment_method: 1
-                subtotal: 2025
+                payment_method: 9
+                subtotal: 600
                 tax: 0
                 discount: 0
                 discount_type: rupees
-                net_total: 2025
+                net_total: 600
                 paid: 0
                 return: 0
-                net_amount: 2025
+                net_amount: 600
                 discount_value: 0
                 discount_remarks: ''
                 tax_details: null
@@ -4640,7 +5253,45 @@ paths:
           in: header
           schema:
             type: integer
-          example: '78'
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/order-payments/update-payment-method/{order_payment_id}:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Restaurant > Restaurant Order Payment
+      summary: payment option Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                payments:
+                  - dual_payment_id: 344886
+                    company_payment_method_id: 9
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: order_payment_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '343230'
       responses:
         '200':
           description: Successful response
@@ -5523,6 +6174,11 @@ paths:
           schema:
             type: string
           example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
         - name: pagination_limit
           in: query
           schema:
@@ -7694,6 +8350,28 @@ paths:
           description: Successful response
           content:
             application/json: {}
+    get:
+      tags:
+        - Test Api
+      summary: Test OrderList
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '29'
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /admin/orders/{id}:
     post:
       tags:
@@ -7769,6 +8447,34 @@ paths:
           schema:
             type: integer
           example: '20'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/offline-orders:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Restaurant > Restaurant Order
+      summary: Offline Order List
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '76'
+        - name: date
+          in: query
+          schema:
+            type: string
+          example: 12/29/2025
       responses:
         '200':
           description: Successful response
@@ -8116,7 +8822,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '11'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -10220,6 +10926,114 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/v2/admin/cash-in-out:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Restaurant > Cash In/Out > V2
+      summary: All List cash in/out V2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Restaurant > Cash In/Out > V2
+      summary: store cash in/out V2
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                particular:
+                  type: string
+                  example: FonePay Transfer Single
+                received:
+                  type: integer
+                  example: '1000'
+                received_payment_method_id:
+                  type: integer
+                  example: '9'
+                paid:
+                  type: integer
+                  example: '1000'
+                paid_payment_method_id:
+                  type: integer
+                  example: '10'
+                remarks:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/admin/cash-in-out/{id}:
+    put:
+      tags:
+        - APIs Admin (Company Panel) > Restaurant > Cash In/Out > V2
+      summary: update cash in/out V2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                particular: FonePay Transfer
+                paid: 1000
+                paid_payment_method_id: 10
+                remarks: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '32441'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/cash-in-out:
     post:
       tags:
@@ -10249,6 +11063,12 @@ paths:
                 particular:
                   type: string
                   example: CUStOM
+                received_payment_method_id:
+                  type: integer
+                  example: '1'
+                paid_payment_method_id:
+                  type: integer
+                  example: '1'
       security:
         - bearerAuth: []
       parameters:
@@ -10261,7 +11081,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
       responses:
         '200':
           description: OK
@@ -14649,12 +15469,12 @@ paths:
           in: query
           schema:
             type: string
-          example: '2025-08-02 02:00:00'
+          example: '2025-11-03 00:00:00'
         - name: to
           in: query
           schema:
             type: string
-          example: '2025-08-03 10:00:00'
+          example: '2025-11-03 00:00:00'
       responses:
         '200':
           description: Successful response
@@ -15209,7 +16029,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '36'
+          example: '16'
       responses:
         '200':
           description: Successful response
@@ -15231,15 +16051,14 @@ paths:
                   phone: '98490000002'
                   email: some@email.com
                 reservation:
-                  start_date: '2025-10-27'
-                  end_date: '2025-10-28'
+                  start_date: '2025-11-18'
+                  end_date: '2025-11-19'
                   hotel_reservation_source_id: 2
-                  advance_amount: 500
-                  advance_payment_option_id: 1
+                  advance_amount: 0
+                  advance_payment_option_id: null
                   exclude_advance: true
-                  business_session_id: 1
                 reservation_detail:
-                  - hotel_room_type_id: 1
+                  - hotel_room_type_id: 3
                     quantity: 1
                     rate: 5000
       security:
@@ -15250,6 +16069,11 @@ paths:
           schema:
             type: integer
           example: '5'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -15615,6 +16439,37 @@ paths:
             type: integer
           required: true
           example: '95'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/events/bookings/{id}/status:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Hotel > reservation
+      summary: update status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type: INQUIRY
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
       responses:
         '200':
           description: Successful response
@@ -16339,6 +17194,28 @@ paths:
           description: Successful response
           content:
             application/json: {}
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Hotel > meal plan
+      summary: get room type meal plan
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/hotels/countries:
     get:
       tags:
@@ -16652,34 +17529,23 @@ paths:
       summary: store inventory products
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
-              properties:
-                product_name:
-                  type: string
-                  example: Momo
-                sku:
-                  type: integer
-                  example: '453534'
-                measurement_unit_id:
-                  type: integer
-                  example: '1'
-                volume:
-                  type: integer
-                  example: '5'
-                volume_unit_id:
-                  type: integer
-                  example: '5'
-                minimum_stock_level:
-                  type: integer
-                  example: '5'
-                enable_custom_yield:
-                  type: integer
-                  example: '1'
-                custom_yield_percent:
-                  type: integer
-                  example: '50'
+              example:
+                product_name: 'Test Product Unit 1 '
+                sku: '453534'
+                measurement_unit_id: 1
+                volume: 5
+                volume_unit_id: 5
+                minimum_stock_level: 5
+                enable_custom_yield: 1
+                custom_yield_percent: 50
+                purchased_product_units:
+                  - unit_id: 2
+                    value: 180
+                  - unit_id: 3
+                    value: 180
       security:
         - bearerAuth: []
       parameters:
@@ -18089,7 +18955,7 @@ paths:
     post:
       tags:
         - APIs Admin (Company Panel) > Company > Company Payment Option
-      summary: company payment option update status
+      summary: Update Status
       requestBody:
         content:
           application/json:
@@ -18748,6 +19614,54 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/branch/{branch_id}/show-menu:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Branch
+      summary: Show Menu Status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: testkimchi1
+                show_menu: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/branch/sync-menu-users:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Branch
+      summary: Sync Admin Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                branches:
+                  - 5
+                  - 6
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/payment-option:
     get:
       tags:
@@ -18788,6 +19702,35 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/company/{company_id}/accounting-payment-options:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Payment Option
+      summary: account Payment Option
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch_id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: company_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -19366,7 +20309,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '2'
+          example: '1'
         - name: paginate
           in: query
           schema:
@@ -20761,22 +21704,23 @@ paths:
               type: object
               example:
                 booked_date: '2022-09-18'
-                event_shift_id: 2
+                event_shift_id: 1
                 event_type_id: 1
                 event_source_id: 1
                 estimated_guest_count: 10
                 actual_rate_per_pax: 100
+                note: some note
                 booked_by:
                   name: Other
                   phone: '123457810'
                   email: johndoe@example.com
                   address: 123 Main St
+                  secondary_phone: '1234567890'
                 booking_menu_products:
-                  - event_menu_product_id: 5
-                  - event_menu_product_id: 6
+                  - event_menu_product_id: 1
+                  - event_menu_product_id: 2
                 booking_halls:
                   - event_hall_id: 1
-                  - event_hall_id: 2
                 booking_facilities:
                   - name: Facility 1
                     price: 100
@@ -20792,7 +21736,7 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
       responses:
         '200':
           description: Successful response
@@ -20907,12 +21851,13 @@ paths:
                   phone: 123-456-7890
                   email: johndoe@example.com
                   address: 123 Main St
+                  secondary_phone: '123456'
                 booking_menu_products:
-                  - id: 19
-                    event_menu_product_id: 7
+                  - id: 1
+                    event_menu_product_id: 1
                 booking_halls:
-                  - id: 164
-                    event_hall_id: 3
+                  - id: 1
+                    event_hall_id: 1
                 booking_facilities:
                   - name: Facility  asd 1
                     price: 100
@@ -20934,13 +21879,13 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '90'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -21111,13 +22056,13 @@ paths:
           in: header
           schema:
             type: integer
-          example: '1'
+          example: '5'
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          example: '79'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -21738,6 +22683,844 @@ paths:
             type: integer
           required: true
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bills-of-materials:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Batch Production
+      summary: List
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Batch Production
+      summary: Upsert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_id: 28
+                output_quantity: 3
+                note: test
+                raw_materials:
+                  - product_id: 22
+                    quantity: 5
+                  - product_id: 21
+                    quantity: 5
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bills-of-materials/{id}:
+    delete:
+      tags:
+        - APIs Admin (Company Panel) > Batch Production
+      summary: Delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Batch Production
+      summary: Show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bills-of-materials-load/:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Batch Production
+      summary: Load BOM
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: query
+          schema:
+            type: integer
+          example: '2'
+        - name: output_quantity
+          in: query
+          schema:
+            type: integer
+          example: '15'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/production-journals:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Production Journal
+      summary: List
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - APIs Admin (Company Panel) > Production Journal
+      summary: Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                product_id: 28
+                output_quantity: 20
+                note: test 2
+                reference_number: jhkjawdhk
+                raw_materials:
+                  - product_id: 2190
+                    quantity: 5
+                  - product_id: 2173
+                    quantity: 10
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/production-journals/{id}:
+    delete:
+      tags:
+        - APIs Admin (Company Panel) > Production Journal
+      summary: Delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '24'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs Admin (Company Panel) > Production Journal
+      summary: Show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '26'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/customers/contacts:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > Customers
+      summary: get contacts
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: sms_contact_group_id
+          in: query
+          schema:
+            type: integer
+          example: '6'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/customers/injection-keys:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > Customers
+      summary: get injection keys
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/customers/send:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > SMS > Customers
+      summary: send message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer_ids:
+                  - 1
+                  - 4
+                template: >-
+                  Hi, {{name}}. The due amount related to your account is
+                  Rs.{{due_amount}}. Please pay on time.
+                title: Hello
+                is_campaign: false
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v3/sms/sen:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > SMS > Customers
+      summary: send message all star
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type: plain
+                message: Hi, Customer 1
+                recipient: '9741689372'
+                sender_id: Finora
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/batches:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > Batches
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: get_all
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/batches/{id}/dispatches:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > Batches
+      summary: get all dispatches
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '25'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/batches/{id}/resend:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > SMS > Batches
+      summary: resend
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '""'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '64'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/dispatches/resend:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > SMS > dispatches
+      summary: resend
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '""'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: sms_dispatch_ids[0]
+          in: query
+          schema:
+            type: integer
+          example: '123'
+        - name: sms_dispatch_ids[1]
+          in: query
+          schema:
+            type: integer
+          example: '124'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/dispatches:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > dispatches
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/credits:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > sms credits
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: company_id
+          in: query
+          schema:
+            type: integer
+          example: '4'
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/templates:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > SMS > templates
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: template 1
+                content: Some content of sms template
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > templates
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/templates/{id}:
+    put:
+      tags:
+        - APIs Admin (Company Panel) > SMS > templates
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: template 1
+                content: Some content of sms template asd 1
+                is_active: true
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - APIs Admin (Company Panel) > SMS > templates
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > templates
+      summary: show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/contact-groups:
+    post:
+      tags:
+        - APIs Admin (Company Panel) > SMS > contact groups
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Contact group 1
+                is_active: true
+                customer_ids:
+                  - 1
+                  - 3
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS > contact groups
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/contact-groups/{id}:
+    put:
+      tags:
+        - APIs Admin (Company Panel) > SMS > contact groups
+      summary: edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Contact group 1
+                is_active: true
+                account_head_ids:
+                  - 11291
+                  - 4808
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{sms_contact_group_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - APIs Admin (Company Panel) > SMS > contact groups
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{sms_contact_group_id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/sms/statistics:
+    get:
+      tags:
+        - APIs Admin (Company Panel) > SMS
+      summary: get statistics
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: branch-id
+          in: header
+          schema:
+            type: integer
+          example: '5'
       responses:
         '200':
           description: Successful response

@@ -26,7 +26,8 @@
 											"pm.environment.set('refresh_token', response.data.refresh_token)"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -36,7 +37,8 @@
 											""
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -59,9 +61,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{authServer}}/api/superadmin/login",
+									"raw": "{{localAuthServe}}/api/superadmin/login",
 									"host": [
-										"{{authServer}}"
+										"{{localAuthServe}}"
 									],
 									"path": [
 										"api",
@@ -1760,6 +1762,63 @@
 							"response": []
 						},
 						{
+							"name": "Branch User Role Update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "company-id",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"roles\":\"admin\",        \n    \"branches\" : [1,2]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/branch-user/:user_id/assign-role",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"branch-user",
+										":user_id",
+										"assign-role"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "assign permission",
 							"request": {
 								"auth": {
@@ -2661,7 +2720,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{localApiUrl}}/api/superadmin/company?paginate=1&page=&limit=&search_keyword=wwebipin2009&status=",
+									"raw": "{{localApiUrl}}/api/superadmin/company?paginate=1&limit=10&status=&page=1",
 									"host": [
 										"{{localApiUrl}}"
 									],
@@ -2676,16 +2735,13 @@
 											"value": "1"
 										},
 										{
-											"key": "page",
-											"value": ""
-										},
-										{
 											"key": "limit",
-											"value": ""
+											"value": "10"
 										},
 										{
 											"key": "search_keyword",
-											"value": "wwebipin2009"
+											"value": "",
+											"disabled": true
 										},
 										{
 											"key": "status",
@@ -2696,6 +2752,10 @@
 											"key": "is_demo",
 											"value": "1",
 											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1"
 										}
 									]
 								}
@@ -3093,6 +3153,573 @@
 											"key": "company_id",
 											"value": "5"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Company Transaction Histroy",
+					"item": [
+						{
+							"name": "list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id"
+									],
+									"query": [
+										{
+											"key": "is_demo",
+											"value": "1",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Company Due Total",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company/",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company",
+										""
+									],
+									"query": [
+										{
+											"key": "is_demo",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id/:company_transcation_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id",
+										":company_transcation_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										},
+										{
+											"key": "company_transcation_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\" : \"test 2\", //\"nullable|string\"\r\n    \"receivable_amount\" : 500.00, //required|float\r\n    \"received_amount\" : 0 //nullable|float\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\" : \"test update\", //\"nullable|string\"\r\n    \"receivable_amount\" : 2000.00, //required|float\r\n    \"received_amount\" : 1000.00 //nullable|float\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id/:company_transaction_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id",
+										":company_transaction_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										},
+										{
+											"key": "company_transaction_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id/:company_transcation_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id",
+										":company_transcation_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										},
+										{
+											"key": "company_transcation_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Company Package Extension",
+					"item": [
+						{
+							"name": "list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-package-extension/:company_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-package-extension",
+										":company_id"
+									],
+									"query": [
+										{
+											"key": "is_demo",
+											"value": "1",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id/:company_transcation_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id",
+										":company_transcation_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										},
+										{
+											"key": "company_transcation_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\" : \"test 2\", //\"nullable|string\"\r\n    \"receivable_amount\" : 500.00, //required|float\r\n    \"received_amount\" : 0 //nullable|float\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\" : \"test update\", //\"nullable|string\"\r\n    \"receivable_amount\" : 2000.00, //required|float\r\n    \"received_amount\" : 1000.00 //nullable|float\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/superadmin/company-transaction/:company_id/:company_transaction_id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"company-transaction",
+										":company_id",
+										":company_transaction_id"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
+										},
+										{
+											"key": "company_transaction_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										""
 									]
 								}
 							},
@@ -4792,6 +5419,92 @@
 					]
 				},
 				{
+					"name": "Sync Suppler and Inventory Products",
+					"item": [
+						{
+							"name": "Get Products To Sync",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/sync-products/:branch_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"sync-products",
+										":branch_id"
+									],
+									"variable": [
+										{
+											"key": "branch_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sync Products",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"new_products\" : [\r\n        {\r\n            \"supplier_product_id\" : 3\r\n        },\r\n        {\r\n            \"supplier_product_id\" : 4\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/sync-products/:branch_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"sync-products",
+										":branch_id"
+									],
+									"variable": [
+										{
+											"key": "branch_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Table",
 					"item": [
 						{
@@ -4968,6 +5681,745 @@
 										"api",
 										"superadmin",
 										"update-order-date"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "SMS",
+					"item": [
+						{
+							"name": "credits",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"company_id\": \"3\",\r\n    \"purchased_credits\": \"100\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/credits?company_id=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"credits"
+											],
+											"query": [
+												{
+													"key": "company_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/credits?company_id=3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"credits"
+											],
+											"query": [
+												{
+													"key": "company_id",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "correction",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"company_id\": \"2\",\n    \"target_credits\": \"10\",\n    \"comment\":\"some comment\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/credits/correct",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"credits",
+												"correct"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "companies",
+							"item": [
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/companies",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"companies"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"rate_per_sms\":0.9\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/companies/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"companies",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update rate per sms",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"rate_per_sms\": 1.5\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/companies/:id/rate-per-sms",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"companies",
+												":id",
+												"rate-per-sms"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "templates",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"template 1\",\r\n    \"content\": \"Some content of sms template\",\r\n    \"is_active\":false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/templates",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"templates"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"template 123\",\r\n    \"content\": \"Some content of sms template asd 1\",\r\n    \"is_active\":false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/templates/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/templates/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "7"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "company-id",
+												"value": "7",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/templates/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "company-id",
+												"value": "2",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/superadmin/sms/templates",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"superadmin",
+												"sms",
+												"templates"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "get logs",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "company-id",
+										"value": "2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/sms/logs?company_id=4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"sms",
+										"logs"
+									],
+									"query": [
+										{
+											"key": "company_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get statistics",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "company-id",
+										"value": "2",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/sms/statistics?type=SOLD_CREDITS",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"sms",
+										"statistics"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "PURCHASED_CREDITS",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "SOLD_CREDITS"
+										}
 									]
 								}
 							},
@@ -5156,6 +6608,18 @@
 										{
 											"key": "password",
 											"value": "Kimchi@@@3",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "phone",
+											"value": "9741689372",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
 											"type": "text",
 											"disabled": true
 										}
@@ -7810,7 +9274,7 @@
 											"bearer": [
 												{
 													"key": "token",
-													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNWY3MmNmMTk0YzEwMWYxOGM0Yjk3MTY2NTI1OGNjMmFhMjI0NTk5YTE5MmMwMWFmN2RjYmYzYWFjMjgwMmI3NjJhODdjMDQ2NTg4YTdlMzYiLCJpYXQiOjE3NTQ5ODE0MjMuMzczMjcyLCJuYmYiOjE3NTQ5ODE0MjMuMzczMjc0LCJleHAiOjE3NTU1ODYyMjMuMzcwNTU2LCJzdWIiOiI1MCIsInNjb3BlcyI6WyIqIl19.qYNwz1Qcfdy0iaHPH9TLe13jF4l_T4vJbrVp8llmv2mIrw3jlj1EwuHwytjq4q4RXf2pG2aBq5l7P9wOCylGh7kSo2wHZrOcQzM18BMuomt_BK8qdvHisalf5Y7eqntSGZr9rtsXbpAoGjJaq7od92RuTqLBMXj88PuJjOW0VXRSfRIekB78vlkqI1krEtlcE2rOCSFH1yb9eocXiU8qAM1mYE4G7QEzYTU42AQSXsmwnYUcyBQS9GlwmocGDQu27QlWT-awAMGvGxU4eHhSsKNZ3f7infFivAiGmMVy3pENze3p1lA0JgpDa6vg_TJ0gdiSnYHrPRCSb5zh1qe33w",
+													"value": "{{access_token}}",
 													"type": "string"
 												}
 											]
@@ -7823,12 +9287,12 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "78"
+												"value": "5"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"customer_id\": 3198,\n    \"order_id\": 376294,\n    \"payment_order_no\": \"y41xu1hp\",\n    \"payment_method\": 1,\n    \"subtotal\": 2025,\n    \"tax\": 0,\n    \"discount\": 0,\n    \"discount_type\": \"rupees\",\n    \"net_total\": 2025,\n    \"paid\": 0,\n    \"return\": 0,\n    \"net_amount\": 2025,\n    \"discount_value\": 0,\n    \"discount_remarks\": \"\",\n    \"tax_details\": null\n}",
+											"raw": "{\n    \"customer_id\": 1,\n    \"order_id\": 362661,\n    \"payment_order_no\": \"y41xu1hp\",\n    \"payment_method\": 9,\n    \"subtotal\": 600,\n    \"tax\": 0,\n    \"discount\": 0,\n    \"discount_type\": \"rupees\",\n    \"net_total\": 600,\n    \"paid\": 0,\n    \"return\": 0,\n    \"net_amount\": 600,\n    \"discount_value\": 0,\n    \"discount_remarks\": \"\",\n    \"tax_details\": null\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -7836,17 +9300,69 @@
 											}
 										},
 										"url": {
-											"raw": "https://hospitality-api.srotcloud.app/api/admin/order-payments",
-											"protocol": "https",
+											"raw": "{{localUrl}}/api/admin/order-payments",
 											"host": [
-												"hospitality-api",
-												"srotcloud",
-												"app"
+												"{{localUrl}}"
 											],
 											"path": [
 												"api",
 												"admin",
 												"order-payments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "payment option Update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTRlYjEzYTM2NGQ0YjM5MTFlMjZjOTAwOTI5NjkwOGM4NWE1YWU5ZTc2MjA2YTYyMWMzYWZmYWFmMjE1ZWZkZDYwMTJjZjdkYTI0YmFmM2EiLCJpYXQiOjE3NjUyNTI1MzkuNTU3NjA0LCJuYmYiOjE3NjUyNTI1MzkuNTU3NjA3LCJleHAiOjE3Njc4NDQ1MzkuNTI2MDM3LCJzdWIiOiI3NyIsInNjb3BlcyI6WyIqIl19.QjrUawCFR7sKN4Vl-AsDDIogaGuNwohNIWJAuhZN4ozJmCdCss8wNxzISIE465y20cfdvOqjzDI0gGqh8g8xOECEvRMqr6S7eF5WyfWZrW5i0Q1liqt-OIt3V093hPX4AexslSEgqbjMV33WXk--aq_6KcPClSunAAfiq72AQJsugQty3yWVmL86ihOOjitqfGqrIC_K-x8MAKNfU4wudHR1PH6pQoyVPjMPn6wc3VUdIo1-5DVdyo7UIANLOsO0Gfm5DDcbWaDCNSInTNjuokusWHLdOgTQbvIsZcAcKwfTxY_-kyZvaTU4uN0hGasM4CJV9oF-Oc9rINUXKYfJk8lS1fSNo4y1rcLKt0G7uCUYCsKyhmpBkXfrHr28tn3PxAPHcWZ09Y_79HCuSHeXhYRHS5os4PSFuCkFzNbYC3yNxwa5U6JkCMVIazML4p3oX22WoXkkwBjYXkav_uX8wh7Uzo5ZFAi9oKrJdtnBSleke8Gw0uwyL8SEtwKE5bdBJy8wadki1hvMhXxvFRhTc7hRY09ZkdQVmjEXBBlNhgbmWvkHNPB1W3rmHcs_eKA-oCg9z5Ox_koQcYUfMOh8ZeTA1z06lL66afxJOhujsQLrnEHtBb7uUz5a00Jg7UwiUkl5K5hhq1HGCXddYNAbNUrc40m9flIpAGsoryecoRU",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "branch-id",
+												"value": "5"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"payments\" : [\n        {\n            \"dual_payment_id\" : 344886,\n            \"company_payment_method_id\" : 9\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{localUrl}}/api/admin/order-payments/update-payment-method/:order_payment_id",
+											"host": [
+												"{{localUrl}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"order-payments",
+												"update-payment-method",
+												":order_payment_id"
+											],
+											"variable": [
+												{
+													"key": "order_payment_id",
+													"value": "343230"
+												}
 											]
 										}
 									},
@@ -9212,6 +10728,11 @@
 											{
 												"key": "Accept",
 												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
 												"type": "text"
 											}
 										],
@@ -12764,6 +14285,52 @@
 									"response": []
 								},
 								{
+									"name": "Offline Order List",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "76",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/offline-orders?date=12/29/2025",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"offline-orders"
+											],
+											"query": [
+												{
+													"key": "date",
+													"value": "12/29/2025"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "change status",
 									"request": {
 										"auth": {
@@ -13445,7 +15012,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "11",
+												"value": "5",
 												"type": "text"
 											}
 										],
@@ -16395,6 +17962,227 @@
 							"name": "Cash In/Out",
 							"item": [
 								{
+									"name": "V2",
+									"item": [
+										{
+											"name": "All List cash in/out V2",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "branch-id",
+														"value": "5",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "particular",
+															"value": "FonePay Transfer Single",
+															"type": "text"
+														},
+														{
+															"key": "received",
+															"value": "1000",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "received_payment_method_id",
+															"value": "9",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "paid",
+															"value": "1000",
+															"type": "text"
+														},
+														{
+															"key": "paid_payment_method_id",
+															"value": "10",
+															"type": "text"
+														},
+														{
+															"key": "remarks",
+															"value": "hy",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{localApiUrl}}/api/v2/admin/cash-in-out",
+													"host": [
+														"{{localApiUrl}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"admin",
+														"cash-in-out"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "store cash in/out V2",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "branch-id",
+														"value": "5",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "particular",
+															"value": "FonePay Transfer Single",
+															"type": "text"
+														},
+														{
+															"key": "received",
+															"value": "1000",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "received_payment_method_id",
+															"value": "9",
+															"type": "text",
+															"disabled": true
+														},
+														{
+															"key": "paid",
+															"value": "1000",
+															"type": "text"
+														},
+														{
+															"key": "paid_payment_method_id",
+															"value": "10",
+															"type": "text"
+														},
+														{
+															"key": "remarks",
+															"value": "hy",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{localApiUrl}}/api/v2/admin/cash-in-out",
+													"host": [
+														"{{localApiUrl}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"admin",
+														"cash-in-out"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "update cash in/out V2",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "branch-id",
+														"value": "5",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"particular\":\"FonePay Transfer\",\r\n    //received:1000\r\n    //received_payment_method_id:9\r\n    \"paid\":1000,\r\n    \"paid_payment_method_id\":10,\r\n    \"remarks\":\"hy\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{localApiUrl}}/api/v2/admin/cash-in-out/:id",
+													"host": [
+														"{{localApiUrl}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"admin",
+														"cash-in-out",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "32441"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
 									"name": "store cash in/out",
 									"request": {
 										"auth": {
@@ -16416,7 +18204,7 @@
 											},
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
@@ -16452,13 +18240,23 @@
 													"key": "particular",
 													"value": "CUStOM",
 													"type": "text"
+												},
+												{
+													"key": "received_payment_method_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "paid_payment_method_id",
+													"value": "1",
+													"type": "text"
 												}
 											]
 										},
 										"url": {
-											"raw": "{{url}}/api/admin/cash-in-out",
+											"raw": "{{localApiUrl}}/api/admin/cash-in-out",
 											"host": [
-												"{{url}}"
+												"{{localApiUrl}}"
 											],
 											"path": [
 												"api",
@@ -23468,7 +25266,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/hotels/room-types/available?from=2025-08-02 02:00:00&to=2025-08-03 10:00:00",
+											"raw": "{{url}}/api/admin/hotels/room-types/available?from=2025-11-03 00:00:00&to=2025-11-03 00:00:00",
 											"host": [
 												"{{url}}"
 											],
@@ -23482,11 +25280,16 @@
 											"query": [
 												{
 													"key": "from",
-													"value": "2025-08-02 02:00:00"
+													"value": "2025-11-03 00:00:00"
 												},
 												{
 													"key": "to",
-													"value": "2025-08-03 10:00:00"
+													"value": "2025-11-03 00:00:00"
+												},
+												{
+													"key": "hotel_meal_plan_id",
+													"value": "3",
+													"disabled": true
 												}
 											]
 										}
@@ -24293,22 +26096,26 @@
 														{
 															"key": "reservation_guests[1][id]",
 															"value": "36",
-															"type": "text"
+															"type": "text",
+															"disabled": true
 														},
 														{
 															"key": "reservation_guests[1][delete]",
 															"value": "1",
-															"type": "text"
+															"type": "text",
+															"disabled": true
 														},
 														{
 															"key": "reservation_guests[1][hotel_guest][name]",
 															"value": "Alan Walker 1",
-															"type": "text"
+															"type": "text",
+															"disabled": true
 														},
 														{
 															"key": "reservation_guests[1][hotel_guest][phone]",
 															"value": "123456789",
-															"type": "text"
+															"type": "text",
+															"disabled": true
 														},
 														{
 															"key": "reservation_guests[0][id]",
@@ -24376,7 +26183,7 @@
 													"variable": [
 														{
 															"key": "id",
-															"value": "36"
+															"value": "16"
 														}
 													]
 												}
@@ -24404,11 +26211,16 @@
 												"key": "branch-id",
 												"value": "5",
 												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"Newest\",\r\n        \"phone\": \"98490000002\",\r\n        \"email\": \"some@email.com\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-10-27\",\r\n        \"end_date\": \"2025-10-28\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 500,\r\n        \"advance_payment_option_id\": 1,\r\n        \"exclude_advance\": true,\r\n        \"business_session_id\": 1\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 1,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"reserved_by\": {\r\n        // \"id\":135,\r\n        \"name\": \"Newest\",\r\n        \"phone\": \"98490000002\",\r\n        \"email\": \"some@email.com\"\r\n    },\r\n    \"reservation\": {\r\n        \"start_date\": \"2025-11-18\",\r\n        \"end_date\": \"2025-11-19\",\r\n        \"hotel_reservation_source_id\": 2,\r\n        \"advance_amount\": 0,\r\n        \"advance_payment_option_id\": null,\r\n        \"exclude_advance\": true\r\n    },\r\n    \"reservation_detail\": [\r\n        {\r\n            \"hotel_room_type_id\": 3,\r\n            \"quantity\": 1,\r\n            \"rate\": 5000\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -25047,6 +26859,59 @@
 												{
 													"key": "id",
 													"value": "95"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update status",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\":\"INQUIRY\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/admin/events/bookings/:id/status",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"events",
+												"bookings",
+												":id",
+												"status"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "2"
 												}
 											]
 										}
@@ -26459,6 +28324,48 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "get room type meal plan",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/admin/hotels/meal-plans/room-types",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"admin",
+												"hotels",
+												"meal-plans",
+												"room-types"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -27033,49 +28940,13 @@
 											}
 										],
 										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "product_name",
-													"value": "Momo",
-													"type": "text"
-												},
-												{
-													"key": "sku",
-													"value": "453534",
-													"type": "text"
-												},
-												{
-													"key": "measurement_unit_id",
-													"value": "1",
-													"type": "text"
-												},
-												{
-													"key": "volume",
-													"value": "5",
-													"type": "text"
-												},
-												{
-													"key": "volume_unit_id",
-													"value": "5",
-													"type": "text"
-												},
-												{
-													"key": "minimum_stock_level",
-													"value": "5",
-													"type": "text"
-												},
-												{
-													"key": "enable_custom_yield",
-													"value": "1",
-													"type": "text"
-												},
-												{
-													"key": "custom_yield_percent",
-													"value": "50",
-													"type": "text"
+											"mode": "raw",
+											"raw": "{\r\n    \"product_name\":\"Test Product Unit 1 \",\r\n    \"sku\":\"453534\",\r\n    \"measurement_unit_id\":1,\r\n    \"volume\":5,\r\n    \"volume_unit_id\":5,\r\n    \"minimum_stock_level\":5,\r\n    \"enable_custom_yield\":1,\r\n    \"custom_yield_percent\":50,\r\n    \"purchased_product_units\" :[\r\n        {\r\n            \"unit_id\" : 2,\r\n            \"value\" : 180\r\n        },\r\n        {\r\n            \"unit_id\" : 3,\r\n            \"value\" : 180\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											]
+											}
 										},
 										"url": {
 											"raw": "{{url}}/api/admin/inventory-products",
@@ -29291,7 +31162,7 @@
 									"response": []
 								},
 								{
-									"name": "company payment option update status",
+									"name": "Update Status",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -30449,6 +32320,91 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Show Menu Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzhmZjJlNDFiNGY2ODI0MWE3MTEzOWM0NTMyYmEwNzI3ZTcyNWRlMmIzNWRjNmFkMjQyYjFhNWI3YWE4NzJkMjY2MjI2ZDdjZGU3Y2ZjZDAiLCJpYXQiOjE3NjM0NTYxMjEuNTc1MjMzLCJuYmYiOjE3NjM0NTYxMjEuNTc1MjM2LCJleHAiOjE3NjYwNDgxMjEuNTQ4OTcxLCJzdWIiOiIxMCIsInNjb3BlcyI6WyIqIl19.m9p5-GfrfFa_7-o39x0qjMXeH3hGOA9PWQhjfXX0SPHSuCXlaZTnaVGAPHm3eYTUTJzJ229sBu6mKMEU1YgtJF9u4BhI8_7wfWxzGKNnzwCn8m0z3M7LKSieZhfjRKx8ujGM2ZitchM_u7JFP6M94MK7keESusl34kSo8sI99ea4sEf_PYQ8_kRyzNDyzB0cpmyiq1tcH5kpMF91STSMNhHUHt9PXpDkVw3OLANza1OptlRTbfWo1CJhm3Qjmxjcwp9HiRBPwHcohdDQ4tGckdJxLG_gsHYoJfykpYMKbLREVqjmf6VtGkzpwSFAiFXsFwXuL0HbCfe-Yo3p5i0DNQ4mDwheHoBB1kpjHhaWnQhx7LiCVLXMVasrH3ROXoXCsypzPVFKF8W5jHazYR7aHVqqsJAh0k0rjmPMdwS1z__0m2UtTSkQJNxHbrMdRK1ibKKlRCyZQgbljZvUF8T4vrQZJLhAg-NYRbh7-0KN7IYDPflpZ3ch3r--_xOKmy5SGr313IlLVsdpAReAZAol5m8bOu7B_V60_BGTdcMm7HuJzjW7ha7Mk46spsmCcveHvCWE1EdaRACBhFiwLmTJqzrlHQE_AyBAs7ImAMi9sFKAoNXQnK3JjO7-kQYeLqoEh1Jc0qpMgPfKufFATKp0QrhFmD4X5ABeP9UGN2tffuA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"testkimchi1\",\r\n    \"show_menu\" : 1 //boolean 0 or 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/branch/:branch_id/show-menu",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										":branch_id",
+										"show-menu"
+									],
+									"variable": [
+										{
+											"key": "branch_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sync Admin Users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzhmZjJlNDFiNGY2ODI0MWE3MTEzOWM0NTMyYmEwNzI3ZTcyNWRlMmIzNWRjNmFkMjQyYjFhNWI3YWE4NzJkMjY2MjI2ZDdjZGU3Y2ZjZDAiLCJpYXQiOjE3NjM0NTYxMjEuNTc1MjMzLCJuYmYiOjE3NjM0NTYxMjEuNTc1MjM2LCJleHAiOjE3NjYwNDgxMjEuNTQ4OTcxLCJzdWIiOiIxMCIsInNjb3BlcyI6WyIqIl19.m9p5-GfrfFa_7-o39x0qjMXeH3hGOA9PWQhjfXX0SPHSuCXlaZTnaVGAPHm3eYTUTJzJ229sBu6mKMEU1YgtJF9u4BhI8_7wfWxzGKNnzwCn8m0z3M7LKSieZhfjRKx8ujGM2ZitchM_u7JFP6M94MK7keESusl34kSo8sI99ea4sEf_PYQ8_kRyzNDyzB0cpmyiq1tcH5kpMF91STSMNhHUHt9PXpDkVw3OLANza1OptlRTbfWo1CJhm3Qjmxjcwp9HiRBPwHcohdDQ4tGckdJxLG_gsHYoJfykpYMKbLREVqjmf6VtGkzpwSFAiFXsFwXuL0HbCfe-Yo3p5i0DNQ4mDwheHoBB1kpjHhaWnQhx7LiCVLXMVasrH3ROXoXCsypzPVFKF8W5jHazYR7aHVqqsJAh0k0rjmPMdwS1z__0m2UtTSkQJNxHbrMdRK1ibKKlRCyZQgbljZvUF8T4vrQZJLhAg-NYRbh7-0KN7IYDPflpZ3ch3r--_xOKmy5SGr313IlLVsdpAReAZAol5m8bOu7B_V60_BGTdcMm7HuJzjW7ha7Mk46spsmCcveHvCWE1EdaRACBhFiwLmTJqzrlHQE_AyBAs7ImAMi9sFKAoNXQnK3JjO7-kQYeLqoEh1Jc0qpMgPfKufFATKp0QrhFmD4X5ABeP9UGN2tffuA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branches\" : [5,6]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/branch/sync-menu-users",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"branch",
+										"sync-menu-users"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -30522,6 +32478,66 @@
 										{
 											"key": "is_cash",
 											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "account Payment Option",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTRlYjEzYTM2NGQ0YjM5MTFlMjZjOTAwOTI5NjkwOGM4NWE1YWU5ZTc2MjA2YTYyMWMzYWZmYWFmMjE1ZWZkZDYwMTJjZjdkYTI0YmFmM2EiLCJpYXQiOjE3NjUyNTI1MzkuNTU3NjA0LCJuYmYiOjE3NjUyNTI1MzkuNTU3NjA3LCJleHAiOjE3Njc4NDQ1MzkuNTI2MDM3LCJzdWIiOiI3NyIsInNjb3BlcyI6WyIqIl19.QjrUawCFR7sKN4Vl-AsDDIogaGuNwohNIWJAuhZN4ozJmCdCss8wNxzISIE465y20cfdvOqjzDI0gGqh8g8xOECEvRMqr6S7eF5WyfWZrW5i0Q1liqt-OIt3V093hPX4AexslSEgqbjMV33WXk--aq_6KcPClSunAAfiq72AQJsugQty3yWVmL86ihOOjitqfGqrIC_K-x8MAKNfU4wudHR1PH6pQoyVPjMPn6wc3VUdIo1-5DVdyo7UIANLOsO0Gfm5DDcbWaDCNSInTNjuokusWHLdOgTQbvIsZcAcKwfTxY_-kyZvaTU4uN0hGasM4CJV9oF-Oc9rINUXKYfJk8lS1fSNo4y1rcLKt0G7uCUYCsKyhmpBkXfrHr28tn3PxAPHcWZ09Y_79HCuSHeXhYRHS5os4PSFuCkFzNbYC3yNxwa5U6JkCMVIazML4p3oX22WoXkkwBjYXkav_uX8wh7Uzo5ZFAi9oKrJdtnBSleke8Gw0uwyL8SEtwKE5bdBJy8wadki1hvMhXxvFRhTc7hRY09ZkdQVmjEXBBlNhgbmWvkHNPB1W3rmHcs_eKA-oCg9z5Ox_koQcYUfMOh8ZeTA1z06lL66afxJOhujsQLrnEHtBb7uUz5a00Jg7UwiUkl5K5hhq1HGCXddYNAbNUrc40m9flIpAGsoryecoRU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch_id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/company/:company_id/accounting-payment-options",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"company",
+										":company_id",
+										"accounting-payment-options"
+									],
+									"variable": [
+										{
+											"key": "company_id",
+											"value": "5"
 										}
 									]
 								}
@@ -31727,7 +33743,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{token}}",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTQyOTUwOWIzYWZjZDM0YTIwNDQzMTkwNDIyMTRlZGQzMGI0YWYzOGJlMjQ5NzcyOGU2YTNjMjJkMzQyMjk1YmNmNDQ2NzYxNGExNDllZTgiLCJpYXQiOjE3NjQ3NDQ5ODAuMTMzNDU2LCJuYmYiOjE3NjQ3NDQ5ODAuMTMzNDU5LCJleHAiOjE3NjczMzY5ODAuMTA4ODUsInN1YiI6IjQiLCJzY29wZXMiOlsiKiJdfQ.Jcv1IRlDEWFa6OLm1PZrdDpG7sJb5sJ0HtgCJIUtxYnXiiwQ5SfF0PQAi0WE34WZ1ElXDMjND4G-uqUXdMncZ9TnXSR0GqZfCEP7PfqKyQpfU-dZ5kGuyjnF4SQwh1TraahoUdChbR5QQCW3OA45cc8rw0WbDq96PGP628qJTOG0rJe2JKvKKS8_tAx8dehdwjyOd8Tiz1MgQIs2NqQbRsTbBjinuK4KPAek2hfjc28LriyaMAdp1Rp2myk9Ii9O3e9EyAiQAk21ipIaDkLtDslOQ9GD08cNvdSx3awDi0Id-FoHpLatn0XCyAC3cB0hrFPFT-sOZlnCHICMI9fiS8gUJ3XKM7KIBILuMM_LZiOZu7-rplbOspJNgI60ooTWh6LmEJ6qgk3vPqmRhr81IJ4cx7_Cnd0axHqmQze4np194H4glTeB7p9Du02eybBwW5GAhlllobqp2TSwjnWC8ZbD7NayNdtMzvG7XB19EJex5IOtzBf6H8tFv2GpnnWOQCwbVCuavSLZBmP48BjD2E7m5N07wcpEvrDV2hPDFJBYWlcfEA1hp0cpBsPfKhnYLMV55igP8PaVqxZ5V_RYMQhiSxhfLomJNDmqsn3UZA-OhvtyocHjsTNKu-l0hhat4GPOWv3x1SN6zyuA_1eNhWbUxtpF1UA6qJoi8cVqVu4",
 											"type": "string"
 										}
 									]
@@ -31736,7 +33752,7 @@
 								"header": [
 									{
 										"key": "branch-id",
-										"value": "2"
+										"value": "1"
 									}
 								],
 								"body": {
@@ -33736,13 +35752,13 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"booked_date\": \"2022-09-18\",\r\n    \"event_shift_id\": 2,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 10,\r\n    \"actual_rate_per_pax\": 100,\r\n    // \"advance_amount\": 7300,\r\n    // \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"Other\",\r\n        \"phone\": \"123457810\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 5\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 6\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        },\r\n        {\r\n            \"event_hall_id\": 2\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
+											"raw": "{\r\n    \"booked_date\": \"2022-09-18\",\r\n    \"event_shift_id\": 1,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 10,\r\n    \"actual_rate_per_pax\": 100,\r\n    \"note\":\"some note\",\r\n    // \"advance_amount\": 7300,\r\n    // \"advance_payment_option_id\": 1,\r\n    \"booked_by\": {\r\n        \"name\": \"Other\",\r\n        \"phone\": \"123457810\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\",\r\n        \"secondary_phone\":\"1234567890\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"event_menu_product_id\": 1\r\n        },\r\n        {\r\n            \"event_menu_product_id\": 2\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"event_hall_id\": 1\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -33836,13 +35852,13 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"booked_date\": \"2022-07-25\",\r\n    \"event_shift_id\": 1,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"actual_rate_per_pax\": 20,\r\n    \"booked_by\": {\r\n        \"name\": \"John Doe asd\",\r\n        \"phone\": \"123-456-7890\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"id\": 19,\r\n            \"event_menu_product_id\": 7\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"id\": 164,\r\n            \"event_hall_id\": 3\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility  asd 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
+											"raw": "{\r\n    \"booked_date\": \"2022-07-25\",\r\n    \"event_shift_id\": 1,\r\n    \"event_type_id\": 1,\r\n    \"event_source_id\": 1,\r\n    \"estimated_guest_count\": 100,\r\n    \"actual_rate_per_pax\": 20,\r\n    \"booked_by\": {\r\n        \"name\": \"John Doe asd\",\r\n        \"phone\": \"123-456-7890\",\r\n        \"email\": \"johndoe@example.com\",\r\n        \"address\": \"123 Main St\",\r\n        \"secondary_phone\":\"123456\"\r\n    },\r\n    \"booking_menu_products\": [\r\n        {\r\n            \"id\": 1,\r\n            \"event_menu_product_id\": 1\r\n        }\r\n    ],\r\n    \"booking_halls\": [\r\n        {\r\n            \"id\": 1,\r\n            \"event_hall_id\": 1\r\n        }\r\n    ],\r\n    \"booking_facilities\": [\r\n        {\r\n            \"name\": \"Facility  asd 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 1\",\r\n            \"price\": 100,\r\n            \"description\": \"some description\"\r\n        },\r\n        {\r\n            \"name\": \"Facility 2\",\r\n            \"price\": 200,\r\n            \"description\": \"some description\"\r\n        }\r\n    ],\r\n    \"override_guest_detail\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -33864,7 +35880,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "90"
+													"value": "1"
 												}
 											]
 										}
@@ -34100,7 +36116,7 @@
 										"header": [
 											{
 												"key": "branch-id",
-												"value": "1",
+												"value": "5",
 												"type": "text"
 											}
 										],
@@ -34129,7 +36145,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "79"
+													"value": "1"
 												}
 											]
 										}
@@ -35202,6 +37218,1791 @@
 					]
 				},
 				{
+					"name": "Batch Production",
+					"item": [
+						{
+							"name": "List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "particular",
+											"value": "FonePay Transfer Single",
+											"type": "text"
+										},
+										{
+											"key": "received",
+											"value": "1000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "received_payment_method_id",
+											"value": "9",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paid",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "paid_payment_method_id",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/bills-of-materials",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"bills-of-materials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upsert",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\" : 28,\r\n    \"output_quantity\" : 3,\r\n    \"note\" : \"test\",\r\n    \"raw_materials\" :[ \r\n        {\r\n            \"product_id\" : 22,\r\n            \"quantity\" : 5\r\n        },\r\n        {\r\n            \"product_id\" : 21,\r\n            \"quantity\" : 5\r\n        }\r\n    ]\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/bills-of-materials",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"bills-of-materials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "particular",
+											"value": "FonePay Transfer Single",
+											"type": "text"
+										},
+										{
+											"key": "received",
+											"value": "1000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "received_payment_method_id",
+											"value": "9",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paid",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "paid_payment_method_id",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/bills-of-materials/:id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"bills-of-materials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "particular",
+											"value": "FonePay Transfer Single",
+											"type": "text"
+										},
+										{
+											"key": "received",
+											"value": "1000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "received_payment_method_id",
+											"value": "9",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paid",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "paid_payment_method_id",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/bills-of-materials/:id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"bills-of-materials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Load BOM",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "particular",
+											"value": "FonePay Transfer Single",
+											"type": "text"
+										},
+										{
+											"key": "received",
+											"value": "1000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "received_payment_method_id",
+											"value": "9",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paid",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "paid_payment_method_id",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/bills-of-materials-load/?id=2&output_quantity=15",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"bills-of-materials-load",
+										""
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										},
+										{
+											"key": "output_quantity",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Production Journal",
+					"item": [
+						{
+							"name": "List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "particular",
+											"value": "FonePay Transfer Single",
+											"type": "text"
+										},
+										{
+											"key": "received",
+											"value": "1000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "received_payment_method_id",
+											"value": "9",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paid",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "paid_payment_method_id",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/production-journals",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"production-journals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\" : 28,\r\n    \"output_quantity\" : 20,\r\n    \"note\" : \"test 2\",\r\n    \"reference_number\" : \"jhkjawdhk\",\r\n    \"raw_materials\" :[ \r\n        {\r\n            \"product_id\" : 2190,\r\n            \"quantity\" : 5\r\n        },\r\n        {\r\n            \"product_id\" : 2173,\r\n            \"quantity\" : 10\r\n        }\r\n    ]\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/production-journals",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"production-journals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "particular",
+											"value": "FonePay Transfer Single",
+											"type": "text"
+										},
+										{
+											"key": "received",
+											"value": "1000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "received_payment_method_id",
+											"value": "9",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paid",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "paid_payment_method_id",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/production-journals/:id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"production-journals",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "24"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "particular",
+											"value": "FonePay Transfer Single",
+											"type": "text"
+										},
+										{
+											"key": "received",
+											"value": "1000",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "received_payment_method_id",
+											"value": "9",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paid",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "paid_payment_method_id",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "remarks",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{localApiUrl}}/api/admin/production-journals/:id",
+									"host": [
+										"{{localApiUrl}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"production-journals",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "26"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "SMS",
+					"item": [
+						{
+							"name": "Customers",
+							"item": [
+								{
+									"name": "get contacts",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/sms/customers/contacts?paginate=1&sms_contact_group_id=6",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"customers",
+												"contacts"
+											],
+											"query": [
+												{
+													"key": "q",
+													"value": "974",
+													"disabled": true
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												},
+												{
+													"key": "receiver_type",
+													"value": "HOTEL",
+													"disabled": true
+												},
+												{
+													"key": "sms_contact_group_id",
+													"value": "6"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get injection keys",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/customers/injection-keys",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"customers",
+												"injection-keys"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "send message",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"customer_ids\": [\r\n        1,4\r\n    ],\r\n    \"template\": \"Hi, {{name}}. The due amount related to your account is Rs.{{due_amount}}. Please pay on time.\",\r\n    // \"template\":\"Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time. asdsdasdasdasdasdasdasdasdasdasdasdasdasdasdasda\",\r\n    \"title\": \"Hello\",\r\n    \"is_campaign\":false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/customers/send",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"customers",
+												"send"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "send message all star",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "Bearer 54|5ZM0MqNhjdzkwFFZgPmPMbSAiK4NU44bUOL0TNDce425491c",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": \"plain\",\r\n    \"message\": \"Hi, Customer 1\",\r\n    \"recipient\": \"9741689372\",\r\n    \"sender_id\": \"Finora\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://sms.allstar.com.np/api/v3/sms/sen",
+											"protocol": "https",
+											"host": [
+												"sms",
+												"allstar",
+												"com",
+												"np"
+											],
+											"path": [
+												"api",
+												"v3",
+												"sms",
+												"sen"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Batches",
+							"item": [
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/batches?get_all=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"batches"
+											],
+											"query": [
+												{
+													"key": "get_all",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all dispatches",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/batches/:id/dispatches",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"batches",
+												":id",
+												"dispatches"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "25"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "resend",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/batches/:id/resend",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"batches",
+												":id",
+												"resend"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "64"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "dispatches",
+							"item": [
+								{
+									"name": "resend",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/dispatches/resend?sms_dispatch_ids[0]=123&sms_dispatch_ids[1]=124",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"dispatches",
+												"resend"
+											],
+											"query": [
+												{
+													"key": "sms_dispatch_ids[0]",
+													"value": "123"
+												},
+												{
+													"key": "sms_dispatch_ids[1]",
+													"value": "124"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/dispatches",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"dispatches"
+											],
+											"query": [
+												{
+													"key": "is_from_hospitality",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "sms credits",
+							"item": [
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/credits?company_id=4&paginate=1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"credits"
+											],
+											"query": [
+												{
+													"key": "company_id",
+													"value": "4"
+												},
+												{
+													"key": "to",
+													"value": "2025-09-06",
+													"disabled": true
+												},
+												{
+													"key": "paginate",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "templates",
+							"item": [
+								{
+									"name": "create",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"template 1\",\r\n    \"content\": \"Some content of sms template\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/templates",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"templates"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"template 1\",\r\n    \"content\": \"Some content of sms template asd 1\",\r\n    \"is_active\":true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/templates/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/templates/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/templates/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/templates",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"templates"
+											],
+											"query": [
+												{
+													"key": "editable",
+													"value": "0",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "contact groups",
+							"item": [
+								{
+									"name": "create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"sms_contact_group_id\",pm.response.json().data.id)"
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Contact group 1\",\n    \"is_active\":true,\n    \"customer_ids\":[1,3]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/contact-groups",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contact-groups"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "edit",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Contact group 1\",\n    \"is_active\":true,\n    \"account_head_ids\":[11291,4808]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/contact-groups/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contact-groups",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{sms_contact_group_id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/contact-groups/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contact-groups",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{sms_contact_group_id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/contact-groups",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contact-groups"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "get statistics",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "branch-id",
+										"value": "5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/api/sms/statistics",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sms",
+										"statistics"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "SOLD_CREDITS",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Print Issue store",
 					"request": {
 						"auth": {
@@ -35615,6 +39416,86 @@
 			]
 		},
 		{
+			"name": "Test Api",
+			"item": [
+				{
+					"name": "Test OrderList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let total = 100; // number of requests\r",
+									"let current = pm.variables.get(\"count\") || 1;\r",
+									"\r",
+									"console.log(\"Request:\", current);\r",
+									"\r",
+									"if (current < total) {\r",
+									"    pm.variables.set(\"count\", current + 1);\r",
+									"    postman.setNextRequest(pm.info.requestName);\r",
+									"} else {\r",
+									"    pm.variables.unset(\"count\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiODIwNTBjMzJiMzg5NjdmODNhMTYzNWVhZmQwYTZmY2YyYjNhM2Q5NzQ1MzA3MzQ4ZDc0Yzg1OWUxNDdmYTA4Njc4MjM3OGE0ZjJkYzBiZTgiLCJpYXQiOjE3NjU0NTEwMDEuOTMyMjc1LCJuYmYiOjE3NjU0NTEwMDEuOTMyMjc3LCJleHAiOjE3NjgwNDMwMDEuOTI5NjU0LCJzdWIiOiIyODgiLCJzY29wZXMiOlsiKiJdfQ.J9AwqdEu4GHU4jrEVa6vuHtJJGGycvuBbemy70K4n2tWB9a2hF2qe8RzIr8m1X1WVVuDWrPzWuhqfWAtP36sdRoavVeDKsq68Lc4mk_x7cXhx_X4XjmO4IVb7SgjVvQsrYbNFXP11zEPWzdbO_sQ4GWmFVkpcR_hapKicL0dVQzeMuTZuKOzt02rz8pHaH_idf3z2f_V4Jb8kjAs1R-EujjUFjDn-J-3Su9LEz-4sIpTwT8umJ2OjtW27iqWnxUwcFYkqZxfFcitl6iLtN9IUb8MqGileveLoH8-7pZUWDsh47F-zkau66cgOuINCm2Y1mNaX2J549nDtq-BIoMgi21V0jmOvkK_QjP-VMDCBhvgM0QIobyTIISIBKMH_pWDoY6wRPnaJ5r7xYNPqUD-j-5ZeU_BG2Eymk3Ygwt-eFglHYVov4u5948xOTbcLfy0MVVHe6oNpOy1xoF6JmfqdicfbGS-k73Yv96Hc3DzTMYmj3YoPUmelixESbaJFtsS5fJ6zp4c2HyCPP2qnVYfMeA3xlDrejZIqRaRY06DfJVFY11UTX4RLdx67pKWwWOEQYNwG1IGomzlY7Qx1GahdoR_4JXIr6OatSmCzWJLL6nnXaLvPj88kbim0EZzvIN8p_vm0NE090pXle5dTlyQvqbT0xVWZuiXiVg9Mo9DN8s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "branch-id",
+								"value": "29",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{datalayaHospitality}}/api/admin/orders?pagination_limit=20",
+							"host": [
+								"{{datalayaHospitality}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "pagination_limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "/broadcasting/auth",
 			"request": {
 				"auth": {
@@ -35656,18 +39537,70 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"let total = 100; // number of requests\r",
+					"let current = pm.variables.get(\"count\") || 1;\r",
+					"\r",
+					"console.log(\"Request:\", current);\r",
+					"\r",
+					"if (current < total) {\r",
+					"    pm.variables.set(\"count\", current + 1);\r",
+					"    postman.setNextRequest(pm.info.requestName);\r",
+					"} else {\r",
+					"    pm.variables.unset(\"count\");\r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
 		{
 			"key": "vercel",
-			"value": "",
-			"type": "default"
+			"value": ""
 		},
 		{
 			"key": "vercelUrl",
-			"value": "https://hospitality-api.scoduscorp.com/api",
-			"type": "default"
+			"value": "https://hospitality-api.scoduscorp.com/api"
+		},
+		{
+			"key": "finoraHospitality",
+			"value": "https://api.hospitality.finoracloud.app"
+		},
+		{
+			"key": "datalayaHospitality",
+			"value": "https://api.hospitality.datalaya.srotcloud.app"
+		},
+		{
+			"key": "finoraAuth",
+			"value": "https://integration.finoracloud.app"
 		}
 	]
 }
