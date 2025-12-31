@@ -14311,7 +14311,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/admin/offline-orders?date=12/29/2025",
+											"raw": "{{url}}/api/admin/offline-orders",
 											"host": [
 												"{{url}}"
 											],
@@ -14319,12 +14319,6 @@
 												"api",
 												"admin",
 												"offline-orders"
-											],
-											"query": [
-												{
-													"key": "date",
-													"value": "12/29/2025"
-												}
 											]
 										}
 									},
@@ -37922,7 +37916,7 @@
 					"name": "SMS",
 					"item": [
 						{
-							"name": "Customers",
+							"name": "send",
 							"item": [
 								{
 									"name": "get contacts",
@@ -37946,15 +37940,14 @@
 											}
 										],
 										"url": {
-											"raw": "{{url}}/api/sms/customers/contacts?paginate=1&sms_contact_group_id=6",
+											"raw": "{{url}}/api/sms/aggregate-contacts?paginate=1",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"api",
 												"sms",
-												"customers",
-												"contacts"
+												"aggregate-contacts"
 											],
 											"query": [
 												{
@@ -37973,7 +37966,18 @@
 												},
 												{
 													"key": "sms_contact_group_id",
-													"value": "6"
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "42",
+													"disabled": true
+												},
+												{
+													"key": "q",
+													"value": "dad",
+													"disabled": true
 												}
 											]
 										}
@@ -38014,14 +38018,13 @@
 											"urlencoded": []
 										},
 										"url": {
-											"raw": "{{url}}/api/sms/customers/injection-keys",
+											"raw": "{{url}}/api/sms/injection-keys",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"api",
 												"sms",
-												"customers",
 												"injection-keys"
 											]
 										}
@@ -38051,7 +38054,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"customer_ids\": [\r\n        1,4\r\n    ],\r\n    \"template\": \"Hi, {{name}}. The due amount related to your account is Rs.{{due_amount}}. Please pay on time.\",\r\n    // \"template\":\"Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time.Hi, Arun. The due amount related to your account is Rs.500.00. Please pay on time. asdsdasdasdasdasdasdasdasdasdasdasdasdasdasdasda\",\r\n    \"title\": \"Hello\",\r\n    \"is_campaign\":false\r\n}",
+											"raw": "{\r\n    \"customer_ids\": [\r\n        1\r\n    ],\r\n    \"sms_contact_ids\":[\r\n        2\r\n    ],\r\n    \"title\": \"Hello\",\r\n    \"template\":\"Hi, this is a new message\",\r\n    \"is_campaign\":false\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -38059,14 +38062,13 @@
 											}
 										},
 										"url": {
-											"raw": "{{url}}/api/sms/customers/send",
+											"raw": "{{url}}/api/sms/send",
 											"host": [
 												"{{url}}"
 											],
 											"path": [
 												"api",
 												"sms",
-												"customers",
 												"send"
 											]
 										}
@@ -38275,7 +38277,7 @@
 											"variable": [
 												{
 													"key": "id",
-													"value": "64"
+													"value": "117"
 												}
 											]
 										}
@@ -38313,7 +38315,7 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{url}}/api/sms/dispatches/resend?sms_dispatch_ids[0]=123&sms_dispatch_ids[1]=124",
+											"raw": "{{url}}/api/sms/dispatches/resend?sms_dispatch_ids[0]=202&sms_dispatch_ids[1]=201",
 											"host": [
 												"{{url}}"
 											],
@@ -38326,11 +38328,11 @@
 											"query": [
 												{
 													"key": "sms_dispatch_ids[0]",
-													"value": "123"
+													"value": "202"
 												},
 												{
 													"key": "sms_dispatch_ids[1]",
-													"value": "124"
+													"value": "201"
 												}
 											]
 										}
@@ -38769,7 +38771,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"name\":\"Contact group 1\",\n    \"is_active\":true,\n    \"customer_ids\":[1,3]\n}",
+											"raw": "{\n    \"name\": \"Contact group 1\",\n    \"is_active\": true,\n    \"details\": [\n        {\n            \"customer_id\": 1\n        },\n        {\n            \"sms_contact_id\": 2\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -38818,7 +38820,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"name\":\"Contact group 1\",\n    \"is_active\":true,\n    \"account_head_ids\":[11291,4808]\n}",
+											"raw": "{\n    \"name\": \"Contact group 1\",\n    \"is_active\": true,\n    \"details\": [\n        {\n            \"customer_id\": 3\n        },\n        {\n            \"sms_contact_id\": 4\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -38939,6 +38941,210 @@
 												"api",
 												"sms",
 												"contact-groups"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Contacts",
+							"item": [
+								{
+									"name": "create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set('contact_id', pm.response.json().data.id)",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Some name\",\r\n    \"phone_number\": 9741689372,\r\n    \"anniversary_date\": \"2020-02-02\",\r\n    \"date_of_birth\": \"2020-02-02\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/contacts",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contacts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"Some name 1\",\r\n    \"phone_number\": 9741689372,\r\n    \"anniversary_date\":\"2020-02-02\",\r\n    \"date_of_birth\":\"2020-02-02\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/contacts/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contacts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{contact_id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/sms/contacts/:id",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contacts",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{contact_id}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "branch-id",
+												"value": "5",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sms/contacts?q=5",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sms",
+												"contacts"
+											],
+											"query": [
+												{
+													"key": "q",
+													"value": "5"
+												}
 											]
 										}
 									},
